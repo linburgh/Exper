@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <script type="text/javascript">
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    var POSITION_TYPE = ['topleft.topleft', 'top.top', 'topright.topright', 'right.right', 'left.left', 'bottom.bottom', 'bottomleft.bottomleft', 'bottomright.bottomright'];
+    var DIRECTION_TYPE = ['northwest', 'north', 'northeast', 'east', 'west', 'south', 'southwest', 'southeast'];
+    var offset = 10;
+    var N = 6;
+    function init() {
+        initNetwork();
+        initDataBox();
+    }
+
+    function initNetwork() {
+        var view = network.getView();
+        document.body.appendChild(view);
+        network.adjustBounds({x: 0, y: 0, width: 1300, height: 600});
+        twaver.Styles.setStyle('link.label.rotatable',true);
+        network.setLinkFlowEnabled(true);
+        network.setEditInteractions();
+    }
+
+    function initDataBox() {
+        startFlowLink();
+        initCrossLink();
+        refresh();
+    }
+
+    function startFlowLink(){
+        var index = 0;
+
+        timer = setInterval(function(){
+            index+=2;
+
+            box.forEach(function(e){
+                if((e instanceof twaver.Link || e instanceof twaver.ShapeLink) && e.getClient('glow')){
+                    var d = parseInt(_twaver.math.getDistance(e.getFromNode().getCenterLocation(),e.getToNode().getCenterLocation()));
+                    index1 = index%d;
+                    e.s('arrow.to.xoffset', d - index1);
+                }
+            });
+            // refresh();
+            // network.invalidateElementUIs();
+        }, 20);
+    }
+
+
+    function initCrossLink(){
+        var i,j,name;
+        var links = [];
+
+        for(i=0; i<6; i++){
+            name = "NodeV" + i;
+            var node = new twaver.Node({
+                id:name,
+                name:name,
+                location:(i%2 == 0)? {x:270+i*60,y:50}:{x:200+i*60,y:500}
+            });
+            box.add(node);
+        }   
+
+        for(j=0; j<6; j++){
+            name = "NodeH" + j;
+            var node = new twaver.Node({
+                id:name,
+                name:name,
+                location:(j%2 == 0)? {x:150,y:j*60+160}:{x:550,y:j*60+100}
+            });
+            box.add(node);
+        }
+
+        for(i=0; i<5; i+=2){
+            name = "LinkV" + i;
+            var from = box.getDataById('NodeV'+i);
+            var to = box.getDataById('NodeV'+(i+1));
+            var link = new twaver.Link({id:name,name:name},from,to);
+            link.setStyle('link.color',twaver.Colors.blue_light);
+            links.push(link);
+        }
+
+        for(i=0; i<5; i+=2){
+            name = "LinkH" + i;
+            var from = box.getDataById("NodeH" + i);
+            var to = box.getDataById("NodeH" + (i+1));
+            var link = new twaver.Link({id:name,name:name},from,to);
+            link.setStyle('link.color',twaver.Colors.blue_light);
+            links.push(link);
+        }  
+
+        links.forEach(function(l){
+           box.add(l);
+       });
+    }
+
+    function intersectLineLine(a1,a2,b1,b2){
+        var ua_t = (b2.x - b1.x) * (a1.y - b1.y) - (b2.y - b1.y) * (a1.x - b1.x);
+        var ub_t = (a2.x - a1.x) * (a1.y - b1.y) - (a2.y - a1.y) * (a1.x - b1.x);
+        var u_b = (b2.y - b1.y) * (a2.x - a1.x) - (b2.x - b1.x) * (a2.y - a1.y);
+
+        if(u_b != 0){
+            var ua = ua_t / u_b;
+            var ub= ub_t / u_b;
+
+            if(0 <= ua && ua <= 1 && 0 <= ub && ub <= 1){
+                return {x:a1.x + ua * (a2.x - a1.x), y:a1.y + ua * (a2.y - a1.y)};
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        } 
+    }
+
+    function refresh(){
+        var links =[];
+        var crossLinksMap = {};
+        box.forEach(function(ele){
+            if(!(ele instanceof twaver.Link)){
+                return ;
+            }
+
+            var link = ele;
+            if(link && !link.isLooped() && !(link instanceof twaver.ShapeLink)){
+                var crossLink = link.getClient('crossLink');
+                if(crossLink){
+                    link.s('whole.alpha',1);
+                    link.setClient('crossLink',null);
+                    box.remove(crossLink);
+                }
+                links.push(ele);
+            }
+        });
+
+        links.forEach(function(link1){
+            var crossLinks = [];
+            var crossPoints = [];
+
+            links.forEach(function(link2){
+                if((link1.getFromNode() === link2.getFromNode() && link1.getToNode() === link2.getToNode()) ||
+                    (link1.getFromNode() === link2.getToNode() &&
+                        link1.getToNode() === link2.getFromNode())
+                    && link1.getId() !== link2.getId && links.indexOf(link2)){
+                    return ;
+            }
+
+            if(link1.getFromNode() === link2.getFromNode() ||
+                link1.getFromNode() === link2.getToNode() ||
+                link1.getToNode() === link2.getFromNode() ||
+                link1.getToNode() === link2.getToNode()){
+                return ;
+        }
+
+        var point = intersectLineLine(link1.getFromNode().getCenterLocation(),link1.getToNode().getCenterLocation(),link2.getFromNode().getCenterLocation(),link2.getToNode().getCenterLocation());
+
+        if(point){
+            var crossLinks2 = crossLinksMap[link2];
+            if(crossLinks2){
+                for(var i=0;i<crossLinks2.length;i++){
+                    if(crossLinks2[i].link === link1){
+                        return;
+                    }
+                }
+            }
+
+            crossLinks.push({link:link2,point:point});
+        }
+    });
+
+if(link1.getFromNode().getX() < link1.getToNode().getX()){
+    crossLinks.sort(function(object1,object2){
+        if(object1.point.x > object2.point.x){
+            return 1;
+        }else if(object1.point.x < object2.point.x){
+            return -1;
+        }else{
+            return 0;
+        }
+    });
+}else{
+    crossLinks.sort(function(object1,object2){
+        if(object1.point.x < object2.point.x){
+            return 1;
+        }else if(object1.point.x < object2.point.x){
+            retur -1;
+        }else{
+            return 0;
+        }
+    });
+}
+
+if(crossLinks.length > 0){
+    crossLinksMap[link1] = crossLinks;
+}
+
+});
+
+for(var link1 in crossLinksMap){
+    var link = box.getDataById(link1);
+    var shapeLink = link.getClient('crossLink');
+    var points = [];
+
+    if(!shapeLink){
+        shapeLink = new twaver.ShapeLink({id:'shapeLink'+link1},link.getFromNode(),link.getToNode());
+        shapeLink.s('shapelink.type','quadto');
+        shapeLink.s('arrow.to',true);
+        shapeLink.s('arrow.to.color',twaver.Colors.orange_light);
+        shapeLink.setClient('glow',true);
+        shapeLink.setStyle('link.color',twaver.Colors.green_dark);
+        link.setClient('crossLink',shapeLink);
+        box.add(shapeLink);
+    }
+    link.s('whole.alpha',0);
+    crossLinksMap[link1].forEach(function(link2){
+        addCrossPoint(link,link2.link,link2.point,shapeLink,points);
+    });
+
+    var distances = [];
+    if(points.length >= 2*N){
+        for(var i= 0;i<points.length/N-1;i++){
+            distances[i] = Math.sqrt(Math.pow((points[N*i].x - points[(N*i+N)].x),2)+Math.pow((points[N*i].y-points[N*i+N].y),2));
+        }
+        for(var j=distances.length-1;j>=0;j--){
+            if(distances[j] <= 20){
+                points.splice(N*j+N,N);
+            }
+        }
+    }
+
+    var list = new twaver.List();
+    for(var k=0;k<points.length;k++){
+        list.add(points[k]);
+    }
+    shapeLink.setPoints(list);
+}
+
+}
+
+function addCrossPoint(link1,link2,point,link,points) {
+    var fromCenter = link.getFromNode().getCenterLocation();
+    var toCenter = link.getToNode().getCenterLocation();
+
+    var fromLeft = fromCenter.x < toCenter.x;
+    var angle = getAngle(fromCenter,toCenter);
+    var xOffset = offset * (fromLeft ? 1 : -1);
+    var yOffset = offset;
+    var a = angle;
+    var mtx= new matrix({
+        matrix:[
+        [Math.cos(a),-Math.sin(a),(1-Math.cos(a))*point.x+Math.sin(a)*point.y],
+        [Math.sin(a),Math.cos(a),(1-Math.cos(a))*point.y-Math.sin(a)*point.x],
+        [0,0,1]
+        ]
+    });
+
+     var matrix0 = new matrix({
+        matrix:[
+        [point.x - xOffset],
+        [point.y],
+        [1]
+        ]
+    });
+    var point0 = matrix0.multiply(mtx);
+    point0 = {x:point0.matrix[0][0],y:point0.matrix[1][0]};
+
+    var point1y = -Math.sqrt(Math.pow(offset,2)-Math.pow(xOffset/2,2))+point.y;
+    var matrix1 = new matrix({
+        matrix:[
+        [point.x - xOffset/2],
+        [point1y],
+        [1]
+        ]
+    });
+    var point1 = matrix1.multiply(mtx);
+    point1 = {x:point1.matrix[0][0],y:point1.matrix[1][0]};
+
+    var point2y = -Math.sqrt(Math.pow(offset,2)-Math.pow(0,2))+point.y;
+    var matrix2 = new matrix({
+        matrix:[
+        [point.x],
+        [point2y],
+        [1]
+        ]
+    });
+    var point2 = matrix2.multiply(mtx);
+    point2 = {x:point2.matrix[0][0],y:point2.matrix[1][0]};
+
+    var matrix3 = new matrix({
+        matrix:[
+        [point.x + xOffset/2],
+        [point1y],
+        [1]
+        ]
+    });
+    var point3 = matrix3.multiply(mtx);
+    point3 = {x:point3.matrix[0][0],y:point3.matrix[1][0]};
+
+    var matrix4 = new matrix({
+        matrix:[
+        [point.x + xOffset],
+        [point.y],
+        [1]
+        ]
+    });
+    var point4 = matrix4.multiply(mtx);
+    point4 = {x:point4.matrix[0][0],y:point4.matrix[1][0]};
+
+    points.push(point0);
+    points.push(point0);
+    points.push(point1);
+    points.push(point2);
+    points.push(point3);
+    points.push(point4);
+}
+
+function getAngle(p1,p2){
+    if(p1.x === p2.x){
+        if(p2.y == p1.y){
+            return 0;
+        }else if(p2.y > p1.y){
+            return Math.PI/2;
+        }else{
+            return -Math.PI/2;
+        }
+    }
+    return Math.atan((p2.y - p1.y) / (p2.x - p1.x));
+}
+
+
+var matrix=function(options){
+    if (!(this instanceof arguments.callee)) {
+        return new arguments.callee(options);
+    }
+    this.init(options);
+};
+
+matrix.prototype={
+    init:function(options){
+        this.matrix=options.matrix;
+    },
+
+    add:function(mtx){
+        var omtx=this.matrix;
+        var newMtx=[];
+        if(!mtx.length||!mtx[0].length||mtx.length!=omtx.length||mtx[0].length!=omtx[0].length){
+            return;
+        }
+        for(var i=0,len1=omtx.length;i<len1;i++){
+            var rowMtx=omtx[i];
+            newMtx.push([]);
+            for(var j=0,len2=rowMtx.length;j<len2;j++){
+                newMtx[i][j]=rowMtx[j]+mtx[i][j];
+            }
+        }
+        this.matrix=newMtx;
+        return this;
+    },
+
+    multiply:function(mtx){
+                var omtx = mtx.matrix;
+                var mtx = this.matrix;
+                var newMtx=[];
+                if(!isNaN(mtx)){
+                    for(var i=0,len1=omtx.length;i<len1;i++){
+                        var rowMtx=omtx[i];
+                        newMtx.push([]);
+                        for(var j=0,len2=rowMtx.length;j<len2;j++){
+                            omtx[i][j]*=mtx;    
+                        }
+                    }
+                    return new matrix({matrix:newMtx});
+                }
+                var sum=0;
+                for(var i=0,len1=omtx.length;i<len1;i++){
+                    var rowMtx=omtx[i];    
+                    newMtx.push([]);
+                    for(var m=0,len3=mtx[0].length;m<len3;m++){
+                        for(var j=0,len2=rowMtx.length;j<len2;j++){
+                            sum+=omtx[i][j]*mtx[j][m];    
+                        }
+                        newMtx[newMtx.length-1].push(sum);
+                        sum=0;
+                    }
+                }
+                this.matrix=newMtx;
+                return this;        
+            }            
+        };
+        this.Matrix=matrix;
+
+        </script>
+
+</head>
+<body onload="init()">
+</body>
+</html>

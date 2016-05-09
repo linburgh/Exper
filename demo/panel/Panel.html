@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<link rel="stylesheet"  type="text/css" href="../../dist/css/ass.css">
+<script language="javascript" src="../../dist/js/ass-debug.js"></script>
+<script language="javascript"> 
+	$(function(){
+		var panel = ass.UIFactory.createInstance("Panel",{
+			title:'Panel1',
+			rows:[{
+				title:'Panel2',
+				name:'Panel',
+				rows:[{
+					title:'Panel3',
+					name:'Panel'
+				}]
+			}]
+		});
+		panel.render();
+	});
+</script>
+<title>Panel</title>
+
+</head>
+<body >
+
+</body>
+</html>
+ 

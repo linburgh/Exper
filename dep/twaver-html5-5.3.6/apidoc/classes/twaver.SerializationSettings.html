@@ -1,0 +1,6111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>twaver.SerializationSettings - TWave HTML5 API Doc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../../demo/images/logo.png" title="TWave HTML5 API Doc"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: TWaver HTML5 5.3.6</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/twaver.Alarm.html">twaver.Alarm</a></li>
+                                <li><a href="../classes/twaver.AlarmBox.html">twaver.AlarmBox</a></li>
+                                <li><a href="../classes/twaver.AlarmElementMapping.html">twaver.AlarmElementMapping</a></li>
+                                <li><a href="../classes/twaver.AlarmSeverity.html">twaver.AlarmSeverity</a></li>
+                                <li><a href="../classes/twaver.AlarmState.html">twaver.AlarmState</a></li>
+                                <li><a href="../classes/twaver.AlarmStatePropagator.html">twaver.AlarmStatePropagator</a></li>
+                                <li><a href="../classes/twaver.AlarmStateStatistics.html">twaver.AlarmStateStatistics</a></li>
+                                <li><a href="../classes/twaver.animate.Animate.html">twaver.animate.Animate</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateBounds.html">twaver.animate.AnimateBounds</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateCenterLocation.html">twaver.animate.AnimateCenterLocation</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateLocation.html">twaver.animate.AnimateLocation</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateProperty.html">twaver.animate.AnimateProperty</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateScrollPosition.html">twaver.animate.AnimateScrollPosition</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateSubNetwork.html">twaver.animate.AnimateSubNetwork</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateXYZoom.html">twaver.animate.AnimateXYZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateXZoom.html">twaver.animate.AnimateXZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateYZoom.html">twaver.animate.AnimateYZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateZoom.html">twaver.animate.AnimateZoom</a></li>
+                                <li><a href="../classes/twaver.BundleLinks.html">twaver.BundleLinks</a></li>
+                                <li><a href="../classes/twaver.Bus.html">twaver.Bus</a></li>
+                                <li><a href="../classes/twaver.canvas.AlarmAttachment.html">twaver.canvas.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.Attachment.html">twaver.canvas.Attachment</a></li>
+                                <li><a href="../classes/twaver.canvas.BasicAttachment.html">twaver.canvas.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.EditAttachment.html">twaver.canvas.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.ElementUI.html">twaver.canvas.ElementUI</a></li>
+                                <li><a href="../classes/twaver.canvas.GridUI.html">twaver.canvas.GridUI</a></li>
+                                <li><a href="../classes/twaver.canvas.GroupUI.html">twaver.canvas.GroupUI</a></li>
+                                <li><a href="../classes/twaver.canvas.IconsAttachment.html">twaver.canvas.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.BaseInteraction.html">twaver.canvas.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateElementInteraction.html">twaver.canvas.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateLinkInteraction.html">twaver.canvas.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateShapeLinkInteraction.html">twaver.canvas.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateShapeNodeInteraction.html">twaver.canvas.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.DefaultInteraction.html">twaver.canvas.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.EditInteraction.html">twaver.canvas.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MagnifyInteraction.html">twaver.canvas.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MoveInteraction.html">twaver.canvas.interaction.MoveInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MSTouchInteraction.html">twaver.canvas.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.PanInteraction.html">twaver.canvas.interaction.PanInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.ScrollInteraction.html">twaver.canvas.interaction.ScrollInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.SelectInteraction.html">twaver.canvas.interaction.SelectInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.TouchInteraction.html">twaver.canvas.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.LabelAttachment.html">twaver.canvas.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.LinkHandlerAttachment.html">twaver.canvas.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.LinkUI.html">twaver.canvas.LinkUI</a></li>
+                                <li><a href="../classes/twaver.canvas.Network.html">twaver.canvas.Network</a></li>
+                                <li><a href="../classes/twaver.canvas.NodeUI.html">twaver.canvas.NodeUI</a></li>
+                                <li><a href="../classes/twaver.canvas.Overview.html">twaver.canvas.Overview</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewInteraction.html">twaver.canvas.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewMSTouchInteraction.html">twaver.canvas.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewTouchInteraction.html">twaver.canvas.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.RotatableNodeUI.html">twaver.canvas.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.canvas.ShapeLinkUI.html">twaver.canvas.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.canvas.ShapeNodeUI.html">twaver.canvas.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.charts.BarChart.html">twaver.charts.BarChart</a></li>
+                                <li><a href="../classes/twaver.charts.BubbleChart.html">twaver.charts.BubbleChart</a></li>
+                                <li><a href="../classes/twaver.charts.ChartBase.html">twaver.charts.ChartBase</a></li>
+                                <li><a href="../classes/twaver.charts.ChartInteraction.html">twaver.charts.ChartInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.ChartMSTouchInteraction.html">twaver.charts.ChartMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.ChartPane.html">twaver.charts.ChartPane</a></li>
+                                <li><a href="../classes/twaver.charts.ChartTouchInteraction.html">twaver.charts.ChartTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.DialChart.html">twaver.charts.DialChart</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPane.html">twaver.charts.LegendPane</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPaneInteraction.html">twaver.charts.LegendPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPaneTouchInteraction.html">twaver.charts.LegendPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.LineChart.html">twaver.charts.LineChart</a></li>
+                                <li><a href="../classes/twaver.charts.PieChart.html">twaver.charts.PieChart</a></li>
+                                <li><a href="../classes/twaver.charts.RadarChart.html">twaver.charts.RadarChart</a></li>
+                                <li><a href="../classes/twaver.charts.ScaleChart.html">twaver.charts.ScaleChart</a></li>
+                                <li><a href="../classes/twaver.Column.html">twaver.Column</a></li>
+                                <li><a href="../classes/twaver.ColumnBox.html">twaver.ColumnBox</a></li>
+                                <li><a href="../classes/twaver.controls.Accordion.html">twaver.controls.Accordion</a></li>
+                                <li><a href="../classes/twaver.controls.BorderPane.html">twaver.controls.BorderPane</a></li>
+                                <li><a href="../classes/twaver.controls.ControlBase.html">twaver.controls.ControlBase</a></li>
+                                <li><a href="../classes/twaver.controls.List.html">twaver.controls.List</a></li>
+                                <li><a href="../classes/twaver.controls.ListBase.html">twaver.controls.ListBase</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseInteraction.html">twaver.controls.ListBaseInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseMSTouchInteraction.html">twaver.controls.ListBaseMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseTouchInteraction.html">twaver.controls.ListBaseTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PopupMenu.html">twaver.controls.PopupMenu</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheet.html">twaver.controls.PropertySheet</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetInteraction.html">twaver.controls.PropertySheetInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetMSTouchInteraction.html">twaver.controls.PropertySheetMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetTouchInteraction.html">twaver.controls.PropertySheetTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPane.html">twaver.controls.SplitPane</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPaneInteraction.html">twaver.controls.SplitPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPaneTouchInteraction.html">twaver.controls.SplitPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.Table.html">twaver.controls.Table</a></li>
+                                <li><a href="../classes/twaver.controls.TableBase.html">twaver.controls.TableBase</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeader.html">twaver.controls.TableHeader</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeaderInteraction.html">twaver.controls.TableHeaderInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeaderTouchInteraction.html">twaver.controls.TableHeaderTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TablePane.html">twaver.controls.TablePane</a></li>
+                                <li><a href="../classes/twaver.controls.TabPane.html">twaver.controls.TabPane</a></li>
+                                <li><a href="../classes/twaver.controls.TabPaneInteraction.html">twaver.controls.TabPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TabPaneTouchInteraction.html">twaver.controls.TabPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TitlePane.html">twaver.controls.TitlePane</a></li>
+                                <li><a href="../classes/twaver.controls.Tree.html">twaver.controls.Tree</a></li>
+                                <li><a href="../classes/twaver.controls.TreeTable.html">twaver.controls.TreeTable</a></li>
+                                <li><a href="../classes/twaver.controls.View.html">twaver.controls.View</a></li>
+                                <li><a href="../classes/twaver.controls.ViewBase.html">twaver.controls.ViewBase</a></li>
+                                <li><a href="../classes/twaver.Data.html">twaver.Data</a></li>
+                                <li><a href="../classes/twaver.DataBox.html">twaver.DataBox</a></li>
+                                <li><a href="../classes/twaver.Dummy.html">twaver.Dummy</a></li>
+                                <li><a href="../classes/twaver.Element.html">twaver.Element</a></li>
+                                <li><a href="../classes/twaver.ElementBox.html">twaver.ElementBox</a></li>
+                                <li><a href="../classes/twaver.Follower.html">twaver.Follower</a></li>
+                                <li><a href="../classes/twaver.Grid.html">twaver.Grid</a></li>
+                                <li><a href="../classes/twaver.Group.html">twaver.Group</a></li>
+                                <li><a href="../classes/twaver.ImageAsset.html">twaver.ImageAsset</a></li>
+                                <li><a href="../classes/twaver.JsonSerializer.html">twaver.JsonSerializer</a></li>
+                                <li><a href="../classes/twaver.Layer.html">twaver.Layer</a></li>
+                                <li><a href="../classes/twaver.LayerBox.html">twaver.LayerBox</a></li>
+                                <li><a href="../classes/twaver.layout.AutoLayouter.html">twaver.layout.AutoLayouter</a></li>
+                                <li><a href="../classes/twaver.layout.CloudLayouter.html">twaver.layout.CloudLayouter</a></li>
+                                <li><a href="../classes/twaver.layout.SpringLayouter.html">twaver.layout.SpringLayouter</a></li>
+                                <li><a href="../classes/twaver.Link.html">twaver.Link</a></li>
+                                <li><a href="../classes/twaver.LinkSubNetwork.html">twaver.LinkSubNetwork</a></li>
+                                <li><a href="../classes/twaver.List.html">twaver.List</a></li>
+                                <li><a href="../classes/twaver.network.AlarmAttachment.html">twaver.network.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.network.Attachment.html">twaver.network.Attachment</a></li>
+                                <li><a href="../classes/twaver.network.BasicAttachment.html">twaver.network.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.network.EditAttachment.html">twaver.network.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.network.ElementUI.html">twaver.network.ElementUI</a></li>
+                                <li><a href="../classes/twaver.network.GridUI.html">twaver.network.GridUI</a></li>
+                                <li><a href="../classes/twaver.network.GroupUI.html">twaver.network.GroupUI</a></li>
+                                <li><a href="../classes/twaver.network.IconsAttachment.html">twaver.network.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.network.interaction.BaseInteraction.html">twaver.network.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateElementInteraction.html">twaver.network.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateLinkInteraction.html">twaver.network.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateOrthogonalLinkInteraction.html">twaver.network.interaction.CreateOrthogonalLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateShapeLinkInteraction.html">twaver.network.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateShapeNodeInteraction.html">twaver.network.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.DefaultInteraction.html">twaver.network.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.EditInteraction.html">twaver.network.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MagnifyInteraction.html">twaver.network.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MoveInteraction.html">twaver.network.interaction.MoveInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MSTouchInteraction.html">twaver.network.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.PanInteraction.html">twaver.network.interaction.PanInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.SelectInteraction.html">twaver.network.interaction.SelectInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.TouchInteraction.html">twaver.network.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.LabelAttachment.html">twaver.network.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.network.LinkHandlerAttachment.html">twaver.network.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.network.LinkUI.html">twaver.network.LinkUI</a></li>
+                                <li><a href="../classes/twaver.network.Network.html">twaver.network.Network</a></li>
+                                <li><a href="../classes/twaver.network.NodeUI.html">twaver.network.NodeUI</a></li>
+                                <li><a href="../classes/twaver.network.Overview.html">twaver.network.Overview</a></li>
+                                <li><a href="../classes/twaver.network.OverviewInteraction.html">twaver.network.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.network.OverviewMSTouchInteraction.html">twaver.network.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.OverviewTouchInteraction.html">twaver.network.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.RotatableNodeUI.html">twaver.network.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.network.ShapeLinkUI.html">twaver.network.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.network.ShapeNodeUI.html">twaver.network.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.Node.html">twaver.Node</a></li>
+                                <li><a href="../classes/twaver.Pool.html">twaver.Pool</a></li>
+                                <li><a href="../classes/twaver.Property.html">twaver.Property</a></li>
+                                <li><a href="../classes/twaver.PropertyBox.html">twaver.PropertyBox</a></li>
+                                <li><a href="../classes/twaver.PropertyChangeDispatcher.html">twaver.PropertyChangeDispatcher</a></li>
+                                <li><a href="../classes/twaver.PropertyPropagator.html">twaver.PropertyPropagator</a></li>
+                                <li><a href="../classes/twaver.QuickFinder.html">twaver.QuickFinder</a></li>
+                                <li><a href="../classes/twaver.RotatableNode.html">twaver.RotatableNode</a></li>
+                                <li><a href="../classes/twaver.SelectionModel.html">twaver.SelectionModel</a></li>
+                                <li><a href="../classes/twaver.SerializationSettings.html">twaver.SerializationSettings</a></li>
+                                <li><a href="../classes/twaver.ShapeLink.html">twaver.ShapeLink</a></li>
+                                <li><a href="../classes/twaver.ShapeNode.html">twaver.ShapeNode</a></li>
+                                <li><a href="../classes/twaver.ShapeSubNetwork.html">twaver.ShapeSubNetwork</a></li>
+                                <li><a href="../classes/twaver.SubNetwork.html">twaver.SubNetwork</a></li>
+                                <li><a href="../classes/twaver.Tab.html">twaver.Tab</a></li>
+                                <li><a href="../classes/twaver.TabBox.html">twaver.TabBox</a></li>
+                                <li><a href="../classes/twaver.vector.AlarmAttachment.html">twaver.vector.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.Attachment.html">twaver.vector.Attachment</a></li>
+                                <li><a href="../classes/twaver.vector.BaseZoomManager.html">twaver.vector.BaseZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.BasicAttachment.html">twaver.vector.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.EditAttachment.html">twaver.vector.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.ElementUI.html">twaver.vector.ElementUI</a></li>
+                                <li><a href="../classes/twaver.vector.GridUI.html">twaver.vector.GridUI</a></li>
+                                <li><a href="../classes/twaver.vector.GroupUI.html">twaver.vector.GroupUI</a></li>
+                                <li><a href="../classes/twaver.vector.IconsAttachment.html">twaver.vector.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.BaseInteraction.html">twaver.vector.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateElementInteraction.html">twaver.vector.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateLinkInteraction.html">twaver.vector.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateShapeLinkInteraction.html">twaver.vector.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateShapeNodeInteraction.html">twaver.vector.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.DefaultInteraction.html">twaver.vector.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.EditInteraction.html">twaver.vector.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.MagnifyInteraction.html">twaver.vector.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.MSTouchInteraction.html">twaver.vector.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.TouchInteraction.html">twaver.vector.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.Label2Attachment.html">twaver.vector.Label2Attachment</a></li>
+                                <li><a href="../classes/twaver.vector.LabelAttachment.html">twaver.vector.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.LinkHandlerAttachment.html">twaver.vector.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.LinkUI.html">twaver.vector.LinkUI</a></li>
+                                <li><a href="../classes/twaver.vector.LogicalZoomManager.html">twaver.vector.LogicalZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.MixedZoomManager.html">twaver.vector.MixedZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.Network.html">twaver.vector.Network</a></li>
+                                <li><a href="../classes/twaver.vector.NodeUI.html">twaver.vector.NodeUI</a></li>
+                                <li><a href="../classes/twaver.vector.Overview.html">twaver.vector.Overview</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewInteraction.html">twaver.vector.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewMSTouchInteraction.html">twaver.vector.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewTouchInteraction.html">twaver.vector.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.PhysicalZoomManager.html">twaver.vector.PhysicalZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.RotatableNodeUI.html">twaver.vector.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.vector.ShapeLinkUI.html">twaver.vector.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.vector.ShapeNodeUI.html">twaver.vector.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.XmlSerializer.html">twaver.XmlSerializer</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>twaver.SerializationSettings Class</h1>
+<div class="box meta">
+
+
+
+
+</div>
+
+
+<div class="box intro">
+    <p>这个类是一个序列化时参数的设置类。当数据容器或数据进行序列化时，可以进行一些参数的设置</p>
+
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_twaver.SerializationSettings" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.SerializationSettings.html" class="crosslink">twaver.SerializationSettings</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.SerializationSettings.html" class="crosslink">twaver.SerializationSettings</a></span>:
+                    <p>序列化设置对象本身</p>
+
+            </div>
+        </div>
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.getClassName">twaver.SerializationSettings.getClassName</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.getClientType">twaver.SerializationSettings.getClientType</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.getClientType">twaver.SerializationSettings.getClientType</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.getPropertyType">twaver.SerializationSettings.getPropertyType</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.getPropertyType">twaver.SerializationSettings.getPropertyType</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.getStyleType">twaver.SerializationSettings.getStyleType</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.getStyleType">twaver.SerializationSettings.getStyleType</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.setClientType">twaver.SerializationSettings.setClientType</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.setClientType">twaver.SerializationSettings.setClientType</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.setPropertyType">twaver.SerializationSettings.setPropertyType</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.setPropertyType">twaver.SerializationSettings.setPropertyType</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.setStyleType">twaver.SerializationSettings.setStyleType</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.SerializationSettings.setStyleType">twaver.SerializationSettings.setStyleType</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Styles.getClassName">twaver.Styles.getClassName</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Styles.getStyle">twaver.Styles.getStyle</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Styles.getStyleProperties">twaver.Styles.getStyleProperties</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Styles.setStyle">twaver.Styles.setStyle</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.addEventListener">twaver.Util.addEventListener</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.calculatePointAngleAlongLine">twaver.Util.calculatePointAngleAlongLine</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.containsPoint">twaver.Util.containsPoint</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.createCanvas">twaver.Util.createCanvas</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.createDiv">twaver.Util.createDiv</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.drawArrow">twaver.Util.drawArrow</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.drawVector">twaver.Util.drawVector</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.ext">twaver.Util.ext</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.fill">twaver.Util.fill</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getAllClassNames">twaver.Util.getAllClassNames</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getClass">twaver.Util.getClass</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getClassName">twaver.Util.getClassName</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getCSSStyle">twaver.Util.getCSSStyle</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getElementsBounds">twaver.Util.getElementsBounds</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getFilterColor">twaver.Util.getFilterColor</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getImageAsset">twaver.Util.getImageAsset</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getPointIndex">twaver.Util.getPointIndex</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getRadiansBetweenLines">twaver.Util.getRadiansBetweenLines</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getRect">twaver.Util.getRect</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getRegisteredImageNames">twaver.Util.getRegisteredImageNames</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getSubNetwork">twaver.Util.getSubNetwork</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getToolTipDiv">twaver.Util.getToolTipDiv</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getValue">twaver.Util.getValue</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.getVersion">twaver.Util.getVersion</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.grow">twaver.Util.grow</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.hideToolTip">twaver.Util.hideToolTip</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.intersects">twaver.Util.intersects</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.isDeserializing">twaver.Util.isDeserializing</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.isTypeOf">twaver.Util.isTypeOf</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.moveElements">twaver.Util.moveElements</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.newInstance">twaver.Util.newInstance</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.registerDraw">twaver.Util.registerDraw</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.registerImage">twaver.Util.registerImage</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.registerShape">twaver.Util.registerShape</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.registerVectorShape">twaver.Util.registerVectorShape</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.removeCSSStyle">twaver.Util.removeCSSStyle</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.removeEventListener">twaver.Util.removeEventListener</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.resetToolTip">twaver.Util.resetToolTip</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.rotateCanvas">twaver.Util.rotateCanvas</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.setCanvas">twaver.Util.setCanvas</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.setCSSStyle">twaver.Util.setCSSStyle</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.setFocus">twaver.Util.setFocus</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.setValue">twaver.Util.setValue</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.showToolTip">twaver.Util.showToolTip</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.toDegrees">twaver.Util.toDegrees</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.toRadians">twaver.Util.toRadians</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.transformPoint">twaver.Util.transformPoint</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.unionRect">twaver.Util.unionRect</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.unregisterImage">twaver.Util.unregisterImage</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.Util.validateLicense">twaver.Util.validateLicense</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_constructor">constructor</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_constructor">constructor</a>
+
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isAndroid">isAndroid</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isChrome">isChrome</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isClientSerializable">isClientSerializable</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isDataBoxSerializable">isDataBoxSerializable</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isFirefox">isFirefox</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isIE">isIE</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isIPad">isIPad</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isIPhone">isIPhone</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isIPod">isIPod</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isLayerBoxSerializable">isLayerBoxSerializable</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isOpera">isOpera</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isSafari">isSafari</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isStyleSerializable">isStyleSerializable</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isTouchable">isTouchable</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_isWebOS">isWebOS</a>
+
+                                    <span class="flag static">static</span>
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_twaver.SerializationSettings.getClassName" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.getClassName</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取这个类的名称</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>类名</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.SerializationSettings.getClientType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.getClientType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>client</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定Client属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">client</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回指定Client属性的数据类型</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.SerializationSettings.getClientType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.getClientType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>client</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定Client属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">client</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回指定Client属性的数据类型</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.SerializationSettings.getPropertyType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.getPropertyType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>property</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定Property属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Property属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回指定Property属性的数据类型</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.SerializationSettings.getPropertyType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.getPropertyType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>property</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定Property属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Property属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回指定Property属性的数据类型</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.SerializationSettings.getStyleType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.getStyleType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>style</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定Style属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">style</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Style属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回指定Style属性的数据类型</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.SerializationSettings.getStyleType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.getStyleType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>style</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定Style属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">style</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Style属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回指定Style属性的数据类型</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.SerializationSettings.setClientType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.setClientType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>client</code>
+                </li>
+                <li class="arg">
+                        <code>type</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定Client属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">client</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据类型</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.SerializationSettings.setClientType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.setClientType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>client</code>
+                </li>
+                <li class="arg">
+                        <code>type</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定Client属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">client</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据类型</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.SerializationSettings.setPropertyType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.setPropertyType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>property</code>
+                </li>
+                <li class="arg">
+                        <code>type</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定Property属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Property属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据类型</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.SerializationSettings.setPropertyType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.setPropertyType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>property</code>
+                </li>
+                <li class="arg">
+                        <code>type</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定Property属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Property属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据类型</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.SerializationSettings.setStyleType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.setStyleType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>style</code>
+                </li>
+                <li class="arg">
+                        <code>type</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定Style属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">style</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Style属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据类型</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.SerializationSettings.setStyleType" class="method item">
+    <h3 class="name"><code>twaver.SerializationSettings.setStyleType</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>style</code>
+                </li>
+                <li class="arg">
+                        <code>type</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定Style属性的数据类型</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">style</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Style属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据类型</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Styles.getClassName" class="method item">
+    <h3 class="name"><code>twaver.Styles.getClassName</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取类的名称</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>类名</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Styles.getStyle" class="method item">
+    <h3 class="name"><code>twaver.Styles.getStyle</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>styleProp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定Style属性的值</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">styleProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Style属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回指定Style属性的值</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Styles.getStyleProperties" class="method item">
+    <h3 class="name"><code>twaver.Styles.getStyleProperties</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取所有Style属性名称的集合</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>返回所有Style属性名称的集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Styles.setStyle" class="method item">
+    <h3 class="name"><code>twaver.Styles.setStyle</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>styleProp</code>
+                </li>
+                <li class="arg">
+                        <code>newValue</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定Style属性的值</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">styleProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Style属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newValue</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>Style属性值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.addEventListener" class="method item">
+    <h3 class="name"><code>twaver.Util.addEventListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>type</code>
+                </li>
+                <li class="arg">
+                        <code>handler</code>
+                </li>
+                <li class="arg">
+                        <code>view</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>给HTML元素添加事件监听器</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>事件类型</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">handler</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">view</code>
+                        <span class="type">HTMLElement</span>
+
+
+                    <div class="param-description">
+                        <p>HTML元素</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>可选，回调函数的作用域，默认为null，即全局</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.calculatePointAngleAlongLine" class="method item">
+    <h3 class="name"><code>twaver.Util.calculatePointAngleAlongLine</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>points</code>
+                </li>
+                <li class="arg">
+                        <code>segments</code>
+                </li>
+                <li class="arg">
+                        <code>isSource</code>
+                </li>
+                <li class="arg">
+                        <code>xOffset</code>
+                </li>
+                <li class="arg">
+                        <code>yOffset</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>计算线条上指定偏移量的点的坐标和角度</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">points</code>
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+
+
+                    <div class="param-description">
+                        <p>点的集合</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">segments</code>
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+
+
+                    <div class="param-description">
+                        <p>点与点之间连线类型的集合, 可选值为lineto,</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">isSource</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>是否在连线的起始端, 为true则为连线的起始端, 否则为连线的结束端</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">xOffset</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>x轴偏移量</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">yOffset</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>y轴偏移量</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回包含point(包含x和y属性的Object对象)和angle属性的Object对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.containsPoint" class="method item">
+    <h3 class="name"><code>twaver.Util.containsPoint</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[y]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>判断传入的X，Y坐标是否在rect的范围之内。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>一个包含左上角的坐标点以及宽高的矩形对象。比如{x:10,y:10,width:100,height:100}</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>x坐标。x可以为Number，也可以为Object。当x为Number时，y值必填。当x为object时，需要传入的一个{x:10,y:10}带x，y变量的对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[y]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>y坐标。可选，当x为object时，y不需要赋值；当x为Number时，y必须要赋值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>如果rect包含x，y坐标，返回true，否则返回false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.createCanvas" class="method item">
+    <h3 class="name"><code>twaver.Util.createCanvas</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>创建一个画布对象</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>画布对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.createDiv" class="method item">
+    <h3 class="name"><code>twaver.Util.createDiv</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>创建一个DIV对象</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>DIV对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.drawArrow" class="method item">
+    <h3 class="name"><code>twaver.Util.drawArrow</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>g</code>
+                </li>
+                <li class="arg">
+                        <code>arrowWidth</code>
+                </li>
+                <li class="arg">
+                        <code>arrowHeight</code>
+                </li>
+                <li class="arg">
+                        <code>linePaths</code>
+                </li>
+                <li class="arg">
+                        <code>isSrouce</code>
+                </li>
+                <li class="arg">
+                        <code>arrowStyle</code>
+                </li>
+                <li class="arg">
+                        <code>drawBody</code>
+                </li>
+                <li class="arg">
+                        <code>arrowColor</code>
+                </li>
+                <li class="arg">
+                        <code>arrowXOffset</code>
+                </li>
+                <li class="arg">
+                        <code>arrowYOffset</code>
+                </li>
+                <li class="arg">
+                        <code>lineWidth</code>
+                </li>
+                <li class="arg">
+                        <code>arrowOutlineColor</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>用指定样式画连线的箭头, 连线样式可以为:
+arrow.standard    标准样式
+arrow.delta          三角形
+arrow.diamond    菱形
+arrow.short         短小形
+arrow.slant          斜角</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">g</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>画布</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">arrowWidth</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>箭头宽度</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">arrowHeight</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>箭头高度</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">linePaths</code>
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+
+
+                    <div class="param-description">
+                        <p>构成连线的点的集合</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">isSrouce</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>箭头是否在连线的起始端, 为true则为连线的起始端, 否则为连线的结束点</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">arrowStyle</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>箭头样式</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">drawBody</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>箭头是否填充, 为true则填充, 否则不填充</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">arrowColor</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>箭头填充颜色</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">arrowXOffset</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>箭头X坐标偏移量</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">arrowYOffset</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>箭头Y坐标偏移量</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">lineWidth</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>箭头边框宽度</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">arrowOutlineColor</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>箭头边框颜色</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.drawVector" class="method item">
+    <h3 class="name"><code>twaver.Util.drawVector</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>g</code>
+                </li>
+                <li class="arg">
+                        <code>shape</code>
+                </li>
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[y]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[w]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[h]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>在给定的矩形范围中绘制指定的图形。指定图形形状的可选值为：
+'rectangle'：矩形，
+'oval'：椭圆形,
+'roundrect'：圆角矩形,
+'star'：星形,
+'triangle'：三角形,
+'circle'：圆形,
+'hexagon'：六边形,
+'pentagon'：五角形,
+'diamond'：菱形</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">g</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>CanvasRenderingContext2D对象，用于在canvas上绘图</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">shape</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>指定的图形形状。</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>x坐标。x可以为Number，也可以为Object。当x为Number时，y值必填。当x为object时，需要传入的一个带x，y，width，height变量的对象，例如{x:10,y:10,width:100,height:100}</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[y]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>y坐标。可选，当x为object时，y不需要赋值；当x为Number时，y必须要赋值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[w]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>矩形的宽度。可选，当x为object时w不需要赋值；当x为Number时，w必须要赋值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[h]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>矩形的高度。可选，当x为object时，h不需要赋值；当x为Number时，h必须要赋值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.ext" class="method item">
+    <h3 class="name"><code>twaver.Util.ext</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>subClass</code>
+                </li>
+                <li class="arg">
+                        <code>superClass</code>
+                </li>
+                <li class="arg">
+                        <code>o</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>指定的子类继承于父类</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">subClass</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>子类</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">superClass</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>父类</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">o</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>子类中重写或扩展的属性和方法</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.fill" class="method item">
+    <h3 class="name"><code>twaver.Util.fill</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>g</code>
+                </li>
+                <li class="arg">
+                        <code>fillColor</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[gradient]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[gradientColor]</code>
+                </li>
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[y]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[w]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[h]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>给指定的矩形填充颜色，填充的颜色可以为渐变色，并可以指定渐变的类型。渐变类型的可选值为：
+'linear.southwest'：线性.南西
+'linear.southeast'：线性.南东
+'linear.northwest'：线性.北西
+'linear.northeast'：线性.北东
+'linear.north'：线性.北
+'linear.south'：线性.南
+'linear.west'：线性.西
+'linear.east'：线性.东
+'radial.center'：放射.中
+'radial.southwest'：放射.南西
+'radial.southeast'：放射.南东
+'radial.northwest'：放射.北西
+'radial.northeast'：放射.北东
+'radial.north'：放射.北
+'radial.south'：放射.南
+'radial.west'：放射.西
+'radial.east'：放射.东
+'spread.horizontal':扩展.水平
+'spread.vertical':扩展.垂直
+'spread.diagonal':扩展.对角线
+'spread.antidiagonal':扩展.反对角线
+'spread.north':扩展.北
+'spread.south':扩展.南
+'spread.west':扩展.西
+'spread.east':扩展.东</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">g</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>CanvasRenderingContext2D对象，用于在canvas上绘图</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">fillColor</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>填充的颜色值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[gradient]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>渐变类型</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[gradientColor]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>渐变颜色值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>x坐标。x可以为Number，也可以为Object。当x为Number时，y值必填。当x为object时，需要传入的一个带x，y，width，height变量的对象，例如{x:10,y:10,width:100,height:100}</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[y]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>y坐标。可选，当x为object时，y不需要赋值；当x为Number时，y必须要赋值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[w]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>矩形的宽度。可选，当x为object时w不需要赋值；当x为Number时，w必须要赋值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[h]</code>
+                        <span class="type">Number</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>矩形的高度。可选，当x为object时，h不需要赋值；当x为Number时，h必须要赋值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.getAllClassNames" class="method item">
+    <h3 class="name"><code>twaver.Util.getAllClassNames</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Array</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取所有类名</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Array</span>:
+                    <p>返回所有类名</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getClass" class="method item">
+    <h3 class="name"><code>twaver.Util.getClass</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>className</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>通过类名来获取类对象</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">className</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>类名</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>类的对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getClassName" class="method item">
+    <h3 class="name"><code>twaver.Util.getClassName</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取类的名称</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>类名</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getCSSStyle" class="method item">
+    <h3 class="name"><code>twaver.Util.getCSSStyle</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>domObject</code>
+                </li>
+                <li class="arg">
+                        <code>styleName</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定HTML元素的指定样式的值</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">domObject</code>
+                        <span class="type">HTMLElement</span>
+
+
+                    <div class="param-description">
+                        <p>HTML对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">styleName</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>样式名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回指定样式值</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getElementsBounds" class="method item">
+    <h3 class="name"><code>twaver.Util.getElementsBounds</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>elements</code>
+                </li>
+                <li class="arg">
+                        <code>network</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取网元所占的区域</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">elements</code>
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元集合</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">network</code>
+                        <span class="type"><a href="../classes/twaver.network.Network.html" class="crosslink">twaver.network.Network</a></span>
+
+
+                    <div class="param-description">
+                        <p>拓扑图</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回指定网元所占的区域</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getFilterColor" class="method item">
+    <h3 class="name"><code>twaver.Util.getFilterColor</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>sourceColor</code>
+                </li>
+                <li class="arg">
+                        <code>filterColor</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取渲染后的颜色</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">sourceColor</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>原始颜色</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">filterColor</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>渲染色</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回染色后的颜色，包含r,g,b,a的对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getImageAsset" class="method item">
+    <h3 class="name"><code>twaver.Util.getImageAsset</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.ImageAsset.html" class="crosslink">twaver.ImageAsset</a></span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>通过图片的名称来获取图片对象</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>图片的名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.ImageAsset.html" class="crosslink">twaver.ImageAsset</a></span>:
+                    <p>图片对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getPointIndex" class="method item">
+    <h3 class="name"><code>twaver.Util.getPointIndex</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>points</code>
+                </li>
+                <li class="arg">
+                        <code>point</code>
+                </li>
+                <li class="arg">
+                        <code>tolerance</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定点所在的边</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">points</code>
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+
+
+                    <div class="param-description">
+                        <p>包含点的集合</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">point</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>点</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">tolerance</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>误差值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>返回指定点所在的边</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getRadiansBetweenLines" class="method item">
+    <h3 class="name"><code>twaver.Util.getRadiansBetweenLines</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>from</code>
+                </li>
+                <li class="arg">
+                        <code>to</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取两点之间的角度</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">from</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>起始点</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">to</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>结束点</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>返回两点之间的角度，单位为弧度</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getRect" class="method item">
+    <h3 class="name"><code>twaver.Util.getRect</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>points</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>返回包含指定点的矩形</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">points</code>
+                        <span class="type">Array</span>
+
+
+                    <div class="param-description">
+                        <p>&quot;点&quot;的数组</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回包含指定点的矩形</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getRegisteredImageNames" class="method item">
+    <h3 class="name"><code>twaver.Util.getRegisteredImageNames</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Array</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取所有注册名图片名称</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Array</span>:
+                    <p>返回所有注册的图片名称</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getSubNetwork" class="method item">
+    <h3 class="name"><code>twaver.Util.getSubNetwork</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.SubNetwork.html" class="crosslink">twaver.SubNetwork</a></span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取网元所在的子网</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.SubNetwork.html" class="crosslink">twaver.SubNetwork</a></span>:
+                    <p>返回网元所在的子网</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getToolTipDiv" class="method item">
+    <h3 class="name"><code>twaver.Util.getToolTipDiv</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>返回ToolTip所在的DIV</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回ToolTip所在的DIV</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getValue" class="method item">
+    <h3 class="name"><code>twaver.Util.getValue</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>instance</code>
+                </li>
+                <li class="arg">
+                        <code>property</code>
+                </li>
+                <li class="arg">
+                        <code>type</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>返回网元的某个属性值</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">instance</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>网元实例</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>属性名</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>属性类型</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回属性值</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.getVersion" class="method item">
+    <h3 class="name"><code>twaver.Util.getVersion</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取TWaver的版本号</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>TWaver的版本号</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.grow" class="method item">
+    <h3 class="name"><code>twaver.Util.grow</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+                <li class="arg">
+                        <code>width</code>
+                </li>
+                <li class="arg">
+                        <code>height</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将指定的矩形扩大一定的宽高值。这种扩大是矩形的中心点保持不变，像四周扩大指定值的宽度、高度。
+比如指定的矩形为{x:20,y:20,width:100;height:100},如果扩大的width为10，height为10，那么扩大后的矩形变为{x:10,y:10,width:120,height:120}</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>指定扩大的矩形</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">width</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>扩大的宽度值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">height</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>扩大的高度值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.hideToolTip" class="method item">
+    <h3 class="name"><code>twaver.Util.hideToolTip</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>隐藏Tooltip</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.Util.intersects" class="method item">
+    <h3 class="name"><code>twaver.Util.intersects</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>srcRect</code>
+                </li>
+                <li class="arg">
+                        <code>dstRect</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>判断指定的矩形区域是否相交</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">srcRect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>矩形区域, 包含x, y, width和height属性的Object对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">dstRect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>矩形区域, 包含x, y, width和height属性的Object对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>如果指定的区域相交, 则返回true, 否则返回false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.isDeserializing" class="method item">
+    <h3 class="name"><code>twaver.Util.isDeserializing</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>是否正在进行反序列化操作，默认为false</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>如果正在进行反序列化，返回true；否则返回false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.isTypeOf" class="method item">
+    <h3 class="name"><code>twaver.Util.isTypeOf</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>type</code>
+                </li>
+                <li class="arg">
+                        <code>base</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>判断是否是某个类的子类</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>父类</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">base</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>基类</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>如果是子类则返回true，否则为false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.moveElements" class="method item">
+    <h3 class="name"><code>twaver.Util.moveElements</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>elements</code>
+                </li>
+                <li class="arg">
+                        <code>xoffset</code>
+                </li>
+                <li class="arg">
+                        <code>yoffset</code>
+                </li>
+                <li class="arg">
+                        <code>animate</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[finishFunction]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>偏移指定的一批网元</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">elements</code>
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+
+
+                    <div class="param-description">
+                        <p>需要偏移的网元集合</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">xoffset</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>偏移的X坐标值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">yoffset</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>偏移的Y坐标值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">animate</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>是否需要动画</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[finishFunction]</code>
+                        <span class="type">Function</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>偏移完成时回调的函数</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.newInstance" class="method item">
+    <h3 class="name"><code>twaver.Util.newInstance</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>className</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>通过类名来实例化一个对象</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">className</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>类名</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>实例化的对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.registerDraw" class="method item">
+    <h3 class="name"><code>twaver.Util.registerDraw</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+                <li class="arg">
+                        <code>draw</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>注册自定义矢量绘制函数</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>自定义矢量绘制函数名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">draw</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>绘制函数：function (vector, g, data, view)</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.registerImage" class="method item">
+    <h3 class="name"><code>twaver.Util.registerImage</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+                <li class="arg">
+                        <code>source</code>
+                </li>
+                <li class="arg">
+                        <code>width</code>
+                </li>
+                <li class="arg">
+                        <code>height</code>
+                </li>
+                <li class="arg">
+                        <code>svg</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>注册图片。当给网元设置图片时，需要先进行注册后才能使用</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>注册图片的名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">source</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>注册的图片对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">width</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>图片的宽度</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">height</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>图片的高度</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">svg</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>是否为SVG图片</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.registerShape" class="method item">
+    <h3 class="name"><code>twaver.Util.registerShape</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+                <li class="arg">
+                        <code>shapeFunc</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>注册自定义矢量图形</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>矢量图形名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">shapeFunc</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>绘制函数：function (g, shapeData, data, view)</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.registerVectorShape" class="method item">
+    <h3 class="name"><code>twaver.Util.registerVectorShape</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+                <li class="arg">
+                        <code>func</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>注册样式'vector.shape'的可选值</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>矢量图形名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">func</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>绘制函数：function (g, x, y, w, h)</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.removeCSSStyle" class="method item">
+    <h3 class="name"><code>twaver.Util.removeCSSStyle</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>domObject</code>
+                </li>
+                <li class="arg">
+                        <code>styleName</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>移除HTML样式</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">domObject</code>
+                        <span class="type">HTMLElement</span>
+
+
+                    <div class="param-description">
+                        <p>HTML对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">styleName</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>样式名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.removeEventListener" class="method item">
+    <h3 class="name"><code>twaver.Util.removeEventListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>type</code>
+                </li>
+                <li class="arg">
+                        <code>view</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>删除HTML元素的事件监听器</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">type</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>事件类型</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">view</code>
+                        <span class="type">HTMLElement</span>
+
+
+                    <div class="param-description">
+                        <p>HTML元素</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>可选，回调函数的作用域，默认为null，即全局</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.resetToolTip" class="method item">
+    <h3 class="name"><code>twaver.Util.resetToolTip</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>重置Tooltip</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.Util.rotateCanvas" class="method item">
+    <h3 class="name"><code>twaver.Util.rotateCanvas</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>g</code>
+                </li>
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+                <li class="arg">
+                        <code>angle</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将画布以制定的区域的中心为原点，旋转指定的角度</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">g</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>画布渲染上下文对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>矩形区域</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">angle</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>旋转角度，单位为度</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.setCanvas" class="method item">
+    <h3 class="name"><code>twaver.Util.setCanvas</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>c</code>
+                </li>
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+                <li class="arg">
+                        <code>w</code>
+                </li>
+                <li class="arg">
+                        <code>h</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">CanvasRenderingContext2D</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定Canvas的位置和宽高</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">c</code>
+                        <span class="type">HTMLCanvasElement</span>
+
+
+                    <div class="param-description">
+                        <p>指定的Canvas对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>画布的左边距像素值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>画布的上边距像素值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">w</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>画布的宽度</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">h</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>画布的高度</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">CanvasRenderingContext2D</span>:
+                    <p>返回一个CanvasRenderingContext2D对象用于在canvas上绘图</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.setCSSStyle" class="method item">
+    <h3 class="name"><code>twaver.Util.setCSSStyle</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>domObject</code>
+                </li>
+                <li class="arg">
+                        <code>styleName</code>
+                </li>
+                <li class="arg">
+                        <code>styleValue</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定HTML对象的样式</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">domObject</code>
+                        <span class="type">HTMLElement</span>
+
+
+                    <div class="param-description">
+                        <p>HTML对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">styleName</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>样式名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">styleValue</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>样式值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.setFocus" class="method item">
+    <h3 class="name"><code>twaver.Util.setFocus</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将焦点设置到指定的对象上</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">HTMLElement</span>
+
+
+                    <div class="param-description">
+                        <p>设置焦点的对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.setValue" class="method item">
+    <h3 class="name"><code>twaver.Util.setValue</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>instance</code>
+                </li>
+                <li class="arg">
+                        <code>property</code>
+                </li>
+                <li class="arg">
+                        <code>value</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置数据对象指定属性的值</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">instance</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象实例</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>属性名</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">value</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>属性值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.showToolTip" class="method item">
+    <h3 class="name"><code>twaver.Util.showToolTip</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>eorp</code>
+                </li>
+                <li class="arg">
+                        <code>innerHTML</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>显示Tooltip</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">eorp</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>坐标或事件对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">innerHTML</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>tooltip内容</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.toDegrees" class="method item">
+    <h3 class="name"><code>twaver.Util.toDegrees</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>radian</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>转换度为弧度</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">radian</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>单位为弧度的角度</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>返回单位为度的角度</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.toRadians" class="method item">
+    <h3 class="name"><code>twaver.Util.toRadians</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>degree</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将角度转换为弧度</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">degree</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>单位为度的角度</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>返回单位为弧度的角度</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.transformPoint" class="method item">
+    <h3 class="name"><code>twaver.Util.transformPoint</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>point</code>
+                </li>
+                <li class="arg">
+                        <code>angle</code>
+                </li>
+                <li class="arg">
+                        <code>xOffset</code>
+                </li>
+                <li class="arg">
+                        <code>yOffset</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>以指定的偏移量，旋转角度，转换给定的坐标</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">point</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>要转换的坐标，为包含x和y属性的对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">angle</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>旋转角度，单位为弧度</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">xOffset</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>水平偏移量</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">yOffset</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>垂直偏移量</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>转换后的坐标</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.unionRect" class="method item">
+    <h3 class="name"><code>twaver.Util.unionRect</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>srcRect</code>
+                </li>
+                <li class="arg">
+                        <code>dstRect</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取包含指定的两个矩形区域的矩形</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">srcRect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>源矩形</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">dstRect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>目标矩形</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回包含指定的两个矩形区域的矩形</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.Util.unregisterImage" class="method item">
+    <h3 class="name"><code>twaver.Util.unregisterImage</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>name</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>卸载注册的图片</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">name</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>图片的名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.Util.validateLicense" class="method item">
+    <h3 class="name"><code>twaver.Util.validateLicense</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>license</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+        <span class="flag static">static</span>
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>验证license信息</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">license</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>license的信息</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_constructor" class="property item">
+    <h3 class="name"><code>constructor</code></h3>
+    <span class="type">Object</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>这个类中定义了TWaver中所有对象的样式</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_constructor" class="property item">
+    <h3 class="name"><code>constructor</code></h3>
+    <span class="type">Object</span>
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>这是一个工具类，提供了TWaver中常用的方法</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isAndroid" class="property item">
+    <h3 class="name"><code>isAndroid</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否为Android，true为是Android，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isChrome" class="property item">
+    <h3 class="name"><code>isChrome</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否是Chrome浏览器，true为是Chrome浏览器，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isClientSerializable" class="property item">
+    <h3 class="name"><code>isClientSerializable</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>数据容器中所有数据的Client属性是否需要序列化，true为序列化，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isDataBoxSerializable" class="property item">
+    <h3 class="name"><code>isDataBoxSerializable</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>数据容器是否需要进行序列化。true为序列化，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isFirefox" class="property item">
+    <h3 class="name"><code>isFirefox</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否是Firefox浏览器，true为是Firefox浏览器，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isIE" class="property item">
+    <h3 class="name"><code>isIE</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否是IE浏览器，true为是IE浏览器，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isIPad" class="property item">
+    <h3 class="name"><code>isIPad</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否为IPad，true为是IPad,否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isIPhone" class="property item">
+    <h3 class="name"><code>isIPhone</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否为IPhone，true为是IPhone,否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isIPod" class="property item">
+    <h3 class="name"><code>isIPod</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否为IPod，true为是IPod,否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isLayerBoxSerializable" class="property item">
+    <h3 class="name"><code>isLayerBoxSerializable</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>图层容器是否需要序列化，true为需要序列化，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isOpera" class="property item">
+    <h3 class="name"><code>isOpera</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否是Opera浏览器，true为是Opera浏览器，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isSafari" class="property item">
+    <h3 class="name"><code>isSafari</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否是Safari浏览器，true为是Safari浏览器，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isStyleSerializable" class="property item">
+    <h3 class="name"><code>isStyleSerializable</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>数据容器中所有数据的Style属性是否需要序列化，true为序列化，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isTouchable" class="property item">
+    <h3 class="name"><code>isTouchable</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否是可触摸的，true为是可触摸的，否则为false</p>
+
+    </div>
+
+
+
+</div>
+<div id="property_isWebOS" class="property item">
+    <h3 class="name"><code>isWebOS</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+        <span class="flag static">static</span>
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否是WebOS，true为是WebOS，否则为false</p>
+
+    </div>
+
+
+
+</div>
+            </div>
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

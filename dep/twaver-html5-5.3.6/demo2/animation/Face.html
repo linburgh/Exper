@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TWaver HTML5 Animate Demo</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>	
+    twaver.Util.registerImage('face', {
+      w: 200,
+      h: 200,
+      lineWidth: 1,
+      lineCap: 'round',
+      v: [
+        {
+          shape: 'circle',
+          r: 100,
+          fill: 'yellow',
+        },
+        {
+          shape: 'circle',
+          cx: -30,
+          cy: -10,
+          r: 10,
+          scale: {
+            x: 1,
+            y: 0.1
+          },
+          fill: 'black',
+          animate: [
+            {
+              attr: 'scale',
+              to: {
+                x: 1,
+                y: 2
+              },
+              type: 'point',
+              dur: 1000,
+              end: 2000,
+              reverse: false,
+              repeat: Number.POSITIVE_INFINITY
+            }
+          ]
+        },
+        {
+          shape: 'circle',
+          cx: 30,
+          cy: -10,
+          r: 10,
+          scale: {
+            x: 1,
+            y: 0.1
+          },
+          fill: 'black',
+          animate: [
+            {
+              attr: 'scale',
+              to: {
+                x: 1,
+                y: 2
+              },
+              type: 'point',
+              dur: 1000,
+              end: 2000,
+              reverse: false,
+              repeat: Number.POSITIVE_INFINITY
+            }
+          ]
+        },
+        {
+          shape: 'circle', //mouse     
+          cx: 0,
+          cy: 8,
+          r: 65,
+          startAngle: 60,
+          endAngle: 120,
+          lineWidth: 6,
+          fill: 'yellow',
+          animate: [
+            {
+              attr: 'startAngle',
+              to: 40,
+              dur: 1000,
+              reverse: true,
+              repeat: Number.POSITIVE_INFINITY
+            },
+            {
+              attr: 'endAngle',
+              to: 160,
+              dur: 1000,
+              reverse: true,
+              repeat: Number.POSITIVE_INFINITY
+            }
+          ]
+        },
+        {
+          shape: 'circle', //dimple
+          cx: -33,
+          cy: 65,
+          r: 3,
+          startAngle: 170,
+          endAngle: 210,
+          lineWidth: 1,
+          animate: [
+            {
+              attr: 'lineWidth',
+              to: 6,
+              dur: 1000,
+              reverse: true,
+              repeat: Number.POSITIVE_INFINITY
+            },
+            {
+              attr: 'endAngle',
+              to: 280,
+              dur: 1000,
+              reverse: true,
+              repeat: Number.POSITIVE_INFINITY
+            },
+            {
+              attr: 'cx',
+              to: -55,
+              dur: 1000,
+              reverse: true,
+              repeat: Number.POSITIVE_INFINITY
+            },
+            {
+              attr: 'cy',
+              to: 40,
+              dur: 1000,
+              reverse: true,
+              repeat: Number.POSITIVE_INFINITY
+            },
+            {
+              attr: 'r',
+              to: 14,
+              dur: 1000,
+              reverse: true,
+              repeat: Number.POSITIVE_INFINITY
+            }
+          ]
+        }
+      ],
+    });
+
+    //define topo.
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+
+    function init() {
+      document.body.appendChild(network.getView());
+      network.adjustBounds({
+        x: 0,
+        y: 0,
+        width: 1600,
+        height: 700
+      });
+
+      var node = new twaver.Node();
+      node.setLocation(400, 200);
+      node.setImage('face');
+      node.setStyle('select.style', 'border');
+      node.setStyle('select.color', '#309FC9');
+      box.add(node);
+    }
+  </script>
+</head>
+<body onload="init();">
+</body>
+</html>

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TWaver HTML5</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>
+	
+	twaver.Util.registerImage('split', {		
+		w: 52,
+		h: 24,
+		lineWidth:0.5,
+		v: [{			
+			shape: 'rect',
+			w: '100%',
+			h: '100%',	
+			x: '-50%',
+			y: '-50%',
+			fill:'white',
+			lineColor:'white',
+			lineWidth:3,
+		},{
+			shape: 'path',
+			data: [ -24, 10, 24, 10, 24, 0, 0, -10, -24, 0, 'z' ],
+			lineColor: '#13485D',
+			fill: '#3691AC',
+			gradient: {
+				type: 'linear.north',
+				color: 'white',
+			}
+		}],
+		onDoubleClick: expandGroup,
+	});
+
+	twaver.Util.registerImage('joint', {		
+		w: 30,
+		h: 30,
+		lineWidth:0.5,
+		v: [{			
+			shape: 'circle',
+			cx: 0, 
+			cy: 0,
+			r: 13,
+			fill: 'white',
+			lineColor:'white',
+			lineWidth:3,
+		},{
+			shape: 'circle',
+			cx: 0, 
+			cy: 0,
+			r: 12,
+			fill: '#AAAAAA',
+			gradient: {
+				type: 'linear.north',
+				color:'white',
+			}
+		},{
+			shape: 'path',
+			data: 'M-3,-3l0,-6l6,0l0,6l6,0l0,6l-6,0l0,6l-6,0l0,-6l-6,0l0,-6,z',
+			lineColor: '#13485D',
+			lineWidth:1,
+			fill: '#3691AC',
+			gradient: {
+				type: 'linear.north',
+				color: 'white',
+			}
+		}]
+	});
+
+	twaver.Util.registerImage('process', {		
+		w: 48,
+		h: 42,
+		lineWidth:1,
+		lineColor: '#848484',
+		v: [{			
+			shape: 'rect',
+			w: '100%',
+			h: '100%',	
+			x: '-50%',
+			y: '-50%',
+			lineColor:'white',
+			fill:'white',
+			lineWidth:3,
+		},{			
+			shape: 'rect',
+			w: 42,
+			h: 36,	
+			x: -21,
+			y: -18,
+			r: 4,
+			gradient: {
+				type: 'linear',
+				x1: 0,
+				y1: -25,
+				x2: 0,
+				y2: 25,
+				stop: [{
+					offset: 0,
+					color: 'white'
+				},{
+					offset: 0.4,
+					color: '#D8D8D8'
+				},{
+					offset: 1,
+					color: 'white'
+				}]
+			}
+		},{			
+			shape: 'rect',
+			w: 36,
+			h: 30,	
+			x: -18,
+			y: -15,
+			r: 3,
+			gradient: {
+				type: 'linear',
+				x1: 0,
+				y1: -20,
+				x2: 0,
+				y2: 25,
+				stop: [{
+					offset: 0,
+					color: 'white'
+				},{
+					offset: 0.4,
+					color: '#B45F04'
+				},{
+					offset: 1,
+					color: 'white'
+				}]
+			}
+		},{
+			shape: 'path',
+			data: 'M-12,-8l4,0m2,0l12,0M-9,-3l4,0m2,0l12,0M-6,2l4,0m2,0l12,0M-9,7l4,0m2,0l12,0',
+			lineWidth: 1.5,
+			lineColor: '#F2F2F2',
+		}]
+	});
+
+	twaver.Util.registerImage('link_arrow', {		
+		w: 20,
+		h: 25,
+		lineWidth:0.5,
+		v: [{			
+			shape: 'rect',
+			w: '100%',
+			h: '100%',	
+			x: '-50%',
+			y: '-50%',
+			visible: false,//for debug.
+		},{
+			shape: 'path',
+			data: [ -4, -9, 4, -9, 4, 4, 9,4, 0, 11,-9,4, -4,4,'z'],
+			lineColor: '#13485D',
+			fill: '#3691AC',
+			gradient: {
+				type: 'linear.north',
+				color: 'white',
+			}
+		}]
+	});
+
+    function init() {
+		var box = new twaver.ElementBox();
+		var network = new twaver.vector.Network(box);
+
+		document.body.appendChild(network.getView());
+		network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});		
+		network.setLinkPathFunction(createLinkPath);
+		network.setToolTipEnabled(false);
+		network.setVisibleFunction(function (element) {
+			if (element.getClient('visible') == false) {
+				return false;
+			}
+			return true;
+		});
+		
+		var dummy=createDummyNode(box, 300, -50,'start shopping');
+		var split1=createSplitNode(box, 300, -10);
+		var node=createProcessNode(box, 300, 50,'shopping cart');
+		node.setStyle('label.position','left.left');
+		createLink(box, dummy, split1, false);
+		createLink(box, split1, node, false);
+		var node1=createProcessNode(box, 300,150,'finish shopping');
+		node1.setStyle('label.position','left.left');
+		createLink(box, node, node1, false);
+		var joint=createJointNode(box, 400,200);
+		createLink(box, node1, joint, false).setStyle('link.type', 'orthogonal.V.H');
+		var node2=createProcessNode(box, 430,100,'continue shopping');
+		var node3=createProcessNode(box, 500,200,'generate order');
+		createLink(box, node1, node2, false).setStyle('link.type', 'orthogonal.H.V');
+		createLink(box, node2, node, false).setStyle('link.type', 'orthogonal.V.H');
+		createLink(box, joint, node3, false);
+		split1.setClient('joint', joint);
+		var split2=createSplitNode(box, 500,280,'pay');
+		createLink(box, node3, split2, false);
+		var node5=createProcessNode(box, 300,380,'online payment'); 
+		node5.setStyle('label.position','left.left');
+		var node6=createProcessNode(box, 500,380,'bank account transfer'); 
+		var node7=createProcessNode(box, 700,380,'online remittance'); 
+		createLink(box, split2, node5, true);
+		createLink(box, split2, node6, true);
+		createLink(box, split2, node7, true);
+		var node8=createProcessNode(box, 300,480,'payee\n payment gateway'); 
+		node8.setStyle('label.position','left.left');
+		var node9=createProcessNode(box, 500,480,'payee\naccount'); 
+		var node10=createProcessNode(box, 700,480,'payee\ninformation'); 
+		createLink(box, node5, node8, false);
+		createLink(box, node6, node9, false);
+		createLink(box, node7, node10, false);
+		var joint2=createJointNode(box, 500, 575);
+		var node11=createProcessNode(box, 500, 640, 'order generation'); 
+		node11.setStyle('label.position','topright.topright'); 
+		createLink(box, node8, joint2, true,-200);
+		createLink(box, node9, joint2, true);
+		createLink(box, node10, joint2, true,200);
+		createLink(box, joint2, node11, false);
+		var node12=createProcessNode(box, 300,700,'website\nsave order');
+		node12.setStyle('label.position','left.left'); 
+		var node13=createProcessNode(box, 700,700,'customer\nquery order'); 
+		createLink(box, node11, node12, false).setStyle('link.type', 'orthogonal.H.V');
+		createLink(box, node11, node13, false).setStyle('link.type', 'orthogonal.H.V');
+		split2.setClient('joint', joint2);
+		network.setZoom(0.75);
+	}
+
+	function createSplitNode(box, x, y, name){ return createNode(box, x, y, 'split', name); }
+
+	function createProcessNode(box, x, y, name){ return createNode(box, x, y, 'process', name); }
+
+	function createJointNode(box, x, y, name){ return createNode(box, x, y, 'joint', name); }	
+
+	function createNode(box, x, y, image, name){
+		var node=new twaver.Node();
+		node.setImage(image);
+		node.setCenterLocation(x,y);
+		node.setStyle('label.font', '15px "Microsoft Yahei"');
+		node.setStyle('label.position', 'right.right');
+		node.setName(name);
+		box.add(node);
+		return node;
+	}
+
+	function createDummyNode(box, x, y, name){ 
+		var node=createNode(box, x, y, 'joint', name); 
+		node.setImage(null);
+		node.setSize(10,10);
+		node.setCenterLocation(x,y);
+		return node;
+	}
+
+	function createLink(box, from, to, withIcon, xoffset){
+		var link=new twaver.Link(from, to);
+		link.setStyle('link.width', 1);
+		link.setStyle('link.color', '#3691AC');
+		link.setStyle('arrow.to', true);
+		link.setStyle('arrow.to.color', '#3691AC');
+		link.setStyle('arrow.to.outline', 'white');
+		link.setStyle('arrow.to.xoffset', -1);
+		link.setStyle('arrow.to.width', 10);
+		link.setStyle('arrow.to.height', 8);
+		link.setStyle('icons.position', 'center');
+		link.setStyle('link.xradius', 0);
+		link.setStyle('link.yradius', 0);
+		link.setStyle('label.font', '15px "Microsoft Yahei"');
+		link.setStyle('label.position', 'right.right');
+		if(withIcon){
+			link.setStyle('icons.names', ['link_arrow']);
+		}
+		link.setClient('xoffset', xoffset);
+		box.add(link);
+		
+		var nodeListener=function(e){
+			if(e.property==='location'){
+				updateLinkIcon(link);
+			}
+		};
+		from.addPropertyChangeListener(nodeListener);
+		to.addPropertyChangeListener(nodeListener);
+		updateLinkIcon(link);
+
+		return link;
+	}
+
+	function updateLinkIcon(link){
+		var from=link.getFromAgent();
+		var to=link.getToAgent();
+		var f=from.getCenterLocation();
+		var t=to.getCenterLocation();
+		var xoffset=(t.x-f.x)/2;
+		if(link.getClient('xoffset')!=undefined){
+			//console.log(link.getClient('xoffset'));
+			xoffset=t.x-f.x+link.getClient('xoffset')-(t.x-f.x)/2;
+		}
+		var yoffset=-(t.y-f.y)/2+40;
+		link.setStyle('icons.xoffset', xoffset);
+		link.setStyle('icons.yoffset', yoffset);		
+		link.setStyle('label.xoffset', xoffset+5);
+		link.setStyle('label.yoffset', (t.y-f.y)/2-to.getHeight()/2-20);
+	}
+
+	function createLinkPath(linkUI, defaultPoints){
+		var link=linkUI._element;
+		if(!link.getStyle('icons.names')){
+			return defaultPoints;
+		}
+		var f = linkUI.getFromPoint();
+		var t = linkUI.getToPoint();		
+		var fromNode=linkUI.getElement().getFromAgent();
+		var toNode=linkUI.getElement().getToAgent();
+
+		var points = new twaver.List();
+
+		points.add({x: f.x, y:f.y+fromNode.getHeight()/2+1});
+		var offset=20;
+		var xoffset=link.getClient('xoffset') || 0;
+		points.add({x: f.x, y:f.y+offset});
+		points.add({x: t.x+xoffset, y:f.y+offset});
+		if(xoffset){
+			points.add({x: t.x+xoffset, y:t.y});
+			points.add({x: t.x, y:t.y});
+		}else{
+			points.add({x: t.x+xoffset, y:t.y-toNode.getHeight()/2-2});
+		}
+
+		return points;
+	}
+
+	function expandGroup(data, view){
+		if(data.getImage()=='split' && data.getClient('joint')){
+			var split=data;
+			var joint=data.getClient('joint');
+			if(data.getClient('closed')){
+				var elements=data.getClient('closed_elements');
+				for(var id in elements){ 
+					var element=elements[id];
+					if(element instanceof twaver.Node){
+						var originLocation=element.getClient('origin_location');
+						moveNode(element, originLocation);
+					}
+					element.setClient('visible', true);
+				}
+				data.setClient('closed', false);
+				var jointLinks=split.getClient('joint_links');
+				if(jointLinks){
+					for(var i=0;i<jointLinks.length;i++){
+						jointLinks[i].setFromNode(joint);
+					}
+				}
+				split.setClient('joint_links', null);
+			}else{				
+				var elements={};
+				expandChildren(view, split, joint, elements);				
+				for(var id in elements){ 
+					var element=elements[id];
+					if(element instanceof twaver.Node){
+						element.setClient('origin_location', element.getCenterLocation());
+						moveNode(element, data.getCenterLocation(), true);
+					}
+					if(element ==joint){
+						var jointLinks=[];
+						var jointFromLinks=element.getFromAgentLinks();
+						jointFromLinks.forEach(function(link){
+							link.setFromNode(split);
+							jointLinks.push(link);
+						});
+						split.setClient('joint_links', jointLinks);
+					}
+				}
+				data.setClient('closed_elements', elements);
+				data.setClient('closed', true);
+			}
+		}
+	}
+
+	function expandChildren(view, start, end, elements){
+		var links=start.getFromAgentLinks();
+		if(links){
+			links.forEach(function(link){
+				if(!elements[link.getId()] && view.isVisible(link)){
+					elements[link.getId()]=link;
+				}
+				var nextNode=link.getToAgent();				
+				if(nextNode!=start && !elements[nextNode.getId()] && view.isVisible(nextNode)){
+					elements[nextNode.getId()]=nextNode;					
+					if(nextNode!=end){
+						expandChildren(view, nextNode, end, elements);
+					}
+				}				
+			});
+		}
+	}
+
+	function moveNode(node, newLocation, hideOnFinish){
+		var oldLocation=node.getCenterLocation();
+		var animation=new twaver.Animate({
+			from: oldLocation,
+			to: newLocation,
+			type: 'point',
+			dur: 1500,
+			easing: 'easeBoth',
+			onUpdate: function (value) {
+				node.setCenterLocation(value.x, value.y);
+			},
+		});
+		if(hideOnFinish){
+			animation.onDone=function(){
+				node.setClient('visible', false);
+			}
+		}
+		animation.play();
+	}
+
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

@@ -1,0 +1,78 @@
+Serva Software LLC. Software License Agreement
+
+IMPORTANT - READ CAREFULLY
+BY CLICKING ON THE YES ("ACCEPT") BUTTON TO ACCEPT THIS LICENSE DURING INSTALLATION, OR BY OPENING THE SEALED PACKAGE(S) CONTAINING THE SOFTWARE, OR BY KEEPING THE TWaver
+("SOFTWARE") FOR MORE THAN 30 DAYS, YOU ARE CONSENTING TO BE BOUND BY THIS AGREEMENT.  IF YOU DO NOT AGREE TO ALL OF THE TERMS OF THIS AGREEMENT, CLICK THE NO ("DO NOT ACCEPT") BUTTON AND THE INSTALLATION PROCESS WILL NOT CONTINUE, OR RETURN THE SOFTWARE TO THE PLACE FROM WHICH YOU OBTAINED IT FOR A FULL REFUND AND DESTROY ALL COPIES THAT MAY HAVE BEEN MADE.
+
+The TWaver software and any and all enhancements, modifications, and/or extensions thereto together with the accompanying documentation, (collectively known as the "Software"), is owned by Serva Software LLC. and is protected by U.S. copyright laws, international treaties, and other applicable laws; the Software includes, but is not limited to, one or more of the following: source code, class files, jar files, zip files, sample programs, makefiles, HTML files, PDF files, DOC files, text, and scripts.  Therefore, Customer must treat the Software as copyrighted, proprietary material, and shall not use or copy the Software except as provided for in this License Agreement. 
+
+In consideration of Customer's payment of each Single Computer License Fee (stated elsewhere), Serva grants Customer a perpetual except as set forth herein, non-exclusive, non-transferable, worldwide license to use the Software by a single user on a single computer which is under Customer's sole control except as set forth herein and to distribute binary versions of the Software in the manner and for the purposes set forth in this License Agreement.  
+
+Subject to the restrictions contained in this License Agreement, Customer MAY:
+a) Make one copy solely for internal development purposes only.  Such copy must remain securely under Customer's control and must not be republished or distributed beyond the Customer's span of control.
+b) Incorporate the class files, jar files, or zip files ("REDISTRIBUTABLES") into software application products that Customer develops.
+c) Modify the source code and incorporate the recompiled class files into software application products that Customer develops.
+d) Make and distribute copies of the REDISTRIBUTABLES as incorporated into software application products that Customer develops provided that the Software, or other Serva products, does not constitute a major portion of the value of Customer's product.
+e) Use and modify the source code version of those portions of the Software that are identified in the documentation as sample or example code ("SAMPLE CODE"), provided Customer does not distribute the SAMPLE CODE, or any modified version of the SAMPLE CODE, in source code form. 
+f) Make a reasonable number of copies of the Software or REDISTRIBUTABLES for backup or recovery purposes.
+g) Move the Software to another computer under the Customer's control provided that the original copy is removed.
+
+Customer MUST:
+a) Comply with and ensure that its Distributors comply with US and other government export control regulations.
+b) Ensure that its End Users and Distributors agree not to decompile, reverse compile, decrypt or disassemble the REDISTRIBUTABLES.
+c) Include the appropriate Government Restricted Rights legend specified below on all copies of its products incorporating Serva technology in accordance with applicable FAR and DFAR regulations.
+d) Have all its employees and contractors who have access to the Software sign (or confirm they have signed) an employee, contractor or other agreement that obligates them to protect the Software as confidential.
+e) Ensure that Distributors of its software products which include permitted parts of the Software distribute same to End Users subject to a written or shrink wrap license meeting the requirements defined in this Agreement.
+f) Obtain a written license from its Distributors and End Users, which may be a shrink-wrap or download license, which incorporates these same requirements (a)-(f).
+g) Safeguard the Software as it does its own confidential information.
+
+Notwithstanding any provisions in this License Agreement to the contrary, Customer MAY NOT:
+a) Distribute in any manner any of the source code, SAMPLE CODE or documentation of the Software except as combined with Customer's own source code pursuant to an escrow agreement as protective of Customer and its licensors as any other Customer escrow agreement and which permits use of the source code solely to service and maintain end users in the event Customer materially fails to provide such services.
+b) Use, copy, modify, merge or compile all or any portion of the source code or object code or REDISTRIBUTABLES of the Software except as expressly provided in this License Agreement.
+c) Distribute any portion of the Software as a stand-alone product except as incorporated into a Customer application containing substantial additional functionality.
+d) Expose the interfaces of the Software through Customer's application, including but not limited to a bean or class library, etc.
+e) Sublicense, rent or lease the Software.
+f) Disclose any source code of the Software to any person or entity who is not an employee, or contractor of Customer subject to a contractual obligation to protect the Software.
+g) Remove any copyright or other notices of Serva.
+
+The source code of the Software is a valuable asset of Serva.  Customer agrees to keep all source code of the Software in confidence.  Except as expressly provided in this License Agreement, Customer may not transfer or assign the Software or Customer's rights under this License Agreement without Serva' consent (which consent shall not be unreasonably withheld) except to the transferee of all or substantially all of Customer's assets whether pursuant to a sale, merger, or otherwise.
+
+Limited Warranty
+Serva warrants that the Software will operate substantially in accordance with its user documentation, and that the media on which the Software is furnished will be free from defects in material and workmanship under normal use for a period of thirty (30) days from the date of delivery of the Software to Customer. Serva and its licensor do not otherwise warrant that the operation or execution of the Software will be uninterrupted or error free, or as to the accuracy or completeness of user documentation. 
+
+Upon written notice from Customer within the thirty (30) day warranty period Serva' entire liability, and Customer's exclusive remedy, shall be: (i) the replacement of the media on which the Software is furnished if the media proves defective, (ii) repair or replace any defective Software, or (iii) if neither of these remedies is practical in Serva' sole opinion, Serva' authorized dealer from which Customer purchased the product may refund money Customer has paid as the License Fee under this agreement and Serva shall cancel this License Agreement and the licenses granted herein.  In the last event, Customer agrees to return all copies of the Software and certify in writing they have been removed from all Customer systems or destroyed.
+
+This warranty is void if the media defect has resulted from accident, abuse, or misapplication.  Any replacement of media will be warranted for the remainder of the original warranty period.  This warranty does not apply to failure of the Software to operate in accordance with the user documentation which results from (i) improper use of the Software not substantially in accordance with the related documentation, (ii) other conditions external to the Software that occur following the delivery of the Software by Serva, and (iii) any modifications to the Software not made by Serva or its agents. 
+
+In connection with any warranty claim, Customer will use its best efforts to provide Serva with sufficient information to allow reproduction of any reported bugs.  
+
+THE ABOVE WARRANTIES ARE CUSTOMER'S EXCLUSIVE WARRANTIES AND NO OTHER WARRANTIES SHALL APPLY.  NORTHWOODS SPECIFICALLY DISCLAIMS ALL OTHER WARRANTIES INCLUDING, WITHOUT LIMITATION, ALL OTHER EXPRESS AND IMPLIED WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE OR USE. .  NORTHWOODS' WARRANTY DOES NOT APPLY TO CONDITIONS RESULTING FROM IMPROPER USE, EXTERNAL CAUSES, OR MODIFICATIONS TO DELIVERABLES NOT MADE BY NORTHWOODS OR ITS AGENTS. 
+
+LIMITATION OF LIABILITY 
+NORTHWOODS' LIABILITY FOR ANY CAUSE WHATSOEVER UNDER THIS LICENSE AGREEMENT, SHALL BE LIMITED TO THE LICENSE FEE PAID TO NORTHWOODS.  IN NO EVENT WILL NORTHWOODS BE LIABLE, WHETHER IN CONTRACT, TORT (INCLUDING NEGLIGENCE) OR OTHERWISE, FOR ANY INDIRECT, INCIDENTAL, LOSS OF DATA OR USE, LOST PROFITS, OR CONSEQUENTIAL DAMAGES (INCLUDING LOST PROFITS OR BUSINESS INTERRUPTION EVEN IF NOTIFIED IN ADVANCE OF SUCH POSSIBILITY) ARISING OUT OF OR PERTAINING TO THE SUBJECT MATTER OF THIS LICENSE AGREEMENT. Some jurisdictions do not allow exclusion or limitation of liability for consequential or incidental damages, so the above limitation may not apply to you.
+
+U.S. Government Restricted Rights
+The Software and documentation are provided with RESTRICTED RIGHTS.  Use, duplication, or disclosure by the Government is subject to restrictions as set forth in subparagraph (C)(1)(ii) of the Rights in Technical Data and Computer Software clause at DFARS 252.227-7013 or subparagraphs (C)(1) and (2) of the Commercial Computer Software - Restricted Rights at 48 CFR 52.227-19, as applicable.  Contractor / manufacturer is Serva Software LLC. 
+
+Termination For Cause
+Serva may terminate this Agreement for cause if Customer has not remedied the following defaults within thirty (30) days of its receipt of a written Notice to Cure from Serva, which Notice must specify the nature of the default in question.  The defaults are:
+(a) Customer fails to meet any of its material obligations under this Agreement, including payment of any fees or royalties; or
+(b) Customer becomes insolvent or makes a general assignment for the benefit of creditors, or a receiver or similar officer is appointed to take charge of all or part of Customer's assets and such matter is not resolved within 120 days thereof.
+
+If Serva terminates this Agreement for cause Customer shall deliver the Software and all copies thereof to Serva within thirty (30) days of the effective termination date; provided however, that (I) Customer shall have the right to distribute any products incorporating the Software in inventory as of the date of termination, (II) Customer's license shall survive to the extent necessary to support existing end users and (III) that all then existing end user licenses shall survive.
+
+General Terms
+Each party to this Agreement shall be and remain an independent contractor, nothing herein shall be deemed to constitute the parties as partners; and neither party shall have any authority to act, or attempt to act, or represent itself, directly or by implication, as an agent of the other or in any manner assume or create, or attempt to assume or create, any obligation on behalf of or in the name of the other, nor shall either be deemed the agent or employee of the other.
+
+All rights and remedies, whether conferred by this Agreement or by any other instrument or by law shall be cumulative, and may be exercised singularly or concurrently.  If any provision of this Agreement is held invalid by any law, rule, order or regulation of any government or by the final determination of any court of competent jurisdiction, such invalidity shall not affect the enforceability of any other provisions not held invalid.
+
+In the event a court of competent jurisdiction finds any of the provisions of this Agreement to be invalid, illegal, or unenforceable in any respect, the validity, legality, and enforceability of the remaining provisions shall not in any way be affected or impaired but shall remain in full force and effect, unless such provision may be reduced in scope by the court to the extent it deems necessary to render the provision reasonable and enforceable, and the parties shall negotiate in good faith to achieve a new legally enforceable provision(s) which most closely approximates the original intent of the provision(s) declared unenforceable or illegal.
+
+This Agreement constitutes the entire agreement between the parties on the subject matter of this Agreement and supersedes any previous understandings, commitments or agreements, oral or written, pertaining to the subject matter of this Agreement.  It may not be modified except by a writing signed by authorized representatives of both parties.  If either party fails to enforce any term, failure to enforce on that occasion shall not prevent enforcement on any other occasion.
+
+This License Agreement is governed by the laws of the state of New Hampshire, excluding its conflict of laws provisions.
+
+Serva Software LLC.
+Internet: http://www.servasoftware.com
+E-mail: info@servasoftware.com
+Copyright (c) 2012 Serva Software LLC. All rights reserved.

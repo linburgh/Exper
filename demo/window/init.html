@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<link rel="stylesheet"  type="text/css" href="../../dist/css/ass.css">
+<script language="javascript" src="../../dist/js/ass-debug.js"></script>
+<script language="javascript"> 
+	$(function(){
+		var bodyTpl = "<div class='bodyTpl'>";
+		
+		bodyTpl += "<div class='childTpl'>";
+		bodyTpl += "</div>";
+		
+		bodyTpl += "</div>";
+		var win = ass.UIFactory.createInstance("Window",{
+			id:'win',
+			title:"Window",
+			bodyTpl:bodyTpl,
+			modal:true,
+			buttons:[
+				{
+					type:'close'
+				}
+			]
+		});
+		
+		win.render();
+		win.show();
+	});
+</script>
+<title>Window</title>
+<style>
+	.bodyTpl{
+		background-color:red;
+		height:300px;
+		overflow:hidden;
+	}
+	
+	.childTpl{
+		background-color:green;
+		height:1000px;
+		overflow-y: scroll;
+	}
+
+</style>
+</head>
+<body>
+</body>
+</html>
+ 

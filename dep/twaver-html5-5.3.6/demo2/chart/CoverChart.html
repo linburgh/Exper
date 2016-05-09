@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TWaver HTML5</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>
+
+	var box = new twaver.ElementBox();
+	var network = new twaver.vector.Network(box);
+	var step=10;
+
+  function init() {
+  	registImages(network);
+    document.getElementById("chart").appendChild(network.getView());
+		// document.body.appendChild(network.getView());
+		network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+		network.paintBottom=paintBackground;
+    network.setZoom(0.7);
+    network.setViewOffSet(0,140);
+		for(var i=0;i<50;i++){
+			var node = new twaver.Node();
+			node.setStyle('body.type', 'vector');
+			node.setStyle('vector.shape', 'circle');
+			node.setStyle('vector.fill.color', 'white');
+			node.setSize(5,5);
+			node.setClient('width', parseInt(3+Math.random()*10));
+			node.setClient('height', parseInt(3+Math.random()*10));
+			node.setClient('step', 1+parseInt(Math.random()*step));
+			node.setLocation(375+Math.random()*350,390+Math.random()*250);
+			node.setName('N'+i);
+			node.setStyle('label.color', 'white');
+			node.setStyle('label.font', '10px Calibri');
+			box.add(node);
+		}
+		window.onresize = function (e) { 
+			network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+		};
+    document.getElementById("show_btn").addEventListener("click",function(){
+      if(this.value === "hide line"){
+        this.value = "show line";
+      }else{
+        this.value = "hide line";
+      }
+      if (network.invalidateElementUIs) {
+          network.invalidateElementUIs();
+      }
+      if (network.invalidateDisplay) {
+          network.invalidateDisplay();
+      }
+    });
+	}
+
+	function paintBackground(ctx, dirtyRect){
+		var rect = {
+			x:-500,
+			y:-500,
+			width:2000,
+			height:2000
+		}
+		toDrawImage(ctx,"chinaMap",rect);
+    var isShow;
+    if(document.getElementById("show_btn").value === "hide line"){
+      isShow = true;
+    }else{
+      isShow = false;
+    }
+		for(var i=0;i<step;i++){
+      if(isShow){
+        box.forEach(function(element){
+          if(element instanceof twaver.Node){
+            var node=element;         
+            var myStep=node.getClient('step');
+            if(myStep>i){
+              var scale=(step-i)*(step-i);
+              var width=node.getClient('width')*scale/step;
+              var height=node.getClient('height')*scale/step;
+              var point=node.getCenterLocation();
+              var x=point.x;
+              var y=point.y;                                              
+              drawEllipse(ctx, x, y, width, height, true, 'black', 1);
+            }
+          }
+        });
+      }
+
+			box.forEach(function(element){
+				if(element instanceof twaver.Node){
+					var node=element;
+					var myStep=node.getClient('step');
+					if(myStep>i){
+						var scale=(step-i)*(step-i);
+						var width=node.getClient('width')*scale/step;
+						var height=node.getClient('height')*scale/step;
+						var point=node.getCenterLocation();
+						var x=point.x;
+						var y=point.y;						
+
+						var red=parseInt(255/step*i);
+						var green=parseInt(255-255/step*i);
+						var color='rgba('+red+','+green+','+green+ ',0.8)';															
+
+						drawEllipse(ctx, x, y, width, height, false, null, 0, true, color);
+					}
+				}
+			});
+		}
+	}
+
+	function drawEllipse(ctx, x, y, width, height, draw, drawColor, lineWidth, fill, fillColor) {
+		ctx.save();
+		ctx.beginPath();
+		
+		ctx.moveTo(x, y - height/2); // A1
+		ctx.bezierCurveTo(
+			x + width/2, y - height/2, // C1
+			x + width/2, y + height/2, // C2
+			x, y + height/2); // A2
+			ctx.bezierCurveTo(
+			x - width/2, y + height/2, // C3
+			x - width/2, y - height/2, // C4
+			x, y - height/2); // A1
+		ctx.closePath();
+		
+		if(draw){
+			ctx.lineWidth=lineWidth;
+			ctx.strokeStyle=drawColor;
+			ctx.stroke();
+		}
+
+		if(fill){
+			ctx.fillStyle = fillColor;
+			ctx.fill();
+		}
+			
+		ctx.restore();
+	}
+
+	var registImages= function (network) {
+      registerImage("./chinaMap.svg",network);
+  };
+
+  var registerImage = function (url, network) {
+      var image = new Image();
+      image.src = url;
+      var views = arguments;
+      var that = this;
+      image.onload = function () {
+          twaver.Util.registerImage(that.getImageName(url), image, image.width, image.height, network);
+          image.onload = null;
+          for (var i = 1; i < views.length; i++) {
+              var view = views[i];
+              if (view.invalidateElementUIs) {
+                  view.invalidateElementUIs();
+              }
+              if (view.invalidateDisplay) {
+                  view.invalidateDisplay();
+              }
+          }
+      };
+  };
+  var getImageName = function (url) {
+      var index = url.lastIndexOf('/');
+      var name = url;
+      if (index >= 0) {
+          name = url.substring(index + 1);
+      }
+      index = name.lastIndexOf('.');
+      if (index >= 0) {
+          name = name.substring(0, index);
+      }
+      return name;
+  };
+
+  var toDrawImage = function(g, image,rect){
+  	var imageAsset, imageName, sx, sy, zoom = 1;
+    if (typeof image !== 'object') {
+      imageName = image;
+      imageAsset = _twaver.images[image];
+      image = imageAsset && imageAsset.getImage();
+    }
+    if (isImage(image)) {
+      g.drawImage(image, rect.x + (rect.width/2 - imageAsset._width/2) + 1, rect.y + (rect.height/2 - imageAsset._height/2),  imageAsset._width, imageAsset._height);
+    }
+  };
+
+  var isImage = function (image) {
+    return image instanceof HTMLImageElement || image instanceof HTMLCanvasElement || image instanceof HTMLVideoElement;
+  }
+  </script>
+</head>
+<body onload="init()">
+  <div>
+    <input style="margin-left:10%;" type="button" value="show line" id="show_btn"/>
+  </div>
+  <div id="chart" style="position:absolute;"></div>
+</body>
+</html>

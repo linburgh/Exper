@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="pragma" content="no-cache">
+  <title></title>
+  <script type="text/javascript" src="../../lib/twaver.js"></script>
+  <script type="text/javascript">
+    
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    var toolbar = document.createElement('div');
+    
+    function init () {
+      twaver.Styles.setStyle('select.style', 'border');
+      initToolbar();
+      var pane = new twaver.controls.BorderPane(network, toolbar);
+      pane.setTopHeight(25);
+      var view = pane.getView();
+      view.style.left = '0px';
+      view.style.top = '0px';
+      view.style.right = '0px';
+      view.style.bottom = '0px';
+      document.body.appendChild(view);
+      window.onresize = function () {
+        pane.invalidate();
+      };
+
+      registerTopLeftClock();
+      registerTopRightText();
+      registerBottomLineAndText();
+      registerHamburger();
+      registerCoffee();
+      registerSandwich();
+      registerJuice();
+      addAnimate();
+      registerGif();
+      initBox();
+    }
+    
+    function initBox () {
+      box.add(new twaver.Node({
+        location: { x: 100, y: 100 },
+        image: 'gif'
+      }));
+    }
+
+    function registerTopLeftClock () {
+      var times = [ 6, 8, 12, 3 ],
+        animate = [],
+        animateItem, from, nextIndex, offset = 0;
+      times.forEach(function (time, index) {
+        if (index === 0) {
+          from = time / 12 * 360;
+        }
+        nextIndex = index + 1;
+        if (nextIndex === times.length) {
+          nextIndex = 0;
+        }
+        if (times[nextIndex] < time) {
+          offset = 12;
+        }
+        animateItem = {
+          attr: 'rotate',
+          to: (times[nextIndex] + offset) / 12 * 360,
+          delay: index * 1500,
+          dur: 500
+        };
+        animate.push(animateItem);
+      });
+      animateItem.finish = times.length * 1500;
+      animateItem.repeat = Number.POSITIVE_INFINITY;
+      twaver.Util.registerImage('top_left_clock', {
+        w: 350,
+        h: 250,
+        v: [
+          {
+            shape: 'circle',
+            cx: 0,
+            cy: 0,
+            r: 90,
+            gradient: {
+              type: 'linear',
+              x1: 0,
+              y1: -90,
+              x2: 0,
+              y2: 90,
+              stop: [
+                {
+                  color: '#DC2B2B',
+                  offset: 0
+                },
+                {
+                  color: '#F37272',
+                  offset: 1
+                }
+              ]
+            }
+          },
+          {
+            shape: 'rect',
+            rect: [ -4, -70, 8, 75 ],
+            r: 4,
+            fill: 'white',
+            rotate: 0,
+            animate: [
+              {
+                attr: 'rotate',
+                to: 360,
+                dur: 500,
+                finish: 1500,
+                reverse: false,
+                repeat: Number.POSITIVE_INFINITY
+              }
+            ]
+          },
+          {
+            shape: 'rect',
+            rect: [ -5, -41, 10, 45 ],
+            r: 5,
+            fill: 'white',
+            rotate: from,
+            animate: animate
+          }
+        ]
+      });
+    }
+
+    function registerTopRightText () {
+      var texts = [
+          [ '6:00', 'PM', 'Hamburger' ],
+          [ '8:00', 'AM', 'Coffee' ],
+          [ '12:00', 'PM', 'Sandwich' ],
+          [ '3:00', 'PM', 'Juice' ]
+        ],
+        shapes = [];
+      texts.forEach(function (texts, index) {
+        texts.forEach(function (text, index1) {
+          var font, x, y, animate;
+          if (index1 === 0) {
+            font = 50;
+            x = -100;
+            y = -30;
+          } else if (index1 === 1) {
+            font = 30;
+            if (index === 2) {
+              x = 30;
+            } else {
+              x = 0;
+            }
+            y = -20;
+          } else {
+            font = 40;
+            x = -100;
+            y = 20;
+          }
+          if (index !== 0) {
+            y += 250;
+          }
+          if (index === 0) {
+            animate = [{
+              attr: 'y',
+              to: y - 250,
+              delay: 0,
+              dur: 500,
+              easing: 'backOut'
+            },
+            {
+              attr: 'y',
+              to: y + 250,
+              type: 'set',
+              delay: 4500
+            },
+            {
+              attr: 'y',
+              to: y,
+              delay: 4500,
+              dur: 500,
+              finish: 6000,
+              easing: 'backOut',
+              repeat: Number.POSITIVE_INFINITY
+            }];
+          } else {
+            animate = [{
+              attr: 'y',
+              to: y - 250,
+              delay: (index - 1) * 1500,
+              dur: 500,
+              easing: 'backOut'
+            },
+            {
+              attr: 'y',
+              to: y - 250 * 2,
+              delay: index * 1500,
+              dur: 500
+            },
+            {
+              attr: 'y',
+              to: y,
+              type: 'set',
+              delay: (index + 1) * 1500,
+              dur: (3 - index) * 1500,
+              finish: 6000,
+              repeat: Number.POSITIVE_INFINITY
+            }];
+          }
+          shapes.push({
+            shape: 'text',
+            text: text,
+            textAlign: 'left',
+            font: font + 'px Arial',
+            fill: 'white',
+            x: x,
+            y: y,
+            animate: animate
+          });
+        });
+      });
+
+      twaver.Util.registerImage('top_right_text', {
+        w: 350,
+        h: 250,
+        clip: true,
+        shadow: {
+          offsetX: 0,
+          offsetY: 4,
+          blur: 5,
+          color: 'gray'
+        },
+        v: shapes
+      });
+    }
+      
+    function registerBottomLineAndText () {
+      var shapes = [],
+        texts = [ '15:00', '18:00', '08:00', '12:00' ],
+        offset = 400;
+      texts.forEach(function (text, index) {
+        offset += -200;
+        var circle = {
+            shape: 'circle',
+            cx: offset,
+            cy: 150,
+            r: 5,
+            fill: '#E74D4D'
+          },
+          animate = circle.animate = [],
+          count = 4,
+          i, animateItem, to, begin;
+
+        if (index < 2) {
+          begin = index + 2;
+        } else {
+          begin = index - 2;
+        }
+
+        animate.push({
+          attr: 'r',
+          to: 10,
+          delay: begin * 1500 + 500,
+          dur: 500,
+          easing: 'elasticOut'
+        },
+        {
+          attr: 'r',
+          to: 5,
+          type: 'set',
+          delay: begin * 1500 + 1500,
+          finish: 6000,
+          repeat: Number.POSITIVE_INFINITY
+        });
+
+        to = offset;
+        for (i = 0; i < count; i++) {
+          if ((index === 0 && i === 1) || (index === 1 && i === 2) || (index === 2 && i === 3) || (index === 3 && i === 0)) {
+            to = -400;
+            animate.push({
+              attr: 'cx',
+              to: to,
+              type: 'set',
+              delay: i * 1500
+            });
+          }
+          to = to + 200;
+          animate.push({
+            attr: 'cx',
+            to: to,
+            delay: i * 1500,
+            dur: 500
+          });
+          if (i === count - 1) {
+            animate[animate.length - 1].finish = 6000;
+            animate[animate.length - 1].repeat = Number.POSITIVE_INFINITY;
+          }
+        }
+
+        text = {
+          shape: 'text',
+          text: text,
+          font: '15px Arial',
+          x: offset,
+          y: 170,
+          fill: '#E74D4D'
+        };
+        animate = text.animate = [];
+        to = offset;
+        for (i = 0; i < count; i++) {
+          if ((index === 0 && i === 1) || (index === 1 && i === 2) || (index === 2 && i === 3) || (index === 3 && i === 0)) {
+            to = -400;
+            animate.push({
+              attr: 'x',
+              to: to,
+              type: 'set',
+              delay: i * 1500,
+            });
+          }
+          to = to + 200;
+          animateItem = {
+            attr: 'x',
+            to: to,
+            delay: i * 1500,
+            dur: 500
+          };
+          if (i === count - 1) {
+            animateItem.finish = 2000 * i;
+            animateItem.repeat = Number.POSITIVE_INFINITY;
+          }
+          animate.push(animateItem);
+        }
+        shapes.push(circle, text);
+      });
+
+      twaver.Util.registerImage('bottom_line_text', {
+        w: 700,
+        h: 500,
+        v: shapes
+      });
+    }
+      
+    function registerHamburger () {
+      twaver.Util.registerImage('Hamburger_wave', {
+        w: 100,
+        h: 100,
+        v: [
+          {
+            shape: 'path',
+            data: [
+              { x: -40, y: -10, c: 'M' },
+              { x: 10, y: 8, c: 'l' },
+              { x: 10, y: -8, c: 'l' },
+              { x: 10, y: 8, c: 'l' },
+              { x: 10, y: -8, c: 'l' },
+              { x: 10, y: 8, c: 'l' },
+              { x: 10, y: -8, c: 'l' },
+              { x: 10, y: 8, c: 'l' },
+              { x: 10, y: -8, c: 'l' }
+            ],
+            lineColor: '#E74D4D',
+            lineWidth: 4
+          }
+        ]
+      });
+      
+      var shapes = [
+        {
+          y: -33,
+          h: 18,
+          r: [ 15, 15, 0, 0 ]
+        },
+        {
+          shape: 'vector',
+          name: 'Hamburger_wave',
+          x: 0,
+          y: 0
+        },
+        {
+          y: 3,
+          h: 13,
+          r: 5
+        },
+        {
+          y: 20,
+          h: 18,
+          r: [ 0, 0, 10, 10 ]
+        }
+      ];
+      twaver.Util.registerImage('Hamburger', {
+        w: 100,
+        h: 100,
+        v: shapes
+      });
+    }
+
+    function registerCoffee () {
+      twaver.Util.registerImage('Coffee_cup', {
+        w: 100,
+        h: 100,
+        v: [
+          {
+            shape: 'circle',
+            cx: 35,
+            cy: 0,
+            r: 10,
+            lineWidth: 6,
+            lineColor: '#E74D4D'
+          },
+          {
+            shape: 'rect',
+            rect: [ -35, -22, 70, 48 ],
+            r: [4, 4, 32, 32],
+            fill: '#E74D4D',
+          },
+          {
+            shape: 'path',
+            data: [
+              { x: 26, y: -36, c: 'M' },
+              { x: -5, y: 13, c: 'l' },
+              { x: 6, c: 'h' },
+              { x: 7, y: -9, c: 'l' },
+              { x1: 0, y1: -8, x: -8, y: -5, c: 'q' }
+            ],
+            fill: '#E74D4D'
+          }
+        ]
+      });
+      twaver.Util.registerImage('Coffee_plate', {
+        w: 100,
+        h: 100,
+        v: [
+          {
+            shape: 'path',
+            data: [
+              { x: -40, y: 27, c: 'M' },
+              { x: 80, c: 'h' },
+              { y: 3, c: 'v' },
+              { x: -30, y: 3, c: 'l' },
+              { y: 3, c: 'v' },
+              { x: -20, c: 'h' },
+              { y: -3, c: 'v' },
+              { x: -30, y: -3, c: 'l' },
+              { c: 'z' }
+            ],
+            fill: '#E74D4D'
+          }
+        ]
+      });
+      
+      var shapes = [
+        {
+          shape: 'vector',
+          name: 'Coffee_cup',
+          x: 0,
+          y: 0
+        },
+        {
+          shape: 'vector',
+          name: 'Coffee_plate',
+          x: 0,
+          y: 0
+        }
+      ];
+      twaver.Util.registerImage('Coffee', {
+        w: 100,
+        h: 100,
+        v: shapes
+      });
+    }
+
+    function registerSandwich () {
+      twaver.Util.registerImage('Sandwich_top', {
+        w: 100,
+        h: 100,
+        v: [
+          {
+            shape: 'path',
+            data: [
+              { x: -35, y: -19, c: 'M' },
+              { x: 60, y: -13, c: 'l' },
+              { x1: 10, y1: 2, x: 10, y: 15, c: 'q' },
+              { x: -70, c: 'h' },
+              { c: 'z' }
+            ],
+            fill: '#E74D4D'
+          },
+          {
+            shape: 'rect',
+            rect: [ -40, -15, 80, 15 ],
+            r: 5,
+            fill: '#E74D4D',
+          }
+        ]
+      });
+      twaver.Util.registerImage('Sandwich_wave', {
+        w: 100,
+        h: 100,
+        v: [
+          {
+            shape: 'path',
+            data: [
+              { x: -40, y: 6, c: 'M' },
+              { x: 10, y: 8, c: 'l' },
+              { x: 10, y: -8, c: 'l' },
+              { x: 10, y: 8, c: 'l' },
+              { x: 10, y: -8, c: 'l' },
+              { x: 10, y: 8, c: 'l' },
+              { x: 10, y: -8, c: 'l' },
+              { x: 10, y: 8, c: 'l' },
+              { x: 10, y: -8, c: 'l' }
+            ],
+            lineColor: '#E74D4D',
+            lineWidth: 4
+          }
+        ]
+      });
+      
+      var shapes = [
+        {
+          shape: 'vector',
+          name: 'Sandwich_top',
+          x: 0,
+          y: 0
+        },
+        {
+          shape: 'vector',
+          name: 'Sandwich_wave',
+          x: 0,
+          y: 0
+        },
+        {
+          y: 20,
+          h: 13,
+          r: 5
+        }
+      ];
+      twaver.Util.registerImage('Sandwich', {
+        w: 100,
+        h: 100,
+        v: shapes
+      });
+    }
+
+    function registerJuice () {
+      twaver.Util.registerImage('Juice_hole', {
+        w: 15,
+        h: 15,
+        v: [
+          {
+            shape: 'path',
+            data: [
+              { x: 5, y: -1, c: 'M' },
+              { x: 5, y: -2, c: 'l' },
+              { x1: 3, y1: 3, x: 0, y: 6, c: 'q' },
+              { x: -5, y: -2, c: 'l' },
+              { x1: -3, y1: -1, x: 0, y: -2, c: 'q' }
+            ],
+            fill: 'white'
+          }
+        ]
+      });
+      twaver.Util.registerImage('Juice_cup', {
+        w: 100,
+        h: 100,
+        v: [
+          {
+            shape: 'circle',
+            cx: 25,
+            cy: -24,
+            r: 15,
+            startAngle: 98,
+            endAngle: 180,
+            anticlockwise: true,
+            close: true,
+            fill: '#E74D4D'
+          },
+          {
+            shape: 'vector',
+            name: 'Juice_hole',
+            translate: { x: 25, y: -24 },
+            rotate: -140
+          },
+          {
+            shape: 'vector',
+            name: 'Juice_hole',
+            translate: { x: 25, y: -24 },
+            rotate: -90
+          },
+          {
+            shape: 'vector',
+            name: 'Juice_hole',
+            translate: { x: 25, y: -24 },
+            rotate: -40
+          },
+          {
+            shape: 'vector',
+            name: 'Juice_hole',
+            translate: { x: 25, y: -24 },
+            rotate: 10
+          },
+          {
+            shape: 'vector',
+            name: 'Juice_hole',
+            translate: { x: 25, y: -24 },
+            rotate: 60
+          },
+          {
+            shape: 'path',
+            data: [
+              { x: -40, y: -20, c: 'M' },
+              { x: 60, c: 'h' },
+              { x: -8, y: 50, c: 'l' },
+              { x: -44, c: 'h' },
+              { c: 'z' }
+            ],
+            lineJoin: 'round',
+            lineWidth: 6,
+            lineColor: '#E74D4D'
+          }
+        ]
+      });
+      var data = [
+        { x: -30, y: 5, c: 'M' },
+        { x: 40, c: 'h' },
+        { x: -4, y: 20, c: 'l' },
+        { x: -32, c: 'h' },
+        { c: 'z' }
+      ],data1 = [
+        { x: -32, y: -5, c: 'M' },
+        { x1: 24, y1: 20, x: 40, y: 20, c: 'q' },
+        { x: -2, y: 10, c: 'l' },
+        { x: -31, c: 'h' },
+        { c: 'z' }
+      ],data2 = [
+        { x: -28, y: 15, c: 'M' },
+        { x1: 24, y1: 0, x: 40, y: -20, c: 'q' },
+        { x: -6, y: 30, c: 'l' },
+        { x: -32, c: 'h' },
+        { c: 'z' },
+        { x: 10, y: -10, c: 'M' },
+        { x: 4, c: 'h' },
+        { y: 4, c: 'v' },
+        { x: -4, c: 'h' },
+        { c: 'z' }
+      ];
+      twaver.Util.registerImage('Juice_water', {
+        w: 100,
+        h: 100,
+        v: [
+          {
+            shape: 'path',
+            data: data,
+            fill: '#E74D4D',
+            animate: [
+              {
+                attr: 'data',
+                to: data1,
+                type: 'set',
+                delay: 0,
+                dur: 400
+              },
+              {
+                attr: 'data',
+                to: [ data2, data1 ],
+                type: 'group_set',
+                delay: 400,
+                dur: [ 100, 100, 400 ]
+              },
+              {
+                attr: 'data',
+                to: data,
+                type: 'set',
+                delay: 800,
+                finish: 1500,
+                repeat: Number.POSITIVE_INFINITY
+              }
+            ]
+          }
+        ]
+      });
+      
+      var shapes = [
+        {
+          shape: 'vector',
+          name: 'Juice_water',
+          x: 0,
+          y: 0
+        },
+        {
+          shape: 'vector',
+          name: 'Juice_cup',
+          x: 0,
+          y: 0
+        }
+      ];
+      twaver.Util.registerImage('Juice', {
+        w: 100,
+        h: 100,
+        cacheable: false,
+        v: shapes
+      });
+    }
+
+    function addAnimate () {
+      [ 'Sandwich', 'Coffee', 'Hamburger', 'Juice' ].forEach(function (shape, index) {
+        var shapes = twaver.Util.getImageAsset(shape).getImage().v;
+        shapes.forEach(function (shape, index1) {
+          if (!shape.shape) {
+            shape.w = 80;
+            shape.shape = 'rect';
+            shape.x = -40;
+            shape.fill = '#E74D4D';
+          }
+          var animate = shape.animate = [],
+            delay;
+          for (var i = 0, offset = 0, animateItem; i < 4; i++) {
+            if ((index === 0 && i === 0) || (index === 1 && i === 3) || (index === 2 && i === 2) || (index === 3 && i === 1)) {
+              offset = -200 * index;
+              animate.push({
+                attr: 'x',
+                to: shape.x + offset,
+                type: 'set',
+                delay: i * 1500
+              });
+            }
+            offset += 200;
+            delay = 10 * (shapes.length - 1 - index1);
+            if (index === 3) {
+              delay = 0;
+            }
+            animateItem = {
+              attr: 'x',
+              to: shape.x + offset - delay / 2,
+              delay: i * 1500 + delay,
+              dur: 500
+            };
+            if (delay > 0) {
+              animate.push(animateItem);
+              animateItem = {
+                attr: 'x',
+                to: shape.x + offset,
+                delay: i * 1500 + 500,
+                dur: 300,
+                easing: 'backBoth'
+              };
+            }
+            if (i === 3) {
+              animateItem.finish = 4 * 1500;
+              animateItem.repeat = Number.POSITIVE_INFINITY;
+            }
+            animate.push(animateItem);
+          }
+        });
+      });
+    }
+
+    function registerGif () {
+      twaver.Util.registerImage('gif', {
+        w: 700,
+        h: 500,
+        clip: true,
+        cacheable: false,
+        v: [
+          {
+            shape: 'rect',
+            rect: [ -350, -250, 700, 250 ],
+            fill: '#E74D4D'
+          },
+          {
+            shape: 'vector',
+            name: 'top_left_clock',
+            x: -175,
+            y: -125
+          },
+          {
+            shape: 'vector',
+            name: 'top_right_text',
+            x: 175,
+            y: -125
+          },
+          {
+            shape: 'vector',
+            name: 'bottom_line_text',
+            x: 0,
+            y: 0
+          },
+          {
+            shape: 'rect',
+            rect: [ 0, -250, 350, 250 ],
+            gradient: {
+              type: 'linear',
+              x1: 175,
+              y1: -250,
+              x2: 175,
+              y2: 0,
+              stop: [
+                {
+                  color: '#E74D4D',
+                  offset: 0
+                },
+                {
+                  color: 'rgba(231,77,77,0)',
+                  offset: 0.35
+                },
+                {
+                  color: 'rgba(231,77,77,0)',
+                  offset: 0.5
+                },
+                {
+                  color: 'rgba(231,77,77,0)',
+                  offset: 0.65
+                },
+                {
+                  color: '#E74D4D',
+                  offset: 1
+                }
+              ]
+            }
+          },
+          {
+            shape: 'vector',
+            name: 'Hamburger',
+            x: 0,
+            y: 50
+          },
+          {
+            shape: 'vector',
+            name: 'Coffee',
+            x: -200,
+            y: 50
+          },
+          {
+            shape: 'vector',
+            name: 'Sandwich',
+            x: -400,
+            y: 50
+          },
+          {
+            shape: 'vector',
+            name: 'Juice',
+            x: 200,
+            y: 50
+          },
+          {
+            shape: 'line',
+            x1: -350,
+            y1: 150,
+            x2: 350,
+            y2: 150,
+            lineWidth: 3,
+            lineColor: '#E74D4D'
+          },
+          {
+            shape: 'rect',
+            rect: [ -350, -250, 700, 500 ],
+            lineWidth: 1
+          }
+        ]
+      });
+    }
+
+    function initToolbar() {
+      addButton(toolbar, 'Zoom In', function () {
+        network.zoomIn();
+      });
+      addButton(toolbar, 'Zoom Out', function () {
+        network.zoomOut();
+      });
+      addButton(toolbar, 'Zoom Overview', function () {
+        network.zoomOverview();
+      });
+      addButton(toolbar, 'Zoom Reset', function () {
+        network.zoomReset();
+      });
+    }
+    
+    function addButton(toolbar, label, handler) {
+      var button = document.createElement('input');
+      button.type = 'button';
+      button.value =  label;
+      button.onclick = handler;
+      toolbar.appendChild(button);
+    }
+    
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

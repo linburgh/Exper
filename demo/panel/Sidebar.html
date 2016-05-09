@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<link rel="stylesheet"  type="text/css" href="../../dist/css/ass.css">
+<script language="javascript" src="../../dist/js/ass-debug.js"></script>
+<script language="javascript"> 
+	$(function(){
+		var items = [];
+		for(var i=0; i<5; i++){
+			if(i==0 || i==1){
+				var groupItem = {
+					type:'group',
+					title:'item'+i,
+					children:[]
+				};
+				for(var j=0; j<5; j++){
+					groupItem.children.push({text:'item-group-child'+j});
+				}
+				items.push(groupItem);
+				continue;
+			}
+			items.push({text:"item"+i});
+			
+			
+		}
+		var sidebar = ass.UIFactory.createInstance("Sidebar",{
+			items:items,
+			scroll:'y'
+		});
+		
+		sidebar.render();
+	});
+//</script>
+<title>Sidebar</title>
+</head>
+<body style='padding-top:51px;'>
+</body>
+</html>
+ 

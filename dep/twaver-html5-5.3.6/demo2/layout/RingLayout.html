@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TWaver HTML5</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>
+	
+	//define image.
+	twaver.Util.registerImage('circle', {
+	  w: 12,
+	  h: 12,  
+	  alpha: function(data){
+		if(data.getClient('alpha')){
+			return data.getClient('alpha');
+		}else{
+			return 1;
+		}},
+	  v: [{
+		shape: 'circle',
+		r:6,
+		lineColor: 'black',
+		fill: function(data){			
+			if(data.getClient('rover')){
+				return 'red';
+			}
+			if(data.getClient('loaded')){
+				return '#EC6C00';
+			}else{
+				return '#309FC9';
+			}
+		},
+		lineWidth: 1,
+	  }]
+	});
+	
+	//define topo.
+	var box = new twaver.ElementBox();  
+	var layouter= new twaver.layout.AutoLayouter(box);
+	layouter.setAnimate(false);
+	var network = new twaver.vector.Network(box);	
+
+    function init() {            		
+		document.body.appendChild(network.getView());
+		network.adjustBounds({ x: 0, y: 0, width : document.documentElement.clientWidth, height : document.documentElement.clientHeight});
+		//network.getView().style["background"]="#F0F0F0";
+		network.setZoomManager(new twaver.vector.LogicalZoomManager(network,false));
+		network.addInteractionListener(function(event) {
+			if(event.kind=='clickElement'){
+				expandNode(event.element);			
+			}
+		});
+		network.getView().addEventListener('mousemove',function(e){		
+			var element = network.getElementAt(e);
+			highlightNode(element);
+		})
+		network.setLinkPathFunction(function (linkUI, defaultPoints) {
+			if(linkUI.getElement().getClient('connection')){
+				var f = linkUI.getFromPoint();
+				var t = linkUI.getToPoint();
+
+				var points = new twaver.List();
+				points.add(f);
+				points.add(t);
+
+				var fromNode=linkUI.getElement().getFromNode();
+				var toNode=linkUI.getElement().getToNode();
+
+				var x=fromNode.getLocation().x+toNode.getLocation().x;
+				var y=fromNode.getLocation().y+toNode.getLocation().y;
+				
+				var cps = new twaver.List();
+				cps.add({x: x, y: y,});
+				cps.add(t);
+
+				points.removeAt(1);
+				points.add(cps);
+
+				return points;
+			}else{
+				return defaultPoints;
+			}
+		});
+
+		createRoot('network\nA', 'A', 0, 0);
+	 }
+
+	 function createRoot(name, groupID, x, y){
+		var root=new twaver.Node();
+		root.setLocation(x,y);
+		root.setClient('level',0);
+		root.setSize(50,50);
+		root.setImage('circle');
+		root.setName(name);
+		root.setClient('group', groupID);
+		root.setClient('root', root);
+		root.setStyle('label.position','center');
+		root.setStyle('label.color','white');
+		root.setStyle('label.font','12px "Microsoft Yahei"');
+		box.add(root);
+
+		network.panToCenter();
+	 }
+
+	 function expandNode(element){		
+		if(! (element instanceof twaver.Node)) return;
+		var loaded=element.getClient('loaded');
+		if(!loaded){
+			var count=2+parseInt(Math.random()*15);
+			for(var i=1;i<count;i++){
+				var child=new twaver.Node();				
+				child.setImage('circle');
+				child.setClient('group', element.getClient('group'));
+				child.setClient('root', element.getClient('root'));
+				child.setClient('level', element.getClient('level')+1);	
+				child.setParent(element);	
+				child.setLocation(element.getLocation().x, element.getLocation().y);
+				box.add(child);
+				var link=new twaver.Link(child, element);
+				link.setStyle('link.width',1);
+				//link.setStyle('link.color', '#aaaaaa');
+				box.add(link);										
+			}
+			element.setClient('loaded',true);		
+									
+			layoutRing();
+		}
+	 }      
+
+	 function layoutRing(){		
+		//setup all group rings.
+		var groups={};		
+		box.forEach(function(data){
+			if(data instanceof twaver.Node){
+				var node=data;
+				node.setClient('x', node.getLocation().x);
+				node.setClient('y', node.getLocation().y);
+				var groupName=data.getClient('group');
+				if(!groups[groupName]){
+					groups[groupName]=[];
+				}
+				var rings=groups[groupName];
+				var level=parseInt(node.getClient('level'));
+				if(rings.length<=level){
+					rings.push([]);
+				}
+				var ring=rings[level];
+				ring.push(node);
+			}
+		});
+
+		cleanConnections();
+		layouter.doLayout('topbottom');		
+		
+		for(var groupName in groups){
+			//get this group bounds.
+			var x1=undefined, y1=undefined, x2=undefined, y2=undefined;
+			var rings=groups[groupName];
+			for(var level=0;level<rings.length; level++){
+				var ring=rings[level];
+				for(var index=0;index<ring.length;index++){
+					var node=ring[index];		
+					x1=x1 ? Math.min(x1, node.getLocation().x) : node.getLocation().x;
+					y1=y1 ? Math.min(y1, node.getLocation().y) : node.getLocation().y;
+					x2=x2 ? Math.max(x2, node.getLocation().x) : node.getLocation().x;
+					y2=y2 ? Math.max(y2, node.getLocation().y) : node.getLocation().y;
+
+					var target=box.getDatas().get(Math.floor(Math.random()*box.size()));
+					if(target instanceof twaver.Node && target!==node){
+						var connection=new twaver.Link(node, target);
+						connection.setStyle('link.width',0.2);
+						connection.setStyle('link.color', '#aaaaaa');
+						connection.setClient('connection',true);
+						connection.setClient('angle', (target.getClient('angle')+node.getClient('angle'))/2);
+						box.add(connection);
+					}
+				}
+			}
+			var width=x2-x1;
+			var height=y2-y1;						
+
+			//layout each ring for this group.
+			for(var level=0;level<rings.length; level++){
+				var ring=rings[level];
+				for(var index=0;index<ring.length;index++){
+					var node=ring[index];		
+					var radius=node.getLocation().y-y1;
+					var range=Math.PI*2;				
+					var angle=(node.getLocation().x-x1)/width * range;
+					if(level>1 && (level==rings.length-1 || rings.length<4)){
+						angle=node.getParent().getClient('angle')+(angle-node.getParent().getClient('angle'))/3;
+					}
+					var x=radius*Math.cos(angle);
+					var y=radius*Math.sin(angle);
+									
+					node.setLocation(node.getClient('x'),node.getClient('y'));
+					node.setClient('angle', angle);											
+					move(node, x, y);
+				}
+			}
+		}		
+	 }
+
+	 function move(node, x, y){
+		var x0=node.getClient('x');
+		var y0=node.getClient('y');
+		new twaver.Animate({
+	        from: { x: x0, y: y0 },
+	        to: { x: x, y: y },
+	        type: 'point',
+	        delay: 100,
+	        dur: 1000,
+	        easing: 'easeNone',
+	        onUpdate: function (value) {
+	          node.setLocation(value.x, value.y);
+	        }
+      	}).play();			
+	 }
+
+	 function setupLinks(){
+		
+	 }
+
+	 function cleanConnections(){
+		var ids=[];				
+		box.forEach(function(data){
+			if(data instanceof twaver.Link){
+				var link=data;
+				if(link.getClient('connection')){
+					ids.push(link.getId());
+				}				
+			}
+		});
+		for(var i=0;i<ids.length;i++){
+			box.removeById(ids[i]);
+		}
+	 }
+
+	 function highlightNode(element){		
+		box.forEach(function(data){
+			data.setClient('rover', false);
+			if(element){
+				data.setClient('alpha', 0.2);
+			}else{
+				data.setClient('alpha', 1);
+			}
+		});
+		box.forEach(function(data){
+			if(data instanceof twaver.Link){
+				var link=data;
+				if(link.getClient('connection')){
+					if(link.getFromNode()==element || link.getToNode()==element){
+						link.setStyle('link.color', 'red');
+						link.setStyle('link.width', 1);
+						link.getFromNode().setClient('rover', true);
+						link.getToNode().setClient('rover', true);
+						link.getFromNode().setClient('alpha', 1);
+						link.getToNode().setClient('alpha', 1);
+					}else{
+						link.setStyle('link.width',0.2);
+						link.setStyle('link.color', '#aaaaaa');
+					}
+				}				
+			}
+		});
+		if(element){
+			element.setClient('rover', true);
+			element.setClient('alpha', 1);
+		}
+	 }
+
+  </script>
+</head>
+<body onload="init();">
+</body>
+</html>

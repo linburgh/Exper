@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="pragma" content="no-cache">
+  <title>Cartoon</title>
+  <script type="text/javascript" src="../../lib/twaver.js"></script>
+  <script type="text/javascript">
+    
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    
+    function init () {
+      twaver.Defaults.CENTER_LOCATION = true;
+      twaver.Styles.setStyle('select.style', 'border');
+      document.body.appendChild(network.getView());
+      function onResize () {
+        network.adjustBounds({ x: 0, y: 0, width: document.documentElement.clientWidth, height: document.documentElement.clientHeight });
+      }
+      window.onresize = onResize;
+      onResize();
+    
+      registerImages();
+      initBox();
+      initListener();
+    }
+    
+    function initBox () {
+      for (var i=0; i<10; i++) {
+        box.add(new twaver.Node({
+          location: {
+            x: randomInt(document.documentElement.clientWidth - 200) + 100,
+            y: randomInt(document.documentElement.clientHeight - 200) + 100
+          },
+          image: 'Cartoon'
+        }));
+      }
+    }
+ 
+    function registerImages () {
+      twaver.Util.registerImage('Cartoon', {
+        w: 110,
+        h: 110,
+        fill: 'white',
+        v: [
+          {
+            shape: 'circle',
+            r: 54.5,
+            lineWidth: 1
+          },
+          {
+            shape: 'vector',
+            name: 'Cartoon_eye',
+            translate: function (data, view) {
+              return { x: view._translateEyeX, y: view._translateEyeY };
+            }
+          }
+        ]
+      });
+      
+      twaver.Util.registerImage('Cartoon_eye', {
+        w: 120,
+        h: 120,
+        v: [
+          {
+            shape: 'circle',
+            r: 16,
+            cx: -25,
+            cy: 0,
+            lineWidth: 1
+          },
+          {
+            shape: 'circle',
+            r: 16,
+            cx: 25,
+            cy: 0,
+            lineWidth: 1
+          },
+          {
+            shape: 'circle',
+            r: 10,
+            cx: -25,
+            cy: 0,
+            fill: 'black',
+            translate: translateEyeBall
+          },
+          {
+            shape: 'circle',
+            r: 10,
+            cx: 25,
+            cy: 0,
+            fill: 'black',
+            translate: translateEyeBall
+          }
+        ]
+      });
+      function translateEyeBall (data, view) {
+        var point = view._mousePoint;
+        if (point) {
+          var center = data.getLocation();
+          var angle = Math.atan2(point.y - center.y, point.x - center.x);
+          return { x: 6 * Math.cos(angle), y: 6 * Math.sin(angle) };
+        }
+        return { x: 0, y: 0};
+      }
+    }
+
+    function initListener () {
+      var prePoint = null,
+        mousemove = false,
+        timer = 0,
+        animateX, animateY;
+      network._translateEyeX = 0;
+      network._translateEyeY = 0;
+      network.getView().addEventListener('mousemove', function (e) {
+        if (prePoint) {
+          mousemove = true;
+          var point = { x: e.clientX, y: e.clientY };
+          if (point.x !== prePoint.x) {
+            var translateEyeX = 10 * (point.x > prePoint.x ? -1 : 1);
+            if (translateEyeX !== network._translateEyeX) {
+              if (animateX) {
+                animateX.stop(false);
+                animateX = null;
+              }
+              animateX = new twaver.Animate({
+                from: network._translateEyeX,
+                to: translateEyeX,
+                easing: 'easeOut',
+                dur: 300,
+                onUpdate: function (value) {
+                  network._translateEyeX = value;
+                  network.invalidate();
+                }
+              });
+              animateX.play();
+            }
+          }
+          if (point.y !== prePoint.y) {
+            var translateEyeY = 10 * (point.y > prePoint.y ? -1 : 1);
+            if (translateEyeY !== network._translateEyeY) {
+              if (animateY) {
+                animateY.stop(false);
+                animateY = null;
+              }
+              animateY = new twaver.Animate({
+                from: network._translateEyeY,
+                to: translateEyeY,
+                easing: 'easeOut',
+                dur: 300,
+                onUpdate: function (value) {
+                  network._translateEyeY = value;
+                  network.invalidate();
+                }
+              });
+              animateY.play();
+            }
+          }
+          prePoint = point;
+        }
+        network._mousePoint = network.getLogicalPoint(e);
+        network.invalidate();
+      });
+      network.getView().addEventListener('mousedown', function (e) {
+        mousemove = false;
+        if (!network.getElementAt(e)) {
+          prePoint = { x: e.clientX, y: e.clientY };
+        }
+      });
+      network.getView().addEventListener('mouseup', function (e) {
+        prePoint = null;
+        if (mousemove) {
+          if (animateX) {
+            animateX.stop(true);
+            animateX = null;
+          }
+          if (animateY) {
+            animateY.stop(true);
+            animateY = null;
+          }
+          new twaver.Animate({
+            from: { x: network._translateEyeX, y: network._translateEyeY },
+            to: { x: 0, y: 0 },
+            type: 'point',
+            easing: 'easeOut',
+            dur: 300,
+            onUpdate: function (value) {
+              network._translateEyeX = value.x;
+              network._translateEyeY = value.y;
+              network.invalidate();
+            }
+          }).play();
+          mousemove = false;
+        } else {
+          if (network.getElementAt(e)) {
+            return;
+          }
+          if (timer) {
+            clearTimeout(timer);
+            timer = 0;
+            var r = 200,
+              point = network.getLogicalPoint(e),
+              count = box.size(),
+              datas = box.getRoots()._as,
+              angle = Math.PI * 2 / count;
+            datas.forEach(function (data, i) {
+              new twaver.Animate({
+                to: {
+                  x: randomInt(document.documentElement.clientWidth - 200) + 100,
+                  y: randomInt(document.documentElement.clientHeight - 200) + 100
+                },
+                type: 'point',
+                attr: 'location',
+                source: data,
+                easing: 'elasticBoth'
+              }).play();
+            });
+          } else {
+            timer = setTimeout(function () {
+              timer = 0;
+              var r = 200,
+                point = network.getLogicalPoint(e),
+                count = box.size(),
+                datas = box.getRoots()._as,
+                angle = Math.PI * 2 / count;
+              datas.forEach(function (data, i) {
+                new twaver.Animate({
+                  to: { x: point.x + r * Math.cos(i * angle), y: point.y + r * Math.sin(i * angle) },
+                  type: 'point',
+                  attr: 'location',
+                  source: data,
+                  easing: 'elasticBoth'
+                }).play();
+              });
+            }, 500);
+          }
+        }
+      });
+    }
+
+    function randomInt (n) {
+      return Math.round(Math.random() * n);
+    }
+    
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<link rel="stylesheet"  type="text/css" href="../../assets/css/ass.css">
+<script language="javascript" src="../../assets/js/ass-debug.js"></script>
+<script language="javascript"> 
+	$(function(){
+		var items = [];
+		for(var i=0; i<5;i++){
+			items.push({
+				text:'Item'+i,
+				loader:true,
+				rows:[
+					{
+						name:'Panel',
+						bodyTpl:'TabBody'+i
+					}
+				],
+				handler:function(){
+					ass.$log("OK");
+				}
+			});
+		}
+		var tabPanel = ass.UIFactory.createInstance("TabPanel",{
+			title:"TabPanel",
+			items:items
+		});
+		
+		tabPanel.render();
+	});
+</script>
+<title>TabPanel</title>
+</head>
+<body>
+
+</body>
+</html>
+ 

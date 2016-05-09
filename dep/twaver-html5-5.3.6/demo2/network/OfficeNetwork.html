@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <title>TWaver Demo</title>
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <style type="text/css">
+        body{
+            font-family: "Microsoft Yahei","Open Sans",Helvetica,Arial,sans-serif;
+            font-size: 13px;
+        }
+        .dialog{
+            width: 240px;
+            height: 165px;
+            border: 1px solid #8E8E8F;
+            border-radius: 10px;
+            box-shadow: 4px 4px 3px rgba(20%,20%,40%,0.5);
+            position: absolute;
+            background-color: white;
+        }
+        .table2{
+            border: 1px solid #BEBEBE;
+            margin-left: 5px;
+            margin-right: 5px;
+            width: 95%;
+            text-align: right;
+        }
+        .table1{
+             margin: 0 5px 0 5px;
+            width: 200px;
+        }
+        tr{
+            height:16px;
+        }
+        td{
+            font-family:'Calibri', 'Open Sans',sans-serif;
+            font-size: 11px;
+        }
+        .table1 .td1{
+            text-align: right;
+            width: 50%;
+        }
+        .td1{
+            color: #E09E00;
+        }
+        #dialogHeader{
+            width: 100%;
+            height: 20px;
+            margin-top: 5px;
+            font-family:'Open Sans',sans-serif;
+            font-size: 12px;
+        }
+        #titleImg{
+            width: 12px;
+            height: 12px;
+            margin: 0 5px 0 5px;
+        }
+        .btn-group{
+            position: absolute;
+            top: 10px;
+            right: 60px;
+            z-index: 999;
+        }
+        .btn-group input{
+            margin-left: 10px;
+        }
+    </style>
+    <script type="text/javascript">
+        var chargeSateNode,flag = 0;
+        function changeZoomManager(btn){
+            if(btn.checked){
+                var value = btn.value;
+                var zoomManager = new twaver.vector.MixedZoomManager(network,false);
+                if(value === 'logical'){
+                    zoomManager = new twaver.vector.LogicalZoomManager(network,false);
+                }else if(value === 'physical'){
+                    zoomManager = new twaver.vector.PhysicalZoomManager(network);
+                }
+                this.network.setZoomManager(zoomManager);
+            }
+        }
+
+        function load(){
+            this.box = new twaver.ElementBox();
+            this.network = new twaver.vector.Network(this.box);
+            this.autoLayouter = new twaver.layout.AutoLayouter(this.box);
+			this.network.setZoomManager(new twaver.vector.MixedZoomManager(network,false));
+            loadData();
+            var dialog = initDialog();
+
+            this.network.addInteractionListener(function(e){
+                if(e.kind == 'clickElement' && e.element && e.element.getClassName() == 'twaver.Node' && e.element.getName()){
+                    var titleImg = document.getElementById('titleImg');
+                    var ei = twaver.Util.getImageAsset(e.element.getImage())._cache;
+                    titleImg.src = ei.toDataURL();
+
+                    var titleTxt = document.getElementById('titleTxt');
+                    var txt = '';
+                    if(e.element.getName()){
+                        txt = e.element.getName();
+                    }
+                    titleTxt.innerHTML = txt;
+                    var s = dialog.style;
+                    s.display = 'block';                    
+					s.left = e.event.clientX+'px';
+					s.top = e.event.clientY+'px';
+                } else {
+                    dialog.style.display = 'none';
+                }
+            });
+
+            document.getElementById('main').appendChild(network.getView());
+            network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+            window.onresize = function (e) { 
+                network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+            };
+			// network.panByOffset(-200,-50);
+            network.setLinkPathFunction(function (linkUI, defaultPoints) {
+                var f = linkUI.getFromPoint();
+                var t = linkUI.getToPoint();
+
+                var points = new twaver.List();
+                points.add(f);
+                points.add(t);
+
+                var lineLength = _twaver.math.getDistance(f, t);
+                var offset = lineLength/10;
+                var m = {
+                    x: (f.x+t.x)/2 + offset,
+                    y: (f.y+t.y)/2 + offset
+                }
+                var cps = new twaver.List();
+                cps.add(m);
+                cps.add(t);
+
+                points.removeAt(1);
+                points.add(cps);
+
+                return points;
+            });
+
+			var popupMenu = new twaver.controls.PopupMenu(network);
+			popupMenu.setMenuItems([
+				{ label: 'add device'},
+				{ label: 'remove device'},
+				{ separator: true},
+				{ label: 'detail info...'},
+			]);
+			popupMenu.onMenuItemRendered = function (div, menuItem) {
+				div.childNodes[1].style['font-family']="'Microsoft Yahei', 'Open Sans',sans-serif";
+				div.childNodes[1].style['font-size']='12px';
+			};
+            changeState();
+        }
+
+        function loadData(){
+            var items = topo_data;
+            var i,item;
+            for(i = 0;i < items.length; i++){
+                item = items[i];
+                createElement(item);
+            }
+            var self = this;
+			var hGap=80;
+			this.autoLayouter.getDimension=function (node) {
+				if (node instanceof twaver.Group && node.getChildrenSize() > 0) {
+					var rect = null;
+					for (var i = 0, n = node.getChildrenSize(); i < n; i++) {
+						var child = node.getChildAt(i);
+						if (child instanceof twaver.Node) {
+							if (rect) {
+								rect = _twaver.math.unionRect(rect, child.getRect());
+							} else {
+								rect = child.getRect();
+							}
+						}
+					}
+					if (rect) {
+						return { width: rect.width+hGap, height: rect.height };
+					} else {
+						return null;
+					}
+				} else {
+					return { width: node.getWidth()+hGap, height: node.getHeight() };
+				}
+			},
+            this.autoLayouter.doLayout('hierarchic');
+        }
+        function createElement(item){
+			var element;
+            if(item.element == 'link'){
+                var from = this.box.getDataById(item.from);
+                var to = this.box.getDataById(item.to);
+                var link = new twaver.Link(from, to);
+                link.setStyle('shadow.blur',10);
+                link.setStyle('shadow.xoffset',6);
+                link.setStyle('shadow.yoffset',6);
+                link.setStyle('link.width',2);
+                link.setStyle('link.color','#4DA492');
+                link.setStyle('outer.width', 0);            
+                link.setStyle('arrow.from.color', '#4DA492');
+                link.setStyle('arrow.to.color', '#4DA492');
+				if(item.arrow){
+					if(item.arrow=="10" || item.arrow=="11") link.setStyle('arrow.from', true);
+					if(item.arrow=="01" || item.arrow=="11") link.setStyle('arrow.to', true);
+				}				
+                this.box.add(link);
+				element=link;
+            }
+			if(item.element =='node'){
+                var node = new twaver.Node(item.id);
+				if(item.image){
+					node.setImage(item.image);
+					if(item.image=='group') node.setImage(twaver.Defaults.IMAGE_GROUP);
+					if(item.image=='subnetwork') node.setImage(twaver.Defaults.IMAGE_SUBNETWORK);
+				}				
+				if(item.icon){
+					node.setStyle('icons.names', [item.icon]);
+                    node.setStyle('icons.position', 'bottomright.topleft');
+				}
+                if(item.state) {
+                    node.setStyle("image.state", item.state);
+                    if(!chargeSateNode && item.state.indexOf("engery")) {
+                        chargeSateNode = node;
+                    }
+                }
+                node.setStyle('shadow.blur',10);
+                node.setStyle('shadow.xoffset',5);
+                node.setStyle('shadow.yoffset',5);
+                this.box.add(node);
+				element=node;
+            }
+
+			if(element){
+				element.setStyle('label.font', '11px "Microsoft Yahei"');
+				element.setName(item.name);
+			}
+        }
+        function initDialog(){
+            var div = document.createElement('div');
+            div.className = 'dialog';
+            div.innerHTML = "<div id='dialogHeader'>"+
+                "<img id='titleImg'></img>"+
+                "<b><label id='titleTxt'></label></b>"+
+            "</div>"+
+            "<table class='table1'>"+
+                "<tr><td class='td1'>Type</td><td class='td2'>Database Instance</td></tr>"+
+                "<tr><td class='td1'>Host</td><td class='td21'>msdbsvr 1</td></tr>"+
+                "<tr><td class='td1'>Incidents</td><td class='td21'>alert 2</td></tr>"+
+            "</table>"+
+            "<table class='table2'>"+
+                "<tr><td class='td1'>Wait Time(%)</td><td class='td2'>15.73</td></tr>"+
+                "<tr><td class='td1'>Active Sessions Using CPU</td><td class='td2'>0.002</td></tr>"+
+                "<tr><td class='td1'>Active Sessions Waiting:I/O</td><td class='td2'>0</td></tr>"+
+                "<tr><td class='td1'>Host CPU Utilization(%)</td><td class='td2'>4.51</td></tr>"+
+            "</table>";
+            document.body.appendChild(div);
+            div.style.display = 'none';
+            div.style.zIndex = 100;
+            return div;
+        }
+
+        function changeState() {
+            if(chargeSateNode ) {
+                setInterval(function() {
+                    if(flag > 3) {
+                        flag = 0;
+                    }
+                    flag++;
+                    chargeSateNode.setStyle('image.state', "energy" + flag);
+                },500);
+            }
+        }
+var topo_data = [
+    {"element": "node", "id": "cloud", "image": "cloud", "name": "Data center"},
+    {"element": "node", "name": "Source", "id": "power", "icon": "icon_battery","state":"energy1"},
+    {"element": "node", "name": "Network device", "id": "gateway", "image": "subnetwork", "icon": "icon_wall"}, 
+    {"element": "node", "name": "Database", "id": "USMap", "icon": "icon_db"}, 
+    {"element": "node", "name": "Server1", "id": "OfficeNetwork1", "icon": "icon_server"},
+    {"element": "node", "name": "Server2", "id": "OfficeNetwork2", "icon": "icon_server"},     
+    {"element": "node", "name": "Middleware", "id": "mailserver", "icon": "icon_middleware"}, 
+    {"element": "node", "name": "Air conditioner", "id": "server1", "icon": "icon_air"}, 
+    {"element": "node", "name": "Fire fighting", "id": "server2", "icon": "icon_fire"}, 
+    {"element": "node", "name": "UPS", "id": "server3", "icon": "icon_power"}, 
+    {"element": "node", "name": "OS1", "id": "server4", "icon": "icon_win7"}, 
+    {"element": "node", "name": "mail server", "id": "server6", "icon": "icon_mail"}, 
+    {"element": "node", "name": "Web server", "id": "server9", "icon": "icon_web"}, 
+    {"element": "node", "name": "Storage server", "id": "server8", "icon": "icon_disk"}, 
+    {"element": "node", "name": "OS2", "id": "server5", "icon": "icon_linux"}, 
+    {"element": "node", "name": "OS3", "id": "server7", "icon": "icon_apple"}, 
+    {"element": "node", "name": "FOC system", "id": "webserver", "icon": "icon_arrow_in"}, 
+    {"element": "link", "from": "cloud", "to": "gateway", "name":"locate","arrow": "01"}, 
+    {"element": "link", "from": "cloud", "to": "OfficeNetwork1","name":"locate","arrow": "01"}, 
+    {"element": "link", "from": "cloud", "to": "OfficeNetwork2","name":"locate","arrow": "01"}, 
+    {"element": "link", "from": "cloud", "to": "server1", "name":"depend","arrow": "01"}, 
+    {"element": "link", "from": "cloud", "to": "server2", "name":"depend","arrow": "01"},
+    {"element": "link", "from": "cloud", "to": "server3", "name":"depend","arrow": "01"},      
+    {"element": "link", "from": "gateway", "to": "OfficeNetwork1", "name":"link","arrow": "01"},  
+    {"element": "link", "from": "OfficeNetwork1", "to": "mailserver", "name":"include","arrow": "01"},
+    {"element": "link", "from": "OfficeNetwork1", "to": "server4", "name":"include","arrow": "01"},  
+    {"element": "link", "from": "OfficeNetwork1", "to": "server6", "name":"include","arrow": "01"},  
+    {"element": "link", "from": "OfficeNetwork1", "to": "server9", "name":"include","arrow": "01"},  
+    {"element": "link", "from": "OfficeNetwork1", "to": "server8", "name":"include","arrow": "01"},  
+    {"element": "link", "from": "OfficeNetwork2", "to": "server5","name":"include","arrow": "01"}, 
+    {"element": "link", "from": "OfficeNetwork2", "to": "server7","name":"include","arrow": "01"}, 
+    {"element": "link", "from": "OfficeNetwork2", "to": "USMap","name":"include","arrow": "01"},     
+    {"element": "link", "from": "webserver", "to": "mailserver", "name":"include","arrow": "01"}, 
+    {"element": "link", "from": "webserver", "to": "USMap", "name":"include","arrow": "01"},
+    {"element": "link", "from": "server1", "to": "power", "name":"use","arrow": "01"}
+];
+
+var icon_scale=1.3;
+
+twaver.Util.registerImage('center', {
+    "w": 16,"h": 16,"origin": {"x": 0,"y": 0},
+    "v": [
+        {
+            "shape": "ellipse","cx": 8,"cy": 8,"rx": 8,"ry": 8,
+            "gradient": {
+                "id": "SVGID_1_","type": "linear","x1": 2.3438,"y1": 2.3438,
+                "x2": 13.6575,"y2": 13.6575,
+                "stop": [
+                    {"offset": "0","color": "#58AC9A"},
+                    {"offset": "1","color": "#248576"}
+                ]
+            }
+        },
+        {
+            "shape": "path",
+            "data": "M13.549,9.049c0.131-0.132,0.087-0.238-0.098-0.238H9.147c-0.186,0-0.337,0.151-0.337,0.337v4.303   c0,0.186,0.106,0.23,0.238,0.1l0.998-0.998c0.131-0.132,0.345-0.132,0.477,0l0.783,0.783c0.131,0.132,0.346,0.132,0.477,0   l1.553-1.552c0.131-0.131,0.131-0.346,0-0.477l-0.785-0.784c-0.131-0.131-0.131-0.345,0-0.476L13.549,9.049z",
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "path",
+            "data": "M2.45,6.951C2.319,7.082,2.363,7.189,2.549,7.189h4.304c0.186,0,0.337-0.151,0.337-0.337V2.549   c0-0.186-0.107-0.229-0.238-0.099L5.953,3.448c-0.131,0.131-0.346,0.131-0.477,0L4.692,2.664c-0.131-0.131-0.345-0.131-0.477,0   L2.664,4.217c-0.131,0.131-0.131,0.345,0,0.476l0.784,0.784c0.131,0.131,0.131,0.346,0,0.477L2.45,6.951z",
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "path",
+            "data": "M6.951,13.55c0.131,0.131,0.238,0.086,0.238-0.099V9.147c0-0.186-0.151-0.337-0.337-0.337H2.549   c-0.186,0-0.229,0.106-0.099,0.238l0.998,0.998c0.131,0.131,0.131,0.345,0,0.477l-0.784,0.783c-0.131,0.131-0.131,0.346,0,0.477   l1.553,1.552c0.131,0.132,0.345,0.132,0.476,0l0.784-0.783c0.131-0.132,0.346-0.132,0.477,0L6.951,13.55z",
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "path",
+            "data": "M9.048,2.45C8.917,2.319,8.811,2.363,8.81,2.549l0.001,4.304c0,0.186,0.151,0.337,0.336,0.337h4.304   c0.185,0,0.229-0.107,0.099-0.238l-0.998-0.998c-0.131-0.131-0.131-0.346,0-0.477l0.784-0.784c0.132-0.131,0.132-0.345,0-0.477   l-1.552-1.552c-0.131-0.131-0.346-0.131-0.477,0l-0.784,0.784c-0.131,0.131-0.345,0.131-0.476,0L9.048,2.45z",
+            "fill": "#FFFFFF"
+        }
+    ]
+} );
+twaver.Util.registerImage('gather', {"w": 16,"h": 16,"origin": {"x": 0,"y": 0},
+    "v": [
+        {
+            "shape": "path",
+            "data": "M16,15.375C16,15.72,15.721,16,15.375,16H0.625C0.28,16,0,15.72,0,15.375V0.625    C0,0.28,0.28,0,0.625,0h14.75C15.721,0,16,0.28,16,0.625V15.375z",
+            "gradient": {
+                "id": "SVGID_1_","type": "linear",
+                "x1": 0.1836,"y1": 0.1836,"x2": 15.8173,"y2": 15.8173,
+                "stop": [
+                    {"offset": "0","color": "#61B7D9"},
+                    {"offset": "1","color": "#0089C1"}
+                ]
+            }
+        },
+        {
+            "shape": "path",
+            "data": "M12.879,5.521l0.867,0.866C13.886,6.527,14,6.479,14,6.282V2.36C14,2.162,13.838,2,13.641,2H9.719   C9.52,2,9.473,2.114,9.613,2.255l0.865,0.865c0.141,0.141,0.141,0.369,0,0.51L8,6.108L5.521,3.63c-0.14-0.141-0.14-0.369,0-0.51   l0.866-0.865C6.527,2.114,6.48,2,6.282,2H2.36C2.162,2,2,2.162,2,2.36v3.922c0,0.197,0.115,0.245,0.254,0.105l0.866-0.866   c0.14-0.14,0.369-0.14,0.509,0L6.108,8l-2.479,2.479c-0.14,0.14-0.369,0.14-0.509,0L2.254,9.612C2.115,9.473,2,9.521,2,9.718v3.922   C2,13.838,2.162,14,2.36,14h3.922c0.198,0,0.246-0.114,0.105-0.255L5.521,12.88c-0.14-0.141-0.14-0.369,0-0.51L8,9.892l2.479,2.479   c0.141,0.141,0.141,0.369,0,0.51l-0.865,0.865C9.473,13.886,9.52,14,9.719,14h3.922C13.838,14,14,13.838,14,13.64V9.718   c0-0.197-0.114-0.245-0.254-0.105l-0.867,0.866c-0.14,0.14-0.369,0.14-0.508,0L9.892,8l2.479-2.479   C12.51,5.382,12.739,5.382,12.879,5.521z M7.989,8L8,7.989L8.011,8L8,8.011L7.989,8z",
+            "fill": "#FFFFFF"
+        }
+    ]
+});
+twaver.Util.registerImage('icon_db',{
+    "w": 12,
+    "h": 16,
+    scale: icon_scale,
+    "origin": {
+        "x": 0,
+        "y": 0
+    },
+    "v": [
+        {
+            "shape": "path",
+            "data": "M6,16.001c-2.888,0-5.997-0.842-6-2.69L0,2.688C0,0.841,3.11,0,6,0s6,0.841,6,2.688v10.62  C11.996,15.159,8.888,16.001,6,16.001z",
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "ellipse",
+            "cx": 6,
+            "cy": 2.68,
+            "rx": 4.852,
+            "ry": 1.691,
+            "gradient": {
+                "id": "SVGID_1_",
+                "type": "linear",
+                "x1": 1.1479,
+                "y1": 2.6812,
+                "x2": 10.8516,
+                "y2": 2.6812,
+                "stop": [
+                    {
+                        "offset": "0",
+                        "color": "#DC4F03"
+                    },
+                    {
+                        "offset": "0.4892",
+                        "color": "#DF780D"
+                    },
+                    {
+                        "offset": "1",
+                        "color": "#DC4F03"
+                    }
+                ]
+            }
+        },
+        {
+            "shape": "path",
+            "data": "M6,5.371c-2.679,0-4.85-0.756-4.852-1.69h0v2.534c0,0.148,0.07,0.288,0.172,0.424  C1.86,7.367,3.743,7.906,6,7.906c2.259,0,4.141-0.539,4.68-1.268c0.102-0.136,0.172-0.275,0.172-0.424V3.681l0,0  C10.85,4.615,8.68,5.371,6,5.371z",
+            "gradient": {
+                "id": "SVGID_2_",
+                "type": "linear",
+                "x1": 1.1479,
+                "y1": 5.7935,
+                "x2": 10.8516,
+                "y2": 5.7935,
+                "stop": [
+                    {
+                        "offset": "0",
+                        "color": "#DC4F03"
+                    },
+                    {
+                        "offset": "0.4892",
+                        "color": "#DF780D"
+                    },
+                    {
+                        "offset": "1",
+                        "color": "#DC4F03"
+                    }
+                ]
+            }
+        },
+        {
+            "shape": "path",
+            "data": "M9.18,8.48C8.326,8.74,7.223,8.904,6,8.904S3.674,8.74,2.82,8.48c-1.016-0.31-1.672-0.76-1.672-1.269  v2.536c0,0.146,0.07,0.287,0.172,0.422c0.54,0.729,2.422,1.269,4.68,1.269c2.259,0,4.141-0.539,4.68-1.269  c0.102-0.135,0.172-0.275,0.172-0.422V7.212C10.852,7.721,10.197,8.171,9.18,8.48z",
+            "gradient": {
+                "id": "SVGID_3_",
+                "type": "linear",
+                "x1": 1.1479,
+                "y1": 9.3252,
+                "x2": 10.8516,
+                "y2": 9.3252,
+                "stop": [
+                    {
+                        "offset": "0",
+                        "color": "#DC4F03"
+                    },
+                    {
+                        "offset": "0.4892",
+                        "color": "#DF780D"
+                    },
+                    {
+                        "offset": "1",
+                        "color": "#DC4F03"
+                    }
+                ]
+            }
+        },
+        {
+            "shape": "path",
+            "data": "M9.18,12.042c-0.854,0.26-1.957,0.422-3.18,0.422s-2.326-0.162-3.18-0.422  c-1.016-0.311-1.672-0.76-1.672-1.27v2.536v0.001h0C1.15,14.244,3.321,15.001,6,15.001c2.68,0,4.85-0.757,4.852-1.691l0,0v-0.001  v-2.536C10.852,11.282,10.197,11.731,9.18,12.042z",
+            "gradient": {
+                "id": "SVGID_4_",
+                "type": "linear",
+                "x1": 1.1479,
+                "y1": 12.8867,
+                "x2": 10.8516,
+                "y2": 12.8867,
+                "stop": [
+                    {
+                        "offset": "0",
+                        "color": "#DC4F03"
+                    },
+                    {
+                        "offset": "0.4892",
+                        "color": "#DF780D"
+                    },
+                    {
+                        "offset": "1",
+                        "color": "#DC4F03"
+                    }
+                ]
+            }
+        }
+    ]
+});
+twaver.Util.registerImage('cloud', {
+    "w": 64,
+    "h": 44,
+    "origin": {
+        "x": 0,
+        "y": 0
+    },
+    "v": [
+        {
+            "shape": "path",
+            "data": "M57.477,13.271C55.93,7.851,50.947,3.88,45.037,3.88c-1.912,0-3.727,0.418-5.361,1.165   C36.873,1.946,32.824,0,28.321,0C21.957,0,16.5,3.89,14.188,9.424c-0.183-0.006-0.364-0.014-0.549-0.014   C6.106,9.41,0,15.527,0,23.073c0,7.545,6.106,13.661,13.639,13.661c1.8,0,3.516-0.353,5.089-0.986   C21.06,40.619,26.167,44,32.097,44c4.835,0,9.124-2.246,11.808-5.717c1.666,0.63,3.477,0.98,5.373,0.98   C57.408,39.264,64,32.907,64,25.066C64,20.152,61.41,15.821,57.477,13.271z",
+            "gradient": {
+                "id": "SVGID_1_",
+                "type": "linear",
+                "x1": 19.6367,
+                "y1": 2.646,
+                "x2": 43.9219,
+                "y2": 44.7091,
+                "stop": [
+                    {
+                        "offset": "0",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "offset": "0.3353",
+                        "color": "#FEFEFE"
+                    },
+                    {
+                        "offset": "0.5355",
+                        "color": "#F9F9F9"
+                    },
+                    {
+                        "offset": "0.7003",
+                        "color": "#EFEFEF"
+                    },
+                    {
+                        "offset": "0.8458",
+                        "color": "#E1E1E1"
+                    },
+                    {
+                        "offset": "0.9773",
+                        "color": "#CDCECE"
+                    },
+                    {
+                        "offset": "1",
+                        "color": "#C9CACA"
+                    }
+                ]
+            }
+        },
+        {
+            "shape": "path",
+            "data": "M28.321,2c3.752,0,7.35,1.599,9.871,4.387l0.982,1.086l1.332-0.609   c1.429-0.653,2.953-0.984,4.53-0.984c4.857,0,9.183,3.265,10.517,7.94l0.205,0.721l0.63,0.408C59.902,17.228,62,21.009,62,25.066   c0,6.726-5.707,12.197-12.723,12.197c-1.602,0-3.172-0.286-4.666-0.852l-1.384-0.523l-0.905,1.171   C39.895,40.199,36.168,42,32.097,42c-4.956,0-9.496-2.793-11.565-7.115l-0.81-1.693l-1.741,0.701   c-1.386,0.559-2.847,0.842-4.341,0.842C7.221,34.734,2,29.503,2,23.073C2,16.642,7.221,11.41,13.639,11.41   c0.125,0,0.247,0.004,0.37,0.009l0.115,0.004l1.378,0.044l0.531-1.272C18.113,5.217,22.937,2,28.321,2 M28.321,0   C21.957,0,16.5,3.89,14.188,9.424c-0.183-0.006-0.364-0.014-0.549-0.014C6.106,9.41,0,15.527,0,23.073   c0,7.545,6.106,13.661,13.639,13.661c1.8,0,3.516-0.353,5.089-0.986C21.06,40.619,26.167,44,32.097,44   c4.835,0,9.124-2.246,11.808-5.717c1.666,0.63,3.477,0.98,5.373,0.98C57.408,39.264,64,32.907,64,25.066   c0-4.914-2.59-9.245-6.523-11.795C55.93,7.851,50.947,3.88,45.037,3.88c-1.912,0-3.727,0.418-5.361,1.165   C36.873,1.946,32.824,0,28.321,0L28.321,0z",
+            "gradient": {
+                "id": "SVGID_2_",
+                "type": "linear",
+                "x1": 19.6367,
+                "y1": 2.646,
+                "x2": 43.9219,
+                "y2": 44.7091,
+                "stop": [
+                    {
+                        "offset": "0",
+                        "color": "#C9CACA"
+                    },
+                    {
+                        "offset": "1",
+                        "color": "#727171"
+                    }
+                ]
+            }
+        }
+    ]
+});
+ twaver.Util.registerImage('icon_disk',{
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin": {
+        "x": 0,
+        "y": 0
+    },
+    "v": [
+        {
+            "shape": "path",
+            "data": "M14,11c0,0.553-0.447,1-1,1H1c-0.552,0-1-0.447-1-1V1c0-0.553,0.448-1,1-1h12c0.553,0,1,0.447,1,1V11z",
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "path",
+            "data": "M12,1h-1v3.98H3V1H2C1.448,1,1,1.447,1,2v8c0,0.553,0.448,1,1,1h1V6h8v5h1c0.553,0,1-0.447,1-1V2    C13,1.447,12.553,1,12,1z",
+            "fill": "#ED6C00"
+        },
+        {
+            "shape": "rect",
+            "x": 4,
+            "y": 7,
+            "w": 6,
+            "h": 4,
+            "fill": "#ED6C00"
+        },
+        {
+            "shape": "path",
+            "data": "M4,1v2.98h6V1H4z M9,3H8V2h1V3z",
+            "fill": "#ED6C00"
+        }
+    ]
+});
+twaver.Util.registerImage('icon_wall', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin": {
+        "x": 0,
+        "y": 0
+    },
+    "v": [
+        {
+            "shape": "path",
+            "data": "M6.59,16.001c-3.886,0-6.211-3.865-6.548-10.883L0,4.236l0.865-0.178C3.474,3.522,5.469,1.738,5.7,1.396   L6.641,0l0.852,1.415c0.219,0.323,2.215,2.107,4.823,2.644l0.865,0.178l-0.042,0.882C12.801,12.136,10.476,16.001,6.59,16.001z",
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "path",
+            "data": "M6.59,2.101c-0.297,0.535-2.549,2.482-5.35,3.058c0.161,3.359,1,9.599,5.35,9.599s5.188-6.239,5.35-9.599   C9.139,4.583,6.887,2.636,6.59,2.101z",
+            "fill": "#ED6C00"
+        }
+    ]
+});
+twaver.Util.registerImage('icon_web', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin": {
+        "x": 0,
+        "y": 0
+    },
+    "v": [
+        {
+            "shape": "ellipse",
+            "cx": 8,
+            "cy": 8,
+            "rx": 8,
+            "ry": 8,
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "path",
+            "data": "M13.874,11.8c0.023-0.035,0.044-0.071,0.065-0.107c0.105-0.17,0.206-0.345,0.297-0.524   c0.031-0.062,0.061-0.123,0.09-0.186c0.075-0.16,0.146-0.322,0.209-0.489c0.029-0.074,0.057-0.15,0.083-0.227   c0.055-0.16,0.103-0.323,0.146-0.487c0.021-0.083,0.045-0.165,0.064-0.249c0.037-0.172,0.066-0.347,0.092-0.522   c0.012-0.078,0.027-0.155,0.035-0.233C14.984,8.52,15,8.262,15,8c0-3.866-3.133-7-7-7C4.134,1,1,4.134,1,8   c0,0.355,0.035,0.702,0.086,1.043c0.008,0.052,0.014,0.104,0.023,0.154c0.06,0.345,0.142,0.68,0.25,1.005c0,0.001,0,0.002,0,0.003   v-0.001c0.905,2.729,3.441,4.708,6.454,4.786c0,0,0,0.001,0.001,0.001C7.877,14.992,7.938,15,8,15c0.348,0,0.688-0.033,1.021-0.083   c0.001,0,0.003,0,0.004,0l0,0c1.242-0.183,2.378-0.688,3.317-1.434v0.001c0.001-0.001,0.003-0.002,0.005-0.004   C12.943,13.007,13.458,12.44,13.874,11.8z M2.077,8c0-0.146,0.011-0.288,0.021-0.43C2.564,7.628,2.17,7.934,2.364,8.735   c0.206,0.853,1.294,2,1.823,2.559c0.326,0.343,1.221,1.377,2.256,2.415C3.932,13.022,2.077,10.727,2.077,8z M8,13.923   c-0.09,0-0.178-0.009-0.267-0.014c-0.251-0.293-0.385-0.729-0.517-1.292c-0.206-0.882,0.529-2.381,0.565-3.234   c0.035-0.854,0.024-0.824-0.594-0.874C6.57,8.46,6.364,8.029,5.834,7.677C5.305,7.322,5.217,7.235,2.776,6.971   C2.461,6.937,2.743,6.675,2.682,6.521c0.063-0.277,0.37-0.76,0.471-1.021c0.471-2.153,2.896-2.939,3.249-3.198   C6.911,2.159,7.446,2.077,8,2.077c0.216,0,0.006-0.022,0.216,0C8.56,2.203,8.928,2.884,8.874,3.384   c-0.177,1.647-0.375,1.107,0.333,2.44c0.655,1.234,1.479,0.882,2.862,0.793c1.383-0.088,1.471,1.03,1.117,2.941   c-0.146,0.797-0.221,1.317-0.298,1.779C11.822,12.896,10.029,13.923,8,13.923z",
+            "fill": "#ED6C00"
+        }
+    ]
+} );
+
+twaver.Util.registerImage('icon_mail', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin": {
+        "x": 0,
+        "y": 0
+    },
+    "v": [
+        {
+            "shape": "rect",
+            "x": 0,
+            "y": 0,
+            "w": 16,
+            "h": 12,
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "path",
+            "data": "14.053,1 1.946,1 8,5.19 z",
+            "fill": "#ED6C00"
+        },
+        {
+            "shape": "path",
+            "data": "1,1.624 1,11 15,11 15,1.65 8,6.501 z",
+            "fill": "#ED6C00"
+        }
+    ]
+});
+
+twaver.Util.registerImage('icon_win7', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"6.5,1.078 6.5,1.078 0,2.013 0,6.289 0,7.539 0,11.855 6.5,12.77 7.5,12.91 14,13.824 14,7.333 14,6.504 14,0 z","fill":"#FFFFFF"},{"shape":"path","data":"6.5,2.089 1,2.879 1,6.52 6.5,6.414 z","fill":"#ED6C00"},{"shape":"path","data":"1,7.308 1,10.986 6.5,11.76 6.5,7.414 z","fill":"#ED6C00"},{"shape":"path","data":"13,6.345 13,1.154 7.5,1.945 7.5,6.414 z","fill":"#ED6C00"},{"shape":"path","data":"7.5,11.901 13,12.674 13,7.49 7.5,7.414 z","fill":"#ED6C00"}]
+});
+
+twaver.Util.registerImage('icon_middleware', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v": [  {
+      "shape": "path",
+      "data": "M3.25,12.5v-2.146C2.749,10.15,2.35,9.751,2.146,9.25H0v-6h2.146C2.35,2.749,2.749,2.35,3.25,2.146V0h3l0,0   h3v2.146c0.502,0.204,0.9,0.604,1.105,1.104H12.5v3l0,0v3h-2.145c-0.205,0.501-0.604,0.9-1.105,1.104V12.5H3.25z",
+      "fill": "#FFFFFF"
+    },
+    {
+      "shape": "path",
+      "data": "M11.5,5.25v-1h-2V4c0-0.553-0.447-1-1-1H8.25V1h-1v2h-2V1h-1v2H4C3.447,3,3,3.447,3,4v0.25H1v1h2v2H1v1h2   V8.5c0,0.553,0.447,1,1,1h0.25v2h1v-2h2v2h1v-2H8.5c0.553,0,1-0.447,1-1V8.25h2v-1h-2v-2H11.5z M4.351,8.068V4.433H8.15v3.636   H4.351z",
+      "fill": "#ED6C00"
+    }]
+});
+
+twaver.Util.registerImage('icon_linux', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"M14.595,5.311c-0.36-0.283-0.788-0.453-1.306-0.521l-0.137-0.018c-0.222-1.093-0.996-2.716-1.823-3.72   C10.761,0.363,9.953,0,8.989,0C8.274,0,7.627,0.199,7.278,0.307l-0.18,0.036c-0.208,0-0.464-0.086-0.531-0.113L6.434,0.174   L6.291,0.157C6.215,0.148,6.139,0.144,6.065,0.144c-1.242,0-2.185,1.132-2.695,3.179L3.22,3.327   c-1.786,0.055-2.677,0.81-2.772,0.896L0.352,4.309l-0.07,0.106c-0.29,0.438-0.358,0.962-0.195,1.475   c0.606,1.9,4.861,3.724,6.662,4.42l0.067,0.026l0.071,0.016c1.403,0.32,2.67,0.481,3.766,0.481c3.798,0,4.776-1.913,5.133-2.61   C16.55,6.847,15.132,5.731,14.595,5.311z","fill":"#FFFFFF"},{"shape":"path","data":"M9.122,6.192c1.339,0.096,2.38-0.202,3.1-0.869c0.008-0.677-0.758-2.538-1.664-3.636    C9.625,0.557,8.042,1.122,7.477,1.292c-0.565,0.17-1.3-0.141-1.3-0.141C4.94,1.008,4.385,3.258,4.239,3.979    C4.955,4.868,6.388,6.004,9.122,6.192z","fill":"#ED6C00"},{"shape":"path","data":"M13.979,6.098c-0.265-0.208-0.553-0.282-0.819-0.318c-0.067,0.076-0.122,0.156-0.198,0.228    C12.133,6.807,11.003,7.21,9.598,7.21c-0.178,0-0.359-0.007-0.545-0.02C5.696,6.959,4.028,5.426,3.251,4.326    C1.779,4.372,1.116,4.967,1.116,4.967c-1.103,1.668,5.993,4.41,5.993,4.41c6.587,1.498,7.52-1.131,7.803-1.64    C15.194,7.229,14.77,6.72,13.979,6.098z","fill":"#ED6C00"}]
+});
+
+twaver.Util.registerImage('icon_apple', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"M4.12,14.035c-1.317,0-2.166-1.222-2.673-1.952c-1.079-1.559-2.183-4.737-0.802-7.111   c0.696-1.215,1.976-1.986,3.335-2.007c0.001,0,0.002,0,0.002,0c0.339,0,0.647,0.057,0.923,0.134   c0.116-0.726,0.48-1.375,0.853-1.807C6.37,0.576,7.373,0.07,8.25,0.036L9.188,0l0.097,0.933C9.356,1.627,9.196,2.35,8.841,2.994   c0.643,0.118,1.707,0.479,2.452,1.559l0.57,0.827l-0.829,0.566c-0.233,0.15-0.87,0.621-0.862,1.452   c0.011,1.076,0.877,1.459,0.976,1.499l0.857,0.348l-0.265,0.889c-0.096,0.312-0.38,1.131-0.958,1.975   c-0.55,0.798-1.301,1.89-2.648,1.912c-0.001,0-0.001,0-0.002,0c-0.632,0-1.043-0.179-1.343-0.31   c-0.245-0.106-0.393-0.171-0.655-0.171c-0.286,0-0.444,0.068-0.707,0.181c-0.305,0.131-0.685,0.293-1.226,0.312L4.12,14.035z","fill":"#FFFFFF"},{"shape":"path","data":"M10.787,9.831c-0.015,0.046-0.251,0.868-0.831,1.713c-0.502,0.729-1.02,1.464-1.84,1.477   c-0.806,0.014-1.063-0.48-1.983-0.48c-0.919,0-1.207,0.467-1.969,0.494c-0.787,0.032-1.393-0.796-1.896-1.522   C1.24,10.026,0.448,7.301,1.51,5.475C2.033,4.561,2.973,3.98,3.996,3.965C4.767,3.95,5.501,4.486,5.97,4.486   c0.481,0,1.369-0.649,2.305-0.552c0.392,0.017,1.489,0.164,2.195,1.187C10.415,5.159,9.158,5.9,9.172,7.407   C9.191,9.227,10.77,9.824,10.787,9.831 M7.662,2.959c0.422-0.514,0.7-1.222,0.627-1.924c-0.603,0.024-1.338,0.4-1.774,0.912   C6.129,2.393,5.789,3.111,5.883,3.805C6.553,3.846,7.242,3.455,7.662,2.959","fill":"#ED6C00"}]
+});
+
+twaver.Util.registerImage('icon_server', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"M9.986,15c0,0.552-0.448,1-1,1H1c-0.552,0-1-0.448-1-1V1c0-0.552,0.448-1,1-1h7.986c0.552,0,1,0.448,1,1V15   z","fill":"#FFFFFF"},{"shape":"path","data":"M8.986,13.989C8.986,14.547,8.533,15,7.975,15H2.011C1.453,15,1,14.547,1,13.989V2.011   C1,1.453,1.453,1,2.011,1h5.964c0.558,0,1.011,0.453,1.011,1.011V13.989z","fill":"#ED6C00"},{"shape":"ellipse","cx":6.768,"cy":11.43,"rx":1,"ry":1,"fill":"#FFFFFF"},{"shape":"path","data":"M7.993,3.5c0,0.276-0.224,0.5-0.5,0.5h-5c-0.276,0-0.5-0.224-0.5-0.5l0,0c0-0.276,0.224-0.5,0.5-0.5h5   C7.769,3,7.993,3.224,7.993,3.5L7.993,3.5z","fill":"#FFFFFF"},{"shape":"path","data":"M7.993,5.5c0,0.276-0.224,0.5-0.5,0.5h-5c-0.276,0-0.5-0.224-0.5-0.5l0,0c0-0.276,0.224-0.5,0.5-0.5h5   C7.769,5,7.993,5.224,7.993,5.5L7.993,5.5z","fill":"#FFFFFF"},{"shape":"path","data":"M7.993,7.5c0,0.276-0.224,0.5-0.5,0.5h-5c-0.276,0-0.5-0.224-0.5-0.5l0,0c0-0.276,0.224-0.5,0.5-0.5h5   C7.769,7,7.993,7.224,7.993,7.5L7.993,7.5z","fill":"#FFFFFF"}]
+}); 
+
+twaver.Util.registerImage('icon_fire', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"M4.359,15.691l-0.069-0.01c-2.06-0.289-3.646-1.739-4.141-3.784C-0.344,9.863,0.414,7.79,2.079,6.614   c2.395-1.69,2.28-4.846,2.279-4.877L4.279,0L5.82,0.805c0.242,0.127,5.922,3.144,6.379,7.734c0.242,2.431-0.997,4.762-3.681,6.931   l-0.275,0.222H4.359z","fill":"#FFFFFF"},{"shape":"path","data":"M4.428,14.691c-3.609-0.506-4.643-5.234-1.773-7.26s2.701-5.74,2.701-5.74s11.312,5.909,2.532,13   c0,0,1.667-3.989-1.372-6.5c0,0-0.04,1.78-1.37,2.73C3.819,11.871,4.428,14.691,4.428,14.691z","fill":"#ED6C00"}]
+}); 
+
+twaver.Util.registerImage('icon_power', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"M10.829,5.024c0-0.874-0.711-1.586-1.586-1.586H9.136V1.808C9.136,0.811,8.325,0,7.329,0   S5.521,0.811,5.521,1.808v1.631H5.308V1.808C5.308,0.811,4.497,0,3.5,0S1.693,0.811,1.693,1.808v1.631H1.586   C0.711,3.438,0,4.15,0,5.024C0,5.543,0.254,6,0.64,6.29L0.638,6.604c-0.001,0.185,0.011,4.22,3.073,5.521v1.918H7.17v-1.918   c3.062-1.302,3.074-5.337,3.073-5.521l-0.002-0.357C10.597,5.956,10.829,5.519,10.829,5.024z","fill":"#FFFFFF"},{"shape":"path","data":"M9.243,4.438H8.136v-2.63C8.136,1.362,7.775,1,7.329,1C6.883,1,6.521,1.362,6.521,1.808v2.63H4.308v-2.63    C4.308,1.362,3.946,1,3.5,1S2.693,1.362,2.693,1.808v2.63H1.586C1.262,4.438,1,4.7,1,5.024C1,5.348,1.262,5.61,1.586,5.61h7.657    c0.324,0,0.586-0.262,0.586-0.586C9.829,4.7,9.567,4.438,9.243,4.438z","fill":"#ED6C00"},{"shape":"path","data":"M1.638,6.61c0,0-0.026,4.063,3.073,4.792v1.641H6.17v-1.641C9.269,10.673,9.243,6.61,9.243,6.61H1.638z","fill":"#ED6C00"}]
+}); 
+
+twaver.Util.registerImage('icon_air', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"M5.776,14c-1.429,0-2.027-0.656-2.277-1.207c-0.288-0.635-0.199-1.395,0.042-2.119   c-0.093,0.009-0.187,0.015-0.282,0.015c-1.1,0-2.532-0.618-3.112-3.56c-0.283-1.437-0.159-2.453,0.38-3.108   c0.265-0.322,0.755-0.706,1.589-0.706c0.387,0,0.8,0.09,1.205,0.229C3.287,3.194,3.315,2.832,3.432,2.468   c0.374-1.163,1.53-1.942,3.437-2.319C7.378,0.049,7.82,0,8.219,0c1.403,0,2.003,0.635,2.259,1.168   c0.31,0.643,0.222,1.42-0.023,2.158c0.093-0.01,0.187-0.015,0.282-0.015c1.1,0,2.532,0.618,3.112,3.56   c0.283,1.437,0.159,2.453-0.38,3.108c-0.265,0.322-0.755,0.706-1.589,0.706l0,0c-0.388,0-0.8-0.089-1.205-0.227   c0.033,0.348,0.005,0.708-0.111,1.071c-0.374,1.164-1.53,1.944-3.438,2.32C6.618,13.951,6.176,14,5.776,14z","fill":"#FFFFFF"},{"shape":"path","data":"M12.867,7.064C11.944,2.382,8.919,4.985,8.404,5.47C8.344,5.415,8.283,5.363,8.217,5.316    C8.221,5.311,12.184,0.12,7.062,1.13C2.379,2.054,4.983,5.079,5.467,5.594C5.413,5.653,5.361,5.715,5.314,5.781    C5.309,5.777,0.118,1.814,1.128,6.936c0.923,4.683,3.948,2.079,4.464,1.595c0.059,0.055,0.121,0.106,0.186,0.154    C5.775,8.689,1.811,13.88,6.933,12.87c4.683-0.923,2.079-3.948,1.595-4.464c0.055-0.059,0.106-0.121,0.154-0.186    C8.687,8.223,13.877,12.186,12.867,7.064z","fill":"#ED6C00"},{"shape":"ellipse","cx":6.998,"cy":7,"rx":1,"ry":1,"fill":"#FFFFFF"}]
+}); 
+
+twaver.Util.registerImage('icon_arrow_in', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"11.276,8.887 11.276,6.898 11.276,5.932 11.276,3.942 10.976,3.942 12.828,2.09 10.738,0 8.886,1.853 8.886,1.553 6.898,1.553 5.931,1.553 3.942,1.553 3.942,1.854 2.09,0.001 0,2.091 1.851,3.942 1.553,3.941 1.553,5.932 1.553,6.898 1.553,8.887 1.853,8.887 0,10.739 2.09,12.829 3.942,10.978 3.942,11.276 5.931,11.276 6.897,11.276 8.886,11.276 8.886,10.977 10.738,12.829 12.828,10.739 10.977,8.887 z","fill":"#FFFFFF"},{"shape":"path","data":"5.898,10.277 5.898,6.931 2.552,6.931 2.552,7.887 4.267,7.887 1.414,10.74 2.09,11.415 4.943,8.563 4.942,10.277 z","fill":"#ED6C00"},{"shape":"path","data":"6.931,2.553 6.93,5.898 10.276,5.898 10.276,4.942 8.561,4.942 11.414,2.09 10.738,1.414 7.886,4.266 7.886,2.553 z","fill":"#ED6C00"},{"shape":"path","data":"2.553,5.898 5.898,5.899 5.898,2.553 4.943,2.553 4.943,4.267 2.09,1.415 1.414,2.091 4.267,4.943 2.553,4.942 z","fill":"#ED6C00"},{"shape":"path","data":"10.276,6.931 6.931,6.931 6.931,10.277 7.886,10.277 7.886,8.562 10.739,11.415 11.414,10.739 8.562,7.887 10.276,7.887 z","fill":"#ED6C00"}]
+}); 
+
+twaver.Util.registerImage('icon_arrow_out', {
+    "w": 16,
+    "h": 16,
+    "scale": icon_scale, 
+    "origin":{"x":0,"y":0},
+    "v":[{"shape":"path","data":"11.999,5.469 12,0 6.53,0 6.53,2.991 5.47,2.991 5.47,0 0.001,0 0.001,5.469 2.991,5.469 2.991,6.53 0.001,6.53 0,11.999 5.47,11.999 5.47,9.008 6.53,9.007 6.53,11.999 11.999,12 11.999,6.53 9.009,6.53 9.009,5.469 z","fill":"#FFFFFF"},{"shape":"path","data":"1.001,7.53 1,10.999 4.469,10.999 4.469,10.008 2.692,10.008 5.649,7.051 4.949,6.35 1.991,9.307 1.992,7.53 z","fill":"#ED6C00"},{"shape":"path","data":"10.999,4.469 11,1 7.531,1 7.531,1.991 9.308,1.991 6.351,4.949 7.051,5.65 10.009,2.692 10.008,4.469 z","fill":"#ED6C00"},{"shape":"path","data":"4.469,1 1.001,1 1.001,4.469 1.992,4.469 1.992,2.691 4.949,5.649 5.65,4.948 2.692,1.991 4.469,1.991 z","fill":"#ED6C00"},{"shape":"path","data":"7.531,10.999 10.999,11 10.999,7.53 10.008,7.53 10.008,9.308 7.051,6.35 6.35,7.051 9.308,10.009 7.531,10.008 z","fill":"#ED6C00"}]
+});
+
+twaver.Util.registerImage('icon_battery', {
+    "w": 10,
+    "h": 16,
+    "scale": icon_scale,
+    "origin": {
+        "x": 0,
+        "y": 0
+    },
+    "v": [
+        {
+            "shape": "path",
+            "data": "M2,16c-1.103,0-2-0.897-2-2V4c0-1.103,0.897-2,2-2h0.5V1.5C2.5,0.673,3.172,0,4,0h2  c0.827,0,1.5,0.673,1.5,1.5V2H8c1.104,0,2,0.897,2,2v10c0,1.103-0.896,2-2,2H2z",
+            "fill": "#FFFFFF"
+        },
+        {
+            "shape": "path",
+            "data": "M8,3H6.5V1.5C6.5,1.224,6.276,1,6,1H4C3.723,1,3.5,1.224,3.5,1.5V3H2C1.447,3,1,3.447,1,4v10  c0,0.553,0.447,1,1,1h6c0.553,0,1-0.447,1-1V4C9,3.447,8.552,3,8,3z M8,14H2L2,4h6V14z",
+            "fill": "#ED6C00"
+        },
+        {
+            "shape": "path",
+            "data": "6.5,6 5.5,6 5.5,5 4.5,5 4.5,6 3.5,6 3.5,7 4.5,7 4.5,8 5.5,8 5.5,7 6.5,7 z",
+            "fill": "#ED6C00",
+            "state": "path2"
+        },
+        {
+            "shape": "rect",
+            "x": 3,
+            "y": 11,
+            "w": 4,
+            "h": 2,
+            "fill": "#ED6C00",
+            "state": ["energy1","energy2","energy3"]
+        },
+        {
+            "shape": "rect",
+            "x": 3,
+            "y": 8,
+            "w": 4,
+            "h": 2,
+            "fill": "#ED6C00",
+            "state": ["energy2","energy3"]
+        },
+        {
+            "shape": "rect",
+            "x": 3,
+            "y": 5,
+            "w": 4,
+            "h": 2,
+            "fill": "#ED6C00",
+            "state": ["energy3"]
+        },
+        {
+            "shape": "rect",
+            "x": 3,
+            "y": 5,
+            "w": 4,
+            "h": 8,
+            "fill": "#ED6C00",
+            "state": "full"
+        },
+        {
+            "shape": "path",
+            "data": "6.5,6 5.5,6 5.5,5 4.5,5 4.5,6 3.5,6 3.5,7 4.5,7 4.5,8 5.5,8 5.5,7 6.5,7 z",
+            "fill": "#ED6C00",
+            "state": ["positive","pole"]
+        },
+        {
+            "shape": "rect",
+            "x": 3.5,
+            "y": 11,
+            "w": 3,
+            "h": 1,
+            "fill": "#ED6C00",
+            "state": ["negative","pole"]
+        },
+        {
+            "shape": "path",
+            "data": "6.718,8.102 5,8.102 5,6.102 3.281,9.898 5,9.898 5,11.898 z",
+            "fill": "#ED6C00",
+            "state": ["charge"]
+        }
+    ]
+});
+    </script>
+</head>
+<body onload="load()">
+    <div class='btn-group'>
+        <input type='radio' name='network' value='logical' onclick='changeZoomManager(this)'>Logical</input>
+        <input type='radio' name='network' value='physical' onclick='changeZoomManager(this)'>Physical</input>
+        <input type='radio' name='network' value='mixed' checked='checked' onclick='changeZoomManager(this)'>Mixed</input>
+    </div>
+    <div id='main' style = 'width:100%;height:100%'>
+    </div>
+</body>
+</html>

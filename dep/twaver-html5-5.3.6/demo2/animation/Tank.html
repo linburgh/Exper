@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="pragma" content="no-cache">
+  <title>Tank Demo</title>
+  <script src="../../lib/twaver.js"></script>
+  <script type="text/javascript">
+    
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    var toolbar = document.createElement('div');
+    
+    function init () {
+      twaver.Styles.setStyle('select.style', 'border');
+      var pane = new twaver.controls.BorderPane(network, toolbar);
+      var view = pane.getView();
+      view.style.left = '0px';
+      view.style.top = '0px';
+      view.style.right = '0px';
+      view.style.bottom = '0px';
+      document.body.appendChild(view);
+      window.onresize = function () {
+        pane.invalidate();
+      };
+      registerImages();
+      initBox();
+    }
+
+    function registerImages () {
+      twaver.Util.registerImage('ovalTank', {
+        "w": 52,
+        "h": 92,
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "v": [
+          {
+            "shape": "g",
+            "v": [
+              {
+                "shape": "g",
+                "v": [
+                  {
+                    "shape": "path",
+                    "data": "M26,91.5C11.939,91.5,0.5,80.061,0.5,66V26C0.5,11.939,11.939,0.5,26,0.5S51.5,11.939,51.5,26v40    C51.5,80.061,40.061,91.5,26,91.5z",
+                    "gradient": {
+                      "type": "linear",
+                      "x1": 0.5,
+                      "y1": 46,
+                      "x2": 51.5,
+                      "y2": 46,
+                      "stop": [
+                        {
+                          "offset": "0",
+                          "color": "#666565"
+                        },
+                        {
+                          "offset": "0.1674",
+                          "color": "#A9A9AA"
+                        },
+                        {
+                          "offset": "0.3254",
+                          "color": "#DADBDB"
+                        },
+                        {
+                          "offset": "0.4402",
+                          "color": "#F6F6F6"
+                        },
+                        {
+                          "offset": "0.5",
+                          "color": "#FFFFFF"
+                        },
+                        {
+                          "offset": "0.7647",
+                          "color": "#B4B5B5"
+                        },
+                        {
+                          "offset": "1",
+                          "color": "#666565"
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "shape": "path",
+                    "data": "M26,1c13.807,0,25,11.193,25,25v40c0,13.807-11.193,25-25,25C12.192,91,1,79.807,1,66V26C1,12.193,12.192,1,26,1 M26,0    C11.664,0,0,11.664,0,26v40c0,14.337,11.664,26,26,26c14.337,0,26-11.663,26-26V26C52,11.664,40.337,0,26,0L26,0z",
+                    "fill": "#000000"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      });
+
+      twaver.Util.registerImage('break', {
+        "w": 52.957,
+        "h": 72.087,
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "v": [
+          {
+            "shape": "g",
+            "v": [
+              {
+                "shape": "path",
+                "data": "13.329,0.535 43.305,0.535 35.098,13.203 43.305,29.084 31.172,39.806 51.513,46.57 32.421,55.492 47.23,71.551 11.901,71.551 5.479,66.89 15.826,58.82 13.329,49.514 17.969,37.958 1.196,34.08 11.545,25.783 14.399,14.811 3.337,7.316 z",
+                "gradient": {
+                  "type": "linear",
+                  "x1": 1.1963,
+                  "y1": 36.043,
+                  "x2": 51.5127,
+                  "y2": 36.043,
+                  "stop": [
+                    {
+                      "offset": "0",
+                      "color": "#000000"
+                    },
+                    {
+                      "offset": "0.4946",
+                      "color": "#595757"
+                    },
+                    {
+                      "offset": "0.6138",
+                      "color": "#545251"
+                    },
+                    {
+                      "offset": "0.7589",
+                      "color": "#444140"
+                    },
+                    {
+                      "offset": "0.9171",
+                      "color": "#100F0F"
+                    },
+                    {
+                      "offset": "0.9516",
+                      "color": "#000000"
+                    }
+                  ]
+                },
+                "lineWidth": 1.0706,
+                "lineColor": "#000000"
+              },
+            ]
+          }
+        ]
+      });
+
+      twaver.Util.registerImage('value', {
+        w: 52,
+        h: 72,
+        origin: { x: 0, y: 0 },
+        clip: {
+          "shape": "path",
+          "data": "13.329,0.535 43.305,0.535 35.098,13.203 43.305,29.084 31.172,39.806 51.513,46.57 32.421,55.492 47.23,71.551 11.901,71.551 5.479,66.89 15.826,58.82 13.329,49.514 17.969,37.958 1.196,34.08 11.545,25.783 14.399,14.811 3.337,7.316 z"
+        },
+        v: [
+          {
+            "shape": "rect",
+            x: 0,
+            y: function (data) {
+              return (1 - data.getClient('value')) * 72;
+            },
+            w: 52,
+            h: 72,
+            fill: 'green',
+            animate: [
+              {
+                attr: 'y',
+                easing: 'easeBoth'
+              }
+            ]
+          }
+        ]
+      });
+
+      twaver.Util.registerImage('tank', {
+        v: [
+          {
+            shape: 'vector',
+            name: 'ovalTank',
+            w: 1,
+            h: 1,
+            rel: true
+          },
+          {
+            shape: 'vector',
+            name: 'break',
+            w: 0.9,
+            h: 0.8,
+            rel: true
+          },
+          {
+            shape: 'vector',
+            name: 'value',
+            scale: [ 0.98, 0.98 ],
+            w: 0.9,
+            h: 0.8,
+            rel: true
+          }
+        ]
+      });
+    }
+    
+    function initBox () {
+      var node = new twaver.Node({
+        location: {
+          x: 200,
+          y: 100
+        },
+        width: 150,
+        height: 200,
+        image: 'tank',
+        clients: {
+          value: 0.5,
+        }
+      });
+      box.add(node);
+
+      setInterval(function() {
+        node.setClient('value', Math.random());
+      }, 1500);
+    }
+    
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

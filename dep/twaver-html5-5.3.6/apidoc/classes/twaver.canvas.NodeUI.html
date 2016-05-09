@@ -1,0 +1,3790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>twaver.canvas.NodeUI - TWave HTML5 API Doc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../../demo/images/logo.png" title="TWave HTML5 API Doc"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: TWaver HTML5 5.3.6</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/twaver.Alarm.html">twaver.Alarm</a></li>
+                                <li><a href="../classes/twaver.AlarmBox.html">twaver.AlarmBox</a></li>
+                                <li><a href="../classes/twaver.AlarmElementMapping.html">twaver.AlarmElementMapping</a></li>
+                                <li><a href="../classes/twaver.AlarmSeverity.html">twaver.AlarmSeverity</a></li>
+                                <li><a href="../classes/twaver.AlarmState.html">twaver.AlarmState</a></li>
+                                <li><a href="../classes/twaver.AlarmStatePropagator.html">twaver.AlarmStatePropagator</a></li>
+                                <li><a href="../classes/twaver.AlarmStateStatistics.html">twaver.AlarmStateStatistics</a></li>
+                                <li><a href="../classes/twaver.animate.Animate.html">twaver.animate.Animate</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateBounds.html">twaver.animate.AnimateBounds</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateCenterLocation.html">twaver.animate.AnimateCenterLocation</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateLocation.html">twaver.animate.AnimateLocation</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateProperty.html">twaver.animate.AnimateProperty</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateScrollPosition.html">twaver.animate.AnimateScrollPosition</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateSubNetwork.html">twaver.animate.AnimateSubNetwork</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateXYZoom.html">twaver.animate.AnimateXYZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateXZoom.html">twaver.animate.AnimateXZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateYZoom.html">twaver.animate.AnimateYZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateZoom.html">twaver.animate.AnimateZoom</a></li>
+                                <li><a href="../classes/twaver.BundleLinks.html">twaver.BundleLinks</a></li>
+                                <li><a href="../classes/twaver.Bus.html">twaver.Bus</a></li>
+                                <li><a href="../classes/twaver.canvas.AlarmAttachment.html">twaver.canvas.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.Attachment.html">twaver.canvas.Attachment</a></li>
+                                <li><a href="../classes/twaver.canvas.BasicAttachment.html">twaver.canvas.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.EditAttachment.html">twaver.canvas.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.ElementUI.html">twaver.canvas.ElementUI</a></li>
+                                <li><a href="../classes/twaver.canvas.GridUI.html">twaver.canvas.GridUI</a></li>
+                                <li><a href="../classes/twaver.canvas.GroupUI.html">twaver.canvas.GroupUI</a></li>
+                                <li><a href="../classes/twaver.canvas.IconsAttachment.html">twaver.canvas.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.BaseInteraction.html">twaver.canvas.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateElementInteraction.html">twaver.canvas.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateLinkInteraction.html">twaver.canvas.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateShapeLinkInteraction.html">twaver.canvas.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateShapeNodeInteraction.html">twaver.canvas.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.DefaultInteraction.html">twaver.canvas.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.EditInteraction.html">twaver.canvas.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MagnifyInteraction.html">twaver.canvas.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MoveInteraction.html">twaver.canvas.interaction.MoveInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MSTouchInteraction.html">twaver.canvas.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.PanInteraction.html">twaver.canvas.interaction.PanInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.ScrollInteraction.html">twaver.canvas.interaction.ScrollInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.SelectInteraction.html">twaver.canvas.interaction.SelectInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.TouchInteraction.html">twaver.canvas.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.LabelAttachment.html">twaver.canvas.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.LinkHandlerAttachment.html">twaver.canvas.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.LinkUI.html">twaver.canvas.LinkUI</a></li>
+                                <li><a href="../classes/twaver.canvas.Network.html">twaver.canvas.Network</a></li>
+                                <li><a href="../classes/twaver.canvas.NodeUI.html">twaver.canvas.NodeUI</a></li>
+                                <li><a href="../classes/twaver.canvas.Overview.html">twaver.canvas.Overview</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewInteraction.html">twaver.canvas.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewMSTouchInteraction.html">twaver.canvas.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewTouchInteraction.html">twaver.canvas.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.RotatableNodeUI.html">twaver.canvas.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.canvas.ShapeLinkUI.html">twaver.canvas.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.canvas.ShapeNodeUI.html">twaver.canvas.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.charts.BarChart.html">twaver.charts.BarChart</a></li>
+                                <li><a href="../classes/twaver.charts.BubbleChart.html">twaver.charts.BubbleChart</a></li>
+                                <li><a href="../classes/twaver.charts.ChartBase.html">twaver.charts.ChartBase</a></li>
+                                <li><a href="../classes/twaver.charts.ChartInteraction.html">twaver.charts.ChartInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.ChartMSTouchInteraction.html">twaver.charts.ChartMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.ChartPane.html">twaver.charts.ChartPane</a></li>
+                                <li><a href="../classes/twaver.charts.ChartTouchInteraction.html">twaver.charts.ChartTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.DialChart.html">twaver.charts.DialChart</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPane.html">twaver.charts.LegendPane</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPaneInteraction.html">twaver.charts.LegendPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPaneTouchInteraction.html">twaver.charts.LegendPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.LineChart.html">twaver.charts.LineChart</a></li>
+                                <li><a href="../classes/twaver.charts.PieChart.html">twaver.charts.PieChart</a></li>
+                                <li><a href="../classes/twaver.charts.RadarChart.html">twaver.charts.RadarChart</a></li>
+                                <li><a href="../classes/twaver.charts.ScaleChart.html">twaver.charts.ScaleChart</a></li>
+                                <li><a href="../classes/twaver.Column.html">twaver.Column</a></li>
+                                <li><a href="../classes/twaver.ColumnBox.html">twaver.ColumnBox</a></li>
+                                <li><a href="../classes/twaver.controls.Accordion.html">twaver.controls.Accordion</a></li>
+                                <li><a href="../classes/twaver.controls.BorderPane.html">twaver.controls.BorderPane</a></li>
+                                <li><a href="../classes/twaver.controls.ControlBase.html">twaver.controls.ControlBase</a></li>
+                                <li><a href="../classes/twaver.controls.List.html">twaver.controls.List</a></li>
+                                <li><a href="../classes/twaver.controls.ListBase.html">twaver.controls.ListBase</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseInteraction.html">twaver.controls.ListBaseInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseMSTouchInteraction.html">twaver.controls.ListBaseMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseTouchInteraction.html">twaver.controls.ListBaseTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PopupMenu.html">twaver.controls.PopupMenu</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheet.html">twaver.controls.PropertySheet</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetInteraction.html">twaver.controls.PropertySheetInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetMSTouchInteraction.html">twaver.controls.PropertySheetMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetTouchInteraction.html">twaver.controls.PropertySheetTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPane.html">twaver.controls.SplitPane</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPaneInteraction.html">twaver.controls.SplitPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPaneTouchInteraction.html">twaver.controls.SplitPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.Table.html">twaver.controls.Table</a></li>
+                                <li><a href="../classes/twaver.controls.TableBase.html">twaver.controls.TableBase</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeader.html">twaver.controls.TableHeader</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeaderInteraction.html">twaver.controls.TableHeaderInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeaderTouchInteraction.html">twaver.controls.TableHeaderTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TablePane.html">twaver.controls.TablePane</a></li>
+                                <li><a href="../classes/twaver.controls.TabPane.html">twaver.controls.TabPane</a></li>
+                                <li><a href="../classes/twaver.controls.TabPaneInteraction.html">twaver.controls.TabPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TabPaneTouchInteraction.html">twaver.controls.TabPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TitlePane.html">twaver.controls.TitlePane</a></li>
+                                <li><a href="../classes/twaver.controls.Tree.html">twaver.controls.Tree</a></li>
+                                <li><a href="../classes/twaver.controls.TreeTable.html">twaver.controls.TreeTable</a></li>
+                                <li><a href="../classes/twaver.controls.View.html">twaver.controls.View</a></li>
+                                <li><a href="../classes/twaver.controls.ViewBase.html">twaver.controls.ViewBase</a></li>
+                                <li><a href="../classes/twaver.Data.html">twaver.Data</a></li>
+                                <li><a href="../classes/twaver.DataBox.html">twaver.DataBox</a></li>
+                                <li><a href="../classes/twaver.Dummy.html">twaver.Dummy</a></li>
+                                <li><a href="../classes/twaver.Element.html">twaver.Element</a></li>
+                                <li><a href="../classes/twaver.ElementBox.html">twaver.ElementBox</a></li>
+                                <li><a href="../classes/twaver.Follower.html">twaver.Follower</a></li>
+                                <li><a href="../classes/twaver.Grid.html">twaver.Grid</a></li>
+                                <li><a href="../classes/twaver.Group.html">twaver.Group</a></li>
+                                <li><a href="../classes/twaver.ImageAsset.html">twaver.ImageAsset</a></li>
+                                <li><a href="../classes/twaver.JsonSerializer.html">twaver.JsonSerializer</a></li>
+                                <li><a href="../classes/twaver.Layer.html">twaver.Layer</a></li>
+                                <li><a href="../classes/twaver.LayerBox.html">twaver.LayerBox</a></li>
+                                <li><a href="../classes/twaver.layout.AutoLayouter.html">twaver.layout.AutoLayouter</a></li>
+                                <li><a href="../classes/twaver.layout.CloudLayouter.html">twaver.layout.CloudLayouter</a></li>
+                                <li><a href="../classes/twaver.layout.SpringLayouter.html">twaver.layout.SpringLayouter</a></li>
+                                <li><a href="../classes/twaver.Link.html">twaver.Link</a></li>
+                                <li><a href="../classes/twaver.LinkSubNetwork.html">twaver.LinkSubNetwork</a></li>
+                                <li><a href="../classes/twaver.List.html">twaver.List</a></li>
+                                <li><a href="../classes/twaver.network.AlarmAttachment.html">twaver.network.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.network.Attachment.html">twaver.network.Attachment</a></li>
+                                <li><a href="../classes/twaver.network.BasicAttachment.html">twaver.network.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.network.EditAttachment.html">twaver.network.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.network.ElementUI.html">twaver.network.ElementUI</a></li>
+                                <li><a href="../classes/twaver.network.GridUI.html">twaver.network.GridUI</a></li>
+                                <li><a href="../classes/twaver.network.GroupUI.html">twaver.network.GroupUI</a></li>
+                                <li><a href="../classes/twaver.network.IconsAttachment.html">twaver.network.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.network.interaction.BaseInteraction.html">twaver.network.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateElementInteraction.html">twaver.network.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateLinkInteraction.html">twaver.network.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateOrthogonalLinkInteraction.html">twaver.network.interaction.CreateOrthogonalLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateShapeLinkInteraction.html">twaver.network.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateShapeNodeInteraction.html">twaver.network.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.DefaultInteraction.html">twaver.network.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.EditInteraction.html">twaver.network.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MagnifyInteraction.html">twaver.network.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MoveInteraction.html">twaver.network.interaction.MoveInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MSTouchInteraction.html">twaver.network.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.PanInteraction.html">twaver.network.interaction.PanInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.SelectInteraction.html">twaver.network.interaction.SelectInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.TouchInteraction.html">twaver.network.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.LabelAttachment.html">twaver.network.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.network.LinkHandlerAttachment.html">twaver.network.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.network.LinkUI.html">twaver.network.LinkUI</a></li>
+                                <li><a href="../classes/twaver.network.Network.html">twaver.network.Network</a></li>
+                                <li><a href="../classes/twaver.network.NodeUI.html">twaver.network.NodeUI</a></li>
+                                <li><a href="../classes/twaver.network.Overview.html">twaver.network.Overview</a></li>
+                                <li><a href="../classes/twaver.network.OverviewInteraction.html">twaver.network.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.network.OverviewMSTouchInteraction.html">twaver.network.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.OverviewTouchInteraction.html">twaver.network.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.RotatableNodeUI.html">twaver.network.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.network.ShapeLinkUI.html">twaver.network.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.network.ShapeNodeUI.html">twaver.network.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.Node.html">twaver.Node</a></li>
+                                <li><a href="../classes/twaver.Pool.html">twaver.Pool</a></li>
+                                <li><a href="../classes/twaver.Property.html">twaver.Property</a></li>
+                                <li><a href="../classes/twaver.PropertyBox.html">twaver.PropertyBox</a></li>
+                                <li><a href="../classes/twaver.PropertyChangeDispatcher.html">twaver.PropertyChangeDispatcher</a></li>
+                                <li><a href="../classes/twaver.PropertyPropagator.html">twaver.PropertyPropagator</a></li>
+                                <li><a href="../classes/twaver.QuickFinder.html">twaver.QuickFinder</a></li>
+                                <li><a href="../classes/twaver.RotatableNode.html">twaver.RotatableNode</a></li>
+                                <li><a href="../classes/twaver.SelectionModel.html">twaver.SelectionModel</a></li>
+                                <li><a href="../classes/twaver.SerializationSettings.html">twaver.SerializationSettings</a></li>
+                                <li><a href="../classes/twaver.ShapeLink.html">twaver.ShapeLink</a></li>
+                                <li><a href="../classes/twaver.ShapeNode.html">twaver.ShapeNode</a></li>
+                                <li><a href="../classes/twaver.ShapeSubNetwork.html">twaver.ShapeSubNetwork</a></li>
+                                <li><a href="../classes/twaver.SubNetwork.html">twaver.SubNetwork</a></li>
+                                <li><a href="../classes/twaver.Tab.html">twaver.Tab</a></li>
+                                <li><a href="../classes/twaver.TabBox.html">twaver.TabBox</a></li>
+                                <li><a href="../classes/twaver.vector.AlarmAttachment.html">twaver.vector.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.Attachment.html">twaver.vector.Attachment</a></li>
+                                <li><a href="../classes/twaver.vector.BaseZoomManager.html">twaver.vector.BaseZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.BasicAttachment.html">twaver.vector.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.EditAttachment.html">twaver.vector.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.ElementUI.html">twaver.vector.ElementUI</a></li>
+                                <li><a href="../classes/twaver.vector.GridUI.html">twaver.vector.GridUI</a></li>
+                                <li><a href="../classes/twaver.vector.GroupUI.html">twaver.vector.GroupUI</a></li>
+                                <li><a href="../classes/twaver.vector.IconsAttachment.html">twaver.vector.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.BaseInteraction.html">twaver.vector.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateElementInteraction.html">twaver.vector.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateLinkInteraction.html">twaver.vector.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateShapeLinkInteraction.html">twaver.vector.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateShapeNodeInteraction.html">twaver.vector.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.DefaultInteraction.html">twaver.vector.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.EditInteraction.html">twaver.vector.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.MagnifyInteraction.html">twaver.vector.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.MSTouchInteraction.html">twaver.vector.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.TouchInteraction.html">twaver.vector.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.Label2Attachment.html">twaver.vector.Label2Attachment</a></li>
+                                <li><a href="../classes/twaver.vector.LabelAttachment.html">twaver.vector.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.LinkHandlerAttachment.html">twaver.vector.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.LinkUI.html">twaver.vector.LinkUI</a></li>
+                                <li><a href="../classes/twaver.vector.LogicalZoomManager.html">twaver.vector.LogicalZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.MixedZoomManager.html">twaver.vector.MixedZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.Network.html">twaver.vector.Network</a></li>
+                                <li><a href="../classes/twaver.vector.NodeUI.html">twaver.vector.NodeUI</a></li>
+                                <li><a href="../classes/twaver.vector.Overview.html">twaver.vector.Overview</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewInteraction.html">twaver.vector.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewMSTouchInteraction.html">twaver.vector.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewTouchInteraction.html">twaver.vector.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.PhysicalZoomManager.html">twaver.vector.PhysicalZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.RotatableNodeUI.html">twaver.vector.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.vector.ShapeLinkUI.html">twaver.vector.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.vector.ShapeNodeUI.html">twaver.vector.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.XmlSerializer.html">twaver.XmlSerializer</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>twaver.canvas.NodeUI Class</h1>
+<div class="box meta">
+
+        <div class="extends">
+            Extends <a href="../classes/twaver.canvas.ElementUI.html" class="crosslink">twaver.canvas.ElementUI</a>
+        </div>
+
+
+
+</div>
+
+
+<div class="box intro">
+    <p>节点对应的视图对象，是其他网元对象（组、网格、多边形和子网等）的基类</p>
+
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_twaver.canvas.NodeUI" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>network</code>
+                </li>
+                <li class="arg">
+                        <code>element</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.canvas.NodeUI.html" class="crosslink">twaver.canvas.NodeUI</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">network</code>
+                        <span class="type"><a href="../classes/twaver.canvas.Network.html" class="crosslink">twaver.canvas.Network</a></span>
+
+
+                    <div class="param-description">
+                        <p>拓扑</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/twaver.Node.html" class="crosslink">twaver.Node</a></span>
+
+
+                    <div class="param-description">
+                        <p>节点</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.canvas.NodeUI.html" class="crosslink">twaver.canvas.NodeUI</a></span>:
+            </div>
+        </div>
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.addAttachment">twaver.canvas.ElementUI.addAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.addBodyBounds">twaver.canvas.ElementUI.addBodyBounds</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.appendShadowBound">twaver.canvas.ElementUI.appendShadowBound</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.checkAlarmAttachment">twaver.canvas.ElementUI.checkAlarmAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.checkAttachments">twaver.canvas.ElementUI.checkAttachments</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.checkEditAttachment">twaver.canvas.ElementUI.checkEditAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.checkIconsAttachment">twaver.canvas.ElementUI.checkIconsAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.checkLabelAttachment">twaver.canvas.ElementUI.checkLabelAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.clearShadow">twaver.canvas.ElementUI.clearShadow</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getAlarmAttachment">twaver.canvas.ElementUI.getAlarmAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getAttachments">twaver.canvas.ElementUI.getAttachments</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getBodyRect">twaver.canvas.ElementUI.getBodyRect</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getClassName">twaver.canvas.ElementUI.getClassName</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getDyeColor">twaver.canvas.ElementUI.getDyeColor</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getEditAttachment">twaver.canvas.ElementUI.getEditAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getElement">twaver.canvas.ElementUI.getElement</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getFont">twaver.canvas.ElementUI.getFont</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getHotSpot">twaver.canvas.ElementUI.getHotSpot</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getIconsAttachment">twaver.canvas.ElementUI.getIconsAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getInnerColor">twaver.canvas.ElementUI.getInnerColor</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getLabelAttachment">twaver.canvas.ElementUI.getLabelAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getNetwork">twaver.canvas.ElementUI.getNetwork</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getOuterColor">twaver.canvas.ElementUI.getOuterColor</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getShadowColor">twaver.canvas.ElementUI.getShadowColor</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getStyle">twaver.canvas.ElementUI.getStyle</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getUnionBodyBounds">twaver.canvas.ElementUI.getUnionBodyBounds</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.getViewRect">twaver.canvas.ElementUI.getViewRect</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.handlePropertyChange">twaver.canvas.ElementUI.handlePropertyChange</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.handleSelectionChange">twaver.canvas.ElementUI.handleSelectionChange</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.hit">twaver.canvas.ElementUI.hit</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.hitCanvasPoint">twaver.canvas.ElementUI.hitCanvasPoint</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.hitCanvasRect">twaver.canvas.ElementUI.hitCanvasRect</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.hitCanvasRectAtAttachments">twaver.canvas.ElementUI.hitCanvasRectAtAttachments</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.hitCanvasRectAtBody">twaver.canvas.ElementUI.hitCanvasRectAtBody</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.hitTest">twaver.canvas.ElementUI.hitTest</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.intersects">twaver.canvas.ElementUI.intersects</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.invalidate">twaver.canvas.ElementUI.invalidate</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.isEditable">twaver.canvas.ElementUI.isEditable</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.isShadowable">twaver.canvas.ElementUI.isShadowable</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.paint">twaver.canvas.ElementUI.paint</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.paintAttachment">twaver.canvas.ElementUI.paintAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.paintAttachments">twaver.canvas.ElementUI.paintAttachments</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.paintBody">twaver.canvas.ElementUI.paintBody</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.removeAttachment">twaver.canvas.ElementUI.removeAttachment</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.setHotSpot">twaver.canvas.ElementUI.setHotSpot</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.setShadow">twaver.canvas.ElementUI.setShadow</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.updateStyle">twaver.canvas.ElementUI.updateStyle</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.validate">twaver.canvas.ElementUI.validate</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.canvas.ElementUI.validateImpl">twaver.canvas.ElementUI.validateImpl</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.createBodyRect">twaver.canvas.NodeUI.createBodyRect</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.drawDefaultBody">twaver.canvas.NodeUI.drawDefaultBody</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.drawOuterBorder">twaver.canvas.NodeUI.drawOuterBorder</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.drawPath">twaver.canvas.NodeUI.drawPath</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.drawSelectBorder">twaver.canvas.NodeUI.drawSelectBorder</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.drawVectorBody">twaver.canvas.NodeUI.drawVectorBody</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.getDefaultBodyRect">twaver.canvas.NodeUI.getDefaultBodyRect</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.getOuterBorderRect">twaver.canvas.NodeUI.getOuterBorderRect</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.getPathRect">twaver.canvas.NodeUI.getPathRect</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.getSelectBorderRect">twaver.canvas.NodeUI.getSelectBorderRect</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.getVectorBody">twaver.canvas.NodeUI.getVectorBody</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.canvas.NodeUI.validateBodyBounds">twaver.canvas.NodeUI.validateBodyBounds</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_twaver.canvas.ElementUI.addAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.addAttachment</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>attachment</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.addAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>添加附件，如果showInAttachmentDiv为true，则附件被添加到拓扑的附件层（attachmentDiv），否则附件被添加到网元视图上</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">attachment</code>
+                        <span class="type"><a href="../classes/twaver.network.Attachment.html" class="crosslink">twaver.network.Attachment</a></span>
+
+
+                    <div class="param-description">
+                        <p>附件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.addBodyBounds" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.addBodyBounds</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.addBodyBounds">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>添加内容区域，所有内容区域合并后构成unionBodyBounds</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>区域，值为包含x、y、width和height属性的Object对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.appendShadowBound" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.appendShadowBound</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>part</code>
+                </li>
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.appendShadowBound">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>给指定区域添加阴影区域</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">part</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>要添加阴影的对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>区域</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>添加阴影后的区域</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.checkAlarmAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.checkAlarmAttachment</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.checkAlarmAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>检查是否显示告警附件，如果Network#getAlarmLabel(element)返回null或空字符串，则不显示</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.checkAttachments" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.checkAttachments</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.checkAttachments">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>检查所有附件是否显示，网元刷新时（validate）被调用，包括告警AlarmAttachment、标签附件LabelAttachement、编辑附件EditAttachment和图标组附件IconsAttachment</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.checkEditAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.checkEditAttachment</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.checkEditAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>检查是否显示编辑附件，如果此网元可选中（Network#isSelected(element)返回true），而且可编辑（Network#isEditable(element)返回true），而且此网元视图可编辑（isEditable()返回true），则显示，否则不显示</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.checkIconsAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.checkIconsAttachment</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.checkIconsAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>检查是否显示图标组附件，如果Network#getIconsNames(element)返回null或者length为0，则不显示</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.checkLabelAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.checkLabelAttachment</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.checkLabelAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>检查是否显示标签附件，如果Network#getLabel(element)返回null或空字符串，则不显示</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.clearShadow" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.clearShadow</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.clearShadow">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>清除阴影</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>画布上下文</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getAlarmAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getAlarmAttachment</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.network.AlarmAttachment.html" class="crosslink">twaver.network.AlarmAttachment</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getAlarmAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取告警附件</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.network.AlarmAttachment.html" class="crosslink">twaver.network.AlarmAttachment</a></span>:
+                    <p>返回告警附件</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getAttachments" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getAttachments</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getAttachments">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取所有附件集合，包含告警AlarmAttachment、标签附件LabelAttachement、编辑附件EditAttachment和图标组附件IconsAttachment</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>返回所有附件集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getBodyRect" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getBodyRect</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getBodyRect">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获得内容区域，默认为createBodyRect返回的结果</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回内容区域，值为包含x、y、width和height属性的Object对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getClassName" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getClassName</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getClassName">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取该类字符串类名</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回类名</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getDyeColor" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getDyeColor</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>styleProp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getDyeColor">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定样式的渲染颜色，如果innerColor不为空则返回innerColor，否则返回指定样式的值</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">styleProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>样式属性</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回渲染颜色</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getEditAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getEditAttachment</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.network.EditAttachment.html" class="crosslink">twaver.network.EditAttachment</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getEditAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取编辑附件</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.network.EditAttachment.html" class="crosslink">twaver.network.EditAttachment</a></span>:
+                    <p>返回编辑附件</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getElement" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getElement</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getElement">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取和网元视图关联的网元</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>:
+                    <p>返回和网元视图关联的网元</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getFont" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getFont</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>styleProp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getFont">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取给定样式属性的值作为字体，如果指定样式的值是null，则返回twaver.Defaults.FONT</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">styleProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>样式属性</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回字体</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getHotSpot" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getHotSpot</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getHotSpot">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取热点，用于定位附件等的位置</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回热点，值为包含x和y属性的Object对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getIconsAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getIconsAttachment</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.network.IconsAttachment.html" class="crosslink">twaver.network.IconsAttachment</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getIconsAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取图标组附件</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.network.IconsAttachment.html" class="crosslink">twaver.network.IconsAttachment</a></span>:
+                    <p>返回图标组附件</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getInnerColor" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getInnerColor</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getInnerColor">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取网元填充色</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回网元填充色</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getLabelAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getLabelAttachment</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.network.LabelAttachment.html" class="crosslink">twaver.network.LabelAttachment</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getLabelAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取标签附件</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.network.LabelAttachment.html" class="crosslink">twaver.network.LabelAttachment</a></span>:
+                    <p>返回标签附件</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getNetwork" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getNetwork</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.network.Network.html" class="crosslink">twaver.network.Network</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getNetwork">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取和网元视图关联的拓扑</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.network.Network.html" class="crosslink">twaver.network.Network</a></span>:
+                    <p>返回和网元视图关联的拓扑</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getOuterColor" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getOuterColor</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getOuterColor">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取网元边框颜色</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回网元边框颜色</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getShadowColor" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getShadowColor</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getShadowColor">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取网元选中后阴影颜色</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回网元选中后阴影颜色</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getStyle" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getStyle</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>styleProp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getStyle">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定样式属性的值，封装了Element.getStyle</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">styleProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>样式属性</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回指定样式属性的值</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getUnionBodyBounds" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getUnionBodyBounds</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getUnionBodyBounds">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取合并的内容区域</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回合并的内容区域，值为包含x、y、width和height属性的Object对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.getViewRect" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.getViewRect</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.getViewRect">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取视图内容区域，包括unionBodyBounds和所有附件的区域</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回视图内容区域，值为包含x、y、width和height属性的Object对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.handlePropertyChange" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.handlePropertyChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.handlePropertyChange">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>和网元视图关联的网元属性变化时的处理函数，默认实现为调用invalidate方法让网元视图刷新</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化事件，包含property、oldValue和newValue属性</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.handleSelectionChange" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.handleSelectionChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.handleSelectionChange">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>和网元视图关联的网元被选中或取消选中时的处理函数，默认实现为调用invalidate方法让网元视图刷新</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>选择变化事件，包含kind和data属性</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.hit" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.hit</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.hit">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>命中测试，判断网元视图是否包含指定坐标</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>x坐标</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>y坐标</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>网元视图是否包含指定坐标，则返回true，否者返回false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.hitCanvasPoint" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.hitCanvasPoint</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.hitCanvasPoint">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>网元是否包含指定坐标点</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>x坐标</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>y坐标</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>返回网元是否包含指定坐标点</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.hitCanvasRect" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.hitCanvasRect</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>r</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.hitCanvasRect">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>网元是否包含指定区域</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">r</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>区域</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>返回网元是否包含指定区域</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.hitCanvasRectAtAttachments" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.hitCanvasRectAtAttachments</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.hitCanvasRectAtAttachments">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>网元附件是否包含指定区域</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>区域</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>返回网元附件是否包含指定区域</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.hitCanvasRectAtBody" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.hitCanvasRectAtBody</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.hitCanvasRectAtBody">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>网元主体是否包含指定区域</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>区域</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>返回网元主体是否包含指定区域</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.hitTest" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.hitTest</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>x</code>
+                </li>
+                <li class="arg">
+                        <code>y</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.hitTest">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定坐标下的视图对象，为附件或者网元视图本身</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">x</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>x坐标</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">y</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>y坐标</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回指定坐标下的视图对象，为附件或者网元视图本身</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.intersects" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.intersects</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.intersects">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>判断网元视图是否和指定区域相交</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>矩形区域，值为包含x、y、width和height属性的Object对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>如果网元视图包含指定矩形区域，则返回true，否则返回false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.invalidate" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.invalidate</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>checkAttachments</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.invalidate">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">checkAttachments</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                         
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.isEditable" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.isEditable</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.isEditable">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取网元视图是否可编辑，默认值为true</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>如果网元视图可编辑，则返回true，否则返回false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.isShadowable" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.isShadowable</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.isShadowable">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>判断是否需要设置阴影，默认实现是如果设置了阴影颜色，而且网元被被选中，而且select.style样式为shadow，则返回true，否则返回false</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>如果需要设置阴影，则返回true，否则返回false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.paint" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.paint</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.paint">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>绘制网元视图</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>画布上下文</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.paintAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.paintAttachment</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+                <li class="arg">
+                        <code>att</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.paintAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>绘制网元附件</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>画布上下文</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">att</code>
+                        <span class="type"><a href="../classes/twaver.canvas.Attachment.html" class="crosslink">twaver.canvas.Attachment</a></span>
+
+
+                    <div class="param-description">
+                        <p>附件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.paintAttachments" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.paintAttachments</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.paintAttachments">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>绘制网元所有附件</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>画布上下文</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.paintBody" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.paintBody</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.paintBody">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>绘制网元主体</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>画布上下文</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.removeAttachment" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.removeAttachment</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>attachment</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.removeAttachment">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>删除指定附件</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">attachment</code>
+                        <span class="type"><a href="../classes/twaver.network.Attachment.html" class="crosslink">twaver.network.Attachment</a></span>
+
+
+                    <div class="param-description">
+                        <p>附件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.setHotSpot" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.setHotSpot</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>value</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.setHotSpot">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置热点，用于定位附件等的位置</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">value</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>热点，值为包含x和y属性的Object对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.setShadow" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.setShadow</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>part</code>
+                </li>
+                <li class="arg">
+                        <code>canvas</code>
+                </li>
+                <li class="arg">
+                        <code>rect</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">CanvasRenderingContext2D</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.setShadow">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>给指定画布元素设置阴影效果</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">part</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>网元视图（ElementUI）或者附件（Attachment）</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">canvas</code>
+                        <span class="type">HTMLCanvasElement</span>
+
+
+                    <div class="param-description">
+                        <p>画布元素</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">rect</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>画图大小及位置，值为包含x、y、width和height属性的Object对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">CanvasRenderingContext2D</span>:
+                    <p>画布渲染内容</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.updateStyle" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.updateStyle</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.updateStyle">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>更新样式</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.validate" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.validate</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.validate">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>此方法被Network调用，用以重画网元视图内容，此内部检查所有附件是否可见（checkAttachments），并调用updateMeasure方法重画网元内容，最后调用附件的updateMeasure方法，让附件重画</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.canvas.ElementUI.validateImpl" class="method item inherited">
+    <h3 class="name"><code>twaver.canvas.ElementUI.validateImpl</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.canvas.ElementUI.html#method_twaver.canvas.ElementUI.validateImpl">twaver.canvas.ElementUI</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>更新视图</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.createBodyRect" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.createBodyRect</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>创建节点内容区域，默认为网元节点的x坐标、y坐标、宽度和高度组成</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回内容区域，值为包含x、y、width和height属性的Object对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.drawDefaultBody" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.drawDefaultBody</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>用图片填充节点内容区域</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>canvas画布</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.drawOuterBorder" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.drawOuterBorder</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>画边框</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>canvas画布</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.drawPath" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.drawPath</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+                <li class="arg">
+                        <code>prefix</code>
+                </li>
+                <li class="arg">
+                        <code>padding</code>
+                </li>
+                <li class="arg">
+                        <code>pattern</code>
+                </li>
+                <li class="arg">
+                        <code>points</code>
+                </li>
+                <li class="arg">
+                        <code>segments</code>
+                </li>
+                <li class="arg">
+                        <code>close</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>画路径</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>画布上下文</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">prefix</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>前缀</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">padding</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>内边距</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">pattern</code>
+                        <span class="type">Array</span>
+
+
+                    <div class="param-description">
+                        <p>线条虚线样式</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">points</code>
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+
+
+                    <div class="param-description">
+                        <p>点集合</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">segments</code>
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+
+
+                    <div class="param-description">
+                        <p>点与点之间连接类型集合</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">close</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>是否闭合</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.drawSelectBorder" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.drawSelectBorder</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>节点被选中时，画选中边框</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>canvas画布</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.drawVectorBody" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.drawVectorBody</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>ctx</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当body.type为vector或default.vector时，用矢量图形填充节点内容</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">ctx</code>
+                        <span class="type">CanvasRenderingContext2D</span>
+
+
+                    <div class="param-description">
+                        <p>canvas画布</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.getDefaultBodyRect" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.getDefaultBodyRect</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取网元视图主体边界</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回网元视图主体边界</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.getOuterBorderRect" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.getOuterBorderRect</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取外边框边界</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回外边框边界</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.getPathRect" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.getPathRect</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>prefix</code>
+                </li>
+                <li class="arg">
+                        <code>padding</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取路径边界</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">prefix</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>前缀</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">padding</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>内边距</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回路径边界</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.getSelectBorderRect" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.getSelectBorderRect</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取选中边框边界</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回选中边框边界</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.getVectorBody" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.getVectorBody</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取矢量边界</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>返回矢量边界</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.canvas.NodeUI.validateBodyBounds" class="method item">
+    <h3 class="name"><code>twaver.canvas.NodeUI.validateBodyBounds</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>重新计算网元主体边界</p>
+
+    </div>
+
+
+
+
+</div>
+            </div>
+
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TWaver HTML5 - Attachment Demo</title>
+    <link rel="stylesheet" href="../css/base.css" type="text/css">
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <script type="text/javascript" src="../../lib/twaver_ext.js"></script>
+    <script type="text/javascript" src="../demo.js"></script>
+    <script type="text/javascript" src="./AttachmentDemo.js"></script>
+    <script type="text/javascript">
+        var attachmentDemo = new AttachmentDemo();
+        function changeLinkFlowColor(e) {
+            attachmentDemo.link.setStyle("link.flow.color", (e.target||e.srcElement).value);
+        }
+    </script>
+</head>
+<body onload="attachmentDemo.init()">
+    <div id='main' >
+    </div>
+    <div id='linkFlowColorDiv' keepDefault='1'>
+    <p  style='text-align:center;font-size:16px;font-weight:bold;'>Flow Color</p>
+    <p>
+    <input type=radio name=flowColor  value='red'  onclick='changeLinkFlowColor(event)' id='redColor'/><label for='redColor' style='background:red'>RED</label>
+    </p>
+    <p>
+    <input type=radio name=flowColor value='blue' onclick='changeLinkFlowColor(event)' id='blueColor'/><label for='blueColor' style='background:blue'>BLUE</label>
+    </p>
+    <p>
+    <input type=radio name=flowColor value='green' onclick='changeLinkFlowColor(event)' id='greenColor'/><label for='greenColor' style='background:green'>GREEN</label>
+    </p>
+    <p>
+    <input type=radio name=flowColor value='black' checked onclick='changeLinkFlowColor(event)' id='blackColor'/><label for='blackColor' style='background:black;color:White'>BLACK</label>
+    </p>
+    </div>
+</body>
+</html>

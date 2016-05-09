@@ -1,0 +1,427 @@
+@import "../../dep/bootstrap/3.x/3.3.6-dist/less/bootstrap.less";
+@import "../../dep/bootstrap/3.x/3.3.6-dist/less/bootstrap-timeline.less";
+@import "ass.ui.timeline.less";
+
+@ass-view-window-def-width:500px;
+@ass-view-window-def-height:380px;
+@ass-view-panel-head-font-size:15px;
+@ass-view-panel-navbar-min-height:42px;
+@ass-view-panel-navbar-line-height:12px;
+@popover-max-width:none;
+@popover-def-width:300px;
+@ass-view-fix-top:50px;
+
+.ass-view-float(@float){
+	float:@float;
+}
+
+.ass-view-pointer{
+    cursor:pointer;
+}
+
+/*强制不换行*/
+.ass-view-white-space-nowrap{
+	white-space:nowrap;
+}
+
+.ass-view-float-left{
+	.ass-view-float(left);
+}
+
+.ass-view-float-right{
+	.ass-view-float(right);
+}
+
+.ass-view-overflow-scroll-xy{
+	overflow: scroll;
+}
+
+.ass-view-overflow-scroll-x{
+	overflow-x: scroll;
+}
+
+.ass-view-overflow-scroll-y{
+	overflow-y: scroll;
+}
+
+.ass-view-clearfix:after{
+	content:".";
+	height: 0;
+	visibility: hidden;
+	display: block;
+	clear: both;
+}
+
+.ass-view-poistion-absolute-init{
+	position: absolute;
+	left: 0px;
+	top:0px;
+}
+
+.ass-view-poistion-fix-init{
+	position:fixed;
+	left: 0px;
+	top:0px;
+}
+
+.ass-view-cancel-border{
+	border: none;
+}
+
+.ass-view-cancel-border-raduis{
+	border-radius: 0;
+	 -webkit-border-radius: 0;
+    -moz-border-radius: 0;   
+}
+
+.ass-view-cancel-box-shadow{
+	box-shadow:none;
+	-webkit-box-shadow:none;
+}
+
+.ass-view-display(@display){
+	display: @display;
+}
+
+.ass-view-display-none{
+	.ass-view-display(none);
+}
+
+.ass-view-padding-none{
+	padding: 0;
+}
+
+.ass-view-body-fix-padding-top{
+    padding-top:@ass-view-fix-top;
+}
+
+.ass-view-fix-top{
+    top:@ass-view-fix-top;
+}
+
+.input-group-checkbox,.input-group-radio {
+	position: relative;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.ass-view-form-control,
+.ass-view-form-control:focus{
+  border-color:#ccc;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.ass-view{
+	font-family:'微软雅黑',Calibri,Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+}
+
+.ass-view-Viewport{
+	position: relative;
+}
+
+.ass-view-bg-transparent{
+	background-color: transparent;
+}
+
+.ass-view-border-none{
+	.ass-view-cancel-border;
+	.ass-view-cancel-box-shadow;
+}
+
+.ass-view-text-align(@text-align){
+	text-align: @text-align;
+}
+
+.ass-view-border-radius-none{
+	.ass-view-cancel-border-raduis;
+}
+
+.ass-view-Popover{
+	max-width: @popover-max-width;
+    width:@popover-def-width;
+}
+
+.ass-view-input-group-label{
+	background-color:#ffffff;
+	.ass-view-border-none;
+	font-weight: bold;
+}
+
+.ass-view-Textarea .ass-view-input-group-label{
+	vertical-align: top;
+}
+
+.input-group .ass-view-form-control:last-child,
+.input-group .ass-view-form-control:not(:first-child):not(:last-child){
+	border-top-left-radius: @input-border-radius;
+	border-bottom-left-radius: @input-border-radius;
+}
+
+.ass-view-input-group{
+	width:100%;
+}
+
+.ass-view-FormPanel  form{
+	padding: 0px @panel-body-padding @panel-body-padding @panel-body-padding;
+}
+
+.ass-view-FormPanel form .input-group-checkbox .checkbox-inline,
+.ass-view-FormPanel form .input-group-radio .radio-inline{
+	padding-top: 0px;
+}
+
+.ass-view-FormPanel .form-group  .ass-view-input-group .ass-view-input-group-label{
+	.ass-view-bg-transparent;
+}
+
+.ass-view-FormPanel .panel-footer  button:not(:first-child){
+	margin-left: 10px;
+}
+
+.ass-view-FormPanel  .ass-view-button-align-center{
+	.ass-view-text-align(center);
+}
+
+.ass-view-FormPanel .ass-view-button-align-right{
+	.ass-view-text-align(right);
+}
+
+.ass-view-FormPanel  .ass-view-button-align-left{
+	.ass-view-text-align(left);
+}
+
+.ass-view-Navbar{
+	.ass-view-cancel-border-raduis();
+}
+
+.ass-view-NavbarItem{
+	text-align: center;
+}
+
+.ass-view-Window{
+	.ass-view-poistion-fix-init;
+	width: @ass-view-window-def-width;
+	height: @ass-view-window-def-height;
+}
+
+//.ass-view-Window  .panel{
+//	.ass-view-border-none;
+//}
+
+.ass-view-Window .panel-heading{
+	.ass-view-padding-none;
+}
+
+.ass-view-Window .navbar{
+	min-height: @ass-view-panel-navbar-min-height;
+}
+
+.ass-view-Window .navbar-default{
+	position: relative;
+	background-color: @panel-default-heading-bg;
+	border:none;
+	.ass-view-cancel-border-raduis;
+	margin-bottom: 0;
+	.ass-view-bg-transparent;
+}
+
+.ass-view-Window .navbar-brand{
+	font-size:@ass-view-panel-head-font-size;
+	line-height: @ass-view-panel-navbar-line-height;
+	height: @ass-view-panel-navbar-min-height;
+}
+
+.ass-view-Window .navbar-primary{
+	background-color: @panel-primary-heading-bg;
+}
+
+.ass-view-Window .navbar-default .container-fluid{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.ass-view-Window .navbar-default .navbar-collapse{
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.ass-view-Window  .navbar-nav > li > a{
+	line-height: @ass-view-panel-navbar-line-height;
+}
+
+.ass-view-Window .navbar-brand .title{
+	margin-left: 10px;
+}
+
+.ass-view-WellView{
+	.ass-view-poistion-fix-init;
+}
+@media (min-width: 768px){
+	.ass-view-WindowModal .modal-dialog{
+		width: auto;
+		margin: 0px;
+	}
+}
+
+.ass-view .panel-footer{
+    background-color:#FFFFFF;
+}
+
+.ass-view-WindowModal{
+	background-color:rgba(188, 188, 188, 0.3);
+}
+
+.ass-view-WindowModal .modal-content{
+	.ass-view-cancel-border;
+	.ass-view-cancel-box-shadow;
+}
+
+.ass-view-ListPanel .panel-body{
+	.ass-view-padding-none;
+}
+
+.ass-view-ListPanel .panel-body .list-group{
+	margin-bottom: 0;
+}
+
+.ass-view-ListPanel  .list-group-item:first-child,
+.ass-view-ListPanel .list-group-item:last-child{
+	.ass-view-cancel-border-raduis;
+}
+
+.ass-view-ListPanel .list-group-item{
+	.ass-view-cancel-border;
+}
+
+.ass-view-ListPanel .list-group-item:not(:first-child){
+	border-top:1px solid #dddddd;
+}
+
+.ass-view-ListPanel .ass-view-horizontal .list-group-item{
+	.ass-view-float(left);
+	.ass-view-cancel-border;
+}
+
+.ass-view-ListPanel  > div:first-child  .ass-view-RowView{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+
+.ass-view-TabPanel > div:last-child{
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.ass-view-TabPanel > div:last-child,
+.ass-view-TabPanel > div:last-child > div:first-child{
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.ass-view-TabPanel .ass-view-TabBody{
+	padding: 15px;
+	.ass-view-display-none;
+}
+
+.ass-view-GridPanel > div:last-child{
+	.ass-view-padding-none;
+}
+
+.ass-view-Sidebar{
+    width: 100%;
+    border:1px solid #ddd;
+}
+
+.ass-view-Sidebar .ass-view-Sidebar-list{
+    .ass-view-cancel-border-raduis;
+    .ass-view-cancel-box-shadow;
+    .ass-view-cancel-border;
+}
+
+.ass-view-Sidebar .ass-view-Sidebar-list .ass-view-Sidebar-listItem-group{
+    .ass-view-cancel-border-raduis;
+    .ass-view-cancel-border;
+    .ass-view-cancel-box-shadow;
+    margin-bottom: 0;
+}
+
+.ass-view-Sidebar .ass-view-Sidebar-list .ass-view-Sidebar-listItem-group:last-child{
+    border-bottom: 1px solid #ddd;
+}
+
+.ass-view-Sidebar .ass-view-Sidebar-list .ass-view-Sidebar-listItem-group .panel-heading{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.ass-view-Sidebar .ass-view-Sidebar-list .ass-view-Sidebar-listItem-group:not(:first-child){
+    border-top:1px solid #ddd;
+}
+
+.ass-view-Sidebar .ass-view-Sidebar-list .container-fluid,
+.ass-view-Sidebar .ass-view-Sidebar-list .ass-view-Sidebar-listItem-group .container-fluid{
+    .ass-view-padding-none;
+}
+
+.ass-view-Combo .ass-view-DropdownMenu{
+    width:100%;
+}
+
+.ass-view-Combo .ass-view-input{
+    border-right:0;
+}
+
+.ass-view-Combo .ass-view-caret{
+    padding: 10px;
+}
+
+.ass-view-Combo .input-group{
+    border:1px solid #ccc;
+    border-radius: 4px;
+}
+
+.ass-view-Combo input{
+    border:0;
+    box-shadow: none;
+}
+
+.ass-view-Combo .btn{
+    border-left: 0;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    box-shadow: none;
+}
+
+ .ass-view-Combo .ass-view-DropdownMenu > li > a{
+    cursor:pointer;
+     padding-top:10px;
+     padding-bottom: 10px;
+ }
+ 
+ .ass-view-Combo .ass-view-DropdownMenu .container-fluid{
+     padding-left: 0;
+     padding-right: 0;
+ }
+
+ .ass-view-Page-simple{
+     .ass-view-text-align(center);
+ }
+ 
+ .ass-view-Page  .pagination{
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.ass-view-Combo .ass-view-Combo-dropDownMenu-content .ass-view-ListPanel .panel-footer{
+    border-top:1px dashed #CCCCCC;
+ }
+.ass-view-Combo .ass-view-Combo-dropDownMenu-content .ass-view-ListPanel  .list-group-item:not(:first-child){
+    border-top:0;
+ }
+ 
+.ass-view-loader{
+    display: inline-block;
+    margin-right: 20px;
+}

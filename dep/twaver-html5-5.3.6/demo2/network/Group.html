@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>TWaver HTML5</title>
+	<script src="../../lib/twaver.js"></script>
+	<script>
+		var styles=[
+		['#99caea', 6, [1,0], '#eaf6fd'],
+		['#899cc1', 4, [16, 3], '#e5ebf7'],
+		['#7c73a0', 2, [16, 3], '#e3dbed'],
+		['#704b84', 1, [12, 3], '#e3cedb'],
+		['#6a1e74', 0.3, [12, 3], '#e1bbcb'],
+		];
+
+		var styles_sub=[
+			['#99caea', 4, '#eaf6fd'],
+			['#7c73a0', 3, '#e3dbed'],
+			['#6a1e74', 2, '#e1bbcb'],
+			['#ff5859', 1, '#f6c0bf'],
+			['#f6d230', 1, '#fdefe7'],
+		];
+
+		var iconsObject = {
+			win7: 'icon_win7',
+			disk: 'icon_disk',
+			wall: 'icon_wall',
+			web: 'icon_web',
+			mail: 'icon_mail',
+			server:'icon_server',
+			fire: 'icon_fire',
+		}
+
+		var iconsArray = ['icon_win7','icon_disk','icon_wall',
+		'icon_web','icon_mail','icon_server','icon_fire'];
+		
+		var box = new twaver.ElementBox();
+		var network = new twaver.vector.Network(box);
+
+		function init() {
+			registerImage();
+			network.setZoomManager(new CZoomManager(network,false));
+			document.body.appendChild(network.getView());
+			network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+			window.onresize = function (e) { 
+				network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+			};
+			network.setToolTipEnabled(false);
+			network.setZoom(0.7,{x:300,y:0});
+			network.setAsyncZoomAndViewRect(true);
+
+			box.setClient('linkcurve',true);
+			network.getZoom = function () {
+				if(this.isAsyncZoomAndViewRect()){
+					var zoom = this._zoomMap[this._currentSubNetwork];
+					if(!zoom){
+						this._zoomMap[this._currentSubNetwork] = {zoom:0.7}
+					}
+					return this._zoomMap[this._currentSubNetwork].zoom;
+				}
+
+				return this._zoom;
+			};
+			network.setLinkPathFunction(function (linkUI, defaultPoints) {
+				var iscurve = box.getClient('linkcurve');
+				if(!iscurve) return defaultPoints;
+				if(linkUI.getElement().getClient('link.type') === 'topbottom'){
+					var f = linkUI.getFromPoint();
+					var t = linkUI.getToPoint();
+
+					var points = new twaver.List();
+					points.add(f);
+					points.add(t);
+
+					var lineLength = _twaver.math.getDistance(f, t);
+					if(t.x <= f.x && t.y <= f.y){
+						var p1 = {
+							x: f.x - lineLength * 1/5,
+							y: f.y 
+						}
+
+						var p2 = {
+							x: t.x,
+							y: t.y + lineLength * 2/5,
+						}
+					}else if(t.x >= f.x && t.y <= f.y){
+						var p1 = {
+							x: f.x + lineLength * 1/5,
+							y: f.y 
+						}
+
+						var p2 = {
+							x: t.x,
+							y: t.y + lineLength * 2/5,
+						}
+					}else if(t.x <= f.x && t.y >= f.y){
+						var p1 = {
+							x: f.x,
+							y: f.y + lineLength/5, 
+						}
+
+						var p2 = {
+							x: t.x + lineLength/5,
+							y: t.y,
+						}
+					}else if(t.x >= f.x && t.y >= f.y){
+						var p1 = {
+							x: f.x ,
+							y: f.y + lineLength * 1/5
+						}
+
+						var p2 = {
+							x: t.x - lineLength/5,
+							y: t.y,
+						}
+					}
+
+					var cps = new twaver.List();
+					cps.add(p1);
+					cps.add(p2);
+					cps.add(t);
+
+					points.removeAt(1);
+					points.add(cps);
+
+					return points;
+				}else if(linkUI.getElement().getClient('link.type') === 'leftright'){
+					var f = linkUI.getFromPoint();
+					var t = linkUI.getToPoint();
+
+					var points = new twaver.List();
+					points.add(f);
+					points.add(t);
+
+					var lineLength = _twaver.math.getDistance(f, t);
+					var p1 = {
+						x: (f.x + t.x)/2,
+						y: (f.y + t.y)/2 + lineLength * 1/5
+					}
+					var cps = new twaver.List();
+					cps.add(p1);
+					cps.add(t);
+
+					points.removeAt(1);
+					points.add(cps);
+
+					return points;
+				}else if(linkUI.getElement().getClient('link.type') === 'leftright_top'){
+					var f = linkUI.getFromPoint();
+					var t = linkUI.getToPoint();
+
+					var points = new twaver.List();
+					points.add(f);
+					points.add(t);
+
+					var lineLength = _twaver.math.getDistance(f, t);
+					var p1 = {
+						x: (f.x + t.x)/2,
+						y: (f.y + t.y)/2 - lineLength * 1/5
+					}
+					var cps = new twaver.List();
+					cps.add(p1);
+					cps.add(t);
+
+					points.removeAt(1);
+					points.add(cps);
+
+					return points;
+				}else if(linkUI.getElement().getClient('link.type') === 'rightcurve'){
+					var f = linkUI.getFromPoint();
+					var t = linkUI.getToPoint();
+
+					var points = new twaver.List();
+					points.add(f);
+					points.add(t);
+
+					var lineLength = _twaver.math.getDistance(f, t);
+					var p11 = {
+						x: f.x + 70,
+						y: f.y
+					}
+					var p12 = {
+						x: f.x + 85,
+						y: f.y + 40
+					}
+					var cps = new twaver.List();
+					cps.add(p11);
+					cps.add(p12);
+
+					var p21 = {
+						x: t.x + 90,
+						y: t.y - 20
+					}
+					var p22 = {
+						x: t.x + 80,
+						y: t.y
+					}
+					var cps2 = new twaver.List();
+					cps2.add(p21);
+					cps2.add(p22);
+					cps2.add(t);
+
+					points.removeAt(1);
+					points.add(cps);
+					points.add(cps2);
+
+					return points;
+				}else if(linkUI.getElement().getClient('link.type') === 'rightcurve2'){
+					var f = linkUI.getFromPoint();
+					var t = linkUI.getToPoint();
+
+					var points = new twaver.List();
+					points.add(f);
+					points.add(t);
+
+					var lineLength = _twaver.math.getDistance(f, t);
+					var p11 = {
+						x: f.x + 40,
+						y: f.y
+					}
+					var p12 = {
+						x: f.x + 45,
+						y: f.y + 10
+					}
+					var cps = new twaver.List();
+					cps.add(p11);
+					cps.add(p12);
+
+					var p21 = {
+						x: f.x + 50,
+						y: f.y + 20
+					}
+					var p22 = {
+						x: t.x,
+						y: t.y - 20
+					}
+					var cps2 = new twaver.List();
+					cps2.add(p21);
+					cps2.add(p22);
+					cps2.add(t);
+
+					points.removeAt(1);
+					points.add(cps);
+					points.add(cps2);
+
+					return points;
+				}else if(linkUI.getElement().getClient('link.type') === 'rightcurve3'){
+					var f = linkUI.getFromPoint();
+					var t = linkUI.getToPoint();
+
+					var points = new twaver.List();
+					points.add(f);
+					points.add(t);
+
+					var lineLength = _twaver.math.getDistance(f, t);
+					var p11 = {
+						x: f.x + 230,
+						y: f.y
+					}
+					var p12 = {
+						x: f.x + 260,
+						y: f.y + 20
+					}
+					var cps = new twaver.List();
+					cps.add(p11);
+					cps.add(p12);
+
+					var p21 = {
+						x: f.x + 260,
+						y: f.y + 60
+					}
+					var p22 = {
+						x: f.x + 230,
+						y: t.y + 50
+					}
+					var cps2 = new twaver.List();
+					cps2.add(p21);
+					cps2.add(p22);
+					cps2.add(t);
+
+					points.removeAt(1);
+					points.add(cps);
+					points.add(cps2);
+
+					return points;
+				}else {
+					return defaultPoints;
+				}
+			});
+
+			twaver.Styles.setStyle('shadow.blur',10);
+			twaver.Styles.setStyle('shadow.xoffset',6);
+			twaver.Styles.setStyle('shadow.yoffset',6);
+			twaver.Styles.setStyle('link.width',1.5);
+			twaver.Styles.setStyle('link.color','#4DA492');
+			twaver.Styles.setStyle('outer.width', 0);            
+			twaver.Styles.setStyle('arrow.from.color', '#4DA492');
+			twaver.Styles.setStyle('arrow.to.color', '#4DA492');
+			twaver.Styles.setStyle('arrow.to', true);
+			for(var i=0;i<5;i++){
+				box.getLayerBox().add(new twaver.Layer('layer'+i));
+			}
+			createTopo();	
+			createSubnetworkTopo();		
+		}
+
+		function createTopo() {
+			var server = new twaver.Node({
+				id:'servercore_001',
+				location : {x: 265, y: 140},
+				name:'Server1',
+			});
+			server.s('label.font', '12px "Microsoft Yahei"');
+			server.s('icons.names', [iconsObject.server]);
+			server.s('icons.position', 'bottomright.topleft');
+			box.add(server);
+
+			var names = ['Storage server','Mail server','OS1','Web server'];
+			for (var i = 0; i< 4; i++) {
+				var node = new twaver.Node({
+					location: {x: 130 + 90*i, y : 50},
+					name:names[i],
+				});
+				node.s('label.font', '12px "Microsoft Yahei"');
+				node.s('icons.names', [iconsArray[i]]);
+				node.s('icons.position', 'bottomright.topleft');
+				box.add(node);
+
+				var link = new twaver.Link(server,node);
+				link.setClient('link.type','topbottom');
+				box.add(link);
+			}
+
+			var parent;
+			var fromNode;
+			var root_group = createGroup(box, 0, 'level'+1+'group', 
+				function(box, group, shape){
+					var names = ['Network device','Fire fighting','Storage server'];
+					var icons = ['icon_wall','icon_fire','icon_disk'];
+					var datas = [];
+					for(var i = 0; i < 3; i++) {
+						var node = new twaver.Node({
+							location: {x: 160 + 110*i, y : 220},
+							name:names[i],
+						});
+						node.s('label.font', '12px "Microsoft Yahei"');
+						node.setParent(group);
+						node.setLayerId(group.getLayerId());
+						node.s('icons.names', [icons[i]]);
+						node.s('icons.position', 'bottomright.topleft');
+						group.addChild(node);
+						datas.push(node);
+						box.add(node);
+
+						var server = box.getDataById('servercore_001');
+						var link = new twaver.Link(server,node);
+						// link.setClient('link.type','topbottom');
+						link.setLayerId(group.getLayerId());
+						box.add(link);
+					}
+
+					var link = new twaver.Link(datas[1], datas[0]);
+					// link.setClient('link.type','leftright');
+					link.setLayerId(group.getLayerId());
+					box.add(link);
+
+					var link = new twaver.Link(datas[1], datas[2]);
+					// link.setClient('link.type','leftright');
+					link.setLayerId(group.getLayerId());
+					box.add(link);
+
+					var node = new twaver.Node({
+						location: {x:380 , y: 435},
+						name:'Network device',
+					});
+					node.s('label.font', '12px "Microsoft Yahei"');
+					node.setParent(group);
+					node.setLayerId(group.getLayerId());
+					node.s('icons.names', [iconsObject.wall]);
+					node.s('icons.position', 'bottomright.topleft');
+					group.addChild(node);
+					box.add(node);
+
+					var link = new twaver.Link(datas[2], node);
+					link.setLayerId(group.getLayerId());
+					link.setClient('link.type','rightcurve');
+					box.add(link);
+
+					var g = new twaver.Group({
+						id:'servercore_003',
+						location: {x:380 , y: 490},
+						name:'Server3',
+					});
+					g.s('label.font', '12px "Microsoft Yahei"');
+					g.setParent(group);
+					g.setLayerId(group.getLayerId());
+					g.s('icons.names', [icons[i]]);
+					g.s('icons.position', 'bottomright.topleft');
+					group.addChild(g);
+					box.add(g);
+
+					var link = new twaver.Link(node, g);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+					fromNode = datas[1];
+				});
+			root_group.setParent(parent);			
+			root_group.setExpanded(true);
+			parent = root_group;
+			
+			var group = createGroup(box, 2, 'level'+2+'group', 
+				function(box, group, shape){
+					var names = ['UPS','Fire fighting','Network device'];
+					var icons = ['icon_wall','icon_fire','icon_disk'];
+					var datas = [];
+					for (var i = 0; i< 3; i++) {
+						var node = new twaver.Node();
+						if(i === 0) {
+							node.setLocation(370, 290);
+						}else {
+							node.setLocation(300 + (i-1)*120,330);
+						}
+						node.setName(names[i]);
+						node.s('label.font', '12px "Microsoft Yahei"');
+						node.setParent(group);
+						node.setLayerId(group.getLayerId());
+						node.s('icons.names', [icons[i]]);
+						node.s('icons.position', 'bottomright.topleft');
+						datas.push(node);
+						box.add(node);
+					}
+
+					var link = new twaver.Link(fromNode, datas[0]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+					var link = new twaver.Link(datas[0],datas[1]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+					var link = new twaver.Link(datas[0], datas[2]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+				});
+			group.setParent(parent);			
+			group.setExpanded(true);
+
+			parent = root_group;
+			for(var i = 1; i< 3;i++){
+				if(i === 1){
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+						function(box, group, shape){
+							var datas = [];
+							var names = ['UPS','Fire fighting','Network device'];
+							var icons = ['icon_wall','icon_fire','icon_disk'];
+							for (var i = 0; i< 3; i++) {
+								var node = new twaver.Node();
+								if(i === 0) {
+									node.setLocation(150, 290);
+								}else {
+									node.setLocation(80 + (i-1)*120,330);
+								}
+								node.setName(names[i]);
+								node.s('label.font', '12px "Microsoft Yahei"');
+								node.setParent(group);
+								node.setLayerId(group.getLayerId());
+								node.s('icons.names', [icons[i]]);
+								node.s('icons.position', 'bottomright.topleft');
+								datas.push(node);
+								box.add(node);
+							}
+
+							var link = new twaver.Link(fromNode, datas[0]);
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','topbottom');
+							box.add(link);
+							var link = new twaver.Link(datas[0],datas[1]);
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','topbottom');
+							box.add(link);
+							var link = new twaver.Link(datas[0], datas[2]);
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','topbottom');
+							box.add(link);
+
+							fromNode = datas[0];
+						});
+				}else if(i === 2){
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+						function(box, group, shape){
+							var names = ['UPS','Fire fighting'];
+							var icons = ['icon_wall','icon_fire'];
+							var datas = [];
+							for (var i = 0; i< 2; i++) {
+								var node = new twaver.Node({
+									name: names[i],
+									location:{x: 200 + i*(-100), y: 390 + i* 30},
+								});
+								node.setName(names[i]);
+								node.s('label.font', '12px "Microsoft Yahei"');
+								node.setParent(group);
+								node.setLayerId(group.getLayerId());
+								node.s('icons.names', [icons[i]]);
+								node.s('icons.position', 'bottomright.topleft');
+								datas.push(node);
+								box.add(node);
+							}
+
+							var link = new twaver.Link(fromNode, datas[0]);
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','topbottom');
+							box.add(link);
+							var link = new twaver.Link(datas[0],datas[1]);
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','topbottom');
+							box.add(link);
+						});
+				}
+				group.setClient('horizontaloffset',4);
+				group.setClient('verticaloffset',10);
+				group.setParent(parent);			
+				group.setExpanded(true);
+				parent = group;
+			}
+
+			parent = root_group;
+			fromNode = box.getDataById('servercore_003');
+			for(var i = 1;i < 5;i++){
+				if(i === 1){
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+					function(box, group, shape){
+						var names = ['UPS','Fire fighting','Network device'];
+						var icons = ['icon_wall','icon_fire','icon_disk'];
+						var datas = [];
+						for (var i = 0; i< 1; i++) {
+							var node = new twaver.Node();
+							if(i === 0) {
+								node.setLocation(430, 580);
+							}
+							node.setName(names[i]);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							datas.push(node);
+							box.add(node);
+						}
+
+						var link = new twaver.Link(fromNode, datas[0]);
+						link.setLayerId(group.getLayerId());
+						link.setClient('link.type','rightcurve2');
+						box.add(link);
+						fromNode = datas[0];
+					});
+				}else if(i === 2){
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+					function(box, group, shape){
+						var names = ['UPS','Fire fighting','Network device'];
+						var icons = ['icon_wall','icon_fire','icon_disk'];
+						var datas = [];
+						for (var i = 0; i< 2; i++) {
+							var node = new twaver.Node({
+								name: names[i],
+								location:{x: 380 , y: 620 + i* 60},
+							});
+							node.setName(names[i]);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							datas.push(node);
+							box.add(node);
+						}
+						var link = new twaver.Link(fromNode, datas[0]);
+						link.setLayerId(group.getLayerId());
+						// link.setClient('link.type','leftright');
+						box.add(link);
+
+						var link = new twaver.Link(fromNode, datas[1]);
+						link.setLayerId(group.getLayerId());
+						// link.setClient('link.type','leftright');
+						box.add(link);
+					});
+				}else if(i === 3){
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+					function(box, group, shape){
+						var names = ['UPS','Fire fighting','Network device'];
+						var icons = ['icon_wall','icon_fire','icon_disk'];
+						var datas = [];
+						for (var i = 0; i< 3; i++) {
+							var node = new twaver.Node();
+							if(i === 0 || i === 1) {
+								node.setLocation(240 + i * 60, 590 + i*(-5));
+							}else {
+								node.setLocation(280,630);
+							}
+							node.setName(names[i]);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							datas.push(node);
+							box.add(node);
+						}
+
+						var link = new twaver.Link(fromNode, datas[1]);
+						link.setLayerId(group.getLayerId());
+						// link.setClient('link.type','leftright');
+						box.add(link);
+						
+						var link = new twaver.Link(datas[1], datas[0]);
+						link.setLayerId(group.getLayerId());
+						// link.setClient('link.type','leftright');
+						box.add(link);
+
+						var link = new twaver.Link(datas[1], datas[2]);
+						link.setLayerId(group.getLayerId());
+						// link.setClient('link.type','leftright');
+						box.add(link);
+
+						fromNode = datas[0];
+					});
+				}else if(i === 4){
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+					function(box, group, shape){
+						var names = ['UPS','Fire fighting','Network device'];
+						var icons = ['icon_wall','icon_fire','icon_disk'];
+						for (var i = 0; i< 2; i++) {
+							var node = new twaver.Node({
+								name: names[i],
+								location:{x: 180 + i*(-60), y: 620 + i* 60},
+							});
+							node.setName(names[i]);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							box.add(node);
+
+							var link = new twaver.Link(fromNode, node);
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','leftright');
+							box.add(link);
+						}
+					});
+				}
+					
+				group.setClient('horizontaloffset',10);
+				group.setClient('verticaloffset',4);
+				group.setParent(parent);			
+				group.setExpanded(true);
+				parent = group;
+			}
+
+			parent = null;
+			var server = new twaver.SubNetwork({
+				id:'subnetwork_server',
+				image:'cloud_server',
+				location:{x:620,y:540},
+				name:'Server',
+				styles:{
+					'icons.names': [iconsObject.server],
+					'icons.position': 'bottomright.topleft'
+				},
+				clients:{
+					'title':'double click to check it',
+				}
+			});
+			box.add(server);
+
+			var from = box.getDataById('servercore_001');
+			var link = new twaver.Link(from, server);
+			link.setClient('link.type','rightcurve3');
+			box.add(link);
+
+			var server2 = new twaver.SubNetwork({
+				location:{x:800,y:540},
+				name:'Server',
+				image:'cloud_server',
+				styles:{
+					'icons.names':[iconsObject.server],
+					'icons.position':'bottomright.topleft'
+				},
+			});
+			box.add(server2);
+
+			var link = new twaver.Link(server2, server);
+			box.add(link);
+			fromNode = server2;
+
+			parent = null;
+			var group = createGroup(box, 0, 'level'+1+'group', 
+				function(box, group, shape){
+					var names = ['Network device','Fire fighting','Storage server','Mail server'];
+					var icons = ['icon_wall','icon_fire','icon_disk','icon_mail'];
+					var datas = [];
+					for(var i = 0; i < 3; i++) {
+						var node = new twaver.Node({
+							name:names[i],
+						});
+						if(i === 0) {
+							node.setLocation(660, 630);
+						}else {
+							node.setLocation(600 + (i-1)*120,680);
+						}
+						node.s('label.font', '12px "Microsoft Yahei"');
+						node.setParent(group);
+						node.setLayerId(group.getLayerId());
+						node.s('icons.names', [icons[i]]);
+						node.s('icons.position', 'bottomright.topleft');
+						group.addChild(node);
+						datas.push(node);
+						box.add(node);
+					}
+					var link = new twaver.Link(fromNode, datas[0]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+					var link = new twaver.Link(datas[0],datas[1]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+					var link = new twaver.Link(datas[0], datas[2]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+				});
+			group.setParent(parent);			
+			group.setExpanded(true);
+
+			var group = createGroup(box, 0, 'level'+1+'group', 
+				function(box, group, shape){
+					var names = ['Network device','Fire fighting','Storage server','Mail server'];
+					var icons = ['icon_wall','icon_fire','icon_disk','icon_mail'];
+					var datas = [];
+					for(var i = 0; i < 4; i++) {
+						var node = new twaver.Node({
+							name:names[i],
+						});
+						if(i === 0 || i=== 3) {
+							node.setLocation(960, 630 + i*(40));
+						}else {
+							node.setLocation(900 + (i-1)*120,680);
+						}
+						node.s('label.font', '12px "Microsoft Yahei"');
+						node.setParent(group);
+						node.setLayerId(group.getLayerId());
+						node.s('icons.names', [icons[i]]);
+						node.s('icons.position', 'bottomright.topleft');
+						group.addChild(node);
+						datas.push(node);
+						box.add(node);
+					}
+					var link = new twaver.Link(fromNode, datas[0]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+					var link = new twaver.Link(datas[0],datas[1]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+					var link = new twaver.Link(datas[0], datas[2]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+					var link = new twaver.Link(datas[0], datas[3]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+				});
+			group.setParent(parent);			
+			group.setExpanded(true);
+
+			var root_group_right = createGroup(box, 0, 'level'+1+'group', 
+				function(box, group, shape){
+					var names = ['Network Device','Fire fighting','Storage server','Mail server'];
+					var icons = ['icon_wall','icon_fire','icon_disk','icon_mail'];
+					var datas = [];
+					for(var i = 0; i < 4; i++) {
+						var node = new twaver.Node({
+							location: {x: 600 + 110*i, y : 400},
+							name:names[i],
+							id:'net_equipment_10'+i,
+						});
+						node.s('label.font', '12px "Microsoft Yahei"');
+						node.setParent(group);
+						node.setLayerId(group.getLayerId());
+						node.s('icons.names', [icons[i]]);
+						node.s('icons.position', 'bottomright.topleft');
+						group.addChild(node);
+						datas.push(node);
+						box.add(node);
+
+						var link = new twaver.Link(fromNode, node);
+						link.setLayerId(group.getLayerId());
+						// link.setClient('link.type','topbottom');
+						box.add(link);
+					}
+
+					for(var i = 0; i < 3; i++) {
+						var node = new twaver.Node({
+							id:'net_equipment_00' +i,
+							location: {x: 1030, y : 370 - i*100},
+							name:names[i],
+						});
+						node.s('label.font', '12px "Microsoft Yahei"');
+						node.setParent(group);
+						node.setLayerId(group.getLayerId());
+						node.s('icons.names', [icons[i]]);
+						node.s('icons.position', 'bottomright.topleft');
+						group.addChild(node);
+						node.setLayerId('layer2');
+						box.add(node);
+
+						var link = new twaver.Link(fromNode, node);
+						link.setLayerId('layer2');
+						// link.setClient('link.type','topbottom');
+						box.add(link);
+						fromNode = node;
+					}
+				});
+			root_group_right.setParent(parent);			
+			root_group_right.setExpanded(true);
+			parent = root_group_right;
+
+			for(var i = 0; i< 3; i++){
+				var group = createGroup(box, 1, '', 
+					function(box, group, shape){
+						var names = ['Server1','OS2'];
+						var icons = ['icon_wall','icon_fire','icon_disk'];
+						var datas = [];
+						for(var j = 0; j < 2; j++) {
+							var node = new twaver.Node({
+								location: {x: 990 + 90*j, y : 110 + i*100},
+								name:names[j],
+							});
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[j]]);
+							node.s('icons.position', 'bottomright.topleft');
+							group.addChild(node);
+							datas.push(node);
+							box.add(node);
+
+							var from = box.getDataById('net_equipment_00' + (2-i));
+							var link = new twaver.Link(from, node);
+							link.setLayerId('layer2');
+							// link.setClient('link.type','topbottom');
+							box.add(link);	
+						}
+					});
+				group.setParent(parent);			
+				group.setExpanded(true);
+				group.setClient('horizontaloffset',15);
+				group.setClient('verticaloffset',25);
+			}
+
+			for(var i = 1;i < 5;i++){
+				if(i === 1){
+					var group = createGroup(box, i, 'level'+(i+1)+'group'); 
+				}else if(i === 2){
+					var datas = [];
+					for(var i = 0; i< 2; i++){
+						var node = new twaver.Node();
+						node.setName(names[i]);
+						node.setLocation(660, 230 + 80*i);
+						node.s('label.font', '12px "Microsoft Yahei"');
+						node.setParent(group);
+						node.s('icons.names', ['icon_disk']);
+						node.s('icons.position', 'bottomright.topleft');
+						node.setLayerId(group.getLayerId());
+						datas.push(node);
+						box.add(node);
+					}
+
+					var link = new twaver.Link(datas[1], datas[0]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+
+					var from = box.getDataById('net_equipment_101');
+					var link = new twaver.Link(from, datas[1]);
+					link.setLayerId(group.getLayerId());
+					// link.setClient('link.type','topbottom');
+					box.add(link);
+
+					fromNode = datas[0];
+
+
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+					function(box, group, shape){
+						var names = ['UPS','Fire fighting','Network device'];
+						var icons = ['icon_wall','icon_fire','icon_disk'];
+						var datas = [];
+						for (var i = 0; i< 3; i++) {
+							var node = new twaver.Node();
+							if(i === 2){
+								node.setLocation(660,150);
+							}else{
+								node.setLocation(620+i*80, 100);
+							}
+							
+							node.setName(names[i]);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							datas.push(node);
+							box.add(node);
+						}
+						for(var i = 0;i<3; i++){
+							if(i === 2){
+								var link = new twaver.Link(fromNode, datas[i]);
+							}else{
+								var link = new twaver.Link(datas[2], datas[i]);
+							}
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','topbottom');
+							box.add(link);
+						}
+					});
+					group.setClient('horizontaloffset',10);
+					group.setClient('verticaloffset',4);
+					group.setParent(parent);			
+					group.setExpanded(true);
+
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+					function(box, group, shape){
+						var names = ['UPS','Fire fighting','Network device','server'];
+						var icons = ['icon_wall','icon_fire','icon_disk','icon_server'];
+						var datas = [];
+						for (var i = 0; i< 4; i++) {
+							var node = new twaver.Node();
+							if(i === 0 || i=== 3) {
+								node.setLocation(830, 230 + i*(30));
+							}else {
+								node.setLocation(800 + (i-1)*80,280);
+							}
+							node.setName(names[i]);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							datas.push(node);
+							box.add(node);
+						}
+
+						for(var i =0;i<3;i++){
+							var link = new twaver.Link(datas[3], datas[i]);
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','topbottom');
+							box.add(link);
+						}
+
+						var from = box.getDataById('net_equipment_102');
+						var link = new twaver.Link(from, datas[3]);
+						link.setLayerId(group.getLayerId());
+						// link.setClient('link.type','topbottom');
+						box.add(link);
+
+						fromNode = datas[0];
+					});
+				}else if(i === 3){
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+					function(box, group, shape){
+						var names = ['UPS','Fire fighting','Network device'];
+						var icons = ['icon_wall','icon_fire','icon_disk'];
+						var datas = [];
+						for (var i = 0; i< 1; i++) {
+							var node = new twaver.Node();
+							node.setLocation(810 + i * 60, 180 + i*(-5));
+							node.setName(names[i]);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							datas.push(node);
+							box.add(node);
+						}
+
+						var link = new twaver.Link(fromNode, datas[0]);
+						link.setLayerId(group.getLayerId());
+						// link.setClient('link.type','topbottom');
+						box.add(link);
+
+						fromNode = datas[0];
+					});
+				}else if(i === 4){
+					var group = createGroup(box, i, 'level'+(i+1)+'group', 
+					function(box, group, shape){
+						var names = ['UPS','Fire fighting','Network device'];
+						var icons = ['icon_wall','icon_fire','icon_disk'];
+						for (var i = 0; i< 1; i++) {
+							var node = new twaver.Node({
+								name: names[i],
+								location:{x: 850 + i*(-60), y: 160 + i* 60},
+							});
+							node.setName(names[i]);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setLayerId(group.getLayerId());
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							box.add(node);
+
+							var link = new twaver.Link(fromNode, node);
+							link.setLayerId(group.getLayerId());
+							// link.setClient('link.type','leftright');
+							box.add(link);
+						}
+					});
+					group.setClient('horizontaloffset',30);
+					group.setClient('verticaloffset',20);
+				}
+					
+				group.setParent(parent);			
+				group.setExpanded(true);
+				parent = group;
+			}
+		}
+
+		function createGroup (box, level, name, addChild) {
+			var datas = {};
+			var style=styles[level];
+			var group = new twaver.Group();
+			group.setLayerId('layer'+level);
+			group.s('group.fill.color', style[3]);
+			group.s('group.deep', 0);
+			group.s('group.outline.width', style[1]);
+			group.s('group.outline.color', style[0]);
+			group.s('group.shape', 'roundrect');			
+			group.s('select.style', 'none');
+			group.s('vector.outline.pattern', style[2]);//±ß¿ò·ç¸ñÉèÖÃ
+			group.s('label.font', '12px "Microsoft Yahei"');
+			group.s('whole.alpha', 0.8);
+			group.s('group.padding', -10);
+			group.s('label.position', 'topright.topleft');
+			group.setName(name);
+			group.setLocation(100+150*level, 300);
+
+			box.add(group);
+			var shape='tree';
+
+			addChild && addChild(box, group, shape);
+			return group;
+		}
+
+		function createSubnetworkTopo() {
+			var subnetwork_server = box.getDataById('subnetwork_server');
+			var parent = subnetwork_server;
+
+			var mail_server = new twaver.Node({
+				name:'Mail server',
+				location:{x:150, y:340},
+			});
+			mail_server.s('icons.names', ['icon_mail']);
+			mail_server.s('icons.position', 'bottomright.topleft');
+			box.add(mail_server);
+			subnetwork_server.addChild(mail_server);
+
+			var fromNode = mail_server;
+
+			for(var i = 1;i < 6;i++){
+				if(i === 1){
+					var group = createGroup_sub(box, i-1, 'level'+(i)+'group',function(box, group, shape){
+						var datas = [];
+						var names = ['Web server','Network device','Server4','Storage server'];
+						var icons = ['icon_web','icon_wall','icon_disk','icon_fire'];
+						for(var i = 0; i< 4; i++){
+							var node = new twaver.Node('sub_net_equipment_1_10'+i);
+							node.setLocation(350, 160 + 80*i);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setName(names[i]);
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							node.setLayerId(group.getLayerId());
+							datas.push(node);
+							box.add(node);
+
+							var link = new twaver.Link(fromNode, node);
+							link.setLayerId(group.getLayerId());
+							link.setClient('link.type','leftright_top');
+							box.add(link);
+						}
+
+						datas = [];
+						for(var i = 0; i< 3; i++){
+							var node = new twaver.Node('sub_net_equipment_1_20'+i);
+							node.setLocation(350 + i*120, 510);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setName(names[i]);
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							node.setLayerId(group.getLayerId());
+							datas.push(node);
+							box.add(node);
+						}
+
+						for(var i=0;i<3;i++){
+							var link = new twaver.Link(fromNode, datas[i]);
+							if(i === 0) {
+								fromNode = datas[i];
+							}
+							link.setLayerId(group.getLayerId());
+							link.setClient('link.type','leftright_top');
+							box.add(link);
+						}
+
+						datas = [];
+						names = ['Mail server','UPS','Mail server','UPS','OS1','Mail server','Storage server'];
+						icons = ['icon_web','icon_wall','icon_disk','icon_fire','icon_wall','icon_disk','icon_fire'];
+						for(var i = 0; i< 7; i++){
+							var node = new twaver.Node('sub_net_equipment_1_30'+i);
+							node.setLocation(350 + i*120, 590);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setName(names[i]);
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							node.setLayerId(group.getLayerId());
+							datas.push(node);
+							box.add(node);
+						}
+
+						for(var i=0;i<7;i++){
+							var link = new twaver.Link(fromNode, datas[i]);
+							if(i === 0) {
+								fromNode = datas[i];
+							}
+							link.setLayerId(group.getLayerId());
+							if(i>3){
+								link.setClient('link.type','leftright');
+							}else{
+							link.setClient('link.type','leftright_top');
+						}
+							box.add(link);
+						}
+					}); 
+					group.setClient('horizontaloffset',20);
+					group.setClient('verticaloffset',30);
+				}else if(i === 2){
+					var group = createGroup_sub(box, i-1, 'level'+i+'group', 
+					function(box, group, shape){
+						var datas = [];
+						var names = ['Mail server','UPS','Mail server','UPS','Mail server'];
+						var icons = ['icon_web','icon_wall','icon_disk','icon_fire','icon_mail'];
+						var from = box.getDataById('sub_net_equipment_1_101');
+						for(var i = 0; i< 4; i++){
+							var node = new twaver.Node('sub_net_equipment_2_10'+i);
+							node.setLocation(490, 150 + 80*i);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setName(names[i]);
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							node.setLayerId(group.getLayerId());
+							datas.push(node);
+							box.add(node);
+
+							var link = new twaver.Link(from, node);
+							link.setLayerId(group.getLayerId());
+							link.setClient('link.type','leftright_top');
+							box.add(link);
+						}
+
+						for(var i = 0; i< 5; i++){
+							if(i<3){
+								var from = box.getDataById('sub_net_equipment_1_202');
+							}else {
+								var from = box.getDataById('sub_net_equipment_1_304');
+							}
+							var node = new twaver.Node('sub_net_equipment_2_20'+i);
+							node.setLocation(590 + i*120, 430);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setName(names[i]);
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							node.setLayerId(group.getLayerId());
+							datas.push(node);
+							box.add(node);
+
+							var link = new twaver.Link(from, node);
+							link.setLayerId(group.getLayerId());
+							link.setClient('link.type','leftright_top');
+							box.add(link);
+						}
+					});
+					group.setClient('horizontaloffset',10);
+					group.setClient('verticaloffset',4);
+					group.setParent(parent);			
+					group.setExpanded(true);
+
+					
+				}else if(i === 3){
+					var group = createGroup_sub(box, i-1, 'level'+i+'group', 
+					function(box, group, shape){
+						var datas = [];
+						var names = ['UPS','UPS','Mail server','UPS','Mail server'];
+						var icons = ['icon_web','icon_wall','icon_disk','icon_fire','icon_mail'];
+						var from = box.getDataById('sub_net_equipment_2_101');
+						for(var i = 0; i< 3; i++){
+							var node = new twaver.Node('sub_net_equipment_3_10'+i);
+							node.setLocation(630, 220 + 50*i);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setName(names[i]);
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							node.setLayerId(group.getLayerId());
+							datas.push(node);
+							box.add(node);
+
+							var link = new twaver.Link(from, node);
+							link.setLayerId(group.getLayerId());
+							link.setClient('link.type','leftright_top');
+							box.add(link);
+						}
+					});
+				}else if(i === 4){
+					var group = createGroup_sub(box, i-1, 'level'+i+'group', 
+					function(box, group, shape){
+						var datas = [];
+						var names = ['UPS','UPS','Mail server','UPS','Mail server'];
+						var icons = ['icon_web','icon_wall','icon_disk','icon_fire','icon_mail'];
+						var from = box.getDataById('sub_net_equipment_3_101');
+						for(var i = 0; i< 2; i++){
+							var node = new twaver.Node('sub_net_equipment_4_10'+i);
+							node.setLocation(750, 240 + 50*i);
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setName(names[i]);
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							node.setLayerId(group.getLayerId());
+							datas.push(node);
+							box.add(node);
+
+							var link = new twaver.Link(from, node);
+							link.setLayerId(group.getLayerId());
+							link.setClient('link.type','leftright_top');
+							box.add(link);
+						}
+					});
+					group.setClient('horizontaloffset',30);
+					group.setClient('verticaloffset',20);
+				}else if(i === 5){
+					var group = createGroup_sub(box, i-1, 'level'+i+'group', 
+					function(box, group, shape){
+						var datas = [];
+						var names = ['UPS','UPS','Mail server','UPS','Mail server'];
+						var icons = ['icon_web','icon_wall','icon_disk','icon_fire','icon_mail'];
+						var from = box.getDataById('sub_net_equipment_4_101');
+						for(var i = 0; i< 2; i++){
+
+							var node = new twaver.Node('sub_net_equipment_5_10'+i);
+							node.setLocation(850 + 80*i, 260 );
+							node.s('label.font', '12px "Microsoft Yahei"');
+							node.setParent(group);
+							node.setName(names[i]);
+							node.s('icons.names', [icons[i]]);
+							node.s('icons.position', 'bottomright.topleft');
+							node.setLayerId(group.getLayerId());
+							datas.push(node);
+							box.add(node);
+
+							var link = new twaver.Link(from, node);
+							link.setLayerId(group.getLayerId());
+							link.setClient('link.type','leftright_top');
+							box.add(link);
+							if(i === 0){
+								from = node;
+							}
+						}
+					});
+					group.setClient('horizontaloffset',30);
+					group.setClient('verticaloffset',20);
+				}
+					
+				group.setParent(parent);			
+				group.setExpanded(true);
+				parent = group;
+			}
+		}
+
+		function createGroup_sub(box, level, name, addChild){
+			var style=styles_sub[level];
+			var group = new DemoGroup();
+			group.setLayerId('layer'+level);
+			group.setStyle('group.fill.color', style[2]);
+			group.setStyle('group.deep', 0);
+			group.setStyle('group.outline.width', style[1]);
+			group.setStyle('group.outline.color', style[0]);
+			group.setStyle('group.shape', 'roundrect');			
+			group.setStyle('select.style', 'none');
+			group.setStyle('label.font', '14px "Microsoft Yahei"');
+			group.setStyle('group.padding', 0);
+			group.setStyle('group.padding.top', -10);
+			group.setStyle('group.padding.bottom', -10);
+			group.setStyle('group.padding.right', 30);
+			group.setStyle('label.position', 'topleft.topright');
+			group.setStyle('label.xoffset', 50);
+			group.setStyle('label.yoffset', -1); 
+			group.setName(name);
+			group.setLocation(100+150*level, 300);
+			box.add(group);
+
+			addChild && addChild(box, group);
+			return group;
+		}
+
+		function getRandomInt(value){
+			return parseInt(Math.random()*value);
+		}
+
+		function registerImage() {
+			twaver.Util.registerImage('icon_win7', {
+				"w": 16,
+				"h": 16,
+				"origin":{"x":0,"y":0},
+				"v":[{"shape":"path","data":"6.5,1.078 6.5,1.078 0,2.013 0,6.289 0,7.539 0,11.855 6.5,12.77 7.5,12.91 14,13.824 14,7.333 14,6.504 14,0 z","fill":"#FFFFFF"},{"shape":"path","data":"6.5,2.089 1,2.879 1,6.52 6.5,6.414 z","fill":"#ED6C00"},{"shape":"path","data":"1,7.308 1,10.986 6.5,11.76 6.5,7.414 z","fill":"#ED6C00"},{"shape":"path","data":"13,6.345 13,1.154 7.5,1.945 7.5,6.414 z","fill":"#ED6C00"},{"shape":"path","data":"7.5,11.901 13,12.674 13,7.49 7.5,7.414 z","fill":"#ED6C00"}]
+			});
+
+			twaver.Util.registerImage('icon_disk',{
+				"w": 16,
+				"h": 16,
+				"origin": {
+					"x": 0,
+					"y": 0
+				},
+				"v": [{
+					"shape": "path",
+					"data": "M14,11c0,0.553-0.447,1-1,1H1c-0.552,0-1-0.447-1-1V1c0-0.553,0.448-1,1-1h12c0.553,0,1,0.447,1,1V11z",
+					"fill": "#FFFFFF"
+				},{
+					"shape": "path",
+					"data": "M12,1h-1v3.98H3V1H2C1.448,1,1,1.447,1,2v8c0,0.553,0.448,1,1,1h1V6h8v5h1c0.553,0,1-0.447,1-1V2    C13,1.447,12.553,1,12,1z",
+					"fill": "#ED6C00"
+				},{
+					"shape": "rect",
+					"x": 4,
+					"y": 7,
+					"w": 6,
+					"h": 4,
+					"fill": "#ED6C00"
+				},{
+					"shape": "path",
+					"data": "M4,1v2.98h6V1H4z M9,3H8V2h1V3z",
+					"fill": "#ED6C00"
+				}]
+			});
+
+			twaver.Util.registerImage('icon_wall', {
+				"w": 16,
+				"h": 16,
+				"scale": 1, 
+				"origin": {
+					"x": 0,
+					"y": 0
+				},
+				"v": [
+				{
+					"shape": "path",
+					"data": "M6.59,16.001c-3.886,0-6.211-3.865-6.548-10.883L0,4.236l0.865-0.178C3.474,3.522,5.469,1.738,5.7,1.396   L6.641,0l0.852,1.415c0.219,0.323,2.215,2.107,4.823,2.644l0.865,0.178l-0.042,0.882C12.801,12.136,10.476,16.001,6.59,16.001z",
+					"fill": "#FFFFFF"
+				},
+				{
+					"shape": "path",
+					"data": "M6.59,2.101c-0.297,0.535-2.549,2.482-5.35,3.058c0.161,3.359,1,9.599,5.35,9.599s5.188-6.239,5.35-9.599   C9.139,4.583,6.887,2.636,6.59,2.101z",
+					"fill": "#ED6C00"
+				}
+				]
+			});
+
+			twaver.Util.registerImage('icon_mail', {
+				"w": 16,
+				"h": 16,
+				"scale": 1, 
+				"origin": {
+					"x": 0,
+					"y": 0
+				},
+				"v": [
+				{
+					"shape": "rect",
+					"x": 0,
+					"y": 0,
+					"w": 16,
+					"h": 12,
+					"fill": "#FFFFFF"
+				},
+				{
+					"shape": "path",
+					"data": "14.053,1 1.946,1 8,5.19 z",
+					"fill": "#ED6C00"
+				},
+				{
+					"shape": "path",
+					"data": "1,1.624 1,11 15,11 15,1.65 8,6.501 z",
+					"fill": "#ED6C00"
+				}
+				]
+			});
+
+			twaver.Util.registerImage('icon_web', {
+				"w": 16,
+				"h": 16,
+				"scale": 1, 
+				"origin": {
+					"x": 0,
+					"y": 0
+				},
+				"v": [
+				{
+					"shape": "ellipse",
+					"cx": 8,
+					"cy": 8,
+					"rx": 8,
+					"ry": 8,
+					"fill": "#FFFFFF"
+				},
+				{
+					"shape": "path",
+					"data": "M13.874,11.8c0.023-0.035,0.044-0.071,0.065-0.107c0.105-0.17,0.206-0.345,0.297-0.524   c0.031-0.062,0.061-0.123,0.09-0.186c0.075-0.16,0.146-0.322,0.209-0.489c0.029-0.074,0.057-0.15,0.083-0.227   c0.055-0.16,0.103-0.323,0.146-0.487c0.021-0.083,0.045-0.165,0.064-0.249c0.037-0.172,0.066-0.347,0.092-0.522   c0.012-0.078,0.027-0.155,0.035-0.233C14.984,8.52,15,8.262,15,8c0-3.866-3.133-7-7-7C4.134,1,1,4.134,1,8   c0,0.355,0.035,0.702,0.086,1.043c0.008,0.052,0.014,0.104,0.023,0.154c0.06,0.345,0.142,0.68,0.25,1.005c0,0.001,0,0.002,0,0.003   v-0.001c0.905,2.729,3.441,4.708,6.454,4.786c0,0,0,0.001,0.001,0.001C7.877,14.992,7.938,15,8,15c0.348,0,0.688-0.033,1.021-0.083   c0.001,0,0.003,0,0.004,0l0,0c1.242-0.183,2.378-0.688,3.317-1.434v0.001c0.001-0.001,0.003-0.002,0.005-0.004   C12.943,13.007,13.458,12.44,13.874,11.8z M2.077,8c0-0.146,0.011-0.288,0.021-0.43C2.564,7.628,2.17,7.934,2.364,8.735   c0.206,0.853,1.294,2,1.823,2.559c0.326,0.343,1.221,1.377,2.256,2.415C3.932,13.022,2.077,10.727,2.077,8z M8,13.923   c-0.09,0-0.178-0.009-0.267-0.014c-0.251-0.293-0.385-0.729-0.517-1.292c-0.206-0.882,0.529-2.381,0.565-3.234   c0.035-0.854,0.024-0.824-0.594-0.874C6.57,8.46,6.364,8.029,5.834,7.677C5.305,7.322,5.217,7.235,2.776,6.971   C2.461,6.937,2.743,6.675,2.682,6.521c0.063-0.277,0.37-0.76,0.471-1.021c0.471-2.153,2.896-2.939,3.249-3.198   C6.911,2.159,7.446,2.077,8,2.077c0.216,0,0.006-0.022,0.216,0C8.56,2.203,8.928,2.884,8.874,3.384   c-0.177,1.647-0.375,1.107,0.333,2.44c0.655,1.234,1.479,0.882,2.862,0.793c1.383-0.088,1.471,1.03,1.117,2.941   c-0.146,0.797-0.221,1.317-0.298,1.779C11.822,12.896,10.029,13.923,8,13.923z",
+					"fill": "#ED6C00"
+				}
+				]
+			});
+
+twaver.Util.registerImage('icon_server', {
+	"w": 16,
+	"h": 16,
+	"origin":{"x":0,"y":0},
+	"v":[{"shape":"path","data":"M9.986,15c0,0.552-0.448,1-1,1H1c-0.552,0-1-0.448-1-1V1c0-0.552,0.448-1,1-1h7.986c0.552,0,1,0.448,1,1V15   z","fill":"#FFFFFF"},{"shape":"path","data":"M8.986,13.989C8.986,14.547,8.533,15,7.975,15H2.011C1.453,15,1,14.547,1,13.989V2.011   C1,1.453,1.453,1,2.011,1h5.964c0.558,0,1.011,0.453,1.011,1.011V13.989z","fill":"#ED6C00"},{"shape":"ellipse","cx":6.768,"cy":11.43,"rx":1,"ry":1,"fill":"#FFFFFF"},{"shape":"path","data":"M7.993,3.5c0,0.276-0.224,0.5-0.5,0.5h-5c-0.276,0-0.5-0.224-0.5-0.5l0,0c0-0.276,0.224-0.5,0.5-0.5h5   C7.769,3,7.993,3.224,7.993,3.5L7.993,3.5z","fill":"#FFFFFF"},{"shape":"path","data":"M7.993,5.5c0,0.276-0.224,0.5-0.5,0.5h-5c-0.276,0-0.5-0.224-0.5-0.5l0,0c0-0.276,0.224-0.5,0.5-0.5h5   C7.769,5,7.993,5.224,7.993,5.5L7.993,5.5z","fill":"#FFFFFF"},{"shape":"path","data":"M7.993,7.5c0,0.276-0.224,0.5-0.5,0.5h-5c-0.276,0-0.5-0.224-0.5-0.5l0,0c0-0.276,0.224-0.5,0.5-0.5h5   C7.769,7,7.993,7.224,7.993,7.5L7.993,7.5z","fill":"#FFFFFF"}]
+});
+
+twaver.Util.registerImage('icon_fire', {
+	"w": 16,
+	"h": 16,
+	"origin":{"x":0,"y":0},
+	"v":[{"shape":"path","data":"M4.359,15.691l-0.069-0.01c-2.06-0.289-3.646-1.739-4.141-3.784C-0.344,9.863,0.414,7.79,2.079,6.614   c2.395-1.69,2.28-4.846,2.279-4.877L4.279,0L5.82,0.805c0.242,0.127,5.922,3.144,6.379,7.734c0.242,2.431-0.997,4.762-3.681,6.931   l-0.275,0.222H4.359z","fill":"#FFFFFF"},{"shape":"path","data":"M4.428,14.691c-3.609-0.506-4.643-5.234-1.773-7.26s2.701-5.74,2.701-5.74s11.312,5.909,2.532,13   c0,0,1.667-3.989-1.372-6.5c0,0-0.04,1.78-1.37,2.73C3.819,11.871,4.428,14.691,4.428,14.691z","fill":"#ED6C00"}]
+}); 
+
+twaver.Util.registerImage('cloud', {
+    "w": 66,
+    "h": 46,
+    "origin": {
+        "x": 0,
+        "y": 0
+    },
+    "v": [
+        {
+            "shape": "path",
+            "data": "M57.477,13.271C55.93,7.851,50.947,3.88,45.037,3.88c-1.912,0-3.727,0.418-5.361,1.165   C36.873,1.946,32.824,0,28.321,0C21.957,0,16.5,3.89,14.188,9.424c-0.183-0.006-0.364-0.014-0.549-0.014   C6.106,9.41,0,15.527,0,23.073c0,7.545,6.106,13.661,13.639,13.661c1.8,0,3.516-0.353,5.089-0.986   C21.06,40.619,26.167,44,32.097,44c4.835,0,9.124-2.246,11.808-5.717c1.666,0.63,3.477,0.98,5.373,0.98   C57.408,39.264,64,32.907,64,25.066C64,20.152,61.41,15.821,57.477,13.271z",
+            "gradient": {
+                "id": "SVGID_1_",
+                "type": "linear",
+                "x1": 19.6367,
+                "y1": 2.646,
+                "x2": 43.9219,
+                "y2": 44.7091,
+                "stop": [
+                    {
+                        "offset": "0",
+                        "color": "#FFFFFF"
+                    },
+                    {
+                        "offset": "1",
+                        "color": "#99caea"
+                    },
+                ]
+            },
+        },
+        {
+            "shape": "path",
+            "data": "M28.321,2c3.752,0,7.35,1.599,9.871,4.387l0.982,1.086l1.332-0.609   c1.429-0.653,2.953-0.984,4.53-0.984c4.857,0,9.183,3.265,10.517,7.94l0.205,0.721l0.63,0.408C59.902,17.228,62,21.009,62,25.066   c0,6.726-5.707,12.197-12.723,12.197c-1.602,0-3.172-0.286-4.666-0.852l-1.384-0.523l-0.905,1.171   C39.895,40.199,36.168,42,32.097,42c-4.956,0-9.496-2.793-11.565-7.115l-0.81-1.693l-1.741,0.701   c-1.386,0.559-2.847,0.842-4.341,0.842C7.221,34.734,2,29.503,2,23.073C2,16.642,7.221,11.41,13.639,11.41   c0.125,0,0.247,0.004,0.37,0.009l0.115,0.004l1.378,0.044l0.531-1.272C18.113,5.217,22.937,2,28.321,2 M28.321,0   C21.957,0,16.5,3.89,14.188,9.424c-0.183-0.006-0.364-0.014-0.549-0.014C6.106,9.41,0,15.527,0,23.073   c0,7.545,6.106,13.661,13.639,13.661c1.8,0,3.516-0.353,5.089-0.986C21.06,40.619,26.167,44,32.097,44   c4.835,0,9.124-2.246,11.808-5.717c1.666,0.63,3.477,0.98,5.373,0.98C57.408,39.264,64,32.907,64,25.066   c0-4.914-2.59-9.245-6.523-11.795C55.93,7.851,50.947,3.88,45.037,3.88c-1.912,0-3.727,0.418-5.361,1.165   C36.873,1.946,32.824,0,28.321,0L28.321,0z",
+            "gradient": {
+                "id": "SVGID_2_",
+                "type": "linear",
+                "x1": 19.6367,
+                "y1": 2.646,
+                "x2": 43.9219,
+                "y2": 44.7091,
+                "stop": [
+                    {
+                        "offset": "0",
+                        "color": "#99caea"
+                    },
+                    {
+                        "offset": "1",
+                        "color": "#99caea"
+                    }
+                ]
+            },
+        },
+        {
+		shape: 'text',
+		text: '<%=getClient("title")%>',
+		x:20,
+		y:60,
+		fill:'#03283C',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: '20px "Microsoft Yahei"',
+		animate: [{
+			attr: 'rotate',
+			to: -30,
+			dur: 2000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY			
+		}]
+	},
+    ]
+});
+
+twaver.Util.registerImage('cloud_server', {
+  "w": 66,
+    "h": 46,
+    "origin": {
+        "x": 0.5,
+        "y": 0.5
+   },
+  v: [
+    {
+      shape: 'vector',
+      name: 'cloud'
+    },
+    {
+      shape: 'vector',
+      name: 'subnetwork_image'
+    }
+  ]
+});
+
+}
+
+var CZoomManager = function(network,sizeChange) {
+	CZoomManager.superClass.constructor.call(this, network,sizeChange);
+};
+
+_twaver.ext('CZoomManager', twaver.vector.MixedZoomManager, {
+	_getGroupChildrenRects : function(group) {
+		var list = new twaver.List();
+		var h = 10, v = 10;
+		if(group.getClient('horizontaloffset')){
+			h = parseInt(group.getClient('horizontaloffset'));
+		}
+		if(group.getClient('verticaloffset')){
+			v = parseInt(group.getClient('verticaloffset'));
+		}
+		group.getChildren().forEach(function(child) {
+			if (child instanceof twaver.Node) {
+				var ui = this.network.getElementUI(child);
+				if (ui) {
+					var rect = ui.getZoomViewRect(this);
+					var nrect = {x: rect.x - h, y: rect.y - v, width: rect.width + h*2, height: rect.height + v*2};
+					if (nrect) {
+						list.add(nrect);
+					}
+				}
+			}
+		}, this);
+		
+		return list;
+	},
+});
+
+DemoGroupUI = function (network, element) {
+			twaver.vector.GroupUI.superClass.constructor.call(this, network, element);
+		};
+
+		twaver.Util.ext('DemoGroupUI', twaver.vector.GroupUI, {
+			validateBodyBounds: function () {
+				var $math=_twaver.math;
+				this.getBodyRect();
+				if (this._shapeRect) {
+					var rect = this.getPathRect("group", false);
+					var deep = this.getStyle('group.deep');
+					$math.grow(rect,deep+1,deep+1);
+					this.addBodyBounds(rect);
+
+					var bound=_twaver.cloneRect(rect);
+					bound.width+=10;
+					bound.height+=10;
+					this.addBodyBounds(bound);
+
+				} else {
+					twaver.vector.GroupUI.superClass.validateBodyBounds.call(this);
+				}
+				
+			},
+
+			drawPath : function(ctx, prefix, padding, pattern, points, segments, close) {
+				var $g=_twaver.g;
+				var zoomManager = this._network.zoomManager;
+				var node = this._element;
+				var rect = null;
+				if (prefix == 'group') {
+					rect = this._shapeRect;
+				} else {
+					rect = this.getZoomBodyRect();
+				};
+				if (padding) {
+					$math.addPadding(rect, node, prefix + '.padding', 1);
+				}
+				var lineWidth = node.getStyle(prefix + '.outline.width');
+				this.setShadow(this, ctx);
+				if (node.getAngle() != 0) {
+					if (!( node instanceof $Group)) {
+						rect = node.getOriginalRect();
+						rect = zoomManager._getElementZoomRect(this, rect);
+					}
+					ctx.save();
+					twaver.Util.rotateCanvas(ctx, rect, node.getAngle());
+				}
+
+				var fill = node.getStyle(prefix + '.fill');
+				var fillColor;
+				if (fill) {
+					if (this._innerColor && !$element.hasDefault(this._element)) {
+						fillColor = this._innerColor;
+					} else {
+						fillColor = node.getStyle(prefix + '.fill.color');
+					}
+					var gradient = node.getStyle(prefix + '.gradient');
+					if (gradient) {
+						$g.fill(ctx, fillColor, gradient, node.getStyle(prefix + '.gradient.color'), rect);
+					} else {
+						ctx.fillStyle = fillColor;
+					}
+				}				
+
+				//draw round rect body.
+				var roundRadius=10;
+				ctx.save();
+				ctx.beginPath();
+				ctx.moveTo(rect.x+roundRadius, rect.y);
+				ctx.lineTo(rect.x+rect.width-60, rect.y);
+				ctx.lineTo(rect.x+rect.width, rect.y+28);
+				ctx.lineTo(rect.x+rect.width, rect.y+rect.height-roundRadius);
+				ctx.quadraticCurveTo(rect.x+rect.width, rect.y+rect.height, rect.x+rect.width-roundRadius, rect.y+rect.height);
+				ctx.lineTo(rect.x+roundRadius, rect.y+rect.height);
+				ctx.quadraticCurveTo(rect.x, rect.y+rect.height, rect.x, rect.y+rect.height-roundRadius);
+				ctx.lineTo(rect.x, rect.y+roundRadius);
+				ctx.quadraticCurveTo(rect.x, rect.y, rect.x+roundRadius, rect.y);
+
+				ctx.save();
+				ctx.shadowOffsetX = 4;
+				ctx.shadowOffsetY = 4;
+				ctx.shadowBlur = 4;
+				ctx.shadowColor ="#555555";
+				ctx.fill();
+				ctx.restore();
+				
+				ctx.lineWidth=node.getStyle('group.outline.width');
+				ctx.strokeStyle=node.getStyle('group.outline.color');
+				ctx.stroke();		
+
+				ctx.restore();				
+
+				//draw cornor.
+				ctx.fillStyle=node.getStyle('group.outline.color');				
+				ctx.lineWidth=node.getStyle('group.outline.width');
+				ctx.lineJoin='bevel';
+				ctx.beginPath();
+				ctx.moveTo(rect.x+rect.width-60, rect.y);
+				ctx.lineTo(rect.x+rect.width-23-10, rect.y+47-10);
+				ctx.quadraticCurveTo(rect.x+rect.width-23, rect.y+46, rect.x+rect.width-23+10, rect.y+47-10);
+				ctx.lineTo(rect.x+rect.width, rect.y+28);
+				ctx.closePath();
+				ctx.save();
+				ctx.shadowOffsetX = 4;
+				ctx.shadowOffsetY = 4;
+				ctx.shadowBlur = 4;
+				ctx.shadowColor ="#777777";
+				ctx.fill();							
+				ctx.restore();
+				ctx.strokeStyle=node.getStyle('group.outline.color');
+				ctx.stroke();		
+
+				//draw pin.
+				ctx.save();
+				ctx.strokeStyle='#27A3DA';
+				ctx.lineWidth=2;
+				ctx.beginPath();
+				ctx.moveTo(rect.x+31, rect.y+5);
+				ctx.lineTo(rect.x+25, rect.y+20);
+				ctx.bezierCurveTo(rect.x+25, rect.y+26, rect.x+28, rect.y+28, rect.x+32, rect.y+23);
+				ctx.lineTo(rect.x+42, rect.y-2);
+				ctx.bezierCurveTo(rect.x+42, rect.y-12, rect.x+32, rect.y-10, rect.x+32, rect.y-5);
+				ctx.lineTo(rect.x+29, rect.y-1);
+
+				ctx.shadowOffsetX = 1;
+				ctx.shadowOffsetY = 1;
+				ctx.shadowBlur = 1;
+				ctx.shadowColor ="#aaaaaa";
+				ctx.stroke();
+				ctx.restore();
+
+				if (node.getAngle() != 0) {
+					ctx.restore();
+				}
+			},
+		});
+
+		DemoGroup = function (id) {
+			twaver.Group.superClass.constructor.call(this, id);
+		};
+
+		twaver.Util.ext('DemoGroup', twaver.Group, {
+			getVectorUIClass : function(){
+				return DemoGroupUI;
+			},
+		});
+</script>
+</head>
+<body onload="init()">
+</body>
+</html>

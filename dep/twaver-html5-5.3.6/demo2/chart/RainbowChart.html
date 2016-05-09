@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TWaver PieTree</title>
+  <script src="../../lib/twaver.js"></script>
+  <script src="data1.js"></script>
+  <script src="data2.js"></script>
+  <script src="data3.js"></script>
+  <script>		
+	
+	twaver.Util.registerImage('pie_node', {		
+		scale: function(data){
+			return {x: data.getClient('pie.scale'), y: data.getClient('pie.scale')};
+		},
+		v: [{
+			shape: 'circle',
+			r: function(data,view){return data.getClient("pie.radius");},
+			lineColor: function(data,view){return data.getClient("pie.color");},
+			lineWidth: function(data,view){return data.getClient("pie.gap")-1;},
+			startAngle: function(data,view){return data.getClient("pie.from");},
+			endAngle: function(data,view){return data.getClient("pie.to");},			
+		},{
+			shape: 'text',
+			textBaseline: 'middle',
+			textAlign: function(data, view){ return data.getClient("pie.text.reversed") ? 'right' : 'left'; },
+			text: function(data,view){return data.getClient("pie.text");},
+			x: function(data,view){return data.getClient("pie.text.x");},
+			y: function(data,view){return data.getClient("pie.text.y")-1;},
+			font: function(data, view){return data.getClient("pie.text.font");},
+			fill: function(data,view){return data.getClient("pie.text.color");},
+			rotate: function(data,view){return data.getClient("pie.text.angle");},
+			rotateOrigin: function(data,view){return data.getClient("pie.text.rotateOrigin");},
+			visible: function(data,view){return data.getClient("pie.text.visible");},
+			shadow: function(data){
+				return {
+					offsetX: 0,
+					offsetY: 0,
+					blur: 2,
+					color: data.getClient("pie.text.shadow"),
+				};
+			},
+		}],
+	});	
+
+	twaver.Util.registerImage('navigator', {		
+		w: 200,
+		h: 50,
+		cache:false,
+		v: [{
+			shape: 'rect',
+			w:'100%',
+			h:'100%',
+			x:'-50%',
+			y:'-50%',
+			lineWidth: 1,
+			visible: false,//for debug.
+		},{
+			shape: 'path',
+			data: function(data, view){
+				var offset=data.getClient('home') ? 0 : 10;
+				var path='M-80,-15L65,-15L75,0L65,15L-80,15L'+(-80+offset)+',0z';				
+				return path;
+			},
+			fill: function(data){return data.getClient("color");},
+			lineWidth:1.5,
+			lineColor:'white',
+		},{
+			shape: 'text',
+			text: function(data){
+				var text=data.getClient("text");
+				if(text.length>12){
+					text=text.substring(0,5)+'...';
+				}
+				return text;
+			},
+			textAlign: 'left',
+			x:-65,
+			y:0,
+			font:'bold 15px "Microsoft Yahei"',
+			fill:'white',
+			shadow: {
+				offsetX: 2,
+				offsetY: 2,
+				blur: 4,
+				color: 'black',
+			},
+		}],
+	});
+
+    function init() {		
+		var box = new twaver.ElementBox();
+		box.setClient('animation.count', 0);
+
+		//move same rainbow.id nodes together.
+		box.addDataPropertyChangeListener(function(e){
+			if(box.getClient('animation.count')==0 && e.property==='location' && e.source.getClient('rainbow.id') && !box.getClient('adjusting')){
+				var xOffset=e.newValue.x-e.oldValue.x;
+				var yOffset=e.newValue.y-e.oldValue.y;
+				var id=e.source.getClient('rainbow.id');
+				box.setClient('adjusting', true);
+				box.forEach(function(element){
+					if(element!=e.source && element instanceof twaver.Node && element.getClient('rainbow.id')===id){
+						element.setCenterLocation(element.getCenterLocation().x+xOffset, element.getCenterLocation().y+yOffset);
+					}
+				});
+				box.setClient('adjusting', false);
+			}
+		});
+
+		var network = new twaver.vector.Network(box);
+		network.getLabel=function(data){
+			if(data.getImage()==='pie_image' && !data.getClient('pie.text.visible')){
+				return '';
+			}
+			return data.getName();
+		};
+		document.body.appendChild(network.getView());
+		network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});	
+		network.setVisibleFunction(function (element) {
+			if (element.getClient("visible") == false) {
+				return false;
+			}
+			return true;
+		});
+		
+		network.getView().addEventListener('mousemove', function (e) {
+			var element = network.getElementAt(e);
+			if(network.lastHighlightedNode===element){
+				return;
+			}
+			network.lastHighlightedNode=element;
+			if(element && element.getImage()==='pie_node'){
+				var text=element.getClient('pie.text');
+				if(text.length>5){
+					text=text.substring(0,5)+'...';
+				}
+				var angle=element.getClient('pie.to')-element.getClient('pie.from');
+				var value=parseInt(angle/360*10000)/100;
+				text=text+'\n'+value+'%';
+				var centerNode=element.getClient('rainbow.center');
+				if(centerNode){
+					centerNode.setName(text);
+				}
+				network.centerNode=centerNode;
+				highlightRainbow(box, element.getClient('rainbow.id'), element);
+			}else{
+				if(network.centerNode){
+					network.centerNode.setName(network.centerNode.getClient('rainbow.name'));
+					highlightRainbow(box, network.centerNode.getClient('rainbow.id'), null);
+					network.centerNode=null;					
+				}
+			}
+			
+			updateNavigation(box, element);
+        });
+
+		loadRainbow(box, rainbow1);
+		loadRainbow(box, rainbow2);
+		loadRainbow(box, rainbow3);
+	}
+
+	function loadRainbow(box, json){
+		var id='rainbow-'+new Date().getTime();
+		var name=json.name;
+		var x=json.x;
+		var y=json.y;
+		var from=json.from;
+		var to=json.to;
+		var rainbowData=json.data;
+		var options=json.options;
+		createRainbow(box, id, name, 1, x, y, from, to, rainbowData, options);
+	}
+
+	function updateNavigation(box, highlightedNode){
+		var xOffset=0, yOffset=0;
+		if(highlightedNode){
+			xOffset=highlightedNode.getCenterLocation().x;
+			yOffset=highlightedNode.getCenterLocation().y;
+
+			var angle=(highlightedNode.getClient('pie.from')+highlightedNode.getClient('pie.to'))/2 % 360;
+			angle=Math.PI/180*angle;
+			var radius=highlightedNode.getClient('pie.radius');
+			xOffset=xOffset+radius*Math.cos(angle);
+			yOffset=yOffset+radius*Math.sin(angle);
+		}
+
+		var count=10;
+		var nodes=box.getClient('navigators');
+		//init nodes.
+		if(!nodes){
+			nodes=[];
+			for(var i=0;i<count;i++){
+				var node=new twaver.Node();
+				node.setImage('navigator');				
+				node.setClient('color','red');
+				node.setClient('home', i==0);
+				box.add(node);
+				nodes.push(node);
+			}
+			box.setClient('navigators', nodes);
+		}
+		var textNode=box.getClient('textNode');
+		if(!textNode){
+			textNode=new twaver.Node();
+			textNode.setSize(0,0);
+			textNode.setStyle('label.font', "14px 'Microsoft Yahei'");
+			textNode.setStyle('label.position', 'right.right');
+			box.add(textNode);
+			box.setClient('textNode', textNode);
+		}		
+		//hide nodes.		
+		for(var i=0;i<count;i++){
+			var node=nodes[i];
+			node.setClient('visible', false);
+		}
+		textNode.setClient('visible', false);
+		textNode.setName('');
+		var textString='';
+		if(highlightedNode && highlightedNode.getImage()==='pie_node'){
+			var angle=highlightedNode.getClient('pie.to')-highlightedNode.getClient('pie.from');
+			var value=parseInt(angle/360*10000)/100;
+			textString=highlightedNode.getClient('pie.text')+' - '+value+'%';
+		}
+		//update by parent path.
+		var boss=highlightedNode;
+		var length=0;
+		while(boss && boss.getImage()==='pie_node'){			
+			boss=boss.getClient('boss');
+			length++;
+		}
+		boss=highlightedNode;
+		var index=0;
+		var x=0, y=0;
+		while(boss && boss.getImage()==='pie_node'){
+			nodes[length-index-1].setClient('text', boss.getClient('pie.text'));
+			nodes[length-index-1].setClient('color', boss.getClient('pie.color'));
+			nodes[length-index-1].setClient('visible', true);			
+			x=Math.max(nodes[length-index-1].getCenterLocation().x, x);
+			y=Math.max(nodes[length-index-1].getCenterLocation().y, y);
+			boss=boss.getClient('boss');			
+			index++;			
+		}		
+		//layout nodes position.
+		if(highlightedNode){
+			twaver.Util.stopAllAnimates(true);
+			box.setClient('animation.count', 0);
+		}
+		var fromX=xOffset+100;
+		var fromY=yOffset+50;
+		var textX=fromX;
+		var textY=fromY;
+		for(var i=0;i<count;i++){
+			var node=nodes[i];
+			if(node.getClient('visible')){
+				var centerX=100+149*i+xOffset;
+				var centerY=50+yOffset;
+				
+				node.setCenterLocation(fromX,fromY);
+				box.sendToTop(node);				
+				animateMoveNode(node, fromX, fromY, centerX, centerY);
+
+				textX=Math.max(textX, centerX+65);
+				textY=Math.max(textY, centerY);								
+			}
+		}						
+		textNode.setClient('visible', true);
+		textNode.setCenterLocation(fromX, fromY);
+		textNode.setName(textString);
+		box.sendToTop(textNode);
+		animateMoveNode(textNode, fromX, fromY, textX, textY);
+	}
+
+	function animateMoveNode(node, x1, y1, x2, y2){		
+		(function(node){
+			var animate=new twaver.Animate({
+				from: {x:x1, y:y1},
+				to: {x:x2, y:y2},
+				delay:50,
+				type: 'point',
+				dur: 1000,
+				easing: 'bounceOut',
+				onUpdate: function (value) {					
+					node.setCenterLocation(value.x, value.y);
+				},
+			});
+			animate.play();	
+		})(node);
+	}
+
+	function highlightRainbow(box, id, highlightedNode){
+		box.forEach(function(data){
+			if(data.getClient('rainbow.id')==id){
+				if(data===highlightedNode){
+					var color=data.getClient('pie.color.original');
+					data.setClient('pie.color', color);
+					data.setClient('pie.text.color', data.getClient('pie.text.color.highlighted'));
+					data.setClient('pie.text.shadow', data.getClient('pie.text.shadow.highlighted'));
+					data.setClient('pie.text.visible', true);
+				}else{
+					if(highlightedNode){
+						data.setClient('pie.color', data.getClient('pie.color.gray'));
+					}else{
+						data.setClient('pie.color', data.getClient('pie.color.original'));
+					}
+					data.setClient('pie.text.color', data.getClient('pie.text.color.original'));
+					data.setClient('pie.text.shadow', '#aaaaaa');
+					data.setClient('pie.text.visible', data.getClient('pie.text.visible.original'));
+				}
+			}
+		});
+		if(highlightedNode){
+			var node=highlightedNode;
+			box.sendToTop(node);
+			while(node.getClient('boss')){
+				node=node.getClient('boss');
+				var color=node.getClient('pie.color.original');
+				node.setClient('pie.color', color);
+				node.setClient('pie.text.color', node.getClient('pie.text.color.highlighted'));
+				node.setClient('pie.text.shadow', node.getClient('pie.text.shadow.highlighted'));
+				node.setClient('pie.text.visible', true);
+				box.sendToTop(node);				
+			}
+		}
+	}
+
+	function createNode(box, level, x, y, from, to, text, nodeColor, options){
+		var radius=options.coreRadius + (level-0.5) * options.ringGap;
+		var bound=2 * radius + options.ringGap;
+		var h = (from+to)/2 % 360 /360;
+		var s = Math.max(0.2, 1-level*0.1);
+		var v=1;
+		var originalColor=nodeColor;
+		if(!nodeColor){
+			originalColor=options.valueColor==='rainbow' ? getHSVColor(h, s, v) : options.valueColor;
+		}
+		var grayColor=options.valueGrayColor==='rainbow' ? getHSVColor(h, 0.1, v) : options.valueGrayColor;
+
+		var node=new twaver.Follower();
+		node.setImage('pie_node');		
+		node.setStyle('select.style', 'none');		
+
+		node.setClient('pie.from', from);
+		node.setClient('pie.to', (to-from)>0.3?to-0.3:to);
+		node.setClient('pie.radius', radius);		
+		node.setClient('pie.gap', options.ringGap);
+		node.setClient('pie.color.original', originalColor);
+		node.setClient('pie.color.gray', grayColor);
+		node.setClient('pie.color', originalColor);
+		node.setClient('pie.color.h', h);
+		node.setClient('pie.color.s', s);
+		node.setClient('pie.color.v', v);		
+
+		var textAngle=(to+from)/2;
+		var textX=radius*Math.cos(Math.PI*textAngle/180);
+		var textY=radius*Math.sin(Math.PI*textAngle/180);
+		var rotateAngle=textAngle;
+		var rotateOrigin={x:textX, y:textY};
+		var textReversed=rotateAngle>90 && rotateAngle<270;
+		if(textReversed){
+			rotateAngle=rotateAngle-180;
+			textX+=options.ringGap*0.4;
+		}else{
+			textX-=options.ringGap*0.4;
+		}
+
+		node.setClient('pie.text.angle', rotateAngle);
+		node.setClient('pie.text.reversed', textReversed);
+		node.setClient('pie.text.rotateOrigin', rotateOrigin);
+		node.setClient('pie.text.x', textX);
+		node.setClient('pie.text.y', textY);		
+		node.setClient('pie.text', text);
+		node.setClient('pie.text.visible', options.valueTextVisible);
+		node.setClient('pie.text.visible.original', options.valueTextVisible);
+		node.setClient('pie.text.shadow', '#aaaaaa');
+		node.setClient('pie.text.shadow.highlighted', options.valueTextHighlightedShadow);
+		node.setClient('pie.text.color', options.valueTextColor);
+		node.setClient('pie.text.color.highlighted', options.valueTextHighlightedColor);
+		node.setClient('pie.text.color.original', options.valueTextColor);
+		node.setClient('pie.text.font', options.valueTextFont);
+
+		node.setSize(bound, bound);
+		node.setCenterLocation(x,y);
+		
+		box.add(node);
+
+		new twaver.Animate({
+			from: 0,
+			to: 1,
+			dur: 3000+level*100,
+			easing: 'elasticOut',
+			onUpdate: function (value) {
+				node.setClient('pie.scale', value);
+			},
+			onDone: function(){
+				box.setClient('animation.count', box.getClient('animation.count')-1);
+			},
+		}).play();		
+		
+		box.setClient('animation.count', box.getClient('animation.count')+1);
+
+		return node;
+	}
+
+	function createCoreNode(box, id, name, x, y, options){
+		var node=new twaver.Node();
+		node.setSize(0,0);
+		node.setCenterLocation(x,y);		
+		node.setClient('rainbow.id', id);
+		node.setStyle('label.position', 'center');
+		node.setName(name);
+		node.setClient('rainbow.name', name);
+		node.setStyle('label.font', options.nameFont);
+		node.setStyle('label.color', options.nameColor);
+		node.setStyle('label.visible', options.nameVisible);
+		box.add(node);
+		return node;
+	}
+
+	function createRainbow(box, id, name, level, x, y, from, to, data, options, centerNode, boss){
+		if(!centerNode){
+			centerNode=createCoreNode(box, id, name, x, y, options);
+		}
+
+		var count=data.length;
+		var total=0;
+		for(var i=0;i<count;i++){
+			var item=data[i];
+			var value=item.value;
+			total+=value;
+		}
+		var angleCursor=from;
+		for(var i=0;i<count;i++){
+			var item=data[i];
+			var name=item.name;
+			var range=item.value/total*(to-from);
+			var color=item.color;
+			var node=createNode(box, level, x, y, angleCursor, angleCursor+range, name, color, options);
+			node.setClient('rainbow.id', id);
+			node.setClient('rainbow.center', centerNode);
+			node.setClient('boss', boss);
+			if(item.hide){
+				node.setClient('visible', !item.hide);
+			}else{
+				node.setClient('visible', true);
+			}
+			if(item.data){
+				createRainbow(box, id, name, level+1, x, y, angleCursor, angleCursor+range, item.data, options, centerNode, node);
+			}
+			angleCursor+=range;
+		}
+	}
+
+	/* h, s, v (0 ~ 1) */
+	function getHSVColor(h, s, v) {
+		var r, g, b, i, f, p, q, t;
+		if (h && s === undefined && v === undefined) {
+			s = h.s, v = h.v, h = h.h;
+		}
+		i = Math.floor(h * 6);
+		f = h * 6 - i;
+		p = v * (1 - s);
+		q = v * (1 - f * s);
+		t = v * (1 - (1 - f) * s);
+		switch (i % 6) {
+			case 0: r = v, g = t, b = p; break;
+			case 1: r = q, g = v, b = p; break;
+			case 2: r = p, g = v, b = t; break;
+			case 3: r = p, g = q, b = v; break;
+			case 4: r = t, g = p, b = v; break;
+			case 5: r = v, g = p, b = q; break;
+		}
+		var rgb='#'+toHex(r * 255)+toHex(g * 255)+toHex(b * 255);
+		return rgb;
+	}
+
+	function toHex(value){
+		var result=parseInt(value).toString(16);
+		if(result.length==1){
+			result='0'+result;
+		}
+		return result;
+	}
+
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

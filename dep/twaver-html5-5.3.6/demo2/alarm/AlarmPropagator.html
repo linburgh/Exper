@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <title>AlarmPropagator</title>
+    <script type="text/javascript">
+        var box = new twaver.ElementBox();
+        var network = new twaver.vector.Network(box);
+        function init() {
+            document.getElementById('main').appendChild(network.getView());
+            network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+            registerImages();
+            network.setLinkFlowEnabled(true);
+            network.setZoomManager(new twaver.vector.LogicalZoomManager(network,true));
+            network.setLinkPathFunction(function (linkUI, defaultPoints) {
+                var f = linkUI.getFromPoint();
+                var t = linkUI.getToPoint();
+                var angle = Math.atan((t.y - f.y) / (t.x - f.x));
+                var points = new twaver.List();
+                points.add(f);
+                points.add(t);
+
+                if (linkUI.getElement().getStyle('curve_type') == 'float') {
+                    var m;
+                    if(f.y > t.y) {
+                        m = {
+                            x: (f.x + t.x) / 2 + 5,
+                            y: (f.y + t.y) / 2 - 45
+                        }
+                    } else {
+                        m = {
+                            x: (f.x + t.x) / 2 + 5,
+                            y: (f.y + t.y) / 2 + 45
+                        }
+                    }
+                    var cps = new twaver.List();
+                    cps.add(m);
+                    cps.add(t);
+                    points.removeAt(1);
+                    points.add(cps);
+                }
+                return points
+            });
+            initDataBox();
+        }
+        function initDataBox() {
+            var switchComponent = createNode({x:250, y:240},null,null);
+            for(var i = 0; i < 7; i++) {
+                var terminal = createNode({x:100, y: (i+1) * 60},null,"192.168.0." + i);
+                terminal.setStyle("label.xoffset",-50);
+                terminal.setStyle("label.yoffset",-16);
+                terminal.setStyle("label.color","#8B8682");
+                createLink(switchComponent, terminal);
+            }
+
+            var group = new twaver.Group();
+            group.s('group.shape', 'oval');
+            group.s('group.fill.color', '#FEF3E2');
+            group.s('group.outline.color', '#F8C374');
+            group.s('group.outline.width', '2');
+            group.setExpanded(true);
+            box.add(group);
+
+            var ls = createNode({x:400, y:240});
+            var link1 = createLink(switchComponent, ls);
+            link1.setStyle('arrow.from.color', 'red');
+            link1.setStyle('arrow.to.color', 'red');
+            link1.setStyle('arrow.to', true);
+            link1.setStyle("link.color","red");
+            group.addChild(ls);
+
+            var server = createNode({x: 600, y: 240});
+            group.addChild(server);
+            for(var i = 0; i < 4; i++) {
+                var isg = createNode({x: 500, y:(i + 1) * 100});
+                group.addChild(isg);
+                var isgServerLink;
+                if(i == 0) {
+                    isgServerLink = createLink(server,isg);
+                    isgServerLink.setStyle('arrow.from.color', 'red');
+                    isgServerLink.setStyle("link.color","red");
+                    isgServerLink.setStyle('arrow.to.color', 'red');
+                    isgServerLink.setStyle('arrow.from', true);
+                } else {
+                    isgServerLink = createLink(server,isg);
+                }
+                group.addChild(isgServerLink);
+                var isgLsLink;
+                if(i == 0) {
+                    isgLsLink = createLink(isg,ls);
+                    isgLsLink.setStyle('arrow.from.color', 'red');
+                    isgLsLink.setStyle("link.color","red");
+                    isgLsLink.setStyle('arrow.to.color', 'red');
+                    isgLsLink.setStyle('arrow.from', true);
+                } else {
+                    isgLsLink = createLink(isg,ls);
+                }
+                group.addChild(isgLsLink);
+            }
+
+            var dns = createSubNetwork({x: 750, y: 240});
+            dns.setName("DOUBLE CLICK ME");
+            dns.setStyle("label.color","red");
+            var dnsServerLink = createLink(server,dns);
+            dnsServerLink.setStyle("link.color","red");
+            dnsServerLink.setStyle("link.pattern", [6,10]);
+            dnsServerLink.setStyle("icons.names",["error"]);
+            dnsServerLink.setStyle("icons.yoffset",-8);
+            setInterval(function(){
+                if(dnsServerLink.getStyle("icons.names")) {
+                    dnsServerLink.setStyle("icons.names",null);
+                    return;
+                } else {
+                    dnsServerLink.setStyle("icons.names",["error"]);
+                    dnsServerLink.setStyle("icons.yoffset",-8);
+                }
+            },500);
+
+            for(var i = 0; i < 7; i++) {
+                var node = createNode({x: 900, y:(i + 1) * 60});
+                if(i < 3) {
+                    var link = createLink(dns,node);
+                } else {
+                    var link = createLink(dns,node);
+                }
+                if(i != 3) {
+                    link.setStyle("curve_type","float");
+                }
+            }
+            var bs = createNode({x:250,y:50},"bs");
+            bs.setParent(dns);
+            var bs1= createNode({x:550,y:50},"bs");
+            bs1.setParent(dns);
+            var chassis = createNode({x:200,y:250},"chassis");
+            chassis.setParent(dns);
+            for(var i = 0; i < 9; i++) {
+                var cardImg = "card1",card;
+                if(i % 2 == 0) {
+                    cardImg = "card2"
+                }
+                card = createFollow({x:225 + i * 50,y:265},cardImg);
+                card.setHost(chassis);
+                card.setParent(dns);
+                if(i == 0 || i == 8) {
+                    var port = createFollow({x:240 + i * 50,y:280},"port");
+                    port.setHost(card);
+                    port.setParent(dns);
+                }
+                if(i == 4) {
+                    var port = createFollow({x:240 + i * 50,y:280},"port");
+                    port.getAlarmState().setNewAlarmCount(twaver.AlarmSeverity.CRITICAL, 3);
+                    port.setHost(card);
+                    port.setParent(dns);
+                    port = createFollow({x:240 + i * 50,y:300},"port");
+                    port.setHost(card);
+                    port.setParent(dns);
+                    port = createFollow({x:240 + i * 50,y:320},"port");
+                    port.setHost(card);
+                    port.setParent(dns);
+                }
+                if((i > 0 && i < 4) || (i > 4 && i < 8)) {
+                    var port = createFollow({x:240 + i * 50,y:290},"port");
+                    port.setHost(card);
+                    port.setParent(dns);
+                    port = createFollow({x:240 + i * 50,y:310},"port");
+                    port.setHost(card);
+                    port.setParent(dns);
+                    if(i == 3) {
+                        var link = createLink(port,bs);
+                        link.setStyle("link.width",3);
+                        link.setStyle('arrow.from.color', 'red');
+                        link.setStyle("link.color","red");
+                        link.setStyle('arrow.from', true);
+
+                    }
+                    if(i == 7) {
+                        var link = createLink(port,bs1);
+                        link.setStyle("link.width",3);
+                        link.setStyle('arrow.from.color', 'red');
+                        link.setStyle("link.color","red");
+                        link.setStyle('arrow.from', true);
+                    }
+                }
+            }
+        }
+        function createLink(from, to, isFlow) {
+            var link = new twaver.Link(from,to);
+            link.setStyle("link.width",1);
+            if(isFlow) {
+                link.setStyle('link.flow', true);
+                link.setStyle('link.flow.converse',true);
+                link.setStyle('link.pattern', [5, 5]);
+                link.setStyle('link.color', 'red')
+                link.setStyle('link.color', 'green');
+            }
+            box.add(link);
+            return link;
+        }
+        function createNode(location,image,name) {
+            var node = new twaver.Node();
+            node.setLocation(location.x, location.y);
+            if(image) {
+                node.setImage(image);
+            }
+            if(name) {
+                node.setName(name);
+            }
+            box.add(node);
+            return node;
+        }
+        function createFollow(location,image,name) {
+            var node = new twaver.Follower();
+            node.setLocation(location.x, location.y);
+            if(image) {
+                node.setImage(image);
+            }
+            if(name) {
+                node.setName(name);
+            }
+            box.add(node);
+            return node;
+        }
+        function createGroup(location,image) {
+            var node = new twaver.Group();
+            node.setLocation(location.x, location.y);
+            if(image) {
+                node.setImage(image);
+            }
+            box.add(node);
+            return node;
+        }
+        function createSubNetwork(location, image) {
+            var subNetwork = new twaver.SubNetwork();
+            subNetwork.setLocation(location.x, location.y);
+            if(image) {
+                subNetwork.setImage(image);
+            }
+            box.add(subNetwork);
+            return subNetwork
+        }
+        function createCard(location,image,host) {
+            var card = new twaver.Follower();
+            card.setParent(parent);
+            card.setLocation(200,100);
+            card.setImage("card1");
+            if(host) {
+
+            }
+            box.add(card);
+        }
+        function registerImage(url) {
+            var img = new Image();
+            img.src = url;
+            img.onload = function () {
+                img.onload = null;
+                twaver.Util.registerImage(getImageName(url), img, img.width, img.height);
+                network.invalidateElementUIs();
+            };
+        }
+        function getImageName(url) {
+            var index = url.lastIndexOf('/');
+            var name = url;
+            if (index >= 0) {
+                name = url.substring(index + 1);
+            }
+            index = name.lastIndexOf('.');
+            if (index >= 0) {
+                name = name.substring(0, index);
+            }
+            return name;
+        }
+        function registerImages() {
+            twaver.Util.registerImage('error',{
+                "w": 16,
+                "h": 16,
+                "origin": {
+                    "x": 0,
+                    "y": 0
+                },
+                "v": [
+                    {
+                        "shape": "path",
+                        "data": "M12.653,10.386L10.386,8.12l2.266-2.266c0.623-0.623,0.623-1.643,0-2.266c-0.623-0.624-1.644-0.623-2.268,0  L8.12,5.853L5.855,3.588c-0.624-0.624-1.645-0.623-2.267,0c-0.623,0.623-0.623,1.643,0,2.266L5.854,8.12l-2.266,2.266  c-0.623,0.623-0.623,1.644,0,2.267c0.623,0.622,1.643,0.622,2.266,0l2.267-2.267l2.268,2.267c0.622,0.622,1.643,0.622,2.266,0  C13.275,12.029,13.275,11.009,12.653,10.386z",
+                        "fill": "#E60012"
+                    }
+                ]
+            });
+            twaver.Util.registerImage('card1',{
+                "w": 34.666,
+                "h": 112.333,
+                "origin": {
+                    "x": 0,
+                    "y": 0
+                },
+                "v": [
+                    {
+                        "shape": "path",
+                        "data": "M34.666,109.333c0,1.657-1.343,3-3,3H3c-1.657,0-3-1.343-3-3V3c0-1.657,1.343-3,3-3h28.666  c1.657,0,3,1.343,3,3V109.333z",
+                        "gradient": {
+                            "id": "SVGID_1_",
+                            "type": "linear",
+                            "x1": 17.3335,
+                            "y1": 111.666,
+                            "x2": 17.3335,
+                            "y2": -0.0015,
+                            "stop": [
+                                {
+                                    "offset": "0",
+                                    "color": "#8DAAA1"
+                                },
+                                {
+                                    "offset": "0.5484",
+                                    "color": "#E4ECE3"
+                                },
+                                {
+                                    "offset": "1",
+                                    "color": "#88A79E"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            });
+            twaver.Util.registerImage('card2',{
+                "w": 34.666,
+                "h": 112.333,
+                "origin": {
+                    "x": 0,
+                    "y": 0
+                },
+                "v": [
+                    {
+                        "shape": "path",
+                        "data": "M34.666,109.333c0,1.657-1.343,3-3,3H3c-1.657,0-3-1.343-3-3V3c0-1.657,1.343-3,3-3h28.666  c1.657,0,3,1.343,3,3V109.333z",
+                        "gradient": {
+                            "id": "SVGID_1_",
+                            "type": "linear",
+                            "x1": 17.3335,
+                            "y1": 111.666,
+                            "x2": 17.3335,
+                            "y2": -0.0015,
+                            "stop": [
+                                {
+                                    "offset": "0",
+                                    "color": "#A7819C"
+                                },
+                                {
+                                    "offset": "0.5484",
+                                    "color": "#F9F3F4"
+                                },
+                                {
+                                    "offset": "1",
+                                    "color": "#A7819C"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            });
+            twaver.Util.registerImage('chassis',{
+                "w": 497.999,
+                "h": 147,
+                "origin": {
+                    "x": 0,
+                    "y": 0
+                },
+                "v": [
+                    {
+                        "shape": "rect",
+                        "x": 19,
+                        "y": 0,
+                        "w": 459.997,
+                        "h": 147,
+                        "fill": "#3E3C3C"
+                    },
+                    {
+                        "shape": "rect",
+                        "x": 17,
+                        "y": 0,
+                        "w": 2,
+                        "h": 147,
+                        "fill": "#241D1B"
+                    },
+                    {
+                        "shape": "rect",
+                        "x": 478.998,
+                        "y": 0,
+                        "w": 2,
+                        "h": 147,
+                        "fill": "#241D1B"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M3,0C1.343,0,0,1.343,0,3v141c0,1.657,1.343,3,3,3h14V0H3z M13,105.997c0,0.553-0.448,1-1,1H5   c-0.552,0-1-0.447-1-1v-4c0-0.553,0.448-1,1-1h7c0.552,0,1,0.447,1,1V105.997z M13,45.004c0,0.553-0.448,1-1,1H5   c-0.552,0-1-0.447-1-1v-4c0-0.553,0.448-1,1-1h7c0.552,0,1,0.447,1,1V45.004z",
+                        "gradient": {
+                            "id": "SVGID_1_",
+                            "type": "linear",
+                            "x1": 8.5,
+                            "y1": 0.665,
+                            "x2": 8.5,
+                            "y2": 147.3462,
+                            "stop": [
+                                {
+                                    "offset": "0",
+                                    "color": "#A3A2A2"
+                                },
+                                {
+                                    "offset": "1",
+                                    "color": "#4A4747"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M480.998,0v147h14.001c1.656,0,3-1.343,3-3V3c0-1.657-1.344-3-3-3H480.998z M484.999,101.997   c0-0.553,0.447-1,1-1h7c0.552,0,1,0.447,1,1v4c0,0.553-0.448,1-1,1h-7c-0.553,0-1-0.447-1-1V101.997z M484.999,41.004   c0-0.553,0.447-1,1-1h7c0.552,0,1,0.447,1,1v4c0,0.553-0.448,1-1,1h-7c-0.553,0-1-0.447-1-1V41.004z",
+                        "gradient": {
+                            "id": "SVGID_2_",
+                            "type": "linear",
+                            "x1": 524.8374,
+                            "y1": 0.665,
+                            "x2": 524.8374,
+                            "y2": 147.3452,
+                            "stop": [
+                                {
+                                    "offset": "0",
+                                    "color": "#A3A2A2"
+                                },
+                                {
+                                    "offset": "1",
+                                    "color": "#4A4747"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            });
+            twaver.Util.registerImage('port', {
+                "w": 12,
+                "h": 14,
+                "origin": {
+                    "x": 0,
+                    "y": 0
+                },
+                "v": [
+                    {
+                        "shape": "rect",
+                        "x": 0,
+                        "y": 0,
+                        "w": 12,
+                        "h": 14,
+                        "fill": "#585958"
+                    },
+                    {
+                        "shape": "rect",
+                        "x": 1,
+                        "y": 1,
+                        "w": 10,
+                        "h": 12,
+                        "gradient": {
+                            "id": "SVGID_1_",
+                            "type": "linear",
+                            "x1": 5.9995,
+                            "y1": 1.251,
+                            "x2": 5.9995,
+                            "y2": 12.6784,
+                            "stop": [
+                                {
+                                    "offset": "0.1565",
+                                    "color": "#C6C6C5"
+                                },
+                                {
+                                    "offset": "0.5484",
+                                    "color": "#7E7E7D"
+                                },
+                                {
+                                    "offset": "1",
+                                    "color": "#BDBCBD"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "shape": "rect",
+                        "x": 2,
+                        "y": 2,
+                        "w": 8,
+                        "h": 10,
+                        "gradient": {
+                            "id": "SVGID_2_",
+                            "type": "linear",
+                            "x1": 6.0005,
+                            "y1": 11.751,
+                            "x2": 6.0005,
+                            "y2": 2.167,
+                            "stop": [
+                                {
+                                    "offset": "0.1565",
+                                    "color": "#757675"
+                                },
+                                {
+                                    "offset": "1",
+                                    "color": "#292122"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "shape": "rect",
+                        "x": 1,
+                        "y": 1,
+                        "w": 2,
+                        "h": 3,
+                        "fill": "#FFFFFF"
+                    },
+                    {
+                        "shape": "rect",
+                        "x": 1,
+                        "y": 10,
+                        "w": 2,
+                        "h": 3,
+                        "fill": "#FFFFFF"
+                    }
+                ]
+            });
+            twaver.Util.registerImage('bs', {
+                "w": 79.292,
+                "h": 95.052,
+                "origin": {
+                    "x": 0,
+                    "y": 0
+                },
+                "v": [
+                    {
+                        "shape": "path",
+                        "data": "M30.896,19.802c0,0-2.369,39.269-28.271,72.474l2.771,1.026l15.51-7.901l10.24,9.651h1.5v-75.25    H30.896z M22.271,65.552l1.875,2.375l-4.25,3L22.271,65.552z M10.254,86.991l5.14-8.223l3.253,4.033L10.254,86.991z     M18.136,76.427l7.011-6.25l5.072,6.497l-8.197,4.378L18.136,76.427z M30.396,89.427l-6.157-5.725l6.157-3.15V89.427z     M30.396,70.927l-2.625-3l2.625-2.708V70.927z M26.771,65.26l-2.415-2.951l3.415-3.382l2.625,3.125L26.771,65.26z M30.396,51.677    H27.49l2.906-10.269V51.677z",
+                        "gradient": {
+                            "id": "SVGID_1_",
+                            "type": "linear",
+                            "x1": 2.6255,
+                            "y1": 57.4268,
+                            "x2": 32.6465,
+                            "y2": 57.4268,
+                            "stop": [
+                                {
+                                    "offset": "0",
+                                    "color": "#A09F9F"
+                                },
+                                {
+                                    "offset": "1",
+                                    "color": "#CDCECD"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M32.646,19.802v75.25h1.5l10.24-9.651l15.51,7.901l2.771-1.026    C36.766,59.07,34.396,19.802,34.396,19.802H32.646z M45.396,70.927l-4.25-3l1.875-2.375L45.396,70.927z M46.646,82.802    l3.253-4.033l5.14,8.223L46.646,82.802z M43.271,81.052l-8.197-4.378l5.072-6.497l7.011,6.25L43.271,81.052z M34.896,80.552    l6.157,3.15l-6.157,5.725V80.552z M34.896,65.219l2.625,2.708l-2.625,3V65.219z M34.896,62.052l2.625-3.125l3.415,3.382    l-2.415,2.951L34.896,62.052z M34.896,41.408l2.906,10.269h-2.906V41.408z",
+                        "gradient": {
+                            "id": "SVGID_2_",
+                            "type": "linear",
+                            "x1": 62.4922,
+                            "y1": 57.4268,
+                            "x2": 32.7863,
+                            "y2": 57.4268,
+                            "stop": [
+                                {
+                                    "offset": "0",
+                                    "color": "#474546"
+                                },
+                                {
+                                    "offset": "1",
+                                    "color": "#7A787A"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "shape": "rect",
+                        "x": 51.292,
+                        "y": 69.302,
+                        "w": 28,
+                        "h": 25,
+                        "fill": "#FFFFFF"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "79.292,69.302 51.292,69.302 56.292,63.302 74.292,63.302 z",
+                        "fill": "#D2D2D2"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M51.292,69.302v25h28v-25H51.292z M60.292,91.303h-6v-5h6V91.303z M60.292,84.302h-6v-5h6V84.302z     M60.292,77.302h-6v-5h6V77.302z M68.292,91.303h-6v-5h6V91.303z M68.292,84.302h-6v-5h6V84.302z M68.292,77.302h-6v-5h6V77.302z     M76.293,91.303h-6v-5h6V91.303z M76.293,84.302h-6v-5h6V84.302z M76.293,77.302h-6v-5h6V77.302z",
+                        "fill": "#78797A"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M8.964,39.604c-0.333,0-0.666-0.127-0.919-0.38C2.857,34.035,0,27.138,0,19.802S2.857,5.567,8.044,0.38      c0.508-0.507,1.331-0.507,1.839,0c0.507,0.508,0.507,1.331,0,1.839C5.187,6.915,2.6,13.159,2.6,19.802      s2.587,12.887,7.284,17.583c0.507,0.508,0.507,1.331,0,1.839C9.629,39.477,9.296,39.604,8.964,39.604z",
+                        "fill": "#88B8DA"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M13.966,34.603c-0.333,0-0.666-0.127-0.919-0.381c-3.852-3.853-5.973-8.973-5.973-14.42      s2.121-10.568,5.973-14.42c0.508-0.508,1.332-0.508,1.838,0c0.508,0.508,0.508,1.33,0,1.838      c-3.361,3.361-5.212,7.83-5.212,12.582s1.851,9.221,5.212,12.582c0.507,0.507,0.507,1.331,0,1.839      C14.631,34.477,14.298,34.603,13.966,34.603z",
+                        "fill": "#699ECA"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M18.907,29.661c-0.333,0-0.666-0.127-0.919-0.381c-2.532-2.532-3.926-5.898-3.926-9.479      s1.394-6.946,3.926-9.479c0.508-0.508,1.332-0.508,1.838,0c0.508,0.508,0.508,1.33,0,1.838      c-2.041,2.041-3.165,4.755-3.165,7.641s1.124,5.6,3.165,7.641c0.507,0.507,0.507,1.331,0,1.839      C19.573,29.534,19.24,29.661,18.907,29.661z",
+                        "fill": "#4F8DBF"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M56.329,0c0.332,0,0.665,0.127,0.919,0.38c5.188,5.188,8.044,12.086,8.044,19.422      c0,7.337-2.856,14.234-8.044,19.423c-0.508,0.506-1.331,0.506-1.839,0c-0.508-0.508-0.508-1.332,0-1.84      c4.697-4.695,7.283-10.94,7.283-17.583c0-6.642-2.586-12.887-7.283-17.582c-0.508-0.508-0.508-1.332,0-1.84      C55.663,0.127,55.996,0,56.329,0z",
+                        "fill": "#88B8DA"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M51.327,5.001c0.332,0,0.665,0.127,0.919,0.381c3.852,3.853,5.973,8.974,5.973,14.42      c0,5.447-2.121,10.568-5.973,14.421c-0.508,0.508-1.331,0.508-1.839,0s-0.508-1.331,0-1.838      c3.361-3.361,5.212-7.83,5.212-12.583c0-4.752-1.851-9.221-5.212-12.582c-0.508-0.507-0.508-1.33,0-1.838      C50.661,5.128,50.994,5.001,51.327,5.001z",
+                        "fill": "#699ECA"
+                    },
+                    {
+                        "shape": "path",
+                        "data": "M46.386,9.942c0.332,0,0.665,0.127,0.919,0.381c2.532,2.533,3.926,5.898,3.926,9.479      s-1.394,6.947-3.926,9.479c-0.508,0.508-1.331,0.508-1.839,0s-0.508-1.331,0-1.839c2.041-2.041,3.165-4.754,3.165-7.641      c0-2.885-1.124-5.599-3.165-7.641c-0.508-0.507-0.508-1.33,0-1.838C45.72,10.069,46.053,9.942,46.386,9.942z",
+                        "fill": "#4F8DBF"
+                    }
+                ]
+            });
+        }
+
+    </script>
+</head>
+<body onload="init();">
+<div></div>
+<div id="main"></div>
+</body>
+</html>

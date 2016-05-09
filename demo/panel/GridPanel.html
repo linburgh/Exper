@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<link rel="stylesheet"  type="text/css" href="../../dist/css/ass.css">
+<script language="javascript" src="../../dist/js/ass-debug.js"></script>
+<script language="javascript"> 
+	function createData(){
+		var data  = [];
+		
+		for(var i=0; i<10; i++){
+			var d = {
+				'col-1':'col-1',
+				'col-2':'col-2',
+				'col-3':'col-3',
+				'col-4':'col-4',
+				'col-5':'col-5'
+			}
+			data.push(d);
+		}
+		return data;
+	}
+	/*
+	二维数组
+	*/
+	function createColumns(){
+		var columns = [];
+		for(var i=0; i<5; i++){
+			var column = {header:'列'+i,dataIndex:'col-'+(i+1)};
+			columns.push(column);
+		}
+		return columns;
+	}
+
+	$(function(){
+		var data = createData();
+		var columns = createColumns();
+		var gridPanel = ass.UIFactory.createInstance("GridPanel",{
+			title:"GridPanel",
+			data:data,
+			columns:columns
+		});
+		
+		gridPanel.render();
+	});
+</script>
+<title>GridPanel</title>
+</head>
+<body>
+
+</body>
+</html>
+ 

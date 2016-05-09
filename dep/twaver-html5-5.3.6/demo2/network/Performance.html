@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TWaver HTML5</title>
+    <meta charset="UTF-8">
+    <script src="../../lib/twaver.js"></script>
+    <script>
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    var toolbar = document.createElement('div');
+    var NodeColumn = 10;
+    var NodeRow = 10;
+    var alarm = [
+    twaver.AlarmSeverity.CRITICAL,
+    twaver.AlarmSeverity.MAJOR,
+    twaver.AlarmSeverity.MINOR,
+    twaver.AlarmSeverity.WARNING,
+    twaver.AlarmSeverity.INDETERMINATE,
+    twaver.AlarmSeverity.CLEARED];
+
+    function init() {
+        initToolbar();
+        initNetwork();
+        network.addViewListener(function (e) {
+          e.kind === 'validateStart' && console.time('refresh');
+          e.kind === 'validateEnd' && console.timeEnd('refresh');
+      });
+    }
+
+    function initNetwork() {
+        var centerPane = new twaver.controls.BorderPane(network, toolbar);
+        centerPane.setTopHeight(0);
+        var view = centerPane.getView();
+        view.style.left = '0px';
+        view.style.right = '0px';
+        view.style.top = '0px';
+        view.style.bottom = '0px';
+        document.body.appendChild(view);
+
+        network.setZoomVisibilityThresholds({
+            link: 0.15,
+            label: 0.8,
+            label2: 0.8,
+            alarmBallon: 0.6,
+        });
+
+        network.isVisible = function (element) {
+            return true;
+        };
+        network._isInView = function (ui, realRect) {
+            if (ui instanceof twaver.vector.LinkUI) {
+                return false;
+            }
+            return _twaver.math.intersects(realRect, ui.getZoomViewRect());
+        };
+        network.paintBottom = function (ctx, dirtyRect) {
+            ctx.strokeStyle = twaver.Styles.getStyle('link.color');
+            ctx.lineWidth = twaver.Styles.getStyle('link.width');
+
+            ctx.beginPath();
+            for (var id in network._elementUIMap) {
+                var ui = network._elementUIMap[id];
+                if (ui instanceof twaver.vector.LinkUI) {
+                    if (_twaver.math.intersects(dirtyRect, ui.getZoomViewRect())) {
+                        //console.log(ui._element._id, ui.getZoomViewRect());
+                        var fromPoint = ui.getFromPoint();
+                        var toPoint = ui.getToPoint();
+                        ctx.moveTo(fromPoint.x, fromPoint.y);
+                        ctx.lineTo(toPoint.x, toPoint.y);
+                    }
+                }
+            }
+            ctx.stroke();
+        };
+        network.setToolTipEnabled(false);
+        twaver.Styles.setStyle('link.width', 1);
+    }
+
+    function initToolbar() {
+        toolbar.style.background = twaver.Colors.orange;
+        addInput("ZoomType:");
+        //zoomManager
+        var zoomManagers = ['PhysicZoom', 'LogicZoom', 'MixedZoom'];
+        addInteractionComboBox(toolbar, zoomManagers, function () {
+            switch (this.value) {
+                case 'PhysicZoom':
+                network.setZoomManager(new twaver.vector.PhysicalZoomManager(network));
+                break;
+                case 'LogicZoom':
+                network.setZoomManager(new twaver.vector.LogicalZoomManager(network));
+                break;
+                case 'MixedZoom':
+                network.setZoomManager(new twaver.vector.MixedZoomManager(network));
+                break;
+            }
+        });
+        addInput("Row:");
+        //nodes
+        var nodes = ['10', '20', '50', '100','200','300','400','500','1000'];
+        addInteractionComboBox(toolbar, nodes, function () {
+            NodeColumn = this.value;
+        });
+        addInput("Column:");
+        //nodes
+        var nodes = ['10', '20', '50', '100','200','300','400','500','1000'];
+        addInteractionComboBox(toolbar, nodes, function () {
+            NodeRow = this.value;
+        });
+
+        this.isShowAlarm = addCheckBox(toolbar, false, "Show Alarm", function (e) {
+            if (this.checked) {
+                box.forEach(function (element) {
+                    if (element instanceof  twaver.Node) {
+                        addAlarm(element.getId(), element.getId(), alarm[parseInt(Math.random()*5)], box.getAlarmBox());
+                    }
+                });
+            } else {
+                box.getAlarmBox().clear();
+            }
+        });
+
+        addButton(toolbar, 'Create', null, function () {
+            box.clear();
+            network.setZoom(1);
+            var startTime = new Date();
+            createData();
+            var endTime = new Date();
+            window.alert(endTime - startTime + "ms");
+        });
+        addButton(toolbar, 'Clear', null, function () {
+            box.clear();
+            network.setZoom(1);
+        });
+    }
+
+    function createData() {
+       var self = this;
+        box.clear();
+        console.time("createData");
+        addDatas(NodeRow, NodeColumn);
+        console.timeEnd("createData");
+    }
+
+    function addDatas(rowCount, columnCount) {
+        var i = 0, j = 0, node, name;
+        this.nodeCount = 0;
+        for (j = 0; j < rowCount; j++) {
+            for (i = 0; i < columnCount; i++) {
+                name = "Node:" + j + "," + i;
+                node = new twaver.Node(name);
+                node.setName(name);
+                node.setLocation(30 + i * 70, 30 + j * 70);
+                if(this.isShowAlarm.checked){
+                    addAlarm(node.getId(), node.getId(), alarm[parseInt(Math.random()*5)], box.getAlarmBox());
+                }
+                box.add(node);
+                this.nodeCount++;
+            }
+        }
+
+        linkCount = 0;
+        var from, to, link;
+        var linkList = new twaver.List();
+        for (j = 0; j < rowCount; j++) {
+            for (i = 0; i < columnCount; i++) {
+                if (i > 0) {
+                    from = box.getDatas().get(i + j * rowCount);
+                    to = box.getDatas().get(i - 1 + j * rowCount);
+                    link = new twaver.Link(from, to);
+                    linkList.add(link);
+                    linkCount++;
+                }
+                if (j > 0) {
+                    from = this.box.getDatas().get(i + j * rowCount);
+                    to = this.box.getDatas().get(i + (j - 1) * rowCount);
+                    link = new twaver.Link(from, to);
+                    linkList.add(link);
+                    linkCount++;
+                }
+            }
+        }
+        linkList.forEach(function (link) {
+            box.add(link);
+        }, this);
+    }
+
+    function addAlarm(alarmID, elementID, alarmSeverity, alarmBox) {
+        var alarm = new twaver.Alarm(alarmID, elementID, alarmSeverity);
+        alarmBox.add(alarm);
+    }
+
+    function addInput(name) {
+        var label = document.createElement('label');
+        label.htmlFor = name;
+        label.innerHTML = name;
+        label.style.padding = '4px 4px 4px 4px';
+        label.style.verticalAlign = 'top';
+        toolbar.appendChild(label);
+        return label;
+    }
+
+    function addButton(div, name, src, callback) {
+        var button = document.createElement('input');
+        button.setAttribute('type', src ? 'image' : 'button');
+        button.setAttribute('title', name);
+        button.style.verticalAlign = 'top';
+        if (src) {
+            button.style.padding = '4px 4px 4px 4px';
+            if (src.indexOf('/') < 0) {
+                src = '../images/toolbar/' + src + '.png';
+            }
+            button.setAttribute('src', src);
+        } else {
+            button.value = name;
+        }
+        button.addEventListener('click', callback, false);
+        div.appendChild(button);
+        return button;
+    }
+
+    function addInteractionComboBox(div, items, callback) {
+        return addComboBox(div, items, callback);
+    }
+
+    function addComboBox(div, items, callback) {
+        var comboBox = document.createElement('select');
+        comboBox.style.verticalAlign = 'top';
+        comboBox.style.padding = '4px 4px 4px 4px';
+        items.forEach(function (item) {
+            var option = document.createElement('option');
+            option.appendChild(document.createTextNode(item));
+            option.setAttribute('value', item);
+            comboBox.appendChild(option);
+        });
+
+        if (callback) {
+            comboBox.addEventListener('change', callback, false);
+        }
+
+        div.appendChild(comboBox);
+        return comboBox;
+    }
+
+    function addCheckBox(div, checked, name, callback) {
+        var checkBox = document.createElement('input');
+        checkBox.id = name;
+        checkBox.type = 'checkbox';
+        checkBox.style.padding = '4px 4px 4px 4px';
+        checkBox.checked = checked;
+        if (callback) checkBox.addEventListener('click', callback, false);
+        div.appendChild(checkBox);
+        var label = document.createElement('label');
+        label.htmlFor = name;
+        label.innerHTML = name;
+        div.appendChild(label);
+        return checkBox;
+    }
+
+    </script>
+</head>
+<body onload="init()">
+</body>
+</html>

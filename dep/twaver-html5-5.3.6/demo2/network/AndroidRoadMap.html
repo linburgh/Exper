@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>TWaver HTML5</title>
+<script src="../../lib/twaver.js"></script>
+<script>
+
+var debug=false;
+
+function registerIcon(name, src, width, height) {
+	var img = new Image();
+	img.src = src;
+	twaver.Util.registerImage(name, img, width, height);
+}
+
+twaver.Util.registerImage('flash', {
+	w: 100,
+	h: 100,  
+	v: [{
+		shape: 'path',
+		data: [ -10,-20, -15,0, -5,0, -8,15, 0,15, -1, 28, 5,8, 0, 8, 5,-10, -2, -10, 0, -20, 'z'],
+		lineColor: 'black',		
+		fill: '#EC6C00',
+		lineWidth: 1,
+	}],
+});
+twaver.Util.registerImage('left_node', {
+	w: 80,
+	h: 60,  
+	clip:true,
+	v: [{
+		shape: 'vector',
+		name:'node_image',
+		scale:[2,2],
+		translate: [40,0],			
+	}],		
+});
+twaver.Util.registerImage('right_node', {
+	w: 80,
+	h: 60,  
+	clip:true,
+	v: [{
+		shape: 'vector',
+		name:'node_image',
+		scale:[2,2],
+		translate: [-40,0],
+	}],		
+});
+twaver.Util.registerImage('split_node', {
+	w: 180,
+	h: 80,  
+	clip: false,
+	v: [{
+		shape:'line',
+		x1: -50,
+		y1: 30,
+		x2: 50,
+		y2: 30,
+		lineWidth:3,
+		lineColor:'#EC6C00',
+	},{
+		shape: 'vector',
+		name:'left_node',	
+		translate: [-40,0],
+		x:0,
+		rotate:0,
+		animate: [{
+			attr: 'x',
+			to: -15,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY			
+		},{
+			attr:'rotate',
+			to: -20,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY		
+		}]
+	},{
+		shape: 'vector',
+		name:'right_node',			
+		translate: [40,0],
+		x:0,
+		rotate:0,
+		animate: [{
+			attr: 'x',
+			to: 15,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY	
+		},{
+			attr:'rotate',
+			to: 20,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY		
+		}],
+	},{
+		y:-50,
+		shape: 'vector',
+		name: 'flash',	
+		x:3,
+		alpha:0,
+		animate: [{
+			attr: 'y',
+			to: -15,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY
+		},{
+			attr:'alpha',
+			to:1,
+			dur: 100,
+			finish:1000,
+			reverse: true,
+			easing:'quarticIn',
+			repeat: Number.POSITIVE_INFINITY
+		}]
+	},{
+		shape: 'vector',
+		name: 'wave',	
+	}],
+});
+
+twaver.Util.registerImage('title', {
+	w: 880,
+	h: 140,  			
+	origin:{ x: 0, y: 0 },
+	v: [{
+		shape: 'rect',
+		rel: true,
+		rect: [ 0, 0, 1, 1],
+		lineColor:'red',
+		lineWidth: 1,
+		visible: debug,
+	},{
+		shape: 'path',
+		data: 'M0,50l800,0q30,0,30,30l0,30',
+		lineColor:twaver.Colors.green_dark,
+		lineWidth:50,
+		lineJoint: 'round',						
+	},{
+		shape: 'path',
+		data: 'M830,100l40,0l-40,30l-40,-30z',
+		lineColor:'#3084A5',
+		fill: twaver.Colors.green_dark
+	},{
+		shape: 'text',
+		text: "Andorid's evolution",
+		x:300,
+		y:50,
+		fill:'white',
+		textAlign: 'left',
+		font: '20px "Microsoft Yahei"',
+	}],
+});
+
+twaver.Util.registerImage('road', {
+	w: 880,
+	h: 370,  			
+	origin:{ x: 0, y: 0 },
+	v: [{
+		shape: 'rect',
+		rel: true,
+		rect: [ 0, 0, 1, 1],
+		lineColor:'red',
+		lineWidth: 1,
+		visible: debug,
+	},{
+		shape: 'path',
+		data: 'M850,10C50,140,50,160,400,173C900,180,900,205,400,210C0,220,0,250,850,280L850,360C-50,290,-50,200,400,200C850,195,850,190,400,178C40,160,40,135,850,8z',
+		fill:'#E3E3E3',
+		lineWidth:0,
+	}],
+});
+
+twaver.Util.registerImage('bubble', {
+	w: 100,
+	h: 120,  		
+	origin:{ x: 0, y: 0 },
+	scale: { x: '<%=getClient("scale")%>', y: '<%=getClient("scale")%>' },
+	v: [{
+		shape: 'rect',
+		rel: true,
+		rect: [ 0, 0, 1, 1],
+		lineColor:'red',
+		lineWidth: 1,
+		visible: debug,
+	},{
+		shape: 'path',
+		data: 'M50,100Q10,65,10,60C0,50,0,0,50,0C100,0,100,50,90,60Q90,65,50,100',
+		fill:'<%=getClient("color")%>',
+		lineWidth:0,
+		rotate:0,
+	},{
+		shape: 'circle',
+		cx: 49,
+		cy: 48,
+		r:42,
+		startAngle: 180,
+		endAngle: 360,
+		fill:'#EFEFEF',
+		lineWidth:0,
+	},{
+		shape: 'text',
+		text: '<%=getClient("year")%>',
+		x:50,
+		y:110,
+		fill:'white',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: '14px "Microsoft Yahei"',
+	},{
+		shape: 'text',
+		text: '<%=getClient("title")%>',
+		x:50,
+		y:33,
+		fill:'black',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: '16px "Microsoft Yahei" bold',
+	},{
+		shape: 'text',
+		text: '<%=getClient("description")%>',
+		x:50,
+		y:60,
+		fill:'white',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: '10px "Microsoft Yahei"',
+	}],
+});
+twaver.Util.registerImage('glowbubble', {
+	w: 100,
+	h: 120,  		
+	origin:{ x: 0, y: 0 },
+	scale: { x: '<%=getClient("scale")%>', y: '<%=getClient("scale")%>' },
+	v: [{
+		shape: 'rect',
+		rel: true,
+		rect: [ 0, 0, 1, 1],
+		lineColor:'red',
+		lineWidth: 1,
+		visible: debug,
+	},{
+		shape: 'path',
+		data: 'M50,100Q10,65,10,60C0,50,0,0,50,0C100,0,100,50,90,60Q90,65,50,100',
+		fill:'<%=getClient("color")%>',
+		lineWidth:0,
+		rotate:0,
+		animate: [{
+			attr: 'rotate',
+			to: -15,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY			
+		}]
+	},{
+		shape: 'circle',
+		cx: 49,
+		cy: 48,
+		r:42,
+		startAngle: 180,
+		endAngle: 360,
+		fill:'#EFEFEF',
+		lineWidth:0,
+		animate: [{
+			attr: 'rotate',
+			to: -15,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY			
+		}]
+	},{
+		shape: 'text',
+		text: '<%=getClient("year")%>',
+		x:50,
+		y:110,
+		fill:'white',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: '14px "Microsoft Yahei"',
+		animate: [{
+			attr: 'rotate',
+			to: -15,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY			
+		}]
+	},{
+		shape: 'text',
+		text: '<%=getClient("title")%>',
+		x:50,
+		y:33,
+		fill:'black',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: '16px "Microsoft Yahei" bold',
+		animate: [{
+			attr: 'rotate',
+			to: -15,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY			
+		}]
+	},{
+		shape: 'text',
+		text: '<%=getClient("description")%>',
+		x:50,
+		y:60,
+		fill:'white',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: '10px "Microsoft Yahei"',
+		animate: [{
+			attr: 'rotate',
+			to: -15,
+			dur: 1000,
+			reverse: true,
+			easing:'elasticOut',
+			repeat: Number.POSITIVE_INFINITY			
+		}]
+	}],
+});
+
+twaver.Util.registerImage('belt', {
+	w: 500,
+	h: 400,  			
+	origin:{ x: 0, y: 0 },
+	v: [{
+		shape: 'rect',
+		rel: true,
+		rect: [ 0, 0, 1, 1],
+		lineColor:'red',
+		lineWidth: 1,
+		visible: debug,
+	},{
+		shape: 'path',
+		data: 'M30,50L400,50C500,50,500,200,400,200L100,200C0,200,0,350,100,350L450,350',
+		lineColor:'#DDDDDD',
+		lineWidth:34,
+	},{
+		shape: 'path',
+		data: 'M30,50L30,33L15,33L30,50L15,67L30,67L30,50M449,330l15,20l-15,20',
+		fill:'#DDDDDD',
+		lineWidth:0,
+	},{
+		shape: 'path',
+		data: 'M100,50L400,50C500,50,500,200,400,200L100,200C0,200,0,350,100,350L380,350',
+		lineColor:'black',
+		lineWidth:1.5,
+	},{
+		shape: 'path',
+		data: 'M30,50L100,50M380,350L465,350',
+		lineColor:'black',
+		lineDash: [2, 3],
+		lineWidth:1.5,
+	}],
+});
+
+twaver.Util.registerImage('egg', {
+	w: 60,
+	h: 60,  			
+	origin: {x:0,y:0},
+	v: [{
+		shape: 'rect',	
+		rel: true,
+		rect: [ 0, 0, 1, 1],
+		lineColor:'red',
+		lineWidth: 1,
+		visible: debug,
+	},{
+		shape: 'circle',
+		rel: true,
+		cx: 0.5,
+		cy: 0.5,
+		r: 25,
+		fill:'#DDDDDD',
+		lineWidth:0,
+	},{
+		shape: 'circle',
+		rel: true,
+		cx: 0.5,
+		cy: 0.5,
+		r: 18,
+		fill:'<%=getClient("color")%>',
+		lineWidth:0,
+	},{
+		shape: 'text',
+		text: '<%=getClient("year")%>',
+		rel:true,
+		x:0.5,
+		y:0.5,
+		fill:'white',
+		textAlign: 'center',
+		textBaseline: 'middle',
+		font: '12px "Microsoft Yahei" bold',
+	}],
+});
+
+twaver.Util.registerImage('handler', {
+	w: 10,
+	h: 100,  			
+	origin: {x:0,y:0},
+	v: [{
+		shape: 'rect',	
+		rel: true,
+		rect: [ 0, 0, 1, 1],
+		lineColor:'red',
+		lineWidth: 1,
+		visible: debug,
+	},{
+		shape: 'circle',
+		cx: 5,
+		cy: 5,
+		r: 5,
+		fill:'black',
+		lineWidth:0,
+	},{
+		shape: 'line',
+		x1: 5,
+		y1: 5,
+		x2: 5,
+		y2: '<%=getClient("length")%>',
+		lineColor:'black',					
+		lineWidth:1,		
+	}],
+});
+
+function init() {
+	var box = new twaver.ElementBox();
+	var network = new twaver.vector.Network(box);
+
+	document.body.appendChild(network.getView());
+	network.adjustBounds({ x: 0, y: 0, width: 1300, height: 800 });
+	network.setSendToTopOnSelected(false);
+	network.setEditInteractions();
+	var title = new twaver.Node();
+	title.setImage('title');
+	title.setLocation(200,0);
+	box.add(title);
+
+	var road = new twaver.Node();
+	road.setImage('road');
+	road.setLocation(120,100);
+	box.add(road);
+
+	// network.getView().addEventListener('mousemove',function(e){
+	// 	box.forEach(function(e){
+	// 		if(e instanceof twaver.Follower){
+	// 			e.setImage('bubble');
+	// 		}
+	// 	});
+	// 	var element = network.getElementAt(e);
+	// 	if(element instanceof twaver.Follower){
+	// 		element.setImage('glowbubble');
+	// 	}
+	// });
+
+	var createBubble=function(parent,year,title,description,color,x,y,scale){
+		var node = new twaver.Follower();
+		var node = new twaver.SubNetwork();
+		node.setHost(parent);
+		node.setImage('bubble');
+		node.setLocation(x,y);
+		node.setClient('year', year);
+		node.setClient('title',title);
+		node.setClient('description',description);
+		node.setClient('color',color);		
+		node.setSize(node.getSize().width*scale, node.getSize().height*scale);
+		box.add(node);
+	};
+
+	createBubble(road,'2008.9','Android 1.0 ','None','#71319F',652,128,0.3);
+	createBubble(road,'2009.4','Android 1.5 ',' Cupcake','#F781F3',528,139,0.4);
+	createBubble(road,'2009.9','Android 1.6 ','Donut','#26A9E1',347,165,0.5);
+	createBubble(road,'2009.10','Android 2.0 ','Eclair','#90C53F',287,200,0.6);
+	createBubble(road,'2010.5','Android 2.2 ','Froyo','#F6931C',474,202,0.7);
+	createBubble(road,'2010.12 ','Android 2.3 ',' Gingerbread','#E91E34',660,199,0.8);	
+	createBubble(road,'2011.2','Android 3.0 ','Honeycomb','#713CCF',842,202,0.9);	
+	createBubble(road,'2011.10','Android 4.0 ','Ice Cream Sandwich','#009966',230,252,1);	
+	createBubble(road,'2012.6','Android 4.3','Jelly Bean','#CC6666',438,275,1.1);	
+	createBubble(road,'2013.9','Android 4.4','KitKat','#FF6666',597,275,1.2);	
+	createBubble(road,'2014.6','Android 5.0','Lollipop','#66CCCC',765,282,1.3);	
+
+	var node = new twaver.Node({
+		name:'robot',
+		location:{x:300,y:300},
+		image:'robat'
+	});
+		var belt = new twaver.Node();
+		belt.setImage('belt');
+		belt.setLocation(-50,400);
+		belt.setSize(belt.getSize().width*0.8,belt.getSize().height*0.8);
+		box.add(belt);
+
+		var createEgg=function(parent,year,color,x,y){
+			var node = new twaver.Follower();
+			node.setImage('egg');
+			node.setHost(parent);
+			node.setClient('year', year);
+			node.setClient('color',color);		
+			node.setLocation(x,y);
+			box.add(node);
+		};
+		createEgg(belt,'2007','#FA5882',-20,410);
+		createEgg(belt,'2008','#BF4F4B',70,410);
+		createEgg(belt,'2009','#F6931C',160,410);
+		createEgg(belt,'2010','#26A9E1',250,410);
+		createEgg(belt,'2011','#D7DF01',230,530);
+		createEgg(belt,'2012','#01DF01',20,530);
+		createEgg(belt,'2013','#DF013A',0,650);
+		createEgg(belt,'2014','#01A9DB',110,650);
+		createEgg(belt,'2015','#71319F',220,650);
+
+		var createHandler=function(parent,length,x,y,rotation){
+			var node = new twaver.Follower();
+			node.setImage('handler');
+			node.setHost(parent);
+			node.setAngle(rotation);
+			node.setClient('length', length);
+			node.setLocation(x,y);
+			box.add(node);
+		};
+		createHandler(belt,55,50,435,0);
+		createHandler(belt,60,135,345,180);
+		createHandler(belt,55,230,435,0);
+		createHandler(belt,55,280,450,90);
+		createHandler(belt,68,81,465,180);
+		createHandler(belt,110,11,555,270);
+		createHandler(belt,53,80,675,0);
+		createHandler(belt,78,180,585,180);
+
+		var createText=function(parent,title,text,x,y,left){
+			var node = new twaver.Follower();			
+			node.setHost(parent);
+			node.setName(title);
+			node.setStyle('label.color','#DF013A');
+			node.setStyle('label.position','right.right');
+			if(left){
+				node.setStyle('label.position','right.left');
+			}
+			node.setStyle('label.font','bold 10px "Microsoft Yahei"');
+			node.setImage(null);
+			node.setLocation(x,y);
+			box.add(node);
+			var node = new twaver.Follower();			
+			node.setHost(parent);
+			node.setName(text);
+			node.setStyle('label.color','black');
+			node.setStyle('label.position','right.right');
+			if(left){
+				node.setStyle('label.position','right.left');
+			}
+			node.setStyle('label.font','10px "Microsoft Yahei"');
+			node.setImage(null);
+			node.setLocation(x,y+12);
+			box.add(node);
+		};
+		createText(belt,'Android Bate','Device:HTC Dream（G1）',5,445);
+		createText(belt,'Android 1.0 release','Device:HTC Hero（G3）',90,365);
+		createText(belt,'Android 2.0 release','Device:MOTO Milestone ',185,445);
+		createText(belt,'Android 2.3 release','Device:SAMSUNG Galaxy II i9100 ',280,480);
+		createText(belt,'Android 3.0 release','Device:MOTO XOOM Tablet',37,475);
+		createText(belt,'Android 4.0 release','Device:GALAXY Nexus',37,500);
+		createText(belt,'Android 4.1/4.2/4.3 release','Device:Nexus 7 Tablet',-65,585);
+		createText(belt,'Android 4.4 release','Nexus 4、Nexus 7、Nexus 10 and native HTC One、Galaxy S4SHIELD',36,684);
+		createText(belt,'Android 5.0 release','Nexus 6、Nexus 9 Tablet and Nexus Player ',135,605);
+
+		var createCity=function(parent,image,x,y){
+			var node = new twaver.Follower();			
+			node.setHost(parent);
+			node.setImage(image);		
+			node.setLocation(x,y);
+			box.add(node);
+		};
+		createCity(belt,'beijing',44,503);
+		createCity(belt,'shanghai',215,460);
+		createCity(belt,'up',55,710);
+
+		box.forEach(function(element){
+			element.setStyle('select.style','null');
+		});      
+}
+</script>
+</head>
+<body onload="init()">
+</body>
+</html>

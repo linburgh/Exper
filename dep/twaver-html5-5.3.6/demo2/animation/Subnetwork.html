@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="pragma" content="no-cache">
+  <meta charset="UTF-8">
+  <title>Animate SubNetwork</title>
+  <script type="text/javascript" src="../../lib/twaver.js"></script>
+  <script type="text/javascript">
+    
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    var canvas = _twaver.html.createCanvas(0, 0);
+    var g = canvas.getContext('2d');
+    var copy;
+    var currentSubnetwork;
+    var center;
+    var lastAnimateNode;
+    
+    function init () {
+      twaver.Defaults.CENTER_LOCATION = true;
+      twaver.Styles.setStyle('select.style', 'border');
+      document.body.appendChild(network.getView());
+      window.onresize = function () {
+        network.adjustBounds({ x: 0, y: 0, width: document.documentElement.clientWidth, height: document.documentElement.clientHeight });
+      }
+
+      initNetwork();
+      registerImages();
+      initBox();
+      window.onresize();
+    }
+
+    function initNetwork () {
+      network.setDoubleClickToSubNetwork(false);
+      network.setDoubleClickToUpSubNetwork(false);
+      network.addInteractionListener(function (e) {
+        var animateEnter = null,
+          subnetwork;
+        if (e.kind === 'doubleClickElement' && e.element instanceof twaver.SubNetwork) {
+          subnetwork = currentSubnetwork = e.element;
+          center = currentSubnetwork.getLocation();
+          animateEnter = true;
+        }
+        if (e.kind === 'doubleClickBackground' && !e.element && network.getCurrentSubNetwork()) {
+          subnetwork = network.getCurrentSubNetwork();
+          center = network.getCurrentSubNetwork().getLocation();
+          currentSubnetwork = twaver.Util.getSubNetwork(network.getCurrentSubNetwork());
+          animateEnter = false;
+        }
+        if (animateEnter !== null) {
+          twaver.Util.stopAllAnimates(false);
+          var zoom = network.getZoom();
+          var rect = network.getViewRect();
+          copy = network.toCanvasByRegion({ x: rect.x/zoom, y: rect.y/zoom, width: rect.width/zoom, height: rect.height/zoom }, zoom);
+          copy = createGrayCanvas(copy);
+          network.getView().appendChild(canvas);
+          window[subnetwork.getClient('animate')](animateEnter);
+        }
+      });
+      network.adjustBounds = function (rect) {
+        twaver.vector.Network.prototype.adjustBounds.call(this, rect);
+        canvas.width = rect.width;
+        canvas.height = rect.height;
+      };
+      network.setViewRect = function (x, y, width, height) {
+        var zoom = this.getZoom();
+        x = Math.round(x / zoom) * zoom;
+        y = Math.round(y / zoom) * zoom;
+        twaver.vector.Network.prototype.setViewRect.call(this, x, y, width, height);
+      };
+      network.getSelectionModel().addSelectionChangeListener(function (e) {
+        twaver.Util.stopAllAnimates(false);
+        if (lastAnimateNode) {
+          lastAnimateNode.setClient('index', 0);
+        }
+        var node = network.getSelectionModel().getLastData();
+        if (node instanceof twaver.SubNetwork) {
+          lastAnimateNode = node;
+          playTextAnimate(node);
+        }
+      });
+    }
+    
+    function initBox () {
+      box.setStyle('background.type', 'vector');
+      box.setStyle('background.vector.fill', true);
+      box.setStyle('background.vector.gradient', 'radial.center');
+      box.setStyle('background.vector.fill.color', twaver.Colors.orange);
+      box.setStyle('background.vector.gradient.color', 'white');
+
+      createSubnetwork(true);
+      createSubnetwork(false);
+    }
+
+    function createSubnetwork (left) {
+      var width = document.documentElement.clientWidth;
+      var height = document.documentElement.clientHeight;
+
+      var subnetwork = new twaver.SubNetwork({
+        location: {
+          x: width/2 - 200 * (left ? 1 : -1),
+          y: height/2
+        },
+        width: 160,
+        height: 120,
+        styles: {
+          'icons.names': 'Text',
+          'icons.position': 'topleft.topright',
+          'background.type': 'vector',
+          'background.vector.fill': true,
+          'background.vector.gradient': 'radial.center',
+          'background.vector.fill.color': twaver.Colors.blue_light,
+          'background.vector.gradient.color': 'white'
+        },
+        clients: {
+          text: 'This is a SubNetwork, please double click it.',
+          index: 0,
+          underline: false,
+          animate: left ? 'playAnimateTurnPage' : 'playAnimateDrill'
+        }
+      });
+      box.add(subnetwork);
+
+      var from = new twaver.Node();
+      from.setName('From');
+      from.setLocation(width/2 - 100 * (left ? 1 : -1), height/2 - 100);
+      from.setParent(subnetwork);
+      box.add(from);
+      var to = new twaver.Node();
+      to.setName('To');
+      to.setLocation(width/2 + 100 * (left ? 1 : -1), height/2 + 100);
+      to.setParent(subnetwork);
+      box.add(to);
+      var link = new twaver.Link(from, to);
+      link.setName('Link');
+      link.setParent(subnetwork);
+      box.add(link);
+
+      return subnetwork;
+    }
+
+    function playTextAnimate (node) {
+      node.setClient('index', 0);
+      new twaver.Animate({
+        attr: 'C@index',
+        to: node.getClient('text').length,
+        filter: function (value) {
+          return Math.round(value);
+        },
+        source: node,
+        dur: node.getClient('text').length * 300,
+        onDone: function () {
+          typeAnimate1.stop(false);
+          typeAnimate2.stop(false);
+          typeAnimate3.stop(false);
+        }
+      }).chain(new twaver.Animate({
+        attr: 'C@underline',
+        from: false,
+        to: true,
+        source: node,
+        type: 'set',
+        repeat: Number.POSITIVE_INFINITY
+      })).play();
+
+      var typeAnimate1 = new twaver.Animate({
+        dur: 1,
+        interval: 400,
+        type: 'set',
+        onUpdate: function () {
+          new Audio('type_key.wav').play();
+        }
+      });
+      var typeAnimate2 = new twaver.Animate({
+        dur: 1,
+        interval: 200,
+        type: 'set',
+        onUpdate: function () {
+          new Audio('type_key.wav').play();
+        }
+      });
+      var typeAnimate3 = new twaver.Animate({
+        dur: 1,
+        interval: 400,
+        type: 'set',
+        onUpdate: function () {
+          new Audio('type_key.wav').play();
+        }
+      });
+      typeAnimate1.chain(typeAnimate2);
+      typeAnimate2.chain(typeAnimate3);
+      typeAnimate3.chain(typeAnimate1);
+      typeAnimate1.play();
+    }
+
+    function playAnimateTurnPage (enter) {
+      var width = canvas.width;
+      var height = canvas.height;
+      var length = Math.sqrt(width * width + height * height) + 200;
+      var angle = Math.atan2(height, width);
+      var offset = 10;
+
+      new twaver.Animate({
+        from: -1,
+        to: 1,
+        dur: 2000,
+        onUpdate: onUpdate,
+        easing: 'easeOutStrong',
+        onDone: function () {
+          g.clearRect(0, 0, width, height);
+          network.getView().removeChild(canvas);
+        },
+        onPlay: function () {
+          network.setCurrentSubNetwork(currentSubnetwork);
+          new Audio('turn_page.mp3').play();
+        }
+      }).play();
+
+      function onUpdate (value) {
+        g.clearRect(0, 0, width, height);
+
+        g.save();
+
+        // set clip region
+        g.beginPath();
+        var x1, y1, x2, y2;
+        if (enter) {
+          if (value < 0) {
+            g.moveTo(x1 = width * -value, y1 = 0);
+            g.lineTo(x2 = width, y2 = height * (1 + value));
+            g.lineTo(width, height);
+            g.lineTo(0, height);
+            g.lineTo(0, 0);
+          } else {
+            g.moveTo(x1 = 0, y1 = height * value);
+            g.lineTo(x2 = width * (1 - value), y2 = height);
+            g.lineTo(0, height);
+          }
+        } else {
+          if (value < 0) {
+            g.moveTo(x1 = 0, y1 = height * -value);
+            g.lineTo(x2 = width * (1 + value), y2 = height);
+            g.lineTo(width, height);
+            g.lineTo(width, 0);
+            g.lineTo(0, 0);
+          } else {
+            g.moveTo(x1 = width * value, y1 = 0);
+            g.lineTo(x2 = width, y2 = height * (1 - value));
+            g.lineTo(width, 0);
+          }
+        }
+        g.closePath();
+        g.clip();
+
+        // draw currentsubnetwork copy
+        g.drawImage(copy, 0, 0);
+        g.restore();
+
+        // draw gradient line
+        g.save();
+        g.translate((enter ? -1 : 1) * value * width, 0);
+        g.rotate(angle);
+        var gradient = g.createLinearGradient(length / 2, -20, length / 2, 20);
+        gradient.addColorStop(0, 'rgba(0, 0, 0, 0)');
+        gradient.addColorStop(0.5, 'rgba(125, 125, 125, .2)');
+        gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+        g.fillStyle = gradient;
+        g.beginPath();
+        g.rect(-100, -20, length, 40);
+        g.fill();
+        g.restore();
+      }
+    }
+
+    function playAnimateDrill (enter) {
+      var width = canvas.width;
+      var height = canvas.height;
+      var angle = Math.atan2(height, width);
+      var zoom = network.getZoom();
+      var rect = network.getViewRect();
+      center = { x: center.x * zoom - rect.x , y: center.y * zoom - rect.y };
+      var maxR = Math.max(
+        _twaver.math.getDistance(center, { x: 0, y: 0 }),
+        _twaver.math.getDistance(center, { x: width, y: 0 }),
+        _twaver.math.getDistance(center, { x: width, y: height }),
+        _twaver.math.getDistance(center, { x: 0, y: height })
+      );
+
+      new twaver.Animate({
+        from: enter ? 0 : maxR,
+        to: enter ? maxR : 0,
+        dur: 2000,
+        onUpdate: onUpdate,
+        easing: enter ? 'easeInStrong' : 'easeOutStrong',
+        onDone: function () {
+          g.clearRect(0, 0, width, height);
+          network.getView().removeChild(canvas);
+        },
+        onPlay: function () {
+          network.setCurrentSubNetwork(currentSubnetwork);
+          new Audio('turn_page.mp3').play();
+        }
+      }).play();
+
+      function onUpdate (value) {
+        g.clearRect(0, 0, width, height);
+
+        g.save();
+        g.beginPath();
+        if (enter) {
+          g.rect(0, 0, width, height);
+        }
+        g.arc(center.x, center.y, value, 0, Math.PI * 2, true);
+        g.clip();
+        g.drawImage(copy, 0, 0);
+        g.restore();
+      }
+    }
+ 
+    function registerImages () {
+      twaver.Util.registerImage('Text', {
+        w: 420,
+        h: 25,
+        clip: true,
+        fill: 'black',
+        rel: true,
+        v: [
+          {
+            shape: 'text',
+            text: function (data) {
+              var index = data.getClient('index'),
+                text = data.getClient('text');
+              if (index === 0) {
+                return '';
+              }
+              return text.substr(0, index) + (data.getClient('underline') ? '_' : (index === text.length ? '' : (data._underline = !data._underline ? '_' : '')));
+            },
+            textAlign: 'left',
+            font: '16px "Microsoft Yahei"',
+            x: -0.5
+          }
+        ]
+      });
+    }
+
+    function createGrayCanvas (image) {
+      var width = image.width;
+      var height = image.height;
+      var c = _twaver.html.createCanvas(width, height);
+      var g2 = c.getContext('2d');
+      g2.drawImage(image, 0, 0, width, height);
+      var imageData = g2.getImageData(0, 0, width, height);
+      var pix = imageData.data;
+      for (var i = 0, n = pix.length; i < n; i += 4) {
+        pix[i] = pix[i + 1] = pix[i + 2] = Math.floor(pix[i + 0] * 0.30 + pix[i + 1] * 0.59 + pix[i + 2] * 0.11);
+      }
+      g2.putImageData(imageData, 0, 0);
+      return c;
+    }
+    
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

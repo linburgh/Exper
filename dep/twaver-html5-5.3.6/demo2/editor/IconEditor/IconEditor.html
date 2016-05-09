@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script type="text/javascript" src="./iconmin.js"></script>
+    <script type="text/javascript" src="../../../lib/twaver.js"></script>
+    <script type="text/javascript">
+        var flag = 0;
+        function setListenerForDrag() {
+            var dropZone = document.getElementById('drop_zone');
+            dropZone.addEventListener('dragover', handleDragOver, false);
+            dropZone.addEventListener('drop', handleFileSelect, false);
+        }
+        function handleFileSelect(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            var files = evt.dataTransfer.files;
+            handlerFiles(files);
+        }
+        function handleDragOver(evt) {
+            evt.stopPropagation();
+            evt.preventDefault();
+            evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+        }
+        function getFile() {
+            document.getElementById("uploadfile").click();
+        }
+        function removeChild(id) {
+            var parent = document.getElementById(id);
+            while (parent.hasChildNodes())
+                parent.removeChild(parent.lastChild);
+        }
+        function sub(evt) {
+            removeChild("container");
+            handlerFiles(evt.target.files);
+            event.preventDefault();
+        }
+        function handlerFiles(files) {
+            if (window.File && window.FileReader) {
+                for (var i = 0; i < files.length; i++) {
+                    var f = files[i];
+                    if (!f.type.match('image.svg')) {
+                        continue;
+                    }
+                    var reader = new FileReader();
+                    reader.onload = function(e) {
+                        var content = e.target.result;
+                        var vector = getSVGElement(svg.loadXml(content));
+                        loadContainer(vector)
+                    }
+                    reader.readAsText(f);
+                }
+            } else {
+                alert('The File APIs are not fully supported by your browser.');
+            }
+        }
+        function loadContainer(vector) {
+            flag++;
+            var container = document.getElementById("container");
+            var mainContainer = createContainer("mainContainer" + flag );
+            container.appendChild(mainContainer);
+//            var fileNameDiv = createFileNameDiv("fileName" + i);
+            var codeContainer =  createCodeContainer("code" + flag);
+//            codeContainer.appendChild(fileNameDiv);
+            mainContainer.appendChild(codeContainer);
+            var textArea = createTextArea("text" + flag);
+            textArea.textContent = JSON.stringify(vector,null,2);
+            codeContainer.appendChild(textArea);
+            var br = createBr();
+            codeContainer.appendChild(br);
+//            var copy = createButton("copy" + flag,50,"copy");
+//            codeContainer.appendChild(copy);
+            var format = createButton("format" + flag,20,"format");
+            format.addEventListener("click", function(evt) {
+                var text = document.getElementById("text" + this.id.replace("format",""));
+                text.textContent = JSON.stringify(JSON.parse(text.textContent),null,2);
+                text.style.wrap = "soft";
+
+            });
+            codeContainer.appendChild(format);
+            var unformat = createButton("unformat" + flag,20,"unformat");
+            codeContainer.appendChild(unformat);
+            unformat.addEventListener("click", function(evt) {
+                var text = document.getElementById("text" + this.id.replace("unformat",""));
+                text.style.wrap = "hard";
+                text.textContent = JSON.stringify(JSON.parse(text.textContent));
+            });
+            mainContainer.appendChild(codeContainer);
+            var networkContainer = createNetworkContainer("network" + flag);
+            container.appendChild(networkContainer);
+            mainContainer.appendChild(networkContainer);
+            createNetwork(vector,networkContainer);
+        }
+        function createNetwork(vector,networkContainer) {
+            var box = new twaver.ElementBox();
+            var network = new twaver.vector.Network(box);
+            var view = network.getView();
+            var bundingRect = networkContainer.getBoundingClientRect();
+            networkContainer.appendChild(view);
+            network.adjustBounds({ x:bundingRect.left, y: bundingRect.top, width: bundingRect.width, height: bundingRect.height });
+            network.setZoomManager(new twaver.vector.LogicalZoomManager(network, true));
+            twaver.Util.registerImage("img" + flag,vector);
+            var node = new twaver.Node();
+            node.setImage("img" + flag);
+            node.setLocation(bundingRect.width/2 - node.getWidth() / 2,bundingRect.height/2 - node.getHeight() / 2);
+            box.add(node);
+        }
+        function createContainer(id) {
+            var div = document.createElement("div");
+            div.id = id;
+            div.className = "mainerContainer";
+            return div;
+        }
+        function createFileNameDiv(id) {
+            var div = document.createElement("div");
+            div.id = id;
+            div.style.padding = "2px";
+            div.innerHTML = "FileName";
+            div.style.fontSize = "20px";
+            return div;
+        }
+        function createCodeContainer(id) {
+            var div = document.createElement("div");
+            div.id = id;
+            div.className = "left"
+            return div;
+        }
+        function createNetworkContainer(id) {
+            var div = document.createElement("div");
+            div.id = id;
+            div.className = "right";
+            return div;
+        }
+        function createTextArea(id) {
+            var textArea = document.createElement("textArea");
+            textArea.id = id;
+            return textArea;
+        }
+        function createButton(id,gap,text){
+            var a = document.createElement("a");
+            a.id = id;
+            a.className = "button orange";
+            if(gap) {
+                a.style.marginLeft = gap + "px";
+            }
+            a.href = "#";
+            a.innerText = text;
+            return a;
+        }
+        function createBr() {
+            var br = document.createElement("br");
+            return br;
+        }
+    </script>
+</head>
+<body onload="setListenerForDrag()">
+<div>
+<form method="post" enctype="multipart/form-data">
+    <div class="drag" id="drop_zone">drag files to upload</div>
+    <div onclick="getFile()"><a href="#" class="button orange">click to upload file</a></div>
+    <div class="upload"><input id="uploadfile" type="file" multiple value="upload" onchange="sub(event)"/></div>
+</form>
+</div>
+<div id="container">
+</div>
+</body>
+</html>

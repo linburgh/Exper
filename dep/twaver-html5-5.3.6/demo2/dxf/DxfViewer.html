@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="pragma" content="no-cache">
+  <title></title>
+  <script type="text/javascript" src="../../lib/twaver.js"></script>
+  <script type="text/javascript" src="dxf.js"></script>
+  <script type="text/javascript" src="DxfViewer.js"></script>
+  <script type="text/javascript">
+    
+    var box = new twaver.ElementBox();
+    var dxfViewer = new DxfViewer(box, false);
+    dxfViewer.setMinZoom(0.0001);
+    dxfViewer.setMaxZoom(100);
+    var toolbar = document.createElement('div');
+    var pane = new twaver.controls.BorderPane();
+    pane.setCenter(dxfViewer);
+    pane.setTop(toolbar);
+    pane.setTopHeight(25);
+    initToolbar(toolbar);
+    var tree = new twaver.controls.Tree(box);
+    var split = new twaver.controls.SplitPane(pane, tree, 'horizontal', 0.7);
+      
+    function init () {
+      var view = split.getView();
+      view.style.left = '0px';
+      view.style.top = '0px';
+      view.style.right = '0px';
+      view.style.bottom = '0px';
+      document.body.appendChild(view);
+      window.onresize = function () {
+        split.invalidate();
+      };
+      
+      dxfViewer.onDxfLoaded = function () {
+        this.zoomOverview();
+        tree.expandAll();
+      };
+            
+      tree.getLabel = function (data) {
+        return data.getClient('type') || data.getName();
+      };
+    }
+    
+    function initToolbar (toolbar) {
+      addButton(toolbar, 'Zoom In', function () {
+        dxfViewer.zoomIn();
+      });
+      addButton(toolbar, 'Zoom Out', function () {
+        dxfViewer.zoomOut();
+      });
+      addButton(toolbar, 'Zoom Overview', function () {
+        dxfViewer.zoomOverview();
+      });
+      addButton(toolbar, 'Zoom Reset', function () {
+        dxfViewer.zoomReset();
+      });
+      
+      addButton(toolbar, 'Load File', function () {
+        var fileSelector = document.createElement('input');
+        fileSelector.setAttribute('type', 'file');
+        fileSelector.onchange = function (e) {
+          dxfViewer.loadDxf(fileSelector.files[0]);
+        };
+        fileSelector.click();
+      });
+    }
+      
+    function addButton (toolbar, label, action) {
+      var button = document.createElement('input');
+      button.type = 'button';
+      button.value =  label;
+      button.onclick = action;
+      toolbar.appendChild(button);
+    }
+    
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

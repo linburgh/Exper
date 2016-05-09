@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TWaver HTML5</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>		
+
+	twaver.Util.registerImage('flash', {
+	  w: 100,
+	  h: 100,  
+	  v: [{
+			shape: 'path',
+			data: [ -10,-20, -15,0, -5,0, -8,15, 0,15, -1, 28, 5,8, 0, 8, 5,-10, -2, -10, 0, -20, 'z'],
+			lineColor: 'black',		
+			fill: '#EC6C00',
+			lineWidth: 1,
+		}],
+	});
+
+	twaver.Util.registerImage('wave', {
+	  w: 300,
+	  h: 200,  
+	  clip:false,
+	  v: [{
+			shape: 'ellipse',
+			rx: 50,
+			ry: 15,			
+			alpha:0.7,
+			scale:{x:0,y:0},
+			lineColor: 'red',
+			lineWidth:1,
+			animate: [{
+				attr: 'scale',
+				type:'point',
+				to: {x:4,y:4},
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr: 'alpha',
+				to: 0,
+				dur: 2000,
+				easing: 'easeOut',
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY 
+			},{
+				attr: 'lineColor',
+				type:'color',
+				to: 'orange',
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr: 'lineWidth',
+				to: 10,
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}],
+		}],	
+	});
+
+	twaver.Util.registerImage('left_node', {
+	  w: 80,
+	  h: 60,  
+	  clip:true,
+	  v: [{
+			shape: 'vector',
+			name:'node_image',
+			scale:[2,2],
+			translate: [40,0],			
+		}],		
+	});
+	twaver.Util.registerImage('right_node', {
+	  w: 80,
+	  h: 60,  
+	  clip:true,
+	  v: [{
+			shape: 'vector',
+			name:'node_image',
+			scale:[2,2],
+			translate: [-40,0],
+		}],		
+	});
+
+	twaver.Util.registerImage('split_node', {
+	  w: 180,
+	  h: 80,  
+	  clip: false,
+	  v: [{
+			shape:'line',
+			x1: -50,
+			y1: 30,
+			x2: 50,
+			y2: 30,
+			lineWidth:3,
+			lineColor:'#EC6C00',
+	  },{
+			shape: 'vector',
+			name:'left_node',	
+			translate: [-40,0],
+			x:0,
+			rotate:0,
+			animate: [{
+				attr: 'x',
+				to: -15,
+				dur: 1000,
+				reverse: true,
+				easing:'elasticOut',
+				repeat: Number.POSITIVE_INFINITY			
+			},{
+				attr:'rotate',
+				to: -20,
+				dur: 1000,
+				reverse: true,
+				easing:'elasticOut',
+				repeat: Number.POSITIVE_INFINITY		
+			}]
+		},{
+			shape: 'vector',
+			name:'right_node',			
+			translate: [40,0],
+			x:0,
+			rotate:0,
+			animate: [{
+				attr: 'x',
+				to: 15,
+				dur: 1000,
+				reverse: true,
+				easing:'elasticOut',
+				repeat: Number.POSITIVE_INFINITY	
+			},{
+				attr:'rotate',
+				to: 20,
+				dur: 1000,
+				reverse: true,
+				easing:'elasticOut',
+				repeat: Number.POSITIVE_INFINITY		
+			}],
+		},{
+			y:-50,
+			shape: 'vector',
+			name: 'flash',	
+			x:3,
+			alpha:0,
+			animate: [{
+				attr: 'y',
+				to: -15,
+				dur: 1000,
+				reverse: true,
+				easing:'elasticOut',
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr:'alpha',
+				to:1,
+				dur: 100,
+				finish:1000,
+				reverse: true,
+				easing:'quarticIn',
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'vector',
+			name: 'wave',	
+		}],
+	});
+
+	twaver.Util.registerImage('glowCircle', {
+		w: 36,
+		h: 36,		
+		v: [{
+			shape: 'circle',
+			cx: 0,
+			cy: 0,
+			r: 18,
+			lineWidth: 2,
+			lineColor:'#EC6C00',
+			alpha:0,
+			fill: '#EC6C00',
+			gradient: 'radial.center',
+			animate: [{
+				attr: 'alpha',
+				to:1,
+				dur:1500,
+				reverse:true,
+				repeat:Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'draw',
+			draw: 'scale'
+		},{
+			shape: 'circle',
+			cx:0,
+			cy:0,
+			r:0,
+			lineColor:'#EC6C00',
+			fill:'#EC6C00',
+			gradient: 'radial.center',
+			animate: [{
+				attr: 'r',
+				to: 20,
+				dur: 1500,
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY
+			}]		
+		}]
+	});
+
+	twaver.Util.registerImage('beat', {
+	  w: 100,
+	  h: 100,  
+	  v: [{
+			shape: 'path',
+			data: [ -50,0, -20,0, -15,-5, -10,10, -5,-20, 5,20, 10,-10, 15,5, 20,0, 50, 0],
+			lineColor: '#EC6C00',		
+			lineWidth: 10,
+			lineCap: 'round',
+			lineJoin: 'round',		
+		}],
+	});
+
+	twaver.Util.registerImage('glow_node', {
+		w: 80,
+		h: 40,
+		cache: false,
+		v: [{
+			shape: 'vector',
+			name:'glowCircle',
+			scale: [2,1],
+		},{
+			shape: 'vector',
+			name:'node_image',
+		},{
+			shape: 'vector',
+			name: 'beat',
+			scale:{x:0.3, y:0.1},
+			translate:{x:-2, y:0},
+			animate: [{
+				attr: 'translate',
+				type:'point',
+				to: {x:1,y:0},
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr: 'scale',
+				type:'point',
+				to: {x:0.3,y:0.3},
+				dur: 500,
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		}]
+	});
+
+	twaver.Util.registerImage('light', {
+	  w: 100,
+	  h: 40,  
+	  v: [{
+			shape: 'rect',
+			rect: [ -20, -40, 100, 40 ],
+			lineColor: 'black',		
+			lineWidth: 0,
+			x:0,
+			gradient: {
+				type: 'linear',				
+				x1: -20,
+				y1: -20,
+				x2: 20,
+				y2: 20,
+				stop: [{
+					offset: 0,
+					color: 'rgba(255, 255, 255, 0)'
+				},{
+					offset: 0.6,
+					color: 'rgba(255, 255, 255, 0.8)'
+				},{
+					offset: 1,
+					color: 'rgba(255, 255, 255, 0)'
+				}],
+			},			
+		}],
+	});
+
+	twaver.Util.registerImage('light2', {
+	  w: 20,
+	  h: 10,  
+	  clip:true,
+	  v: [{
+			shape: 'rect',
+			rect: [ -10, -10, 20, 20],
+			lineColor: 'black',		
+			lineWidth: 0,
+			x:0,
+			rotate:30,
+			clip:true,
+			gradient: {
+				type: 'linear',				
+				x1: -10,
+				y1: 0,
+				x2: 10,
+				y2: 0,
+				stop: [{
+					offset: 0,
+					color: 'rgba(255, 255, 255, 0)'
+				},{
+					offset: 0.6,
+					color: 'rgba(255, 255, 222, 0.4)'
+				},{
+					offset: 1,
+					color: 'rgba(255, 255, 255, 0)'
+				}],
+			},			
+		}],
+	});
+
+	twaver.Util.registerImage('light_node', {
+	  w: 65,
+	  h: 50,  
+	  clip:true,
+	  v: [{
+			shape: 'vector',
+			name:'node_image',
+			scale: {x:2, y:2},
+		},{
+			shape: 'vector',
+			name: 'light',
+			x:-80,
+			y:15,
+			clip: true,
+			animate: [{
+				attr: 'x',
+				to: 160,
+				dur: 1000,
+				finish: 1500,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'vector',
+			name: 'light2',
+			x:-50,
+			y:20,
+			clip: true,
+			animate: [{
+				attr: 'x',
+				delay:500,
+				to: 60,
+				dur: 500,
+				finish: 1500,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		}],				
+	});
+
+	twaver.Util.registerImage('loading_clock', {
+	  w: 100,
+	  h: 100,  
+	  v: [{
+			shape: 'circle',
+			r: 50,
+			startAngle: -90,
+			endAngle: -90,
+			anticlockwise: true,
+			close:true,
+			fill: 'white',
+			animate: [{
+				attr: 'endAngle',
+				to: 270,
+				dur: 5000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'text',
+			text: 'Loading...',
+			fill:'black',
+			y:-25,
+			font: '11px "Microsoft Yahei" bold',
+		}],
+	});
+
+	twaver.Util.registerImage('loading_clock_node', {
+		w: 80,
+		h: 60,
+		cache: false,
+		v: [{
+			shape: 'vector',
+			name:'node_image',
+			scale: [1.5,1.5],
+		},{
+			shape: 'vector',
+			name: 'loading_clock',
+			alpha: 0.8,			
+		}]
+	});
+
+	twaver.Util.registerImage('loading_bar', {
+	  w: 100,
+	  h: 100,  
+	  v: [{
+			shape: 'rect',
+			x: -30,
+			y: -30, 
+			w: 60, 
+			h: 10,			
+			fill: 'black',
+			lineColor:'black',
+		},{
+			shape: 'rect',
+			x: -29,
+			y: -29, 
+			w: 58, 
+			h: 8,			
+			fill: 'white',
+			lineWidth: 0,
+		},{
+			shape: 'rect',
+			x: -29,
+			y: -29, 
+			w: 0, 
+			h: 8,		
+			fill: '#EC6C00',
+			lineWidth:0,
+			animate: [{
+				attr: 'w',
+				to: 58,
+				dur: 5000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'text',
+			text: '30%',
+			fill:'black',
+			x:15,
+			y:-24,
+			font: '11px',
+		}],
+	});
+
+	twaver.Util.registerImage('loading_bar_node', {
+		w: 80,
+		h: 60,
+		cache: false,
+		v: [{
+			shape: 'vector',
+			name:'group_image',
+			scale: [1.5,1.5],
+		},{
+			shape: 'vector',
+			name: 'loading_bar',	
+			x: 28, 
+			y:16,
+		}]
+	});
+
+	twaver.Util.registerImage('loading_ball', {
+	  w: 100,
+	  h: 100,  
+	  v: [{
+			shape: 'circle',
+			cx: -20,
+			cy: 0, 
+			r:5,
+			lineWidth:1,
+			lineColor: '#EC6C00',
+			fill: 'white',
+		}],
+	});
+
+	twaver.Util.registerImage('loading_ball_node', {
+		w: 80,
+		h: 60,
+		cache: false,
+		v: [{
+			shape: 'vector',
+			name:'node_image',
+			scale: [1.5,1.5],
+		},{
+			shape: 'vector',
+			name: 'loading_ball',
+			rotate: 0,
+			alpha:1,
+			animate: [{
+				attr: 'alpha',
+				to: 0.3,
+				dur: 1000,
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr: 'rotate',
+				to: 360,
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'vector',
+			name: 'loading_ball',
+			rotate: 45,
+			alpha:1,
+			animate: [{
+				attr: 'alpha',
+				to: 0.3,
+				dur: 1000,
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr: 'rotate',
+				to: 405,
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'vector',
+			name: 'loading_ball',
+			rotate: 90,
+			alpha:1,
+			animate: [{
+				attr: 'alpha',
+				to: 0.3,
+				dur: 1000,
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr: 'rotate',
+				to: 450,
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'vector',
+			name: 'loading_ball',
+			rotate: 135,
+			alpha:1,
+			animate: [{
+				attr: 'alpha',
+				to: 0.3,
+				dur: 1000,
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr: 'rotate',
+				to: 495,
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		},{
+			shape: 'vector',
+			name: 'loading_ball',
+			rotate: 180,
+			alpha:1,
+			animate: [{
+				attr: 'alpha',
+				to: 0.3,
+				dur: 1000,
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY
+			},{
+				attr: 'rotate',
+				to: 540,
+				dur: 2000,
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY
+			}]
+		}]
+	});
+
+	twaver.Util.registerImage('walking_node_h', {
+	  w: 120,
+	  h: 120,  
+	  v: [{
+			shape: 'circle',
+			r:15,
+			lineColor: '#EC6C00',
+			lineWidth: 6,			
+			translate: [-0,-39],	
+			animate: [{
+				attr: 'translate',
+				type:'point',
+				to: {x:0, y:-43},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 			
+			}]
+		},{
+			shape: 'path',
+			data: [{c: 'M', x: 0, y: -5},{c: 'L', x: -2, y: 0},{c: 'L', x: -5, y: 5},{c: 'C', x1: -3, y1: 13, x2:3, y2: 13, x:5, y:5}, {c: 'L', x:1, y:-1},{c: 'L', x:0, y:-5}],
+			lineColor: '#0089C1',
+			lineWidth: 1,			
+			translate: [-2,-47],	
+			scale:[0.8,0.8],
+			alpha: 0,
+			rotate: 3,
+			animate: [{
+				attr: 'alpha',
+				to: 1,
+				dur:1000,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 			
+			},{
+				attr: 'scale',
+				type:'point',
+				to: {x:1, y:1},
+				dur:1000,
+				easing: 'easeOut',
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY 			
+			},{
+				attr: 'translate',
+				type:'point',
+				to: {x:-2, y:-50},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 			
+			}]		
+		},{			
+			shape: 'path',
+			data: [0,0, 10,15, 0,23, 0,24, 8,24],
+			lineWidth: 6,
+			lineCap: 'round',
+			lineColor: '#EC6C00',
+			translate: [10,22],
+			scale: [1, 0.8],
+			rotate: -20,
+			animate: [{
+				attr: 'scale',
+				type:'point',
+				to: {x:1, y:1.3},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			},{
+				attr: 'rotate',
+				to: 80,
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			}]
+		},{			
+			shape: 'path',
+			data: [0,0, 10,15, 0,23, 0,24, 8,24],
+			lineWidth: 6,
+			lineCap: 'round',
+			lineColor: '#EC6C00',
+			translate: [-10,22],
+			scale: [1, 0.8],
+			rotate:40,
+			animate: [{
+				attr: 'scale',
+				type:'point',
+				to: {x:1, y:1.3},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			},{
+				attr: 'rotate',
+				to: -60,
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			}]		
+		},{
+			shape: 'vector',
+			name: 'node_image',
+			scale: [2,2],
+			animate: [{
+				attr: 'translate',
+				type:'point',
+				to: {x:0, y:-3},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 			
+			}]
+		},{
+			shape: 'path',
+			data: [5,0, -8,19, 0,27, 0,30],
+			lineWidth: 6,
+			lineCap: 'round',
+			lineColor: '#EC6C00',
+			translate: [-3,-10],
+			scale: [1, 1],
+			rotate:-40,
+			animate: [{
+				attr: 'translate',
+				type: 'point',
+				to: [-2,-10],
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			},{
+				attr: 'rotate',
+				to: 30,
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			}]
+		}],
+	});
+
+	twaver.Util.registerImage('walking_node_v', {
+	  w: 120,
+	  h: 120,  
+	  v: [{
+			shape: 'circle',
+			r:15,
+			lineColor: '#EC6C00',
+			lineWidth: 6,			
+			translate: [-0,-39],	
+			animate: [{
+				attr: 'translate',
+				type:'point',
+				to: {x:0, y:-43},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 			
+			}]
+		},{
+			shape: 'path',
+			data: [{c: 'M', x: 0, y: -5},{c: 'L', x: -2, y: 0},{c: 'L', x: -5, y: 5},{c: 'C', x1: -3, y1: 13, x2:3, y2: 13, x:5, y:5}, {c: 'L', x:1, y:-1},{c: 'L', x:0, y:-5}],
+			lineColor: '#0089C1',
+			lineWidth: 1,			
+			translate: [7,-47],	
+			scale:[0.8,0.8],
+			alpha: 0,
+			rotate: -5,
+			animate: [{
+				attr: 'alpha',
+				to: 1,
+				dur:1000,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 			
+			},{
+				attr: 'scale',
+				type:'point',
+				to: {x:1, y:1},
+				dur:1000,
+				easing: 'easeOut',
+				reverse: false,
+				repeat: Number.POSITIVE_INFINITY 			
+			},{
+				attr: 'translate',
+				type:'point',
+				to: {x:7, y:-50},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 			
+			}]
+		},{
+			shape: 'path',
+			data: [0,0, -10,15, 0,23, 0,24, -8,24],
+			lineWidth: 6,
+			lineCap: 'round',
+			lineColor: '#EC6C00',
+			translate: [-15,22],
+			scale: [1, 1],
+			animate: [{
+				attr: 'scale',
+				type:'point',
+				to: {x:1, y:0.8},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			},{
+				attr: 'rotate',
+				to: -20,
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			}]
+		},{
+			shape: 'path',
+			data: [5,-4, -8,15, 0,23, 0,26],
+			lineWidth: 6,
+			lineCap: 'round',
+			lineColor: '#EC6C00',
+			translate: [-30,-2],
+			scale: [1, 1],
+			animate: [{
+				attr: 'translate',
+				type: 'point',
+				to: [-33,-4],
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			}]
+		},{
+			shape: 'path',
+			data: [0,0, 10,15, 0,23, 0,24, 8,24],
+			lineWidth: 6,
+			lineCap: 'round',
+			lineColor: '#EC6C00',
+			translate: [15,22],
+			scale: [1, 0.8],
+			animate: [{
+				attr: 'scale',
+				type:'point',
+				to: {x:1, y:1},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			},{
+				attr: 'rotate',
+				to: 20,
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			}]
+		},{
+			shape: 'path',
+			data: [-5,-4, 8,15, 0,23, 0,26],
+			lineWidth: 6,
+			lineCap: 'round',
+			lineColor: '#EC6C00',
+			translate: [30,-2],
+			scale: [1, 1],
+			animate: [{
+				attr: 'translate',
+				type: 'point',
+				to: [33,-4],
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 
+			}]
+		},{
+			shape: 'vector',
+			name: 'node_image',
+			scale: [2,2],
+			animate: [{
+				attr: 'translate',
+				type:'point',
+				to: {x:0, y:-3},
+				dur:500,
+				easing: 'easeOut',
+				reverse: true,
+				repeat: Number.POSITIVE_INFINITY 			
+			}]
+		}],
+	});
+
+	
+	//define topo.
+	var box = new twaver.ElementBox();  
+	var network = new twaver.vector.Network(box);	
+
+    function init() {            		
+		document.body.appendChild(network.getView());
+		network.adjustBounds({ x: 0, y: 0, width: 1600, height: 700 });				
+		
+		var node1=createNode(box, 'New York', 250,200,'split_node');
+		var node2=createNode(box, 'Chicago', 450, 350, 'glow_node');
+		createLink(box, node1, node2);
+
+		var node3=createNode(box, 'HongQiao airport', 550, 250, 'node_image');
+		node3.setSize(50,40);
+		node3.setStyle('label.yoffset', 0);
+		node3.getAlarmState().setNewAlarmCount(twaver.AlarmSeverity.CRITICAL, 10);
+		createLink(box, node2, node3);
+		var node4=createNode(box, 'PuDong airport', 730, 170, 'light_node');
+		node4.setStyle('label.yoffset', 0);
+		createLink(box, node3, node4);
+
+		var node5=createNode(box, 'installing....', 600,370,'loading_clock_node').setStyle('label.font', '12px "Microsoft Yahei" Bold');
+		createLink(box, node4, node5);
+		var node6=createNode(box, 'restarting, please wait....', 300,450,'loading_bar_node').setStyle('label.font', '12px "Microsoft Yahei" Bold');
+		createLink(box, node4, node6);
+
+		var node7=createNode(box, 'initializing....', 800,350,'loading_ball_node').setStyle('label.font', '12px "Microsoft Yahei" Bold');
+		createLink(box, node4, node7);		
+
+		var node8=createNode(box, 'Coder', 780,550,'walking_node_h').setStyle('label.font', '12px "Microsoft Yahei" bold');
+		node8.setSize(90, 90);
+
+		var node9=createNode(box, 'Coder', 270,550,'walking_node_v').setStyle('label.font', '12px "Microsoft Yahei" bold');
+		node9.setSize(90, 90);
+		
+		for(var i=0;i<7;i++){
+			var node=createNode(box, 'Coder\n'+(i+1), 350+i*60,650,'walking_node_h').setStyle('label.font', '12px "Microsoft Yahei" bold');
+			node.setSize(70, 60);
+			var link=createLink(box, node8, node);
+			link.setStyle('link.to.xoffset', -30);
+
+			if(i==0){
+				var link=createLink(box, node9, node);
+				link.setStyle('link.to.xoffset', 30);
+			}
+		}		
+
+		network.panByOffset(100,100);
+	}
+
+	function createLink(box, from, to){
+		var link=new twaver.Link(from, to);
+		link.setStyle('link.width', 1);
+		link.setStyle('link.type', 'orthogonal.V.H');
+		link.setStyle('link.from.position', 'center');
+		link.setStyle('link.to.position', 'center');
+		link.setStyle('link.color', '#EC6C00');
+		box.add(link);
+		return link;
+	 }
+
+	 function createNode(box, name, x, y, image){
+		var node=new twaver.Node();
+		node.setLocation(x,y);
+		node.setImage(image);
+		node.setStyle('select.style', 'border');
+		node.setStyle('select.color', '#309FC9');
+		node.setName(name);
+		node.setStyle('label.font', '20px "Microsoft Yahei" bold');
+		node.setStyle('label.yoffset', -10);
+		box.add(node);	
+		return node;
+	 }
+
+  </script>
+</head>
+<body onload="init();">
+</body>
+</html>

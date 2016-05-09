@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gauge Demo</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>
+    function init() {
+      twaver.Util.registerImage('gauge', {
+        w: 200,
+        h: 200,
+        font: '15px Calibri',
+        textAlign: 'center',
+        textBaseline: 'middle',
+
+        _radius: 60,
+        _sectionColors: ['#A6C567', '#A6C567', '#A6C567', '#FCBB69', '#FCBB69', '#E19094', ],
+        _sectionGap: 5,
+        _min: 0, //gauge min value.
+        _max: 100, //gauge max value.    
+
+        getSection: function(data) {
+          return data.getClient('section');
+        },
+        getRange: function(data) {
+          return data.getClient('range') || 280;
+        },
+        getFromAngle: function(data) {
+          return (360 - this.getRange(data)) / 2 + 90;
+        },
+        getToAngle: function(data) {
+          return this.getFromAngle(data) + this.getRange(data);
+        },
+        getValueAngle: function(data) {
+          var valueRange = this._max - this._min;
+          var value = data.getClient('value') || 0;
+          value = value > valueRange ? valueRange : value;
+          value = value < 0 ? 0 : value;
+          var angle = value / valueRange * this.getRange(data);
+          return angle + this.getFromAngle(data);
+        },
+
+        v: [
+          {
+            shape: 'rect',
+            rect: [-100, -100, 200, 200],
+            lineColor: '#EEEEEE',
+            lineWidth: 1,
+          },
+          {
+            shape: 'line',
+            x2: '<%= this._radius-7 %>',
+            rotate: '<%= this.getValueAngle(data) %>',
+            lineColor: '<% if(getClient("value")>=this._max){return "#E19094";}else{return "#43474B";} %>',
+            lineWidth: 2.5,
+            animate: [
+              {
+                attr: 'rotate',
+                easing: 'elasticBoth'
+              }
+            ]
+          },
+          {
+            shape: 'circle',
+            r: 7,
+            lineColor: '#43474B',
+            lineWidth: 2.5,
+            fill: 'white',
+          },
+          {
+            shape: 'draw',
+            draw: function(g, data, view) {
+              g.lineWidth = 5;
+              var section = this.getSection(data);
+              var sectionAngle = this.getRange(data) / section;
+              for (var i = 0; i < section; i++) {
+                var from = this.getFromAngle(data) + i * sectionAngle + this._sectionGap / 2;
+                var to = from + sectionAngle - this._sectionGap;
+                g.strokeStyle = this._sectionColors[i];
+                g.beginPath();
+                g.arc(0, 0, this._radius, from * Math.PI / 180, to * Math.PI / 180);
+                g.stroke();
+                g.closePath();
+
+                var textAngle = from * Math.PI / 180;
+                var textRadius = this._radius + 20;
+                var text = parseInt(this._min + i * (this._max - this._min) / section);
+                g.fillText(text, textRadius * Math.cos(textAngle), textRadius * Math.sin(textAngle));
+
+                if (i == section - 1) {
+                  textAngle = to * Math.PI / 180;
+                  text = this._max;
+                  g.fillText(text, textRadius * Math.cos(textAngle), textRadius * Math.sin(textAngle));
+                }
+              }
+            }
+          },
+          {
+            shape: 'text',
+            y: 20,
+            text: '<%= getClient("value") %>',
+            fill: '#777777',
+            font: '18px Calibri bold',
+          },
+          {
+            shape: 'text',
+            y: 75,
+            text: '<%= getClient("title") %>',
+            fill: '#777777',
+            font: '20px Calibri',
+          }
+        ],
+        onClick: function (data) {
+          console.log(data.getClient('title'));
+        }
+      });
+
+      var box = new twaver.ElementBox();
+      var network = new twaver.vector.Network(box);
+      document.body.appendChild(network.getView());
+      network.adjustBounds({
+        x: 0,
+        y: 0,
+        width: 1200,
+        height: 700
+      });
+      network.setZoomManager(new twaver.vector.LogicalZoomManager(network, true));
+
+      for (var i = 0; i < 4; i++) {
+        var node = new twaver.Node();
+        node.setClient('title', 'Gauge # ' + (i + 1));
+        node.setImage('gauge');
+        node.setLocation(100 + 220 * i, 200);
+        node.setClient('value', parseInt(Math.random() * 100));
+        node.setClient('range', 150 + 30 * i);
+        node.setClient('section', i + 3);
+        node.setClient('step', 1);
+        box.add(node);
+      }
+
+      setInterval(function() {
+        box.forEach(function (node) {
+          node.setClient('value', Math.round(Math.random() * 100));
+        });
+      }, 1500);
+    }
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

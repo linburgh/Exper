@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Radar Demo</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>
+    twaver.Util.registerImage('radar', {
+      v: [
+        {
+          shape: 'draw',
+          draw: function (ctx, data, view) {
+            var canvas = this.canvas,
+              g = this.g,
+              gradient = this.gradient,
+              diameter = Math.floor(data.getWidth() * view.getZoom()),
+              radius = diameter / 2,
+              hueStart = 120,
+              hueEnd = 170,
+              hueDiff = Math.abs(hueEnd - hueStart),
+              width = diameter,
+              height = diameter;
+            if (!canvas) {
+              this.canvas = canvas = document.createElement('canvas');
+            }
+
+            if (width !== canvas.width || height !== canvas.height) {
+              canvas.width = diameter;
+              canvas.height = diameter;
+              this.g = g = canvas.getContext('2d');
+              this.gradient = gradient = g.createLinearGradient(radius, 0, 0, 0);
+              gradient.addColorStop(0, 'hsla(' + hueStart + ', ' + 50 + '%, ' + 40 + '%, 1)');
+              gradient.addColorStop(1, 'hsla(' + hueEnd + ', ' + 50 + '%, ' + 40 + '%, 0.1)');
+            }
+
+            g.globalCompositeOperation = 'destination-out';
+            g.fillStyle = 'hsla(0, 0%, 0%, 0.1)';
+            g.fillRect(0, 0, width, height);
+            
+            g.globalCompositeOperation = 'lighter';
+            var i;
+            for (i = 0; i < 4; i++) {
+              g.beginPath();
+              g.arc(radius, radius, ((radius - 1) / 4) * (i + 1), 0, Math.PI * 2, false);
+              g.strokeStyle = 'hsla(' + (hueEnd - (i * (hueDiff / 4))) + ', ' + 50 + '%, ' + 40 + '%, 0.1)';
+              g.lineWidth = 2;
+              g.stroke();
+            };
+
+            g.beginPath();
+            g.moveTo(radius - 1, 2);
+            g.lineTo(radius - 1, height - 2);
+            g.moveTo(2, radius - 1);
+            g.lineTo(width - 2, radius - 1);
+            g.strokeStyle = 'hsla(' + ((hueStart + hueEnd) / 2) + ', ' + 50 + '%, ' + 40 + '%, .03)';
+            g.stroke();
+            
+            g.save();
+            g.translate(radius, radius);
+            g.rotate(data.getClient('angle'));  
+            g.beginPath();
+            g.moveTo(0, 0);
+            g.arc(0, 0, radius, -0.0349, 0.0349, false);
+            g.closePath();
+            g.fillStyle = gradient;
+            g.fill();  
+            g.restore();
+
+            ctx.scale(1 / view.getZoom(), 1 / view.getZoom());
+            ctx.drawImage(canvas, -width / 2, -height / 2);
+          }
+        }
+      ]
+    });
+
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+
+    function init() {
+      twaver.Defaults.CENTER_LOCATION = true;
+      document.body.appendChild(network.getView());
+      network.getView().style.background = '#333';
+      network.adjustBounds({
+        x: 0,
+        y: 0,
+        width: 600,
+        height: 400
+      });
+
+      var node = new twaver.Node();
+      node.setLocation(300, 200);
+      node.setSize(200, 200);
+      node.setImage('radar');
+      node.setStyle('select.style', 'border');
+      node.setStyle('select.color', '#309FC9');
+      box.add(node);
+
+      new twaver.Animate({
+        source: node,
+        attr: 'C@angle',
+        from: 0,
+        to: Math.PI * 2,
+        dur: 4000,
+        repeat: Number.POSITIVE_INFINITY,
+        reverse: false
+      }).play();
+    }
+  </script>
+</head>
+<body onload="init();">
+</body>
+</html>

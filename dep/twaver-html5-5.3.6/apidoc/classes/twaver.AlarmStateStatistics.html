@@ -1,0 +1,1580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>twaver.AlarmStateStatistics - TWave HTML5 API Doc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../../demo/images/logo.png" title="TWave HTML5 API Doc"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: TWaver HTML5 5.3.6</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/twaver.Alarm.html">twaver.Alarm</a></li>
+                                <li><a href="../classes/twaver.AlarmBox.html">twaver.AlarmBox</a></li>
+                                <li><a href="../classes/twaver.AlarmElementMapping.html">twaver.AlarmElementMapping</a></li>
+                                <li><a href="../classes/twaver.AlarmSeverity.html">twaver.AlarmSeverity</a></li>
+                                <li><a href="../classes/twaver.AlarmState.html">twaver.AlarmState</a></li>
+                                <li><a href="../classes/twaver.AlarmStatePropagator.html">twaver.AlarmStatePropagator</a></li>
+                                <li><a href="../classes/twaver.AlarmStateStatistics.html">twaver.AlarmStateStatistics</a></li>
+                                <li><a href="../classes/twaver.animate.Animate.html">twaver.animate.Animate</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateBounds.html">twaver.animate.AnimateBounds</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateCenterLocation.html">twaver.animate.AnimateCenterLocation</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateLocation.html">twaver.animate.AnimateLocation</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateProperty.html">twaver.animate.AnimateProperty</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateScrollPosition.html">twaver.animate.AnimateScrollPosition</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateSubNetwork.html">twaver.animate.AnimateSubNetwork</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateXYZoom.html">twaver.animate.AnimateXYZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateXZoom.html">twaver.animate.AnimateXZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateYZoom.html">twaver.animate.AnimateYZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateZoom.html">twaver.animate.AnimateZoom</a></li>
+                                <li><a href="../classes/twaver.BundleLinks.html">twaver.BundleLinks</a></li>
+                                <li><a href="../classes/twaver.Bus.html">twaver.Bus</a></li>
+                                <li><a href="../classes/twaver.canvas.AlarmAttachment.html">twaver.canvas.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.Attachment.html">twaver.canvas.Attachment</a></li>
+                                <li><a href="../classes/twaver.canvas.BasicAttachment.html">twaver.canvas.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.EditAttachment.html">twaver.canvas.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.ElementUI.html">twaver.canvas.ElementUI</a></li>
+                                <li><a href="../classes/twaver.canvas.GridUI.html">twaver.canvas.GridUI</a></li>
+                                <li><a href="../classes/twaver.canvas.GroupUI.html">twaver.canvas.GroupUI</a></li>
+                                <li><a href="../classes/twaver.canvas.IconsAttachment.html">twaver.canvas.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.BaseInteraction.html">twaver.canvas.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateElementInteraction.html">twaver.canvas.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateLinkInteraction.html">twaver.canvas.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateShapeLinkInteraction.html">twaver.canvas.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateShapeNodeInteraction.html">twaver.canvas.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.DefaultInteraction.html">twaver.canvas.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.EditInteraction.html">twaver.canvas.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MagnifyInteraction.html">twaver.canvas.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MoveInteraction.html">twaver.canvas.interaction.MoveInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MSTouchInteraction.html">twaver.canvas.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.PanInteraction.html">twaver.canvas.interaction.PanInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.ScrollInteraction.html">twaver.canvas.interaction.ScrollInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.SelectInteraction.html">twaver.canvas.interaction.SelectInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.TouchInteraction.html">twaver.canvas.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.LabelAttachment.html">twaver.canvas.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.LinkHandlerAttachment.html">twaver.canvas.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.LinkUI.html">twaver.canvas.LinkUI</a></li>
+                                <li><a href="../classes/twaver.canvas.Network.html">twaver.canvas.Network</a></li>
+                                <li><a href="../classes/twaver.canvas.NodeUI.html">twaver.canvas.NodeUI</a></li>
+                                <li><a href="../classes/twaver.canvas.Overview.html">twaver.canvas.Overview</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewInteraction.html">twaver.canvas.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewMSTouchInteraction.html">twaver.canvas.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewTouchInteraction.html">twaver.canvas.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.RotatableNodeUI.html">twaver.canvas.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.canvas.ShapeLinkUI.html">twaver.canvas.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.canvas.ShapeNodeUI.html">twaver.canvas.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.charts.BarChart.html">twaver.charts.BarChart</a></li>
+                                <li><a href="../classes/twaver.charts.BubbleChart.html">twaver.charts.BubbleChart</a></li>
+                                <li><a href="../classes/twaver.charts.ChartBase.html">twaver.charts.ChartBase</a></li>
+                                <li><a href="../classes/twaver.charts.ChartInteraction.html">twaver.charts.ChartInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.ChartMSTouchInteraction.html">twaver.charts.ChartMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.ChartPane.html">twaver.charts.ChartPane</a></li>
+                                <li><a href="../classes/twaver.charts.ChartTouchInteraction.html">twaver.charts.ChartTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.DialChart.html">twaver.charts.DialChart</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPane.html">twaver.charts.LegendPane</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPaneInteraction.html">twaver.charts.LegendPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPaneTouchInteraction.html">twaver.charts.LegendPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.LineChart.html">twaver.charts.LineChart</a></li>
+                                <li><a href="../classes/twaver.charts.PieChart.html">twaver.charts.PieChart</a></li>
+                                <li><a href="../classes/twaver.charts.RadarChart.html">twaver.charts.RadarChart</a></li>
+                                <li><a href="../classes/twaver.charts.ScaleChart.html">twaver.charts.ScaleChart</a></li>
+                                <li><a href="../classes/twaver.Column.html">twaver.Column</a></li>
+                                <li><a href="../classes/twaver.ColumnBox.html">twaver.ColumnBox</a></li>
+                                <li><a href="../classes/twaver.controls.Accordion.html">twaver.controls.Accordion</a></li>
+                                <li><a href="../classes/twaver.controls.BorderPane.html">twaver.controls.BorderPane</a></li>
+                                <li><a href="../classes/twaver.controls.ControlBase.html">twaver.controls.ControlBase</a></li>
+                                <li><a href="../classes/twaver.controls.List.html">twaver.controls.List</a></li>
+                                <li><a href="../classes/twaver.controls.ListBase.html">twaver.controls.ListBase</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseInteraction.html">twaver.controls.ListBaseInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseMSTouchInteraction.html">twaver.controls.ListBaseMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseTouchInteraction.html">twaver.controls.ListBaseTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PopupMenu.html">twaver.controls.PopupMenu</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheet.html">twaver.controls.PropertySheet</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetInteraction.html">twaver.controls.PropertySheetInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetMSTouchInteraction.html">twaver.controls.PropertySheetMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetTouchInteraction.html">twaver.controls.PropertySheetTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPane.html">twaver.controls.SplitPane</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPaneInteraction.html">twaver.controls.SplitPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPaneTouchInteraction.html">twaver.controls.SplitPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.Table.html">twaver.controls.Table</a></li>
+                                <li><a href="../classes/twaver.controls.TableBase.html">twaver.controls.TableBase</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeader.html">twaver.controls.TableHeader</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeaderInteraction.html">twaver.controls.TableHeaderInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeaderTouchInteraction.html">twaver.controls.TableHeaderTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TablePane.html">twaver.controls.TablePane</a></li>
+                                <li><a href="../classes/twaver.controls.TabPane.html">twaver.controls.TabPane</a></li>
+                                <li><a href="../classes/twaver.controls.TabPaneInteraction.html">twaver.controls.TabPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TabPaneTouchInteraction.html">twaver.controls.TabPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TitlePane.html">twaver.controls.TitlePane</a></li>
+                                <li><a href="../classes/twaver.controls.Tree.html">twaver.controls.Tree</a></li>
+                                <li><a href="../classes/twaver.controls.TreeTable.html">twaver.controls.TreeTable</a></li>
+                                <li><a href="../classes/twaver.controls.View.html">twaver.controls.View</a></li>
+                                <li><a href="../classes/twaver.controls.ViewBase.html">twaver.controls.ViewBase</a></li>
+                                <li><a href="../classes/twaver.Data.html">twaver.Data</a></li>
+                                <li><a href="../classes/twaver.DataBox.html">twaver.DataBox</a></li>
+                                <li><a href="../classes/twaver.Dummy.html">twaver.Dummy</a></li>
+                                <li><a href="../classes/twaver.Element.html">twaver.Element</a></li>
+                                <li><a href="../classes/twaver.ElementBox.html">twaver.ElementBox</a></li>
+                                <li><a href="../classes/twaver.Follower.html">twaver.Follower</a></li>
+                                <li><a href="../classes/twaver.Grid.html">twaver.Grid</a></li>
+                                <li><a href="../classes/twaver.Group.html">twaver.Group</a></li>
+                                <li><a href="../classes/twaver.ImageAsset.html">twaver.ImageAsset</a></li>
+                                <li><a href="../classes/twaver.JsonSerializer.html">twaver.JsonSerializer</a></li>
+                                <li><a href="../classes/twaver.Layer.html">twaver.Layer</a></li>
+                                <li><a href="../classes/twaver.LayerBox.html">twaver.LayerBox</a></li>
+                                <li><a href="../classes/twaver.layout.AutoLayouter.html">twaver.layout.AutoLayouter</a></li>
+                                <li><a href="../classes/twaver.layout.CloudLayouter.html">twaver.layout.CloudLayouter</a></li>
+                                <li><a href="../classes/twaver.layout.SpringLayouter.html">twaver.layout.SpringLayouter</a></li>
+                                <li><a href="../classes/twaver.Link.html">twaver.Link</a></li>
+                                <li><a href="../classes/twaver.LinkSubNetwork.html">twaver.LinkSubNetwork</a></li>
+                                <li><a href="../classes/twaver.List.html">twaver.List</a></li>
+                                <li><a href="../classes/twaver.network.AlarmAttachment.html">twaver.network.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.network.Attachment.html">twaver.network.Attachment</a></li>
+                                <li><a href="../classes/twaver.network.BasicAttachment.html">twaver.network.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.network.EditAttachment.html">twaver.network.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.network.ElementUI.html">twaver.network.ElementUI</a></li>
+                                <li><a href="../classes/twaver.network.GridUI.html">twaver.network.GridUI</a></li>
+                                <li><a href="../classes/twaver.network.GroupUI.html">twaver.network.GroupUI</a></li>
+                                <li><a href="../classes/twaver.network.IconsAttachment.html">twaver.network.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.network.interaction.BaseInteraction.html">twaver.network.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateElementInteraction.html">twaver.network.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateLinkInteraction.html">twaver.network.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateOrthogonalLinkInteraction.html">twaver.network.interaction.CreateOrthogonalLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateShapeLinkInteraction.html">twaver.network.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateShapeNodeInteraction.html">twaver.network.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.DefaultInteraction.html">twaver.network.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.EditInteraction.html">twaver.network.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MagnifyInteraction.html">twaver.network.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MoveInteraction.html">twaver.network.interaction.MoveInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MSTouchInteraction.html">twaver.network.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.PanInteraction.html">twaver.network.interaction.PanInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.SelectInteraction.html">twaver.network.interaction.SelectInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.TouchInteraction.html">twaver.network.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.LabelAttachment.html">twaver.network.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.network.LinkHandlerAttachment.html">twaver.network.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.network.LinkUI.html">twaver.network.LinkUI</a></li>
+                                <li><a href="../classes/twaver.network.Network.html">twaver.network.Network</a></li>
+                                <li><a href="../classes/twaver.network.NodeUI.html">twaver.network.NodeUI</a></li>
+                                <li><a href="../classes/twaver.network.Overview.html">twaver.network.Overview</a></li>
+                                <li><a href="../classes/twaver.network.OverviewInteraction.html">twaver.network.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.network.OverviewMSTouchInteraction.html">twaver.network.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.OverviewTouchInteraction.html">twaver.network.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.RotatableNodeUI.html">twaver.network.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.network.ShapeLinkUI.html">twaver.network.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.network.ShapeNodeUI.html">twaver.network.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.Node.html">twaver.Node</a></li>
+                                <li><a href="../classes/twaver.Pool.html">twaver.Pool</a></li>
+                                <li><a href="../classes/twaver.Property.html">twaver.Property</a></li>
+                                <li><a href="../classes/twaver.PropertyBox.html">twaver.PropertyBox</a></li>
+                                <li><a href="../classes/twaver.PropertyChangeDispatcher.html">twaver.PropertyChangeDispatcher</a></li>
+                                <li><a href="../classes/twaver.PropertyPropagator.html">twaver.PropertyPropagator</a></li>
+                                <li><a href="../classes/twaver.QuickFinder.html">twaver.QuickFinder</a></li>
+                                <li><a href="../classes/twaver.RotatableNode.html">twaver.RotatableNode</a></li>
+                                <li><a href="../classes/twaver.SelectionModel.html">twaver.SelectionModel</a></li>
+                                <li><a href="../classes/twaver.SerializationSettings.html">twaver.SerializationSettings</a></li>
+                                <li><a href="../classes/twaver.ShapeLink.html">twaver.ShapeLink</a></li>
+                                <li><a href="../classes/twaver.ShapeNode.html">twaver.ShapeNode</a></li>
+                                <li><a href="../classes/twaver.ShapeSubNetwork.html">twaver.ShapeSubNetwork</a></li>
+                                <li><a href="../classes/twaver.SubNetwork.html">twaver.SubNetwork</a></li>
+                                <li><a href="../classes/twaver.Tab.html">twaver.Tab</a></li>
+                                <li><a href="../classes/twaver.TabBox.html">twaver.TabBox</a></li>
+                                <li><a href="../classes/twaver.vector.AlarmAttachment.html">twaver.vector.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.Attachment.html">twaver.vector.Attachment</a></li>
+                                <li><a href="../classes/twaver.vector.BaseZoomManager.html">twaver.vector.BaseZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.BasicAttachment.html">twaver.vector.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.EditAttachment.html">twaver.vector.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.ElementUI.html">twaver.vector.ElementUI</a></li>
+                                <li><a href="../classes/twaver.vector.GridUI.html">twaver.vector.GridUI</a></li>
+                                <li><a href="../classes/twaver.vector.GroupUI.html">twaver.vector.GroupUI</a></li>
+                                <li><a href="../classes/twaver.vector.IconsAttachment.html">twaver.vector.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.BaseInteraction.html">twaver.vector.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateElementInteraction.html">twaver.vector.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateLinkInteraction.html">twaver.vector.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateShapeLinkInteraction.html">twaver.vector.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateShapeNodeInteraction.html">twaver.vector.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.DefaultInteraction.html">twaver.vector.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.EditInteraction.html">twaver.vector.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.MagnifyInteraction.html">twaver.vector.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.MSTouchInteraction.html">twaver.vector.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.TouchInteraction.html">twaver.vector.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.Label2Attachment.html">twaver.vector.Label2Attachment</a></li>
+                                <li><a href="../classes/twaver.vector.LabelAttachment.html">twaver.vector.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.LinkHandlerAttachment.html">twaver.vector.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.LinkUI.html">twaver.vector.LinkUI</a></li>
+                                <li><a href="../classes/twaver.vector.LogicalZoomManager.html">twaver.vector.LogicalZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.MixedZoomManager.html">twaver.vector.MixedZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.Network.html">twaver.vector.Network</a></li>
+                                <li><a href="../classes/twaver.vector.NodeUI.html">twaver.vector.NodeUI</a></li>
+                                <li><a href="../classes/twaver.vector.Overview.html">twaver.vector.Overview</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewInteraction.html">twaver.vector.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewMSTouchInteraction.html">twaver.vector.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewTouchInteraction.html">twaver.vector.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.PhysicalZoomManager.html">twaver.vector.PhysicalZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.RotatableNodeUI.html">twaver.vector.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.vector.ShapeLinkUI.html">twaver.vector.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.vector.ShapeNodeUI.html">twaver.vector.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.XmlSerializer.html">twaver.XmlSerializer</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>twaver.AlarmStateStatistics Class</h1>
+<div class="box meta">
+
+        <div class="extends">
+            Extends <a href="../classes/twaver.PropertyChangeDispatcher.html" class="crosslink">twaver.PropertyChangeDispatcher</a>
+        </div>
+
+
+
+</div>
+
+
+<div class="box intro">
+    <p>告警统计是用于统计网元容器上所有的告警状态的数量。它需要和网元容器绑定，当网元容器上某个网元的告警状态发生改变时，告警统计类就会自动计算告警的数量。
+这个类可以用于驱动柱状图，饼状图的告警信息的显示</p>
+
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_twaver.AlarmStateStatistics" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>elementBox</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.AlarmStateStatistics.html" class="crosslink">twaver.AlarmStateStatistics</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">elementBox</code>
+                        <span class="type"><a href="../classes/twaver.ElementBox.html" class="crosslink">twaver.ElementBox</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元容器</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.AlarmStateStatistics.html" class="crosslink">twaver.AlarmStateStatistics</a></span>:
+                    <p>告警统计对象本身</p>
+
+            </div>
+        </div>
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.decrease">twaver.AlarmStateStatistics.decrease</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.dispose">twaver.AlarmStateStatistics.dispose</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.fireAlarmStateChange">twaver.AlarmStateStatistics.fireAlarmStateChange</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.getAcknowledgedAlarmCount">twaver.AlarmStateStatistics.getAcknowledgedAlarmCount</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.getElementBox">twaver.AlarmStateStatistics.getElementBox</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.getFilterFunction">twaver.AlarmStateStatistics.getFilterFunction</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.getNewAlarmCount">twaver.AlarmStateStatistics.getNewAlarmCount</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.getSumInfo">twaver.AlarmStateStatistics.getSumInfo</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.getTotalAlarmCount">twaver.AlarmStateStatistics.getTotalAlarmCount</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.handleElementBoxChange">twaver.AlarmStateStatistics.handleElementBoxChange</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.handleElementPropertyChange">twaver.AlarmStateStatistics.handleElementPropertyChange</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.increase">twaver.AlarmStateStatistics.increase</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.reset">twaver.AlarmStateStatistics.reset</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.setElementBox">twaver.AlarmStateStatistics.setElementBox</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmStateStatistics.setFilterFunction">twaver.AlarmStateStatistics.setFilterFunction</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.addPropertyChangeListener">twaver.PropertyChangeDispatcher.addPropertyChangeListener</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.firePropertyChange">twaver.PropertyChangeDispatcher.firePropertyChange</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.getClassName">twaver.PropertyChangeDispatcher.getClassName</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.onPropertyChanged">twaver.PropertyChangeDispatcher.onPropertyChanged</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.removePropertyChangeListener">twaver.PropertyChangeDispatcher.removePropertyChangeListener</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_twaver.AlarmStateStatistics.decrease" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.decrease</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>减少一个网元(TWaver内部使用)</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.dispose" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.dispose</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>销毁告警统计，比如网元更改事件的监听器，网元属性更改事件的监听器</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.fireAlarmStateChange" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.fireAlarmStateChange</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>派发网元告警统计状态的更改事件。TWaver内部使用</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.getAcknowledgedAlarmCount" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.getAcknowledgedAlarmCount</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>severity</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定告警级别的确认告警的数量</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">severity</code>
+                        <span class="type"><a href="../classes/twaver.AlarmSeverity.html" class="crosslink">twaver.AlarmSeverity</a></span>
+
+
+                    <div class="param-description">
+                        <p>指定的告警级别</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>确认告警的数量</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.getElementBox" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.getElementBox</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.ElementBox.html" class="crosslink">twaver.ElementBox</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取绑定的网元容器</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.ElementBox.html" class="crosslink">twaver.ElementBox</a></span>:
+                    <p>网元容器对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.getFilterFunction" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.getFilterFunction</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Function</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取告警统计的过滤器，这个过滤器用于过滤哪些网元或哪些告警可以不计入统计范围。默认为空，也就是统计网元容器中所有网元的告警都计入统计范围</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Function</span>:
+                    <p>告警统计的过滤器</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.getNewAlarmCount" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.getNewAlarmCount</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>severity</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定告警级别的新发告警的数量</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">severity</code>
+                        <span class="type"><a href="../classes/twaver.AlarmSeverity.html" class="crosslink">twaver.AlarmSeverity</a></span>
+
+
+                    <div class="param-description">
+                        <p>指定的告警级别</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>新发告警的数量</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.getSumInfo" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.getSumInfo</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>severity</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定告警级别的告警统计的总数信息，包括新发告警的数量，确认告警的数量和两者总数量</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">severity</code>
+                        <span class="type"><a href="../classes/twaver.AlarmSeverity.html" class="crosslink">twaver.AlarmSeverity</a></span>
+
+
+                    <div class="param-description">
+                        <p>指定的告警级别</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>告警统计的总数信息</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.getTotalAlarmCount" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.getTotalAlarmCount</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>severity</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定告警级别的告警总数量</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">severity</code>
+                        <span class="type"><a href="../classes/twaver.AlarmSeverity.html" class="crosslink">twaver.AlarmSeverity</a></span>
+
+
+                    <div class="param-description">
+                        <p>指定的告警级别</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>告警级别的告警总数量</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.handleElementBoxChange" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.handleElementBoxChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当网元容器发生变化时。TWaver内部会调用此方法</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>网元容器发生变化的事件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.handleElementPropertyChange" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.handleElementPropertyChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当网元容器中网元的属性发生变化时调用此方法</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>网元属性变化的事件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.increase" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.increase</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>增加一个网元，TWaver内部使用</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.reset" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.reset</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置所有的告警统计的数量为零</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.setElementBox" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.setElementBox</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>box</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置绑定的网元容器</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">box</code>
+                        <span class="type"><a href="../classes/twaver.ElementBox.html" class="crosslink">twaver.ElementBox</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元容器对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmStateStatistics.setFilterFunction" class="method item">
+    <h3 class="name"><code>twaver.AlarmStateStatistics.setFilterFunction</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>f</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置告警统计的过滤器，这个过滤器用于过滤哪些网元或哪些告警可以不参考统计，默认为空，也就是统计网元容器中所有网元的告警</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">f</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>告警统计的过滤器</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.addPropertyChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.addPropertyChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[ahead]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.addPropertyChangeListener">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>添加属性变化监听器，用于监听属性变化</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>可选，属性变化监听器的作用域，默认为null，即全局</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[ahead]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>可选，是否将此监听放在最前面，默认为false</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>var dispatcher = new twaver.PropertyChangeDispatcher();
+dispatcher.addPropertyChangeListener(function (e) {
+console.log(e.property, e.newValue, e.oldValue);
+});</p>
+
+            </div>
+        </div>
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.firePropertyChange" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.firePropertyChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>property</code>
+                </li>
+                <li class="arg">
+                        <code>oldValue</code>
+                </li>
+                <li class="arg">
+                        <code>newValue</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.firePropertyChange">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>派发属性变化事件，属性变化时调用此方法</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>发生变化的属性</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">oldValue</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>和此属性相关的旧值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newValue</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>和此属性相关的新值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>如果新值和旧值相等则返回false，否则返回true</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.getClassName" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.getClassName</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.getClassName">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取此类的字符串类名</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回此类的字符串类名</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.onPropertyChanged" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.onPropertyChanged</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.onPropertyChanged">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>属性变化时（firePropertyChange）触发的动作，不需要调用此方法，但可以重载此方法执行自定义逻辑</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化事件，包含property、oldValue和newValue的Object对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.removePropertyChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.removePropertyChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.removePropertyChangeListener">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>删除指定作用域的属性变化监听器，作用域必须和添加监听器时的作用域一致，相同的作用域的相同监听器只能成功添加一次</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化监听器的作用域，可选，默认为null，代表全局</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>

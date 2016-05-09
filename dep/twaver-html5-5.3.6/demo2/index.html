@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <title>TWaver HTML5 Demo</title>
+  <meta name="description" content="TWaver HTML5 Demo - TWaver Responsive HTML5 UI Framework">
+  <meta name="author" content="TWaver">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" type="text/css" href="./css/theme.css">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="./favicon.ico">
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="dashboard-page sb-l-o sb-r-c onload-check">
+
+<!-------------------------------------------------------------+ 
+  <body> Helper Classes: 
+---------------------------------------------------------------+ 
+  '.sb-l-o' - Sets Left Sidebar to "open"
+  '.sb-l-m' - Sets Left Sidebar to "minified"
+  '.sb-l-c' - Sets Left Sidebar to "closed"
+
+  '.sb-r-o' - Sets Right Sidebar to "open"
+  '.sb-r-c' - Sets Right Sidebar to "closed"
+---------------------------------------------------------------+
+ Example: <body class="example-page sb-l-o sb-r-c">
+ Results: Sidebar left Open, Sidebar right Closed
+--------------------------------------------------------------->
+
+  <!-- For Demo Purposes - Theme Settings Pane -->
+  <div id="skin-toolbox">
+    <div class="panel">
+      <div class="panel-heading" unselectable="on" style="-webkit-user-select: none;">
+        <span class="panel-icon">
+          <i class="fa fa-gear text-primary"></i>
+        </span>
+        <span class="panel-title"> Theme Options</span>
+      </div>
+      <div class="panel-body pn">
+        <ul class="nav nav-list nav-list-sm pl15 pt10" role="tablist">
+          <li class="active">
+            <a href="index.html#toolbox-header" role="tab" data-toggle="tab">Navbar</a>
+          </li>
+          <li>
+            <a href="index.html#toolbox-sidebar" role="tab" data-toggle="tab">Sidebar</a>
+          </li>
+          <li>
+            <a href="index.html#toolbox-settings" role="tab" data-toggle="tab">Misc</a>
+          </li>
+        </ul>
+        <div class="tab-content p20 ptn pb15">
+          <div role="tabpanel" class="tab-pane active" id="toolbox-header">
+            <form id="toolbox-header-skin">
+              <h4 class="mv20">Header Skins</h4>
+              <div class="skin-toolbox-swatches">
+                <div class="checkbox-custom checkbox-disabled fill mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin8" checked="" value="bg-light">
+                  <label for="headerSkin8">Light</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-primary mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin1" value="bg-primary">
+                  <label for="headerSkin1">Primary</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-info mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin3" value="bg-info">
+                  <label for="headerSkin3">Info</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-warning mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin4" value="bg-warning">
+                  <label for="headerSkin4">Warning</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-danger mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin5" value="bg-danger">
+                  <label for="headerSkin5">Danger</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-alert mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin6" value="bg-alert">
+                  <label for="headerSkin6">Alert</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-system mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin7" value="bg-system">
+                  <label for="headerSkin7">System</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-success mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin2" value="bg-success">
+                  <label for="headerSkin2">Success</label>
+                </div>
+                <div class="checkbox-custom fill mb5">
+                  <input type="radio" name="headerSkin" id="headerSkin9" value="bg-dark">
+                  <label for="headerSkin9">Dark</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="toolbox-sidebar">
+            <form id="toolbox-sidebar-skin">
+              <h4 class="mv20">Sidebar Skins</h4>
+              <div class="skin-toolbox-swatches">
+                <div class="checkbox-custom fill mb5">
+                  <input type="radio" name="sidebarSkin" checked="" id="sidebarSkin3" value="">
+                  <label for="sidebarSkin3">Dark</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-disabled mb5">
+                  <input type="radio" name="sidebarSkin" id="sidebarSkin1" value="sidebar-light">
+                  <label for="sidebarSkin1">Light</label>
+                </div>
+                <div class="checkbox-custom fill checkbox-light mb5">
+                  <input type="radio" name="sidebarSkin" id="sidebarSkin2" value="sidebar-light light">
+                  <label for="sidebarSkin2">Lighter</label>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="toolbox-settings">
+            <form id="toolbox-settings-misc">
+              <h4 class="mv20 mtn">Layout Options</h4>
+              <div class="form-group">
+                <div class="checkbox-custom fill mb5">
+                  <input type="checkbox" checked="" id="header-option">
+                  <label for="header-option">Fixed Header</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="checkbox-custom fill mb5">
+                  <input type="checkbox" checked="" id="sidebar-option">
+                  <label for="sidebar-option">Fixed Sidebar</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="checkbox-custom fill mb5">
+                  <input type="checkbox" id="breadcrumb-option">
+                  <label for="breadcrumb-option">Fixed Breadcrumbs</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="checkbox-custom fill mb5">
+                  <input type="checkbox" id="breadcrumb-hidden">
+                  <label for="breadcrumb-hidden">Hide Breadcrumbs</label>
+                </div>
+              </div>
+              <h4 class="mv20">Layout Options</h4>
+              <div class="form-group">
+                <div class="radio-custom mb5">
+                  <input type="radio" id="fullwidth-option" checked="" name="layout-option">
+                  <label for="fullwidth-option">Fullwidth Layout</label>
+                </div>
+              </div>
+              <div class="form-group mb20">
+                <div class="radio-custom radio-disabled mb5">
+                  <input type="radio" id="boxed-option" name="layout-option" disabled="">
+                  <label for="boxed-option">Boxed Layout
+                    <b class="text-muted">(Coming Soon)</b>
+                  </label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="form-group mn br-t p15">
+          <a href="index.html#" id="clearLocalStorage" class="btn btn-primary btn-block pb10 pt10">Clear LocalStorage</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End: Theme Settings Pane -->
+
+  <!-- Start: Main -->
+  <div id="main">
+
+    <!-----------------------------------------------------------------+ 
+       ".navbar" Helper Classes: 
+    -------------------------------------------------------------------+ 
+       * Positioning Classes: 
+        '.navbar-static-top' - Static top positioned navbar
+        '.navbar-static-top' - Fixed top positioned navbar
+
+       * Available Skin Classes:
+         .bg-dark    .bg-primary   .bg-success   
+         .bg-info    .bg-warning   .bg-danger
+         .bg-alert   .bg-system 
+    -------------------------------------------------------------------+
+      Example: <header class="navbar navbar-fixed-top bg-primary">
+      Results: Fixed top navbar with blue background 
+    ------------------------------------------------------------------->
+
+    <!-- Start: Header -->
+    <header class="navbar navbar-fixed-top navbar-shadow bg-light">
+      <div class="navbar-branding dark">
+        <a class="navbar-brand" href="#">
+          TWaver HTML5
+        </a>
+        <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
+      </div>
+      <ul class="nav navbar-nav navbar-left">
+        <li>
+          <a class="sidebar-menu-toggle" href="#">
+            <span class="fa fa-star-o fs18"></span>
+          </a>
+        </li>
+        <li>
+          <a class="topbar-menu-toggle" href="#">
+            <span class="fa fa-tags fs16"></span>
+          </a>
+        </li>
+        <li class="hidden-xs">
+          <a class="request-fullscreen toggle-active" href="index.html#">
+            <span class="ad ad-screen-full fs18"></span>
+          </a>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left navbar-search alt" role="search">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search..." value="Search...">
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="index.html#">
+            <span class="flag-xs flag-us"></span> US
+          </a>
+          <ul class="dropdown-menu pv5 animated animated-short flipInX" role="menu">
+            <li>
+              <a href="javascript:void(0);">
+                <span class="flag-xs flag-in mr10"></span> Hindu </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                <span class="flag-xs flag-tr mr10"></span> Turkish </a>
+            </li>
+            <li>
+              <a href="javascript:void(0);">
+                <span class="flag-xs flag-es mr10"></span> Spanish </a>
+            </li>
+          </ul>
+        </li>
+        <li class="menu-divider hidden-xs">
+          <i class="fa fa-circle"></i>
+        </li>
+        <li class="dropdown">
+          <a href="index.html#" class="dropdown-toggle fw600 p15" data-toggle="dropdown"> <img src="./css/images/5.jpg" alt="avatar" class="mw30 br64 mr15"> Guest
+            <span class="caret caret-tp hidden-xs"></span>
+          </a>
+        </li>
+      </ul>
+
+    </header>
+    <!-- End: Header -->
+
+    <!-----------------------------------------------------------------+ 
+       "#sidebar_left" Helper Classes: 
+    -------------------------------------------------------------------+ 
+       * Positioning Classes: 
+        '.affix' - Sets Sidebar Left to the fixed position 
+
+       * Available Skin Classes:
+         .sidebar-dark (default no class needed)
+         .sidebar-light  
+         .sidebar-light.light   
+    -------------------------------------------------------------------+
+       Example: <aside id="sidebar_left" class="affix sidebar-light">
+       Results: Fixed Left Sidebar with light/white background
+    ------------------------------------------------------------------->
+
+    <!-- Start: Sidebar Left -->
+    <aside id="sidebar_left" class="nano nano-primary affix has-scrollbar sidebar-default">
+
+      <!-- Start: Sidebar Left Content -->
+      <div class="sidebar-left-content nano-content" tabindex="0" style="right: -21px;">
+
+        <!-- Start: Sidebar Header -->
+        <header class="sidebar-header">
+
+          <!-- Sidebar Widget - Menu (Slidedown) -->
+          <div class="sidebar-widget menu-widget">
+            <div class="row text-center mbn">
+              <div class="col-xs-4">
+                <a href="#" class="text-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Dashboard">
+                  <span class="fa fa-globe"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="#" class="text-info" data-toggle="tooltip" data-placement="top" title="" data-original-title="Messages">
+                  <span class="fa fa-comments-o"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="#" class="text-alert" data-toggle="tooltip" data-placement="top" title="" data-original-title="Tasks">
+                  <span class="fa fa-heart"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="#" class="text-system" data-toggle="tooltip" data-placement="top" title="" data-original-title="Activity">
+                  <span class="fa fa-desktop"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="#" class="text-danger" data-toggle="tooltip" data-placement="top" title="" data-original-title="Settings">
+                  <span class="fa fa-gears"></span>
+                </a>
+              </div>
+              <div class="col-xs-4">
+                <a href="#" class="text-warning" data-toggle="tooltip" data-placement="top" title="" data-original-title="Cron Jobs">
+                  <span class="fa fa-flask"></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>   
+        <!-- End: Sidebar Header -->
+
+        <!-- Start: Sidebar Left Menu -->
+        <ul class="nav sidebar-menu">
+          <li class="sidebar-label pt20">Topology</li>
+          <li>
+            <a href="#" page="HelloWorldDemo.html">
+              <span class="fa fa-home"></span>
+              <span class="sidebar-title">Hello World</span>
+              <span class="sidebar-title-tray">
+                <span class="label label-xs bg-primary">new</span>
+              </span>
+            </a>
+          </li>
+          <li>
+            <a class="accordion-toggle" href="index.html#">
+              <span class="fa fa-building"></span>
+              <span class="sidebar-title">Network</span>
+              <span class="caret"></span>
+            </a>
+             <ul class="nav sub-nav">
+                <li><a href="#" page="network/OfficeNetwork.html">Office Network</a></li>
+                <li><a href="#" page="network/CustomLink.html">Custom Link</a></li>
+                <li><a href="#" page="network/CrossLink.html">Cross Link</a></li>
+                <li><a href="#" page="network/EditText.html">Edit Text</a></li>
+                <li><a href="#" page="network/Performance.html">Performance</a></li>
+                <li><a href="#" page="network/AndroidRoadMap.html">Android RoadMap</a></li>
+                <li><a href="#" page="network/FloorPlan.html">Floor Plan</a></li>
+                <li><a href="#" page="network/WiringDiagram.html">Wiring Diagram</a></li>
+                <li><a href="#" page="network/Group.html">Group</a></li>
+                <li><a href="#" page="network/HTMLNode.html">HTMLNode</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="accordion-toggle" href="index.html#">
+              <span class="fa fa-sitemap"></span>
+              <span class="sidebar-title">Layout</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li><a href="#" page="layout/AutoLayout.html">Auto Layout</a></li>
+                <li><a href="#" page="layout/SpringLayout.html">Spring Layout</a></li>
+                <li><a href="#" page="layout/RingLayout.html">Ring Layout</a></li>
+                <li><a href="#" page="layout/CircleLayout.html">Circle Layout</a></li>
+                <li><a href="#" page="layout/TilfordTree.html">Tilford Tree</a></li>
+                <li><a href="#" page="layout/Organization.html">Organization</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="accordion-toggle" href="index.html#">
+              <span class="fa fa-sellsy"></span>
+              <span class="sidebar-title">Work Flow</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li><a href="#" page="workflow/ERPWorkflow.html">ERP Workflow</a></li>
+                <li><a href="#" page="workflow/ShoppingFlow.html">Shopping Flow</a></li>
+            </ul>
+          </li>
+          <li class="sidebar-label pt20">Chart</li>
+          <li>
+            <a class="accordion-toggle" href="index.html#">
+              <span class="fa fa-area-chart"></span>
+              <span class="sidebar-title">Chart</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li><a href="#" page="chart/PieChart.html">Pie Chart</a></li>
+                <li><a href="#" page="chart/CoverChart.html">Cover Chart</a></li>
+                <li><a href="#" page="chart/RainbowChart.html">Rainbow Chart</a></li>
+                <li><a href="#" page="chart/MapChart.html">Map Chart</a></li>
+            </ul>
+          </li>
+
+          <li class="sidebar-label pt20">Editor</li>
+          <li>
+            <a class="accordion-toggle" href="index.html#">
+              <span class="fa fa-edit"></span>
+              <span class="sidebar-title">Editor</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li><a href="#" page="editor/IconEditor/IconEditor.html">IconEditor</a></li>
+                <li><a href="#" page="editor/CloudEditor/CloudEditor.html">CloudEditor</a></li>
+            </ul>
+          </li>
+
+          <li class="sidebar-label pt20">Other</li>
+          <li>
+            <a class="accordion-toggle" href="#">
+              <span class="fa fa-spinner"></span>
+              <span class="sidebar-title">Animation</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li><a href="#" page="animation/Basic.html">Basic</a></li>
+                <li><a href="#" page="animation/Cartoon.html">Cartoon</a></li>
+                <li><a href="#" page="animation/Clock.html">Clock</a></li>
+                <li><a href="#" page="animation/Face.html">Face</a></li>
+                <li><a href="#" page="animation/Gauge.html">Gauge</a></li>
+                <li><a href="#" page="animation/GIF.html">GIF</a></li>
+                <li><a href="#" page="animation/Subnetwork.html">Subnetwork</a></li>
+                <li><a href="#" page="animation/Tank.html">Tank</a></li>
+                <li><a href="#" page="animation/Radar.html">Radar</a></li>
+            </ul>
+          </li>
+
+          <li>
+              <a class="accordion-toggle" href="#">
+              <span class="fa fa-warning"></span>
+              <span class="sidebar-title">Alarm</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+                <li><a href="#" page="alarm/AlarmPropagator.html">Alarm Propagator</a></li>
+                <li><a href="#" page="alarm/AlarmThreatMonitor.html">Alarm Threat-Monitor</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" page="dxf/DxfViewer.html">
+              <span class="fa fa-file"></span>
+              <span class="sidebar-title">DXF</span>
+            </a>
+          </li>
+
+          <!-- sidebar resources -->
+          
+        </ul>
+        </ul>
+        <!-- End: Sidebar Menu -->
+
+	      <!-- Start: Sidebar Collapse Button -->
+	      <div class="sidebar-toggle-mini">
+	        <a href="index.html#">
+	          <span class="fa fa-sign-out"></span>
+	        </a>
+	      </div>
+	      <!-- End: Sidebar Collapse Button -->
+
+      </div>
+      <!-- End: Sidebar Left Content -->
+
+    <div class="nano-pane"><div class="nano-slider" style="height: 759px; transform: translate(0px, 0px);"></div></div></aside>
+    <!-- End: Sidebar Left -->
+
+    <!-- Start: Content-Wrapper -->
+    <section id="content_wrapper">
+
+      <!-- Start: Topbar-Dropdown -->
+      <!-- End: Topbar-Dropdown -->
+
+      <!-- Start: Topbar -->
+      <header id="topbar">
+        <div class="topbar-left">
+          <ol class="breadcrumb">
+            <li class="crumb-active">
+              <a href="#">TWaver</a>
+            </li>
+            <li class="crumb-icon">
+              <a href="#">
+                <span class="fa fa-home"></span>
+              </a>
+            </li>
+            <li class="crumb-link">
+              <a href="index.html">Network</a>
+            </li>
+            <li class="crumb-trail">Vector</li>
+          </ol>
+        </div>
+      </header>
+      <!-- End: Topbar -->
+
+      <!-- Begin: Content -->
+      <section id="content" class="">
+
+        <!-- Dashboard Tiles -->
+        <!-- network-panel -->
+        <div id="network-panel" class="network-panel"></div>
+      </section>
+      <!-- End: Content -->
+
+    </section>
+    <!-- End: Content-Wrapper -->
+
+    <!-- Start: Right Sidebar -->
+    <!-- End: Right Sidebar -->
+
+  </div>
+  <!-- End: Main -->
+
+  <!-- BEGIN: PAGE SCRIPTS -->
+
+  <!-- jQuery -->
+  <script src="./js/jquery-1.11.1.min.js"></script>
+  <script src="./js/jquery-ui.min.js"></script>
+
+  <!-- Theme Javascript -->
+  <script src="./js/utility.js"></script>
+  <script src="./js/demo.js"></script>
+  <script src="./js/main.js"></script>
+
+  <!-- Widget Javascript -->
+  <script type="text/javascript">
+  jQuery(document).ready(function() {
+    "use strict";
+    // Init Theme Core      
+    Core.init();
+
+    // Init Demo JS
+    Demo.init();
+
+    //create center iframe
+    var centerFrame = document.createElement('iframe');
+    centerFrame.setAttribute('width', '100%');
+    centerFrame.setAttribute('height', '100%');
+    centerFrame.setAttribute('frameBorder', 0);
+    centerFrame.setAttribute('scrolling', 'no');
+    centerFrame.setAttribute('allowfullscreen', true);
+    centerFrame.setAttribute('webkitAllowfullscreen', true);
+    centerFrame.setAttribute('mozAllowfullscreen', true);
+    centerFrame.setAttribute('src', 'HelloWorldDemo.html');
+
+    $("#network-panel").append($(centerFrame));
+    $(".sidebar-menu li a").click(function(){
+        var page = $(this).attr('page');
+        if(page){
+            var pageName = '' + page;
+            centerFrame.setAttribute('src',pageName);
+        }
+    });
+
+  });
+  </script>
+
+  <!-- END: PAGE SCRIPTS -->
+<div class="jvectormap-label"></div></body></html>

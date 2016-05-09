@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>TWaver HTML5 - Chip Demo</title>
+    <link rel="stylesheet" href="../css/base.css" type="text/css">
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <script type="text/javascript" src="../demo.js"></script>
+    <script type="text/javascript" src="./ChipDemo.js"></script>
+    <script type="text/javascript">
+        var chipDemo = new ChipDemo();
+    </script>
+</head>
+<body onload="chipDemo.init();">
+    <div id='main'>
+    </div>
+    <div id='tableControlDiv' style='display:none'><table>
+        <tr>
+            <td align='center'><input type='radio' name='network' id='radioCanvasNetwork' onchange='chipDemo.switchNetwork(0)' checked><label for='radioCanvasNetwork'>CanvasNetwork</label></td>
+            <td><input type='radio' name='network' id='radioNetwork' onchange='chipDemo.switchNetwork(1);'><label for='radioNetwork'>Network</label></td>
+        </tr>
+
+        <tr>
+            <td align='center'><input type='checkbox' id='chkTP' onchange='chipDemo.setTransparentPixelsVisible(this.checked)'><label for='chkTP'>Transparent Pixels</label></td>
+            <td><input type='checkbox' id='chkPV' onchange='chipDemo.setPinVisible(this.checked);chipDemo.refreshUI()'><label for='chkPV'>Pins</label></td>
+        </tr>
+
+        <tr>
+            <td align='center'>H Pins Number:</td>
+            <td><input value='4' type='text' style='width:60px' onchange='chipDemo.setHPinNumber(this.value);chipDemo.refreshUI();'></td>
+        </tr>
+
+        <tr>
+            <td align='center'>V Pins Number:</td>
+            <td><input value='5' type='text' style='width:60px' onchange='chipDemo.setVPinNumber(this.value);chipDemo.refreshUI();'></td></tr>
+        </table>
+    </div>
+</body>
+</html>

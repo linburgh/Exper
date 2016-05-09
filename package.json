@@ -1,0 +1,27 @@
+{
+  "name": "ass",
+  "version": "0.0.1",
+  "author": "linburgh",
+  "scripts":{
+  	"dev-compile-less":"gulp less",
+  	"dev-compile-less-itsm":"gulp less-itsm",
+  	"dev-compile-js":"webpack",
+  	"dev-js-concat":"gulp js-concat",
+  	"dev-js-concat-itsm":"gulp js-concat-itsm",
+  	"dev":"npm run dev-compile-less && npm run dev-compile-js && npm run dev-js-concat",
+  	"dev-itsm":"npm run dev-compile-less-itsm && npm run dev-compile-js && npm run dev-js-concat-itsm"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-copy": "0.0.2",
+    "gulp-less": "^3.0.5",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-rev": "^7.0.0",
+    "gulp-rev-collector": "^1.0.2",
+    "gulp-util": "^3.0.7",
+    "path": "^0.12.7",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  }
+}

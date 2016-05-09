@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <script type="text/javascript">
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    var input = document.createElement('textarea');
+    var currentElement;
+
+    function init() {
+        initNetwork();
+        initDataBox();
+    }
+
+    function initNetwork() {
+        var view = network.getView();
+        document.body.appendChild(view);
+        network.adjustBounds({x: 0, y: 0, width: document.documentElement.clientWidth, height: document.documentElement.clientHeight});
+        network.setEditInteractions();
+        function enterIn(evt){
+          var evt=evt?evt:(window.event?window.event:null);
+          if (evt.keyCode==13){
+            if(currentElement){
+                currentElement.setName(input.value);
+                input.style.display='none';
+            }
+        }
+        network.setZoomManager(new twaver.vector.LogicalZoomManager(network, true));
+    }
+    input.onkeydown = enterIn;
+    network.addInteractionListener(function (e){
+        var isEdit = network.hasEditInteraction();
+        if(!isEdit) return;
+        if(e.kind === 'doubleClickElement'){
+            var cx = network.getViewRect().x;
+            var cy = network.getViewRect().y;
+            currentElement = e.element;
+            var cl = currentElement.getCenterLocation();
+            var w = currentElement.getWidth();
+            var h = currentElement.getHeight();
+            var zoom = network.getZoom();
+            var style = input.style;
+            style.position = 'absolute';
+            input.value = currentElement.getName();
+            style.left = (cl.x * zoom + (-cx))- (currentElement.getWidth()*3/8)*zoom + 'px';
+            style.top = (cl.y * zoom + (-cy)) - (10)+ 'px';
+            style.width =  (currentElement.getWidth()*3/4)*zoom + 'px';
+            style.height = 20 + 'px';
+            style.display='';
+            style.zIndex = 100;
+            document.body.appendChild(input);
+        }else{
+            if(currentElement){
+                currentElement.setName(input.value);
+                input.style.display='none';
+            }
+        }
+    });
+}
+
+function initDataBox() {
+    var node = new twaver.Node({
+        name: 'dbclick to rename',
+        id:'node',
+        location: {
+            x: 300,
+            y: 100
+        },
+    });
+    node.setSize(400,400);
+    node.s('label.position','center');
+    box.add(node);
+}
+
+</script>
+
+</head>
+<body onload="init()">
+</body>
+</html>

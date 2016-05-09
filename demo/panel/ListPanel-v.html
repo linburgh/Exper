@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<link rel="stylesheet"  type="text/css" href="../../assets/css/ass.css">
+<script language="javascript" src="../../assets/js/ass-debug.js"></script>
+<script language="javascript"> 
+	$(function(){
+		var items = [];
+		for(var i=0; i<100;i++){
+			items.push({text:'Item'+i});
+		}
+		var listPanel = ass.UIFactory.createInstance("ListPanel",{
+			title:"ListPanel",
+			height:500,
+			scroll:'y',
+			items:items,
+			isPage:true,
+			pageConfig:{
+				pageSize:5
+			}
+		});
+		
+		listPanel.render();
+	});
+</script>
+<title>ListPanel</title>
+
+</head>
+<body style='overflow-y:hidden;'>
+</body>
+</html>
+ 

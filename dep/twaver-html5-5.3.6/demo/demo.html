@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>TWaver HTML5 Demo</title>
+    <script type="text/javascript" src="../lib/twaver.js"></script>
+    <script type="text/javascript" src="./demo.js"></script>
+    <script type="text/javascript">
+        var DemoTree = function (dataBox) {
+            DemoTree.superClass.constructor.apply(this, arguments);
+            var self = this;
+            this.newdata = null;
+            var olddata = null;
+            this._view.addEventListener("mouseover", function (e) {
+                self.newdata = self.getDataAt(e);
+                if (self.olddata !== self.newdata) {
+                    if (self.olddata) {
+                        self.invalidateData(self.olddata);
+                    }
+                    if (self.newdata) {
+                        self.invalidateData(self.newdata);
+                    }
+                    self.olddata = self.newdata;
+                }
+            });
+
+            this.onDataRendered = function (div, data, row, selected) {
+                DemoTree.superClass.onDataRendered(div, data, row, selected);
+                if (selected) {
+                    div.style.background = "rgb(216,233,252)";
+                    div.style.border = "1px solid rgb(125,162,206)";
+                }
+                else if (data == self.newdata) {
+                    div.style.background = "rgb(246,249,253)";
+                    div.style.border = "1px solid rgb(184, 214, 251)";
+                } else {
+                    div.style.padding = "1px";
+                }
+            }
+
+            this.adjustRowSize = function () {
+                var id, div;
+                var hpx = self.getRowHeight() - self.getRowLineWidth() + 'px';
+                var wpx = Math.floor((self.getView().scrollLeft + self.getView().clientWidth) / self.getZoom() - 2) + 'px';
+                for (id in self._renderMap) {
+                    div = self._renderMap[id];
+                    div.style.height = hpx;
+                    div.style.width = wpx;
+                }
+            };
+
+            this.getSelectColor = function () {
+                return "rgba(0,0,0,0)";
+            };
+            this._view.addEventListener("mouseout", function (e) {
+                if (self.newdata) {
+                    self.invalidateData(self.newdata);
+                    self.newdata = null;
+                }
+            });
+        };
+
+
+        twaver.Util.ext(DemoTree, twaver.controls.Tree, {});
+
+        demo.Util.initDemoBox();
+
+        var box = demo.Util.demoBox;
+        var tree = new DemoTree(box);
+        var treeToolbar = demo.Util.createTreeToolbar(tree);
+        registImages();
+
+        var centerFrame = document.createElement('iframe');
+        centerFrame.setAttribute('width', '100%');
+        centerFrame.setAttribute('height', '100%');
+        centerFrame.setAttribute('frameBorder', 0);
+        centerFrame.setAttribute('allowfullscreen', true);
+        centerFrame.setAttribute('webkitAllowfullscreen', true);
+        centerFrame.setAttribute('mozAllowfullscreen', true);
+        centerFrame.setAttribute('src', 'readme.html');
+
+        var consolePane = document.createElement('textarea');
+
+        var centerSplitPane = new twaver.controls.SplitPane(centerFrame, consolePane, 'vertical', 0.8);
+        var treePane = new twaver.controls.BorderPane(tree, treeToolbar);
+        treePane.setTopHeight(25);
+        var logoDiv = document.createElement('div');
+        var logo = new Image();
+        logo.src = './images/logo.png';
+        logoDiv.appendChild(logo);
+        var leftPane = new twaver.controls.BorderPane(treePane, logoDiv);
+        leftPane.setTopHeight(20);
+        var mainSplitPane = new twaver.controls.SplitPane(leftPane, centerSplitPane, 'horizontal', 0.2);
+
+        function init() {
+            demo.Util.appendChild(mainSplitPane.getView(), document.getElementById('main'), 0, 0, 0, 0);
+            window.addEventListener('resize', function (e) {
+                mainSplitPane.invalidate();
+            }, false);
+
+            consolePane.addEventListener('dragover', function (e) {
+                if (e.preventDefault) {
+                    e.preventDefault();
+                } else {
+                    e.returnValue = false;
+                }
+                e.dataTransfer.dropEffect = 'copy';
+                return false;
+            }, false);
+            consolePane.addEventListener('drop', function (e) {
+                if (e.stopPropagation) {
+                    e.stopPropagation();
+                }
+                if (e.preventDefault) {
+                    e.preventDefault();
+                } else {
+                    e.returnValue = false;
+                }
+                consolePane.value = e.dataTransfer.getData('Text');
+                return false;
+            }, false);
+
+            tree.expandAll();
+            box.getSelectionModel().addSelectionChangeListener(handleSelectionChange);
+        }
+
+        function registImages() {
+            demo.Util.registerImage("images/tree/category.png", tree);
+            demo.Util.registerImage("images/tree/leaf.png", tree);
+        }
+
+        function handleSelectionChange(e) {
+            var src = box.getSelectionModel().getLastData().getClient('demo');
+            if (src) {
+                centerFrame.setAttribute('src', src + '.html');
+            } else {
+                centerFrame.setAttribute('src', 'readme.html');
+            }
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id='main' style='position: absolute; top: 10px; bottom: 10px; left: 10px; right: 10px;
+        margin: 0px; padding: 0px;'>
+    </div>
+</body>
+</html>

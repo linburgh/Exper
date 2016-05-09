@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<link rel="stylesheet"  type="text/css" href="../../assets/css/ass.css">
+<link rel="stylesheet"  type="text/css" href="HelpInfoPanel.css">
+<script language="javascript" src="../../assets/js/ass-debug.js"></script>
+<script language="javascript" src="HelpInfoPanel.js"></script>
+<title>HelpInfoPanel</title>
+<script type="application/javascript">
+	$(function(){
+		var oNodeStateAlgorInfo = new Help.NodeStateAlgorInfo({title:'节点状态计算'}).createView();
+		var oNodeStateNotify = new Help.NodeStateNotify({title:'状态通知'}).createView();
+		var panel = ass.UIFactory.createInstance("Panel",{
+			title:'帮助',
+			styleCss:'helpInfoContainer',
+			theme:'primary',
+			bodyTpl:oNodeStateAlgorInfo.getTpl()+oNodeStateNotify.getTpl()
+		});
+		panel.render();
+	});
+	
+</script>
+</head>
+<body >
+
+</body>
+</html>
+ 

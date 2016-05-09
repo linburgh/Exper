@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta charset="utf-8">
+<link rel="stylesheet"  type="text/css" href="../../dist/css/ass.css">
+<script language="javascript" src="../../dist/js/ass-debug.js"></script>
+<script language="javascript"> 
+	$(function(){
+		var items = [];
+		for(var i=0; i<100;i++){
+			items.push({text:'item'+i});
+			
+		}
+		var listPanel = ass.UIFactory.createInstance("ListPanel",{
+			title:"ListPanel",
+			layout:'horizontal',
+			lineItemNum:'8',
+			items:items
+		});
+		
+		listPanel.render();
+	});
+</script>
+<title>ListPanel</title>
+</head>
+<body>
+
+</body>
+</html>
+ 

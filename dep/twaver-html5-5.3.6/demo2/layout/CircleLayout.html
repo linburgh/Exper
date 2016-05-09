@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TWaver HTML5</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>
+
+	var highlightedNodeColor='#60D1E2';
+	var normalNodeColor='#D4D5D5';
+	var highlightedLinkColor='#60D1E2';
+	var normalLinkColor='#CCCCCC';
+	var highlightedLinkWidth=2;
+	var normalLinkWidth=0.5;
+	var ball={cx: 600, cy: 400, width: 400, height: 300, angle: 0, rolling: false};
+	var childCount=25;
+
+	twaver.Util.registerImage('circle_node', {		
+		w: 200,
+		h: 200,
+		lineWidth:1,
+		lineColor: 'black',	
+		rotate: function(data, view){
+			var angle=data.getClient('angle'	)+ball.angle;
+			angle=angle%360;
+			if(angle<0){
+				angle=angle+360;
+			}
+			if(angle>90 && angle<270){
+				angle+=180;
+			}
+			return angle;
+		},
+		v: [{
+			shape: 'circle',		
+			r: 6,
+			fill: function(data, view){
+				if(data.getClient('highlighted')){
+					return highlightedNodeColor;
+				}else{				
+					return normalNodeColor;
+				}
+			}
+		},{
+			shape: 'text',
+			text: '<%=getClient("text")%>',
+			textAlign: function(data, view){
+				var angle=data.getClient('angle'	)+ball.angle;
+				angle=angle%360;
+				if(angle<0){
+					angle=angle+360;
+				}
+				if(angle>90 && angle<270){
+					return 'right';
+				}
+				return 'left';
+			},
+			textBaseline: 'middle',
+			font: '12px "Microsoft Yahei"',
+			fill: function(data, view){
+				if(data.getClient('highlighted')){
+					return highlightedNodeColor;
+				}else{				
+					return 'black';
+				}
+			},
+			x: function(data, view){
+				var angle=data.getClient('angle'	)+ball.angle;
+				angle=angle%360;
+				if(angle<0){
+					angle=angle+360;
+				}
+				if(angle>90 && angle<270){
+					return -10
+				}
+				return 10;
+			},			
+		}],
+		onDoubleClick: expandNode,
+	});
+
+	var box = new twaver.ElementBox();
+	var network = new twaver.vector.Network(box);
+	network.setLinkPathFunction(createLinkPath);	
+	network.setDoubleClickToGroupExpand(false);
+	network.setToolTipEnabled(false);
+
+	function createLinkPath(linkUI, defaultPoints) {
+		var link=linkUI._element;
+		var f = linkUI.getFromPoint();
+		var t = linkUI.getToPoint();
+		var fromNode=link.getFromAgent();
+		var toNode=link.getToAgent();		
+		var points = new twaver.List();		
+
+		if(link.getClient('expanded')){
+			if(fromNode.getParent()){
+				f.x-=fromNode.getWidth()/2;
+			}
+			if(fromNode.getParent()){
+				if(t.x>f.x){
+					f.x+=fromNode.getWidth();
+				}
+			}
+			if(toNode.getParent()){
+				if(t.x>f.x){
+					t.x-=toNode.getWidth()/2;
+				}else{
+					t.x+=toNode.getWidth()/2;
+				}
+			}
+
+			points.add(f);
+			
+			var offset=30;
+			var segment=new twaver.List();
+			if(fromNode.getParent()){
+				if(t.x<f.x){
+					segment.add({x:f.x-offset, y:f.y});
+				}else{
+					segment.add({x:f.x+offset, y:f.y});
+				}
+			}
+			segment.add({x:(f.x+t.x)/2, y:Math.max(t.y,f.y)});
+			if(toNode.getParent()){
+				if(t.x>=f.x){
+					segment.add({x:t.x-offset, y:t.y});
+				}else{
+					segment.add({x:t.x+offset, y:t.y});
+				}
+			}
+			segment.add(t);
+			points.add(segment);
+
+			points.add(t);
+			return points;
+		}else{		
+			var m={x:(f.x+t.x)/2, y:(f.y+t.y)/2};
+			m.x=m.x-(m.x-ball.cx)/3;
+			m.y=m.y-(m.y-ball.cy)/3;
+
+			var segment=new twaver.List();
+			segment.add(m);
+			segment.add(t);
+			
+			points.add(f);
+			points.add(segment);
+
+			return points;
+		}
+	}
+
+    function init() {					
+		document.body.appendChild(network.getView());
+		network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+		network.getView().addEventListener('mousemove',function(e){		
+			if(!ball.rolling){
+				var element = network.getElementAt(e);
+				highlightElement(network.getElementBox(), element);
+			}
+		})
+		
+		var size=30;
+		for(var i=0;i<size;i++){
+			var angle=Math.PI*2/size*i;
+			var x=ball.cx+ball.width*Math.cos(angle);
+			var y=ball.cy+ball.height*Math.sin(angle);
+			var id='n'+i;
+			var degree=parseInt(angle/Math.PI*180);
+			var node=createNode(box, id, x, y, 'department'+i, degree);
+		}
+
+		for(var i=0;i<size;i++){			
+			var id1='n'+i+'.'+parseInt(Math.random()*childCount);
+			for(var j=0;j<size;j++){			
+				if(i!=j){
+					var id2='n'+j+'.'+parseInt(Math.random()*childCount);
+					var id=id1+'.'+id2;
+					if(!box.containsById(id)){						
+						var node1=box.getDataById(id1);
+						var node2=box.getDataById(id2);
+						if(Math.random()>0.7){
+							var link=createLink(box,id, node1, node2);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	function expandNode(data, view){
+		var angleMovement=270-data.getClient('angle')-ball.angle;
+		if(angleMovement>180){
+			angleMovement=angleMovement-360;
+		}
+		var oldBallAngle=ball.angle;
+		ball.rolling=true;
+
+		//close all others
+		box.forEach(function(element){
+			if(element instanceof twaver.Group){
+				element.setExpanded(false);
+			}
+		});
+
+		var animateRotate=new twaver.Animate({
+			from: oldBallAngle,
+			to: oldBallAngle+angleMovement,
+			dur: 1500,
+			easing: 'easeBoth',
+			onUpdate: function (value) {
+				ball.angle=value;
+				box.forEach(function(element){
+					if(element instanceof twaver.Node){
+						var angle=element.getClient('angle')+ball.angle;
+						angle=Math.PI*angle/180;
+						var x=ball.cx+ball.width*Math.cos(angle);
+						var y=ball.cy+ball.height*Math.sin(angle);
+						element.setCenterLocation(x,y);
+					}
+				});
+				network.invalidate();
+			},
+			onDone: function(){
+				//expand all related links
+				box.forEach(function(element){
+					if(element instanceof twaver.Link){
+						if(element.getFromAgent()==data || element.getToAgent()==data){
+							element.setClient('expanded', true);
+						}else{
+							element.setClient('expanded', false);
+						}
+					}
+					//remember current position.
+					if(element instanceof twaver.Group){
+						element.setClient('rotatedPosition', {x: element.getCenterLocation().x, y: element.getCenterLocation().y});
+					}
+				});
+				ball.rolling=false;
+			}
+		});
+
+		//split and move ball.		
+		var animateSplit=new twaver.Animate({
+			from: 0,
+			to: 100,
+			dur: 1500,
+			easing: 'bounceOut',
+			onUpdate: function (value) {
+				box.forEach(function(element){
+					if(element instanceof twaver.Group && element!=data){
+						var oldPosition=element.getClient('rotatedPosition');
+						var x=oldPosition.x;
+						var y=oldPosition.y;
+						if(oldPosition.x<ball.cx){
+							x-=value;
+						}else{
+							x+=value;
+						}
+						element.setCenterLocation(x, y);
+					}					
+				});				
+			},
+		});
+		animateRotate.chain(animateSplit);
+
+		//expand children.		
+		var parentX=data.getCenterLocation().x;
+		var parentY=data.getCenterLocation().y;
+		var animateExpand=new twaver.Animate({
+			from: 0,
+			to: 21,
+			dur: 1500,
+			easing: 'bounceOut',
+			onUpdate: function (value) {
+				data.setExpanded(true);
+				var rotatedPosition=data.getClient('rotatedPosition');
+				var yOffset=0;
+				data.getChildren().forEach(function(child){
+					child.setCenterLocation(rotatedPosition.x, rotatedPosition.y+yOffset);
+					yOffset+=value;
+				});				
+			},
+		});
+		animateRotate.chain(animateExpand);		
+
+		//start all animations.
+		animateRotate.play();
+	}
+
+	function highlightElement(box, element){		
+		box.forEach(function(data){
+			if(data instanceof twaver.Node){
+				data.setClient('highlighted', data==element);
+				if(data.getParent()){
+					if(data==element){
+						data.setStyle('vector.fill.color', highlightedNodeColor);
+					}else{
+						data.setStyle('vector.fill.color', 'black');
+					}
+				}
+				if(data==element){					
+					//related links.
+					box.forEach(function(d){
+						if(d instanceof twaver.Link){
+							if(d.getFromAgent()==data || d.getToAgent()==data){
+								d.setStyle('link.color', highlightedLinkColor);
+								d.setStyle('link.width', highlightedLinkWidth);
+							}
+						}
+					});
+				}
+			}
+			if(data instanceof twaver.Link){
+				if(data==element){
+					data.setStyle('link.color', highlightedLinkColor);
+					data.setStyle('link.width', highlightedLinkWidth);
+				}else{					
+					data.setStyle('link.color', normalLinkColor);
+					data.setStyle('link.width', normalLinkWidth);
+				}
+			}
+		});
+	}
+	
+	function createNode(box, id, x, y, text, angle){
+		var node=new twaver.Group(id);
+		node.setImage('circle_node');
+		node.setClient('angle', angle);
+		node.setClient('text', text);		
+		node.setStyle('group.padding', 2);
+		node.setStyle('group.fill', false);
+		node.setStyle('group.deep', 0);
+		node.setStyle('group.outline.width', 2);
+		node.setStyle('group.outline.color', 'black');
+		box.add(node);
+
+		for(var i=0;i<childCount;i++){
+			var childID=id+'.'+i;
+			addChild(box, childID, node);
+		}
+		node.setCenterLocation(x,y);
+
+		//if group expanded, text will gone. so display text with name.
+		node.addPropertyChangeListener(function (e) {
+			if (e.property === 'expanded') {
+				if(node.isExpanded()){
+					node.setName(node.getClient('text'));
+					node.setStyle('label.position', 'top.top');
+					node.setStyle('label.font', 'bold 16px "Microsoft Yahei"');
+					node.setStyle('label.yoffset', -3);
+				}else{
+					node.setName(null);
+				}
+			}
+		});
+
+		return node;
+	}
+
+	function addChild(box, childID, parent, x, y){
+		var node=new twaver.Node(childID);
+		node.setStyle('body.type', 'vector');
+		node.setStyle('vector.shape', 'rectangle');
+		node.setStyle('vector.fill.color', 'black');
+		node.setStyle('vector.outline.color', 'white');
+		node.setStyle('vector.outline.width', 1);
+		node.setName('employee'+childID);
+		node.setStyle('label.position', 'center');
+		node.setStyle('label.color', 'white');
+		node.setStyle('label.font', '12px "Microsoft Yahei"');
+		node.setStyle('label.yoffset', -1);
+		node.setStyle('select.style', 'none');
+		node.setSize(100, 20);
+		node.setParent(parent);
+		box.add(node);
+
+		return node;
+	}
+
+	function createLink(box, id, from, to, cx, cy){
+		var link=new twaver.Link(id, from, to);		
+		link.setStyle('link.width', normalLinkWidth);
+		link.setStyle('link.color', normalLinkColor);
+		box.add(link);
+		return link;
+	}
+
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

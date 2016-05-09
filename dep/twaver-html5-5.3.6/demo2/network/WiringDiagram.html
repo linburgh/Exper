@@ -1,0 +1,2101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emerson</title>
+    <meta charset="UTF-8"/>
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <script type="text/javascript">
+        _twaver.ua.isTouchable = false;
+        var box = new twaver.ElementBox();
+        var network = new twaver.vector.Network(box);
+        function init() {
+            network.setZoomManager(new twaver.vector.LogicalZoomManager(network, true));
+            initBox();
+            var networkDom = network.getView();
+            networkDom.style.width = "100%";
+            networkDom.style.height = "100%";
+            document.getElementById("main").appendChild(networkDom);
+            network.adjustBounds({ x: 0, y: 0, width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+            network.addInteractionListener(function(event) {
+                var element = event.element;
+                if(element instanceof twaver.Node) {
+                    console.log(element.getLocation());
+                }
+                if(element && event.kind == "clickElement") {
+                    if(element.getImage().indexOf("Switch")) {
+                        if(element.getStyle("image.state") == "state1") {
+                            element.setStyle("image.state", "state2");
+                        } else {
+                            element.setStyle("image.state", "state1")
+                        }
+                    }
+                }
+            });
+        }
+        function initBox() {
+            var points = new twaver.List();
+            var link;
+
+            var node1 = createNode({x:435,y:19});
+            node1.setToolTip("node1");
+            node1.setImage("singleSwitch");
+
+            var node2 = createNode({x:452,y:15},"QF1:AC INPUT\n1600A3P");
+            node2.setToolTip("node2");
+
+            var node3 = createNode({x:39,y:60});
+            node3.setImage("mainLine");
+            node3.setToolTip("node3");
+
+            var node4 = createNode({x:76,y:63},"140KVA");
+            node4.setToolTip("node4");
+
+            var node5 = createNode({x:256,y:86});
+            node5.setImage("singleSwitch");
+            node5.setToolTip("node5");
+
+
+            var _node6 = createNode({x:268,y:84},"KO1:AC INPUT\n800A/3P");
+            _node6.setToolTip("_node6");
+
+            var node6 = createNode({x:763,y:87});
+            node6.setImage("singleSwitch");
+            node6.setToolTip("node6");
+            var node7 = createNode({x:773,y:86},"QF2:AC INPUT\n1250A/3P");
+            node7.setToolTip("node7");
+
+            var node8 = createNode({x:85,y:134});
+            node8.setImage("doubleSwitch");
+            node8.setToolTip("node8");
+
+            var node9 = createNode({x:72,y:130},"400A");
+            node9.setClient("rotate", -90);
+            node9.setToolTip("node9");
+
+            // var node10 = createNode({x:105,y:118},"切换开关");
+            // node10.setToolTip("node10");
+
+            var node11 = createNode({x:749,y:115}," ACsource\n200KVA*4");
+            node11.setSize(50,30);
+            node11.setToolTip("node11");
+            node11.setImage("textOutLine");
+
+            var node12 = createNode({x:6,y:173},"Data Center Lab");
+            node12.setToolTip("node12");
+
+            // var node13 = createNode({x:31,y:202},"A区/D区\n选择开关");
+            // node13.setToolTip("node13");
+
+            var node14 = createNode({x:97,y:203});
+            node14.setImage("doubleSwitch");
+            node14.setToolTip("node14");
+
+            var node15 = createNode({x:81,y:196},"400A");
+            node15.setToolTip("node15");
+            node15.setClient("rotate", -90);
+
+            var node16 = createNode({x:7,y:255},"D Area Test");
+            node16.setToolTip("node16");
+
+            // var node17 = createNode({x:130,y:217},"市电/油机\n选择开关");
+            // node17.setToolTip("node17");
+
+            var node18 = createNode({x:154,y:220},"400A*2");
+            node18.setToolTip("node18");
+            node18.setClient("rotate", -90);
+
+            var node19 = createCircle({x:116, y:274});
+            node19.setToolTip("node19");
+
+            var node20 = createCircle({x:134, y:254});
+            node20.setToolTip("node20");
+
+            var node21 = createCircle({x:264, y:160});
+            node21.setToolTip("node21");
+
+
+            points = new twaver.List();
+            points.add({x: node20.getX() + node20.getWidth()/2, y: node21.getY() + node21.getHeight()/2});
+            link = createShapeLink(node21, node20, points);
+
+            var node22 = createCircle({x:390, y:160});
+            node22.setToolTip("node22");
+
+            var node23 = createCircle({x:540, y:160});
+            node23.setToolTip("node23");
+            link = createLink(node22, node23, "left");
+
+            var node24 = createCircle({x:630, y:160});
+            node24.setToolTip("node24");
+            link = createLink(node23, node24);
+
+            var node25 = createNode({x:296,y:195});
+            node25.setToolTip("node25");
+            node25.setImage("ddSwitch");
+
+            var node26 = createNode({x:235,y:188},"K3");
+            node26.setToolTip("node26");
+
+            var node27 = createNode({x:243,y:194},"800A");
+            node27.setToolTip("node27");
+            node27.setClient("rotate", -90);
+
+            var node28 = createNode({x:315,y:187},"K4");
+            node28.setToolTip("node28");
+
+            var node29 = createNode({x:295,y:193},"800A");
+            node29.setToolTip("node29");
+            node29.setClient("rotate", -90);
+
+            var node30 = createCircle({x:390, y:340});
+            node30.setToolTip("node30");
+            link = createLink(node22, node30);
+
+            var node31 = createNode({x:507,y:235});
+            node31.setToolTip("node31");
+            node31.setImage("ddSwitch");
+
+            var node32 = createNode({x:597,y:235});
+            node32.setToolTip("node32");
+            node32.setImage("ddSwitch");
+
+            var node33 = createNode({x:447,y:229},"K1");
+            node33.setToolTip("node33");
+            var node34 = createNode({x:454,y:234},"800A");
+            node34.setToolTip("node34");
+            node34.setClient("rotate", -90);
+
+            var _node34 = createNode({x:513,y:227},"K2");
+            _node34.setToolTip("_node34");
+            var node35 = createNode({x:519,y:235},"800A");
+            node35.setToolTip("node35");
+            node35.setClient("rotate", -90);
+
+            var node36 = createNode({x:554,y:227},"K3");
+            node36.setToolTip("node36");
+
+            var node37 = createNode({x:537,y:235},"800A");
+            node37.setToolTip("node37");
+            node37.setClient("rotate", -90);
+
+            var node38 = createNode({x:627,y:229},"K4");
+            node38.setToolTip("node38");
+
+            var node39 = createNode({x:603,y:235},"800A");
+            node39.setToolTip("node39");
+            node39.setClient("rotate", -90);
+
+            var node40 = createNode({x:168,y:256.5});
+            node40.setToolTip("node40");
+            node40.setImage("doubleRightSwitch");
+
+            var node41 = createNode({x:306,y:241});
+            node41.setToolTip("node41");
+            node41.setImage("doubleCircle");
+
+            var node42 = createNode({x:314,y:268},"500KVA\n380V-480V/500V");
+            node42.setClient("font","8px arial");
+            node42.setToolTip("node42");
+
+            var node43 = createNode({x:100,y:343},"800A");
+            node43.setToolTip("node43");
+            node43.setClient("rotate", -90);
+
+            // var node44 = createNode({x:136,y:336},"市电/油机\n选择开关");
+            // node44.setToolTip("node44");
+
+            var node45 = createNode({x:198,y:344});
+            node45.setToolTip("node45");
+            node45.setImage("dReverseSwitch");
+
+            var node46 = createNode({x:168,y:293});
+            node46.setToolTip("node46");
+            node46.setImage("doubleRightSwitch");
+
+            var node47 = createNode({x:203,y:400});
+            node47.setToolTip("node47");
+            node47.setImage("ddSwitch");
+
+            var node48 = createNode({x:141,y:396},"K5");
+            node48.setToolTip("node48");
+            var node49 = createNode({x:150,y:402},"800A");
+            node49.setToolTip("node49");
+            node49.setClient("rotate", -90);
+
+            var node50 = createNode({x:218,y:396},"K6");
+            node50.setToolTip("node50");
+            var node51 = createNode({x:200,y:403},"800A");
+            node51.setToolTip("node51");
+            node51.setClient("rotate", -90);
+
+            // var node52 = createNode({x:111,y:431},"主路电源选择开关");
+
+            var node53 = createNode({x:295,y:397},"K7");
+            node53.setToolTip("node53");
+
+            var node54 = createNode({x:305,y:403},"800A");
+            node54.setToolTip("node54");
+            node54.setClient("rotate", -90);
+
+            var node55 = createNode({x:363,y:397},"K8");
+            node55.setToolTip("node55");
+            var node56 = createNode({x:374,y:403},"800A");
+            node56.setToolTip("node56");
+            node56.setClient("rotate", -90);
+
+            var node57 = createNode({x:357,y:400});
+            node57.setToolTip("node57");
+            node57.setImage("ddSwitch");
+
+            // var node58 = createNode({x:368,y:429},"旁路电源\n选择开关");
+            // node58.setToolTip("node58");
+
+            // var node59 = createNode({x:448,y:274},"主路电源选择开关");
+            // node59.setToolTip("node59");
+            // var node60 = createNode({x:635,y:275},"旁路电源选择开关");
+            // node60.setToolTip("node60");
+
+            var node61 = createCircle({x:477, y:309});
+            node61.setToolTip("node61");
+
+            var node62 = createCircle({x:525, y:309});
+            node62.setToolTip("node62");
+
+            var node63 = createCircle({x:586, y:309});
+            node63.setToolTip("node63");
+
+            var node64 = createCircle({x:712, y:309});
+            node64.setToolTip("node64");
+
+            var node65 = createNode({x:453, y:310});
+            node65.setImage("horizoanlLine");
+//            node65.setToolTip("node65");
+
+            var node66 = createNode({x:453, y:340});
+            node66.setImage("horizoanlLine");
+//            node66.setToolTip("node66");
+
+            var node67 = createCircle({x:508, y:339});
+            node67.setToolTip("node67");
+
+            var node68 = createCircle({x:615, y:339});
+            node68.setToolTip("node68");
+
+            var node69 = createCircle({x:631, y:339});
+            node69.setToolTip("node69");
+
+            var node70 = createCircle({x:748, y:339});
+            node70.setToolTip("node70");
+
+            // var node71 = createNode({x:399,y:348},"主路\n接触器");
+            // node71.setClient("font", "8px arial");
+            // node71.setToolTip("node71");
+            var node72 = createNode({x:417,y:353},"800A");
+            node72.setToolTip("node72");
+            node72.setClient("rotate", -90);
+
+            // var node73 = createNode({x:487,y:342},"旁路\n接触器");
+            // node73.setClient("font", "8px arial");
+            // node73.setToolTip("node73");
+            var node74 = createNode({x:504,y:346},"800A");
+            node74.setClient("font", "8px arial");
+            node74.setToolTip("node74");
+            node74.setClient("rotate", -90);
+
+            var node75 = createNode({x:469,y:354});
+            node75.setToolTip("node75");
+            node75.setImage("singleSwitch");
+
+            var node76 = createNode({x:500,y:354});
+            node76.setToolTip("node76");
+            node76.setImage("singleSwitch");
+
+            // var node77 = createNode({x:518,y:362},"主路\n接触器");
+            // node77.setClient("font", "8px arial");
+            // node77.setToolTip("node77");
+            var node78 = createNode({x:532,y:359},"800A");
+            node78.setClient("font", "8px arial");
+            node78.setToolTip("node78");
+            node78.setClient("rotate", -90);
+
+            // var node79 = createNode({x:610,y:350},"旁路\n接触器");
+            // node79.setClient("font", "8px arial");
+            // node79.setToolTip("node79");
+            var node80 = createNode({x:573,y:356},"800A");
+            node80.setClient("font", "8px arial");
+            node80.setToolTip("node80");
+            node80.setClient("rotate", -90);
+
+            var node81 = createNode({x:578,y:354});
+            node81.setToolTip("node81");
+            node81.setImage("singleSwitch");
+
+            var node82 = createNode({x:623,y:354});
+            node82.setToolTip("node82");
+            node82.setImage("singleSwitch");
+
+            // var node83 = createNode({x:642,y:352},"主路\n接触器");
+            // node83.setClient("font", "8px arial");
+            // node83.setToolTip("node83");
+            var node84 = createNode({x:656,y:355},"800A");
+            node84.setClient("font", "8px arial");
+            node84.setToolTip("node84");
+            node84.setClient("rotate", -90);
+
+            // var node85 = createNode({x:730,y:352},"旁路\n接触器");
+            // node85.setClient("font", "8px arial");
+            // node85.setToolTip("node85");
+            var node86 = createNode({x:692,y:359},"800A");
+            node86.setClient("font", "8px arial");
+            node86.setToolTip("node86");
+            node86.setClient("rotate", -90);
+
+            var node87 = createNode({x:704,y:354});
+            node87.setToolTip("node87");
+            node87.setImage("singleSwitch");
+
+            var node88 = createNode({x:740,y:354});
+            node88.setToolTip("node88");
+            node88.setImage("singleSwitch");
+
+            var node89 = createNode({x:460,y:392});
+            node89.setClient("textName","B-1")
+            node89.setToolTip("node89");
+            node89.setImage("inputOutSwitch");
+
+            var node90 = createNode({x:574,y:392});
+            node90.setClient("textName","B-2")
+            node90.setToolTip("node90");
+            node90.setImage("inputOutSwitch");
+
+            var node91 = createNode({x:699,y:392});
+            node91.setClient("textName","B-3")
+            node91.setToolTip("node91");
+            node91.setImage("inputOutSwitch");
+
+
+            var node92 = createNode({x:45, y:464});
+            node92.setImage("horizoanlLine");
+//            node92.setToolTip("node92");
+
+            var node93 = createNode({x:45, y:497});
+            node93.setImage("horizoanlLine");
+//            node93.setToolTip("node93");
+
+            var node94 = createCircle({x:70, y:463});
+            node94.setToolTip("node94");
+
+            var node95 = createCircle({x:221, y:463});
+            node95.setToolTip("node95");
+
+            var node96 = createCircle({x:111, y:496});
+            node96.setToolTip("node96");
+
+            var node97 = createCircle({x:248, y:496});
+            node97.setToolTip("node97");
+
+            var node98 = createCircle({x:360, y:496});
+            node98.setToolTip("node98");
+
+            var node99 = createCircle({x:375, y:496});
+            node99.setToolTip("node99");
+
+            // var node100 = createNode({x:480,y:471},"输出\n接触器");
+            // node100.setClient("font", "8px arial");
+            // node100.setToolTip("node100");
+
+            var node101 = createNode({x:434,y:477},"800A");
+            node101.setClient("font", "8px arial");
+            node101.setToolTip("node101");
+            node101.setClient("rotate", -90);
+
+
+            // var node102 = createNode({x:591,y:471},"输出\n接触器");
+            // node102.setClient("font", "8px arial");
+            // node102.setToolTip("node102");
+
+            var node103 = createNode({x:549,y:477},"800A");
+            node103.setClient("font", "8px arial");
+            node103.setToolTip("node103");
+            node103.setClient("rotate", -90);
+
+
+            // var node104 = createNode({x:719,y:471},"输出\n接触器");
+            // node104.setClient("font", "8px arial");
+            // node104.setToolTip("node104");
+
+            var node105 = createNode({x:676,y:477},"800A");
+            node105.setClient("font", "8px arial");
+            node105.setToolTip("node105");
+            node105.setClient("rotate", -90);
+
+            var node106 = createNode({x:485,y:469});
+            node106.setToolTip("node106");
+            node106.setImage("singleSwitch");
+
+            var node107 = createNode({x:599,y:469});
+            node107.setToolTip("node107");
+            node107.setImage("singleSwitch");
+
+            var node108 = createNode({x:724,y:469});
+            node108.setToolTip("node108");
+            node108.setImage("singleSwitch");
+
+            // var node109 = createNode({x:13,y:527},"主路\n接触器");
+            // node109.setClient("font", "8px arial");
+            // node109.setToolTip("node109");
+            var node110 = createNode({x:35,y:514},"800A");
+            node110.setClient("font", "8px arial");
+            node110.setToolTip("node110");
+            node110.setClient("rotate", -90);
+
+            // var node111 = createNode({x:92,y:529},"旁路\n接触器");
+            // node111.setClient("font", "8px arial");
+            // node111.setToolTip("node111");
+            var node112 = createNode({x:56,y:536},"800A");
+            node112.setClient("font", "8px arial");
+            node112.setToolTip("node112");
+            node112.setClient("rotate", -90);
+
+
+            // var node113 = createNode({x:160,y:534},"主路\n接触器");
+            // node113.setClient("font", "8px arial");
+            // node113.setToolTip("node113");
+            var node114 = createNode({x:186,y:540},"800A");
+            node114.setClient("font", "8px arial");
+            node114.setToolTip("node114");
+            node114.setClient("rotate", -90);
+
+            // var node115 = createNode({x:230,y:535},"旁路\n接触器");
+            // node115.setClient("font", "8px arial");
+            // node115.setToolTip("node115");
+            var node116 = createNode({x:199,y:541},"800A");
+            node116.setClient("font", "8px arial");
+            node116.setToolTip("node116");
+            node116.setClient("rotate", -90);
+
+
+            var node117 = createNode({x:61,y:526});
+            node117.setToolTip("node117");
+            node117.setImage("singleSwitch");
+
+            var node118 = createNode({x:102,y:526});
+            node118.setToolTip("node118");
+            node118.setImage("singleSwitch");
+
+            var node119 = createNode({x:213,y:526});
+            node119.setToolTip("node119");
+            node119.setImage("singleSwitch");
+
+            var node120 = createNode({x:240,y:526});
+            node120.setToolTip("node120");
+            node120.setImage("singleSwitch");
+
+            // var node121 = createNode({x:280,y:531},"主路\n接触器");
+            // node121.setClient("font", "8px arial");
+            // node121.setToolTip("node121");
+            var node122 = createNode({x:305,y:536},"800A");
+            node122.setClient("font", "8px arial");
+            node122.setToolTip("node122");
+            node122.setClient("rotate", -90);
+
+            // var node123 = createNode({x:363,y:533},"旁路\n接触器");
+            // node123.setClient("font", "8px arial");
+            // node123.setToolTip("node123");
+            var node124 = createNode({x:323,y:537},"800A");
+            node124.setClient("font", "8px arial");
+            node124.setToolTip("node124");
+            node124.setClient("rotate", -90);
+
+            var node125 = createNode({x:329,y:526});
+            node125.setToolTip("node125");
+            node125.setImage("singleSwitch");
+
+            var node126 = createNode({x:367,y:526});
+            node126.setToolTip("node126");
+            node126.setImage("singleSwitch");
+
+            var node127 = createNode({x:55,y:580});
+            node127.setClient("textName","A-1")
+            node127.setToolTip("node127");
+            node127.setImage("inputOutSwitch");
+
+            var node128 = createNode({x:200,y:580});
+            node128.setClient("textName","A-2")
+            node128.setToolTip("node128");
+            node128.setImage("inputOutSwitch");
+
+            var node129 = createNode({x:324,y:580});
+            node129.setClient("textName","A-3")
+            node129.setToolTip("node129");
+            node129.setImage("inputOutSwitch");
+
+            var node130 = createNode({x:30,y:664},"800A");
+            node130.setClient("font", "8px arial");
+            node130.setToolTip("node130");
+            node130.setClient("rotate", -90);
+
+            // var node131 = createNode({x:71,y:657},"输出\n接触器");
+            // node131.setClient("font", "8px arial");
+            // node131.setToolTip("node131");
+
+
+            var node132 = createNode({x:171,y:664},"800A");
+            node132.setClient("font", "8px arial");
+            node132.setToolTip("node132");
+            node132.setClient("rotate", -90);
+
+            // var node133 = createNode({x:219,y:656},"输出\n接触器");
+            // node133.setClient("font", "8px arial");
+            // node133.setToolTip("node133");
+
+
+            var node134 = createNode({x:297,y:664},"800A");
+            node134.setClient("font", "8px arial");
+            node134.setToolTip("node134");
+            node134.setClient("rotate", -90);
+
+            // var node135 = createNode({x:341,y:657},"输出\n接触器");
+            // node135.setClient("font", "8px arial");
+            // node135.setToolTip("node135");
+
+
+            var node136 = createNode({x:79,y:656});
+            node136.setToolTip("node136");
+            node136.setImage("singleSwitch");
+
+            var node137 = createNode({x:225,y:656});
+            node137.setToolTip("node137");
+            node137.setImage("singleSwitch");
+
+            var node138 = createNode({x:349,y:656});
+            node138.setToolTip("node138");
+            node138.setImage("singleSwitch");
+
+            link = createLink(node127, node136);
+            link.setStyle("link.from.yoffset", node127.getHeight()/2);
+            link.setStyle("link.to.yoffset", -node136.getHeight()/2);
+
+            var node139 = createCircle({x:233, y:696});
+            node139.setToolTip("node139");
+
+            var node140 = createCircle({x:357, y:696});
+            node140.setToolTip("node140");
+
+            link = createLink(node139, node140);
+
+
+            var node141 = createCircle({x:425, y:696});
+            node141.setToolTip("node141");
+
+            link = createLink(node140, node141);
+
+
+            var node142 = createNode({x:74, y:767}, "Data Center Lab");
+            node142.setToolTip("node142");
+
+            var node143 = createNode({x:234,y:759});
+            node143.setToolTip("node143");
+            node143.setImage("singleSwitch");
+
+            // var node144 = createNode({x:252, y:738}, "A区/B区负载\n切换开关");
+            // node144.setToolTip("node144");
+
+            // var node145 = createNode({x:136, y:802}, "数据中心/A区\n负载切换开关");
+            // node145.setToolTip("node145");
+            // node145.setClient("font", "7px arial");
+
+            var node146 = createNode({x:209,y:805});
+            node146.setToolTip("node146");
+            node146.setImage("ddSwitch");
+
+            var node147 = createNode({x:215, y:805}, "800A");
+            node147.setToolTip("node147");
+            node147.setClient("rotate", -90);
+
+            var node148 = createNode({x:194, y:857});
+            node148.setImage("textOutLine");
+            node148.setClient("textName", "KEC:500KVA");
+            node148.setToolTip("node148");
+
+
+            var node149 = createNode({x:283, y:825});
+            node149.setImage("textOutLine");
+            node149.setClient("textName", "LEC:375KVA");
+            node149.setToolTip("node149");
+
+            var node150 = createNode({x:369, y:787});
+            node150.setImage("textOutLine");
+            node150.setClient("textName", "Feedback");
+            node150.setToolTip("node150");
+
+            var node151 = createNode({x:417,y:727});
+            node151.setToolTip("node151");
+            node151.setImage("singleSwitch");
+
+            // var node152 = createNode({x:430, y:710}, "市电/AC\n回馈输入\n1250M/3P");
+            // node152.setToolTip("node152");
+
+
+
+            var node153 = createNode({x:457, y:757});
+            node153.setImage("textOutLine");
+            node153.setClient("textName", "K:200KW");
+            node153.setToolTip("node153");
+
+            var node154 = createNode({x:673, y:757});
+            node154.setImage("textOutLine");
+            node154.setClient("textName", "KEC:240KVA");
+            node154.setToolTip("node154");
+
+            var node155 = createNode({x:725, y:675});
+            node155.setImage("textOutLine");
+            node155.setClient("textName", "Feedback");
+            node155.setToolTip("node155");
+
+            var node156 = createNode({x:562,y:701});
+            node156.setToolTip("node156");
+            node156.setImage("ddSwitch");
+
+            // var node157 = createNode({x:455, y:668}, "数据中心实验室");
+            // node157.setToolTip("node157");
+
+            // var node158 = createNode({x:598, y:635}, "A/B区负载\n切换开关");
+            // node158.setToolTip("node158");
+
+            // var node159 = createNode({x:735, y:623}, "市电/AC\n回馈输入\n1250/3P");
+            // node159.setToolTip("node159");
+
+            // var node160 = createNode({x:607, y:697}, "数据中心/D区\n负载切换开关");
+            // node160.setToolTip("node160");
+
+            // var node161 = createNode({x:523, y:768}, "K02\n负载总电源");
+            // node161.setToolTip("node161");
+
+            var node162 = createNode({x:563,y:703},"800A");
+            node162.setClient("font", "8px arial");
+            node162.setToolTip("node162");
+            node162.setClient("rotate", -90);
+
+            var node163 = createNode({x:548,y:754});
+            node163.setToolTip("node163");
+            node163.setImage("leftSingleSwitch");
+
+            var node164 = createCircle({x:607, y:534});
+            node164.setToolTip("node164");
+
+            var node165 = createCircle({x:607, y:574});
+            node165.setToolTip("node165");
+
+            link = createLink(node164, node165);
+
+            var node166 = createNode({x:587,y:642});
+            node166.setToolTip("node166");
+            node166.setImage("dReverseSwitch");
+
+            var node167 = createNode({x:736,y:630});
+            node167.setToolTip("node167");
+            node167.setImage("singleSwitch");
+
+            var node168 = createNode({x:530,y:521});
+            node168.setToolTip("node168");
+            node168.setImage("leftSingleSwitch");
+
+            var node169 = createNode({x:674,y:521});
+            node169.setToolTip("node169");
+            node169.setImage("leftSingleSwitch");
+
+            var node170 = createNode({x:470,y:516});
+            node170.setToolTip("node170");
+            node170.setImage("patternRect");
+
+            //to deal with scale.
+            var node171 = createCircle({x:510, y:60});
+            node171.setToolTip("node171");
+
+            var node172 = createCircle({x:510, y:232});
+            node172.setToolTip("node172");
+
+            link = createLink(node171, node172, "bottom");
+
+            var node173 = createCircle({x:540, y:232});
+            node173.setToolTip("node173");
+
+            link = createLink(node23, node173,"bottom");
+
+            var node174 = createCircle({x:600, y:60});
+            node174.setToolTip("node174");
+
+            var node175 = createCircle({x:600, y:232});
+            node175.setToolTip("node175");
+
+            link = createLink(node174, node175, "bottom");
+
+            var node176 = createCircle({x:630, y:232});
+            node176.setToolTip("node176");
+
+            link = createLink(node24, node176,"bottom");
+
+            var node177 = createCircle({x:772, y:60});
+            node177.setToolTip("node177");
+
+            var node178 = createCircle({x:772, y:87});
+            node178.setToolTip("node178");
+
+            link = createLink(node177, node178);
+
+            var node179 = createCircle({x:772, y:101});
+            node179.setToolTip("node179");
+
+            var node180 = createCircle({x:772, y:112});
+            node180.setToolTip("node180");
+
+            link = createLink(node179, node180);
+
+            var node181 = createCircle({x:525, y:263});
+            node181.setToolTip("node181");
+
+            link = createLink(node181, node62);
+
+            var node182 = createCircle({x:615, y:263});
+            node182.setToolTip("node182");
+
+            link = createLink(node182, node68);
+
+            var node183 = createCircle({x:477, y:354});
+            node183.setToolTip("node183");
+
+            link = createLink(node61, node183);
+
+            var node184 = createCircle({x:477, y:368});
+            node184.setToolTip("node184");
+
+            var node185 = createCircle({x:477, y:395});
+            node185.setToolTip("node185");
+
+            link = createLink(node184, node185);
+
+            var node186 = createCircle({x:508, y:354});
+            node186.setToolTip("node186");
+
+            link = createLink(node67, node186);
+
+            var node187 = createCircle({x:508, y:368});
+            node187.setToolTip("node187");
+
+            var node188 = createCircle({x:508, y:395});
+            node188.setToolTip("node188");
+
+            link = createLink(node187, node188);
+
+            var node189 = createCircle({x:586, y:354});
+            node189.setToolTip("node189");
+
+            link = createLink(node63, node189);
+
+            var node190 = createCircle({x:586, y:368});
+            node190.setToolTip("node190");
+
+            var node191 = createCircle({x:586, y:395});
+            node191.setToolTip("node191");
+
+            link = createLink(node190, node191);
+
+            var node192 = createCircle({x:631, y:354});
+            node192.setToolTip("node192");
+
+            link = createLink(node69, node192);
+
+            var node193 = createCircle({x:631, y:368});
+            node193.setToolTip("node193");
+
+            var node194 = createCircle({x:631, y:395});
+            node194.setToolTip("node194");
+
+            link = createLink(node193, node194);
+
+            var node195 = createCircle({x:712, y:354});
+            node195.setToolTip("node195");
+
+            link = createLink(node64, node195);
+
+            var node196 = createCircle({x:712, y:368});
+            node196.setToolTip("node196");
+
+            var node197 = createCircle({x:712, y:395});
+            node197.setToolTip("node197");
+
+            link = createLink(node196, node197);
+
+            var node198 = createCircle({x:748, y:354});
+            node198.setToolTip("node198");
+
+            link = createLink(node70, node198);
+
+            var node199 = createCircle({x:748, y:368});
+            node199.setToolTip("node199");
+
+            var node200 = createCircle({x:748, y:395});
+            node200.setToolTip("node200");
+
+            link = createLink(node199, node200);
+
+            var node201 = createCircle({x:493, y:440});
+            node201.setToolTip("node201");
+
+            var node202 = createCircle({x:493, y:469});
+            node202.setToolTip("node202");
+
+            link = createLink(node201, node202);
+
+            var node203 = createCircle({x:493, y:484});
+            node203.setToolTip("node203");
+
+            var node204 = createCircle({x:530, y:534});
+            node204.setToolTip("node204");
+
+            points = new twaver.List();
+            points.add({x:node106.getX() + node106.getWidth() / 2, y: node168.getY() + node168.getHeight()});
+            link = createShapeLink(node203, node204, points);
+
+            var node205 = createCircle({x:607, y:440});
+            node205.setToolTip("node205");
+
+            var node206 = createCircle({x:607, y:469});
+            node206.setToolTip("node206");
+
+            link = createLink(node205, node206);
+
+            var node207 = createCircle({x:607, y:484});
+            node207.setToolTip("node207");
+
+            link = createLink(node207, node164);
+
+            var node208 = createCircle({x:732, y:440});
+            node208.setToolTip("node208");
+
+            var node209 = createCircle({x:732, y:469});
+            node209.setToolTip("node209");
+
+            link = createLink(node208, node209);
+
+            var node210 = createCircle({x:732, y:484});
+            node210.setToolTip("node210");
+
+            var node211 = createCircle({x:694, y:534});
+            node211.setToolTip("node211");
+
+            points = new twaver.List();
+            points.add({x:node108.getX() + node108.getWidth() / 2, y: node169.getY() + node169.getHeight()});
+            link = createShapeLink(node210, node211, points);
+
+            var node212 = createCircle({x:550, y:534});
+            node212.setToolTip("node212");
+
+            link = createLink(node164, node212);
+
+            var node213 = createCircle({x:674, y:534});
+            node213.setToolTip("node213");
+
+            link = createLink(node164, node213);
+
+            var node214 = createCircle({x:607, y:642});
+            node214.setToolTip("node214");
+
+            link = createLink(node165, node214);
+
+            var node215 = createCircle({x:596, y:656});
+            node215.setToolTip("node215");
+
+            var node216 = createCircle({x:596, y:701});
+            node216.setToolTip("node216");
+
+            link = createLink(node216, node215);
+
+            var node217 = createCircle({x:586, y:642});
+            node217.setToolTip("node217");
+
+            points = new twaver.List();
+            points.add({x:node166.getX(), y: (node166.getY() + node165.getY())/2});
+            points.add({x:node141.getX() + node141.getWidth()/2, y: (node166.getY() + node165.getY())/2});
+            link = createShapeLink(node217, node141, points);
+
+            var node218 = createCircle({x:744, y:630});
+            node218.setToolTip("node218");
+
+            points = new twaver.List();
+            points.add({x:node167.getX() + node167.getWidth()/2, y: node165.getY() + node165.getHeight()/2});
+            link = createShapeLink(node218, node165, points);
+
+            var node219 = createCircle({x:744, y:645});
+            node219.setToolTip("node219");
+
+            var node220 = createCircle({x:744, y:673});
+            node220.setToolTip("node220");
+
+            link = createLink(node219, node220);
+
+            var node221 = createCircle({x:580, y:729});
+            node221.setToolTip("node221");
+
+            var node222 = createCircle({x:580, y:767});
+            node222.setToolTip("node222");
+
+            link = createLink(node221, node222);
+
+            var node223 = createCircle({x:671, y:767});
+            node223.setToolTip("node223");
+
+            var node224 = createCircle({x:567, y:767});
+            node224.setToolTip("node224");
+
+            link = createLink(node223, node224);
+
+            var node225 = createCircle({x:525, y:767});
+            node225.setToolTip("node225");
+
+            var node226 = createCircle({x:548, y:767});
+            node226.setToolTip("node226");
+
+            link = createLink(node225, node226);
+
+            var node227 = createCircle({x:425, y:727});
+            node227.setToolTip("node227");
+
+            link = createLink(node141, node227);
+
+            var node228 = createCircle({x:425, y:742});
+            node228.setToolTip("node228");
+
+            var node229 = createCircle({x:425, y:785});
+            node229.setToolTip("node229");
+
+            link = createLink(node229, node228);
+
+            var node230 = createCircle({x:252, y:759});
+            node230.setToolTip("node230");
+
+            points = new twaver.List();
+            points.add({x:node150.getX() + node150.getWidth()/2, y: node165.getY() + node165.getHeight()/2});
+            points.add({x:node150.getX() + node150.getWidth()/2, y: node151.getY()});
+            points.add({x:node143.getX() + node143.getWidth(), y: node151.getY()});
+            link = createShapeLink(node165, node230, points);
+
+            var node231 = createCircle({x:233, y:759});
+            node231.setToolTip("node231");
+
+            link = createLink(node139, node231);
+
+            var node232 = createCircle({x:243, y:774});
+            node232.setToolTip("node232");
+
+            var node233 = createCircle({x:243, y:804});
+            node233.setToolTip("node233");
+
+            link = createLink(node232, node233);
+
+            var node234 = createCircle({x:243, y:780});
+            node234.setToolTip("node234");
+
+            var node235 = createCircle({x:301, y:823});
+            node235.setToolTip("node235");
+
+            points = new twaver.List();
+            points.add({x: node149.getX() + node149.getWidth()/2 - 15, y: node143.getY() + node143.getHeight() + node143.getHeight()/2});
+            link = createShapeLink(node234, node235, points);
+
+            var node236 = createCircle({x:227, y:833});
+            node234.setToolTip("node234");
+
+            var node237 = createCircle({x:227, y:855});
+            node235.setToolTip("node235");
+
+            link = createLink(node236, node237);
+
+            var node238 = createCircle({x:74 + node142.getWidth()/2 , y:765 - node142.getHeight()/2});
+            node238.setToolTip("node238");
+
+            var node239 = createCircle({x:212, y:804});
+            node239.setToolTip("node239");
+
+            points = new twaver.List();
+            points.add({x: node146.getX() + 5, y: node142.getY() - node142.getHeight()/2});
+            link = createShapeLink(node238, node239, points);
+
+            var node240 = createCircle({x:233, y:669});
+            node240.setToolTip("node240");
+
+            link = createLink(node240, node139);
+
+            var node241 = createCircle({x:357, y:669});
+            node241.setToolTip("node241");
+
+            link = createLink(node241, node140);
+
+            var node242 = createCircle({x:87, y:669});
+            node242.setToolTip("node242");
+
+            points = new twaver.List();
+            points.add({x: node136.getX() + node136.getWidth()/2, y: node139.getY() + node139.getHeight()/2});
+            link = createShapeLink(node242, node139, points);
+
+            var node243 = createCircle({x:233, y:628});
+            node243.setToolTip("node243");
+
+            var node244 = createCircle({x:233, y:656});
+            node244.setToolTip("node244");
+
+            link = createLink(node243, node244);
+
+            var node245 = createCircle({x:357, y:628});
+            node245.setToolTip("node245");
+
+            var node246 = createCircle({x:357, y:656});
+            node246.setToolTip("node246");
+
+            link = createLink(node245, node246);
+
+            var node247 = createCircle({x:87, y:628});
+            node247.setToolTip("node247");
+
+            var node248 = createCircle({x:87, y:656});
+            node248.setToolTip("node248");
+
+            link = createLink(node247, node248);
+
+            var node249 = createCircle({x:70, y:540});
+            node249.setToolTip("node249");
+
+            var node250 = createCircle({x:70, y:583});
+            node250.setToolTip("node250");
+
+            link = createLink(node249, node250);
+
+            var node251 = createCircle({x:111, y:540});
+            node251.setToolTip("node251");
+
+            var node252 = createCircle({x:111, y:583});
+            node252.setToolTip("node252");
+
+            link = createLink(node251, node252);
+
+            var node253 = createCircle({x:221, y:540});
+            node253.setToolTip("node253");
+
+            var node254 = createCircle({x:221, y:583});
+            node254.setToolTip("node254");
+
+            link = createLink(node253, node254);
+
+            var node255 = createCircle({x:248, y:540});
+            node255.setToolTip("node255");
+
+            var node256 = createCircle({x:248, y:583});
+            node256.setToolTip("node256");
+
+            link = createLink(node255, node256);
+
+            var node257 = createCircle({x:337, y:540});
+            node257.setToolTip("node257");
+
+            var node258 = createCircle({x:337, y:583});
+            node258.setToolTip("node258");
+
+            link = createLink(node257, node258);
+
+            var node259 = createCircle({x:375, y:540});
+            node259.setToolTip("node259");
+
+            var node260 = createCircle({x:375, y:583});
+            node260.setToolTip("node260");
+
+            link = createLink(node259, node260);
+
+            var node261 = createCircle({x:70, y:526});
+            node261.setToolTip("node261");
+
+            link = createLink(node94, node261);
+
+            var node262 = createCircle({x:111, y:526});
+            node262.setToolTip("node262");
+
+            link = createLink(node96, node262);
+
+            var node263 = createCircle({x:221, y:526});
+            node263.setToolTip("node263");
+
+            link = createLink(node95, node263);
+
+            var node264 = createCircle({x:248, y:526});
+            node264.setToolTip("node264");
+
+            link = createLink(node97, node264);
+
+            var node265 = createCircle({x:375, y:526});
+            node265.setToolTip("node265");
+
+            link = createLink(node99, node265);
+
+            var node266 = createCircle({x:337, y:526});
+            node266.setToolTip("node266");
+
+            points = new twaver.List();
+            points.add({x:node21.getX() + node21.getWidth()/2 , y: node53.getY() + node53.getHeight()});
+            points.add({x:node125.getX() + node125.getWidth()/2 , y: node53.getY() + node53.getHeight()});
+            link = createShapeLink(node21, node266, points);
+
+            var node267 = createCircle({x:221, y:428});
+            node267.setToolTip("node267");
+
+            link = createLink(node267, node95);
+
+            var node268 = createCircle({x:375, y:428});
+            node268.setToolTip("node268");
+
+            link = createLink(node268, node99);
+
+            var node269 = createCircle({x:207, y:358});
+            node269.setToolTip("node269");
+
+            var node270 = createCircle({x:207, y:398});
+            node270.setToolTip("node270");
+
+            link = createLink(node269, node270);
+
+            var node271 = createCircle({x:207, y:363});
+            node271.setToolTip("node271");
+
+            var node272 = createCircle({x:360, y:398});
+            node272.setToolTip("node272");
+
+            points = new twaver.List();
+            points.add({x:node57.getX() + 5 ,y: node45.getY() + node45.getHeight() + 5});
+            link = createShapeLink(node272, node271, points);
+
+            var node273 = createCircle({x:390, y:398});
+            node273.setToolTip("node273");
+
+            link = createLink(node30, node273);
+
+            var node274 = createCircle({x:236, y:398});
+            node274.setToolTip("node274");
+
+            points = new twaver.List();
+            points.add({x:node47.getX() + node47.getWidth() - 5 ,y:node30.getY() + node30.getHeight()/2});
+            link = createShapeLink(node30, node274, points);
+
+            var node275 = createCircle({x:314, y:267});
+            node275.setToolTip("node275");
+
+            var node276 = createCircle({x:216, y:344});
+            node276.setToolTip("node276");
+
+            points = new twaver.List();
+            points.add({x:node41.getX() + node41.getWidth()/2,y: node46.getY() + node46.getHeight()/2});
+            points.add({x:node45.getX() + node41.getWidth(),y: node46.getY() + node46.getHeight()/2});
+            link = createShapeLink(node275, node276, points);
+
+            var node277 = createCircle({x:314, y:223});
+            node277.setToolTip("node277");
+
+            var node278 = createCircle({x:314, y:240});
+            node278.setToolTip("node278");
+
+            link = createLink(node277, node278);
+
+            var node279 = createCircle({x:329, y:193});
+            node279.setToolTip("node279");
+
+            points = new twaver.List();
+            points.add({x:node25.getX() + node25.getWidth() - 5,y: node22.getY() + node22.getHeight()/2});
+            link = createShapeLink(node22, node279, points);
+
+            var node280 = createCircle({x:299, y:193});
+            node280.setToolTip("node280");
+
+            points = new twaver.List();
+            points.add({x:node25.getX() + 5,y: node21.getY() + node21.getHeight()/2});
+            link = createShapeLink(node21, node280, points);
+
+            var node281 = createCircle({x:196, y:344});
+            node281.setToolTip("node281");
+
+            var node282 = createCircle({x:182, y:301});
+            node282.setToolTip("node282");
+
+            points = new twaver.List();
+            points.add({x:node45.getX(),y: node46.getY() + node46.getHeight()/2});
+            link = createShapeLink(node282, node281, points);
+
+            var node283 = createCircle({x:182, y:264.5});
+            node283.setToolTip("node283");
+
+            points = new twaver.List();
+            points.add({x:node45.getX(),y: node40.getY() + node40.getHeight()/2});
+            link = createShapeLink(node283, node281, points);
+
+            var node284 = createCircle({x:166, y:274});
+            node284.setToolTip("node284");
+
+            link = createLink(node19, node284);
+
+            var node285 = createCircle({x:166, y:254});
+            node285.setToolTip("node285");
+
+            link = createLink(node20, node285);
+
+            var node286 = createCircle({x:166, y:311});
+            node286.setToolTip("node286");
+
+            points = new twaver.List();
+            points.add({x:node19.getX() + node19.getWidth()/2,y: node46.getY() + node46.getHeight()});
+            link = createShapeLink(node19, node286, points);
+
+            var node287 = createCircle({x:166, y:291});
+            node287.setToolTip("node287");
+
+            points = new twaver.List();
+            points.add({x:node20.getX() + node20.getWidth()/2,y: node46.getY()});
+            link = createShapeLink(node20, node287, points);
+
+            var node288 = createCircle({x:116, y:217});
+            node288.setToolTip("node288");
+
+            link = createLink(node288, node19);
+
+            var node289 = createCircle({x:95, y:217});
+            node289.setToolTip("node289");
+
+            var node290 = createCircle({x:7 + node16.getWidth()/2, y:238 + node16.getHeight()/2});
+            node290.setToolTip("node290");
+
+            points = new twaver.List();
+            points.add({x:node14.getX(), y: node16.getY()});
+            link = createShapeLink(node289, node290, points);
+
+            var node289 = createCircle({x:105, y:202});
+            node289.setToolTip("node289");
+
+            var node290 = createCircle({x:105, y:148});
+            node290.setToolTip("node290");
+
+            link = createLink(node290, node289);
+
+            var node291 = createCircle({x:83, y:148});
+            node291.setToolTip("node291");
+
+            var node292 = createCircle({x:6 + node12.getWidth()/2, y:171+ node12.getHeight()});
+            node292.setToolTip("node292");
+
+            points = new twaver.List();
+            points.add({x:node8.getX(), y: node12.getY() + node12.getHeight()});
+            link = createShapeLink(node291, node292, points);
+
+            var node293 = createCircle({x:264, y:101});
+            node293.setToolTip("node293");
+
+            link = createLink(node293, node21,"bottom");
+
+            var node294 = createCircle({x:264, y:60});
+            node294.setToolTip("node294");
+
+            var node295 = createCircle({x:264, y:84});
+            node295.setToolTip("node295");
+
+            link = createLink(node294, node295);
+
+            var node296 = createCircle({x:772, y:143});
+            node296.setToolTip("node296");
+
+            points = new twaver.List();
+            points.add({x:node11.getX() + node11.getWidth()/2,y: node24.getY() + node24.getHeight()/2});
+            link = createShapeLink(node296, node24, points, "left");
+
+            var node297 = createCircle({x:444, y:33});
+            node297.setToolTip("node297");
+
+            var node298 = createCircle({x:444, y:60});
+            node298.setToolTip("node298");
+
+            link = createLink(node297, node298);
+
+            var node299 = createCircle({x:93, y:134});
+            node299.setToolTip("node299");
+
+            var node300 = createCircle({x:93, y:60});
+            node300.setToolTip("node300");
+
+            link = createLink(node300, node299,"bottom");
+
+        }
+        function createNode(location,label,state) {
+            var node = new twaver.Node();
+            if(label) {
+                node.setClient("textName",label);
+                node.setImage("textNode");
+            } else {
+                node.setStyle("image.state","state1");
+            }
+            node.setLocation(location.x, location.y);
+            box.add(node);
+            return node;
+        }
+        function createCircle(location) {
+            var node = new twaver.Node();
+            node.setSize(4,4);
+            node.setStyle("body.type","vector");
+            node.setStyle("vector.shape","circle");
+            node.setStyle('vector.fill', true);
+            node.setStyle('vector.fill.color', '#000000');
+            node.setLocation(location.x, location.y);
+            box.add(node);
+            return node;
+        }
+        function createLink(from, to, state) {
+            var link = new twaver.Link(from, to);
+            link.setStyle("link.width", 1);
+            link.setStyle("link.color", "0x000000");
+            link.setStyle("icons.names", ["icon"]);
+            if(state) {
+                if(state == "bottom" || state == "top") {
+                    link.setStyle("icons.xoffset",-2);
+                } else {
+                    link.setStyle("icons.yoffset",-2);
+                }
+                link.setStyle("image.state",state);
+            }
+            box.add(link);
+            return link;
+        }
+        function createShapeLink(from, to, points, state) {
+            var shapeLink = new twaver.ShapeLink(from, to);
+            shapeLink.setPoints(points);
+            shapeLink.setStyle("link.width", 1);
+            shapeLink.setStyle("link.color", "0x000000");
+            shapeLink.setStyle("icons.names", ["icon"]);
+            box.add(shapeLink);
+            return shapeLink;
+        }
+twaver.Util.registerImage('singleSwitch', {
+    w: 20,
+    h: 15,
+    lineWidth: 2,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 0
+            },
+            p2: {
+                x: 10,
+                y: 15
+            },
+            state: ["state1"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 10,
+                y: 0
+            },
+            p2: {
+                x: 10,
+                y: 15
+            },
+            state: ["state2"]
+        }
+    ]
+});
+twaver.Util.registerImage('icon', {
+    w: 5,
+    h: 5,
+    lineWidth: 1,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 2.5
+            },
+            p2: {
+                x: 5,
+                y: 0
+            },
+            state: ["left"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 5,
+                y: 0
+            },
+            p2: {
+                x: 5,
+                y: 5
+            },
+            state: ["left"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 5,
+                y: 5
+            },
+            p2: {
+                x: 0,
+                y: 2.5
+            },
+            state: ["left"]
+        },
+
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 0
+            },
+            p2: {
+                x: 5,
+                y: 2.5
+            },
+            state: ["right"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 5,
+                y: 2.5
+            },
+            p2: {
+                x: 0,
+                y: 5
+            },
+            state: ["right"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 5
+            },
+            p2: {
+                x: 0,
+                y: 0
+            },
+            state: ["right"]
+        },
+
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 2.5,
+                y: 0
+            },
+            p2: {
+                x: 0,
+                y: 5
+            },
+            state: ["top"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 5
+            },
+            p2: {
+                x: 2.5,
+                y: 0
+            },
+            state: ["top"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 5
+            },
+            p2: {
+                x: 0,
+                y: 0
+            },
+            state: ["top"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 0
+            },
+            p2: {
+                x: 5,
+                y: 0
+            },
+            state: ["bottom"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 5,
+                y: 0
+            },
+            p2: {
+                x: 2.5,
+                y: 5
+            },
+            state: ["bottom"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 2.5,
+                y: 5
+            },
+            p2: {
+                x: 0,
+                y: 0
+            },
+            state: ["bottom"]
+        }
+
+    ]
+});
+//顶角向左单刀开关
+twaver.Util.registerImage('leftSingleSwitch', {
+    w: 20,
+    h: 15,
+    lineWidth: 2,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 15
+            },
+            p2: {
+                x: 20,
+                y: 0
+            },
+            state: ["state1"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 15
+            },
+            p2: {
+                x: 20,
+                y: 15
+            },
+            state: ["state2"]
+        }
+    ]
+});
+
+//正三角双刀开关 顶角面向上
+twaver.Util.registerImage('doubleSwitch', {
+    w: 20,
+    h: 15,
+    lineWidth: 2,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 10,
+                y: 0
+            },
+            p2: {
+                x: 20,
+                y: 15
+            },
+            state: ["state1"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 10,
+                y: 0
+            },
+            p2: {
+                x: 0,
+                y: 15
+            },
+            state: ["state2"]
+        }
+    ]
+});
+//倒三角双刀开关 顶角面向下
+twaver.Util.registerImage('dReverseSwitch', {
+    w: 20,
+    h: 15,
+    lineWidth: 2,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 0
+            },
+            p2: {
+                x: 10,
+                y: 15
+            },
+            state: ["state1"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 20,
+                y: 0
+            },
+            p2: {
+                x: 10,
+                y: 15
+            },
+            state: ["state2"]
+        }
+    ]
+});
+//右三角双刀开关 顶角面向右
+twaver.Util.registerImage('doubleRightSwitch', {
+    w: 15,
+    h: 20,
+    lineWidth: 2,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 0
+            },
+            p2: {
+                x: 15,
+                y: 10
+            },
+            state: ["state1"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 20
+            },
+            p2: {
+                x: 15,
+                y: 10
+            },
+            state: ["state2"]
+        }
+    ]
+});
+//双刀双掷开关
+twaver.Util.registerImage('ddSwitch', {
+    w: 40,
+    h: 30,
+    lineWidth: 2,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 0
+            },
+            p2: {
+                x: 5,
+                y: 15
+            },
+            state: ["state1"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 30,
+                y: 0
+            },
+            p2: {
+                x: 35,
+                y: 15
+            },
+            state: ["state1"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 5,
+                y: 0
+            },
+            p2: {
+                x: 5,
+                y: 15
+            },
+            state: ["state2"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 35,
+                y: 0
+            },
+            p2: {
+                x: 35,
+                y: 15
+            },
+            state: ["state2"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 5,
+                y: 15
+            },
+            p2: {
+                x: 35,
+                y: 15
+            },
+            state: ["state1", "state2"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 5,
+                y: 15
+            },
+            p2: {
+                x: 5,
+                y: 30
+            },
+            state: ["state1", "state2"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 5,
+                y: 30
+            },
+            p2: {
+                x: 35,
+                y: 30
+            },
+            state: ["state1", "state2"]
+        },
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 35,
+                y: 15
+            },
+            p2: {
+                x: 35,
+                y: 30
+            },
+            state: ["state1", "state2"]
+        },
+        {
+            shape: 'text',
+            text: '',
+            textAlign: 'left',
+            textBaseline: 'top',
+            x: 7,
+            y: 0,
+            state: ["state1", "state2"]
+        }
+    ]
+});
+
+twaver.Util.registerImage('doubleCircle', {
+    w: 20,
+    h: 30,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    line: {
+        width: 1,
+        color: '#000000'
+    },
+    v: [
+        {
+            shape: 'circle',
+            cx: 10,
+            cy: 10,
+            r: 9
+        },
+        {
+            shape: 'circle',
+            cx: 10,
+            cy: 19,
+            r: 9
+        }
+    ]
+});
+twaver.Util.registerImage('mainLine', {
+    w: 800,
+    h: 3,
+    lineWidth: 3,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineColor: "#000000",
+            p1: {
+                x: 50,
+                y: 2
+            },
+            p2: {
+                x: 800,
+                y: 2
+            }
+        }
+    ]
+});
+twaver.Util.registerImage('horizoanlLine', {
+    w: 350,
+    h: 2,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'line',
+            lineWidth: 2,
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 1
+            },
+            p2: {
+                x: 500,
+                y: 1
+            }
+        }
+    ]
+});
+//虚线框
+twaver.Util.registerImage('patternRect', {
+    w: 300,
+    h: 30,
+    lineDash: [25,5],
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'rect',
+            x: 0,
+            y: 0,
+            w: 300,
+            h: 30,
+            line: {
+                width: 1,
+                color: '#000000'
+            }
+        }
+    ]
+});
+
+//输入输出开关
+twaver.Util.registerImage('inputOutSwitch', {
+    w: 70,
+    h: 50,
+    font: 'bold 8px arial',
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'rect',
+            x: 0,
+            y: 0,
+            w: 70,
+            h: 50,
+            line: {
+                width: 2,
+                color: '#000000'
+            }
+        },
+        {
+            shape: 'line',
+            lineWidth: 2,
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 5
+            },
+            p2: {
+                x: 70,
+                y: 5
+            }
+        },
+        {
+            shape: 'line',
+            lineWidth: 2,
+            lineColor: "#000000",
+            p1: {
+                x: 0,
+                y: 45
+            },
+            p2: {
+                x: 70,
+                y: 45
+            }
+        },
+        {
+            shape: 'text',
+            text: '',
+            textAlign: 'left',
+            textBaseline: 'top',
+            x: 0,
+            y: 10
+        },
+        {
+            shape: 'text',
+            text: '',
+            textAlign: 'left',
+            textBaseline: 'top',
+            x: 38,
+            y: 10
+        },
+        {
+            shape: 'text',
+            text: '',
+            textAlign: 'left',
+            textBaseline: 'top',
+            x: 25,
+            y: 35
+        },
+        {
+            shape: 'text',
+            text: '<%= getClient("textName") %>',
+            textAlign: 'left',
+            textBaseline: 'top',
+            font: 'bold 12px arial',
+            x: 25,
+            y: 20
+        }
+    ]
+});
+
+//带框的文本节点
+twaver.Util.registerImage('textOutLine', {
+    w: 70,
+    h: 25,
+    origin: {
+        x: 0,
+        y: 0
+    },
+    v: [
+        {
+            shape: 'rect',
+            x: 0,
+            y: 0,
+            w: 70,
+            h: 25,
+            line: {
+                width: 1,
+                color: '#000000'
+            }
+        },
+        {
+            shape: 'text',
+            text: '<%= getClient("textName") %>',
+            textAlign: 'center',
+            textBaseline: 'top',
+            font: 'bold 10px arial',
+            x: 35,
+            y: 8
+        }
+    ]
+});
+
+twaver.Util.registerImage('textNode', {
+    w: 80,
+    h: 30,
+    origin: {
+        x: 0.5,
+        y: 0.5
+    },
+    v: [
+        {
+            shape: 'text',
+            text: '<%= getClient("textName") %>',
+            textAlign: 'center',
+            textBaseline: 'top',
+            font: 'bold 10px arial',
+            rotate: '<%= getClient("rotate") %>',
+            x: 0,
+            y: 0
+        }
+    ]
+});
+    </script>
+</head>
+<body onload="init()">
+<div id="main"></div>
+</body>
+</html>

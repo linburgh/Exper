@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Pie Chart</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>
+	twaver.Util.registerImage('pie_node', {		
+		w: '<%=getClient("level")*150+200%>',
+		h: '<%=getClient("level")*100+200%>',
+		scale: function(data, view){
+			return { x: data.getClient('scale'), y: data.getClient('scale') };
+		},
+		lineWidth:2,
+		fill: '<%=getClient("color")%>',
+		lineColor: 'white',
+		v: [{
+			shape: 'circle',
+			r:'<%=getWidth()/3%>',
+			startAngle: '<%=getClient("direction")-getClient("range")/2%>',
+			endAngle: '<%=getClient("direction")+getClient("range")/2%>',
+			close: '<%=getClient("level")>0%>',
+		},{
+			shape: 'text',
+			text: '<%=getClient("text")%>',
+			textAlign: function(data, view){
+				if(data.getClient("level")<=1) {
+					return 'center';
+				} else { 
+					return 'left';
+				}
+			},
+			textBaseline: 'middle',
+			font: '12px "Microsoft Yahei"',
+			fill: 'black',
+			rotate: function(data, view){
+				if(data.getClient('level')==0) return 0;
+				return data.getClient('direction');
+			},
+			x: function(data, view){
+				if(data.getClient('level')==0) return 0;
+				var direction=data.getClient('direction');
+				return data.getWidth()/3*Math.cos(Math.PI*direction/180);
+			},
+			y: function(data, view){
+				if(data.getClient('level')==0) return 0;
+				var direction=data.getClient('direction');
+				return data.getHeight()/3*Math.sin(Math.PI*direction/180);
+			},
+			rotateOrigin: function(data, view){
+				if(data.getClient('level')==0) return 0;
+				var direction=data.getClient('direction');
+				var x = data.getWidth()/3*Math.cos(Math.PI*direction/180);
+				var y = data.getWidth()/3*Math.sin(Math.PI*direction/180);
+				return {x: x, y: y};
+			},
+			visible: '<%=getClient("scale")>0%>',
+		}],
+	});
+
+	var box = new twaver.ElementBox();
+	var network = new twaver.vector.Network(box);
+    function init() {	
+		document.body.appendChild(network.getView());
+		network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+		network.addInteractionListener(function(e) {
+			if(e.kind == "clickElement" && network.isSelected(e.element)) {
+				showPie(e.element);
+			}
+		});
+
+		box.getLayerBox().add(new twaver.Layer('2'));
+		box.getLayerBox().add(new twaver.Layer('1'));
+		box.getLayerBox().add(new twaver.Layer('0'));
+
+		createPieChart(box, [20, 100, 60], 180, 200);
+
+		createPieChart(box, [200, 100, 60, 20, 500], 580, 300);
+		window.onresize = function (e) { 
+			network.adjustBounds({x:0,y:0,width:document.documentElement.scrollWidth,height:document.documentElement.clientHeight});
+			console.log(document.documentElement.clientWidth);
+			console.log(document.documentElement.scrollWidth);
+		};
+
+	}
+
+	function createPieChart(box, data, x, y){		
+		var nodes=[];
+		var gap=10;
+		var totalGap=gap*data.length;
+		var totalValue=0;
+		for(var i=0;i<data.length;i++){
+			totalValue+=data[i];
+		}
+		var angles=[];
+		for(var i=0;i<data.length;i++){
+			angles.push(data[i]/totalValue*(360-totalGap));
+		}
+
+		var node=createPieNode(x, y, 0, 0, 360, '#fde35b');
+		box.add(node);
+		nodes.push(node);
+		
+		var startAngle=0;
+		for(var i=0;i<angles.length;i++){
+			var direction=startAngle+angles[i]/2;
+			var child=createPieNode(x, y, 1, direction, angles[i], '#f9644e');
+			child.setParent(node);
+			box.add(child);			
+			nodes.push(child);
+
+			var grandson1=createPieNode(x, y, 2, direction-angles[i]/4, angles[i]/4, '#2abbb4');			
+			grandson1.setParent(child);
+			grandson1.setClient('scale', 0);
+			box.add(grandson1);
+			nodes.push(grandson1);
+
+			var grandson2=createPieNode(x, y, 2, direction+angles[i]/4, angles[i]/3, '#2abbb4');			
+			grandson2.setParent(child);
+			grandson2.setClient('scale', 0);
+			box.add(grandson2);
+			nodes.push(grandson2);
+
+			startAngle+=angles[i]+gap;
+		}
+		
+		//host all nodes toghether.
+		for(var i=1; i<nodes.length;i++){
+			nodes[i].setHost(nodes[i-1]);
+		}
+		nodes[0].setHost(nodes[nodes.length-1]);
+
+		//remember each other.
+		for(var i=0; i<nodes.length;i++){
+			nodes[i].setClient('nodes', nodes);
+		}
+	}
+
+	function createPieNode(x, y, level, direction, range, color, name){
+		var node=new twaver.Follower();
+		node.setLocation(x,y);		
+		node.setClient('level', level);
+		node.setLayerId(level);
+		node.setClient('direction', direction);
+		node.setClient('range', range);
+		node.setImage('pie_node');
+		node.setStyle('select.style', 'none');
+		node.setClient('color', color);
+		node.setClient('scale', 1);
+		node.setCenterLocation(x,y);
+		node.setName(name);
+		if(level==0)node.setClient('text', 'Serva\nsoftware');
+		if(level==1){
+			if(Math.random()>0.5){
+				node.setClient('text', 'TWaver');
+			}else{
+				node.setClient('text', '2BizBox');
+			}
+		}
+		if(level==2)node.setClient('text', 'Copyright\nCN20092066.2');
+
+		return node;
+	}
+
+	function showPie(node){
+		if(node.getClient('level')!=1){
+			return;
+		}		
+		var direction=node.getClient('direction');
+		direction = direction % 360;
+		if(direction==0){
+			return;
+		}
+		var offset=360 - direction % 360;
+		if(offset==0){
+			return;
+		}
+		if(offset>180){
+			offset=offset-360;
+		}
+
+		//finish all current on going animations.
+		twaver.Util.stopAllAnimates(true);
+		
+		//reset grandson.
+		resetGrandson(node);
+
+		var nodes=node.getClient('nodes');
+		for(var i=0;i<nodes.length;i++){
+			var thisNode=nodes[i];
+			if(thisNode.getClient('level')>0){	
+				var oldDirection=thisNode.getClient('direction');
+				var newDirection=oldDirection+offset;
+
+				var animateRotate=new twaver.Animate({
+					from: oldDirection,
+					to: newDirection,
+					dur: 1000,
+					easing: 'easeBothStrong',
+					onUpdate: function (value) {
+						this.node.setClient('direction', value);
+					}
+				});
+				animateRotate.node=thisNode;
+				
+				if(thisNode==node && thisNode.getClient('level')==1 && thisNode.getChildrenSize()>0){
+					var animateGrow=new twaver.Animate({
+						from: 0.8,
+						to: 1,
+						dur: 1500,
+						easing: 'bounceOut',
+						onUpdate: function (value) {		
+							node.getChildren().forEach(function(child){
+								child.setClient('scale', value);
+							});
+						}
+					});
+					animateRotate.chain(animateGrow);
+				}
+				animateRotate.play();
+			}
+		}
+	}
+
+	function resetGrandson(node){
+		node=getRootNode(node);
+		box.forEach(function(element){
+			if(element.getClient('level')==2 && getRootNode(element)==node){
+				element.setClient('scale', 0);
+			}
+		});
+	}
+
+	function getRootNode(node){
+		var parent=node;
+		while(parent.getParent()){
+			parent=parent.getParent();
+		}
+		return parent;
+	}
+
+	function makeHighRes(c) {
+	    var ctx = c.getContext('2d');
+	    var devicePixelRatio = window.devicePixelRatio || 1;
+	    var backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
+	    ctx.mozBackingStorePixelRatio ||
+	    ctx.msBackingStorePixelRatio ||
+	    ctx.oBackingStorePixelRatio ||
+	    ctx.backingStorePixelRatio || 1;
+	    var ratio = devicePixelRatio / backingStoreRatio;
+	    if (devicePixelRatio !== backingStoreRatio) {
+
+	        var oldWidth = c.width;
+	        var oldHeight = c.height;
+	        c.width = Math.round(oldWidth * ratio);
+	        c.height = Math.round(oldHeight * ratio);
+	        c.style.width = oldWidth + 'px';
+	        c.style.height = oldHeight + 'px';
+	        ctx.scale(ratio, ratio);
+	    }
+	}
+
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

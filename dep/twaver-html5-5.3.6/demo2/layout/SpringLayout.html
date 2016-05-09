@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <title>TWaver Demo</title>
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <script type="text/javascript">
+
+        var box = new twaver.ElementBox();
+        var network = new twaver.vector.Network(box);
+        var tree,titlePane,mainSplit,springLayouter;
+        function load(){
+            registerImages();
+            appendChild(network.getView(),document.getElementById('main'),0,0,0,0);
+
+            network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+
+            window.onresize = function (e) { 
+                network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});
+            };
+            
+            var root = createNode();
+            root.setName("Root");
+            root.setStyle("image.state", "red");
+
+            var mail = createNode();
+            mail.setName("Mail");
+            mail.setParent(root);
+            createLink(root,mail);
+
+            var calendar = createNode();
+            calendar.setName("Calendar");
+            root.setStyle("image.state", "red");
+
+            var contacts = createNode();
+            contacts.setName("Contacts");
+
+            mail.addChild(calendar);
+            mail.addChild(contacts);
+
+            createLink(mail, calendar);
+            createLink(mail, contacts);
+
+
+            var inbox = createNode();
+            inbox.setName("Inbox");
+            inbox.setParent(root);
+            inbox.setStyle("image.state", "blue");
+            createLink(root,inbox);
+
+            var admin = createNode();
+            admin.setName("Admin");
+            admin.setStyle("image.state", "blue");
+
+            var finance = createNode();
+            finance.setName("Finance");
+            finance.setStyle("image.state", "blue");
+
+            var other = createNode();
+            other.setName("Other");
+            other.setStyle("image.state", "blue");
+
+            inbox.addChild(admin);
+            inbox.addChild(finance);
+            inbox.addChild(other);
+
+            createLink(inbox, admin);
+            createLink(inbox, finance);
+            createLink(inbox, other);
+
+            createLink(admin, other);
+
+            var deleted = createNode();
+            deleted.setName("Deleted Items");
+            deleted.setParent(root);
+            deleted.setStyle("image.state", "red");
+            createLink(root,deleted);
+
+            var today = createNode();
+            today.setName("Today");
+            today.setStyle("image.state", "blue");
+
+            var lweek = createNode();
+            lweek.setName("Last Week");
+            lweek.setStyle("image.state", "blue");
+
+            var lmonth = createNode();
+            lmonth.setName("Last Month");
+            lmonth.setStyle("image.state", "blue");
+
+            deleted.addChild(today);
+            deleted.addChild(lweek);
+            deleted.addChild(lmonth);
+
+            createLink(inbox, today);
+            createLink(inbox, lweek);
+            createLink(inbox, lmonth);
+
+            var notes = createNode();
+            notes.setName("Notes");
+            notes.setParent(root);
+            notes.setStyle("image.state", "red");
+            createLink(root,notes);
+
+            var settings = createNode();
+            settings.setName("Settings");
+            settings.setParent(root);
+            settings.setStyle("image.state", "red");
+            createLink(root,settings);
+
+            var favorites = createNode();
+            favorites.setName("Favorites");
+            favorites.setParent(root);
+            favorites.setStyle("image.state", "red");
+            createLink(root,favorites);
+
+            var reminders = createNode();
+            reminders.setName("Reminders");
+            reminders.setParent(root);
+            reminders.setStyle("image.state", "red");
+            createLink(root,reminders);
+
+            var taskList = createNode();
+            taskList.setName("TaskList");
+            taskList.setStyle("image.state","green");
+
+            reminders.addChild(taskList);
+            createLink(reminders, taskList);
+
+            var work = createNode();
+            work.setName("Work");
+            work.setStyle("image.state","green");
+            var learning = createNode();
+            learning.setName("Learning");
+            learning.setStyle("image.state","green");
+            var task = createNode();
+            task.setName("Task");
+            task.setStyle("image.state","green");
+
+            taskList.addChild(work);
+            taskList.addChild(learning);
+            taskList.addChild(task);
+
+            createLink(taskList, work);
+            createLink(taskList, learning);
+            createLink(taskList, task);
+
+            var photos = createNode();
+            photos.setName("My Pictures");
+            photos.setStyle("image.state","yellow");
+
+            photos.setParent(root);
+            createLink(root,photos);
+
+            var image1 = createNode();
+            image1.setName("Image_1");
+            image1.setStyle("image.state","yellow");
+            var image2 = createNode();
+            image2.setName("Image_2");
+            image2.setStyle("image.state","yellow");
+            var image3 = createNode();
+            image3.setName("Image_3");
+            image3.setStyle("image.state","yellow");
+            var image4 = createNode();
+            image4.setName("Image_4");
+            image4.setStyle("image.state","yellow");
+            var image5 = createNode();
+            image5.setName("Image_5");
+            image5.setStyle("image.state","yellow");
+            var image6 = createNode();
+            image6.setName("Image_6");
+            image6.setStyle("image.state","yellow");
+
+            createLink(image1,image2);
+            createLink(image1,image3);
+            createLink(image1,image4);
+            createLink(image1,image5);
+            createLink(image1,image6);
+
+            createLink(image2,image3);
+            createLink(image2,image4);
+            createLink(image2,image5);
+            createLink(image2,image6);
+
+            photos.addChild(image1);
+            photos.addChild(image2);
+            photos.addChild(image3);
+            photos.addChild(image4);
+            photos.addChild(image5);
+            photos.addChild(image6);
+
+            createLink(photos, image1);
+            createLink(photos, image2);
+            createLink(photos, image3);
+            createLink(photos, image4);
+            createLink(photos, image5);
+            createLink(photos, image6);
+
+            createLink(notes, settings);
+            createLink(notes, favorites);
+            createLink(notes, deleted);
+            createLink(notes, reminders);
+            createLink(favorites, reminders);
+
+
+            createLink(favorites, today);
+            createLink(lweek, favorites);
+            createLink(lweek, other);
+            createLink(lweek, lmonth);
+            createLink(today, finance);
+
+
+            createLink(task, learning);
+            createLink(task, work);
+            createLink(contacts, calendar);
+
+            createLink(root, image5);
+            createLink(root, image6);
+
+
+            createLink(reminders, work);
+            createLink(reminders, learning);
+
+            createLink(mail, settings);
+            createLink(mail, deleted);
+
+            createLink(deleted, contacts);
+            createLink(deleted, calendar);
+
+            layout();
+
+        }
+
+        function createNode() {
+            var node = new twaver.Node();
+            node.setImage("circle");
+            node.setStyle('image.state', "original");
+            box.add(node);
+            return node;
+        }
+
+        function createGroup() {
+            var group = new twaver.Group();
+            box.add(group);
+            return group;
+        }
+
+        function createLink(from, to) {
+            var link = new twaver.Link(from,to);
+            link.setStyle("link.width",1);
+            box.add(link);
+            return link;
+        }
+
+        function appendChild(e, parent, top, right, bottom, left) {
+            e.style.position = 'absolute';
+            if (left != null) e.style.left = left + 'px';
+            if (top != null) e.style.top = top + 'px';
+            if (right != null) e.style.right = right + 'px';
+            if (bottom != null) e.style.bottom = bottom + 'px';
+            parent.appendChild(e);
+        }
+
+        function layout() {
+            springLayouter = new twaver.layout.SpringLayouter(network);
+            var autoLayouter = new twaver.layout.AutoLayouter(box);
+            autoLayouter.doLayout('symmetry', function () {
+                springLayouter.start();
+            });
+            network.zoomOverview();
+        }
+        
+        function registerImages() {
+            twaver.Util.registerImage('circle', {
+                w: 30,
+                h: 30,
+                v: [
+                    {
+                        shape: 'circle',
+                        r: 15,
+                        fill: "#0185f1",
+                        state: ["original"]
+                    },
+                    {
+                        shape: 'circle',
+                        r: 15,
+                        fill: "#ff0022",
+                        state: ["red"]
+                    },
+                    {
+                        shape: 'circle',
+                        r: 15,
+                        fill: "#169e49",
+                        state: ["green"]
+                    },
+                    {
+                        shape: 'circle',
+                        r: 15,
+                        fill: "#52bea6",
+                        state: ["blue"]
+                    },
+                    {
+                        shape: 'circle',
+                        r: 15,
+                        fill: "#fde35b",
+                        state: ["yellow"]
+                    }
+                ]
+            });
+        }
+
+
+
+    </script>
+</head>
+<body onload="load()">
+<div id="main">
+</div>
+</body>
+</html>

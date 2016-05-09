@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <style type="text/css" media="screen">
+    .btn:hover { background-color: #C7C7C7 ; }
+    </style>
+    <script type="text/javascript" src="../../lib/twaver.js"></script>
+    <script type="text/javascript">
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    var autoLayouter = new twaver.layout.AutoLayouter(box);
+    var springLayouter = new twaver.layout.SpringLayouter(network);
+    var winWidth = 0;
+    var winHeight = 0;
+    var M = 8;
+    var N = 1;
+    var toolbox2IsShow= false;
+
+    function init() {
+        registerImage();
+        initNetwork();
+        initStyle();
+        initDataBox();
+    }
+
+    function initNetwork() {
+        var view = network.getView();
+        document.body.appendChild(view);
+        network.setHScrollBarVisible(false);
+        network.setVScrollBarVisible(false);
+        function findDimensions() {
+            if (window.innerWidth)
+                winWidth = window.innerWidth;
+            else if ((document.body) && (document.body.clientWidth))
+                winWidth = document.body.clientWidth;
+            if (window.innerHeight)
+                winHeight = window.innerHeight;
+            else if ((document.body) && (document.body.clientHeight))
+                winHeight = document.body.clientHeight;
+            if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+                winHeight = document.documentElement.clientHeight;
+                winWidth = document.documentElement.clientWidth;
+            }
+        }
+
+        findDimensions();
+        network.adjustBounds({x: 0, y: 0, width: winWidth, height: winHeight});
+        window.onresize = function (e) {
+            findDimensions();
+            network.adjustBounds({x: 0, y: 0, width: winWidth, height: winHeight});
+        };
+        springLayouter.setNodeRepulsionFactor(0.85);
+        springLayouter.setLinkRepulsionFactor(0.45);
+
+         // autoLayouter.getElements = function () {
+        //     var elements = new twaver.List();
+        //     box.forEach(function(element){
+        //         if(!element.getClient('button')){
+        //             elements.add(element);
+        //         }
+        //     })
+        //     return elements;
+        // }
+
+        // network.setMovableFunction(function (element) {
+        //     if (element.getClient('button')) {
+        //         return false;
+        //     }
+        //     return true;
+        // });
+
+        var toolbox = document.createElement("div");
+        toolbox.style.width = "100px";
+        toolbox.style.height = "269px";
+        toolbox.style.position= "absolute";
+        toolbox.style.top= "80px";
+        toolbox.style.left = "0px";
+        toolbox.style.opacity = 0.7;
+        toolbox.innerHTML = '<button class="btn btn-default btn-sm" style="width: 100%; height:28px ;margin-top: 5px; margin-bottom: 5px;" value="round">Round</button>\
+        <button class="btn btn-default btn-sm" style="width: 100%; height:28px;  margin-bottom: 5px;" value="topbottom">TopBottom</button>\
+        <button class="btn btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="bottomtop">BottomTop</button>\
+        <button class="btn btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="leftright">LeftRight</button>\
+        <button class="btn btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="rightleft">RightLeft</button>\
+        <button class="btn  btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="symmetry">Symmetry</button>\
+        <button class="btn  btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="hierarchic">Hierarchic</button>\
+        <button class="btn  btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="spring">Spring</button>\
+        <button class="btn  btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="windSouth">WindSouth</button>\
+        <button class="btn  btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="windNorth">WindNorth</button>\
+        <button class="btn  btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="windEast">WindEast</button>\
+        <button class="btn  btn-default btn-sm" style="width: 100%; height:28px; margin-bottom: 5px;" value="windWest">WindWest</button>';
+
+        toolbox.onclick = function(evt){
+            if(evt.target.tagName.match(/button/i)){
+                if(evt.target.value === "round"){
+                    box.clear();
+                    M  = 14;
+                    N  = 1;
+                    initDataBox();
+                    twaver.Styles.setStyle('link.type','arc');
+                }else if(evt.target.value === "topbottom"){
+                    box.clear();
+                    M  = 2;
+                    N  = 1;
+                    initDataBox();
+                    twaver.Styles.setStyle('link.type','orthogonal.vertical');
+                }else if(evt.target.value === "bottomtop"){
+                    box.clear();
+                    M  = 2;
+                    N  = 2;
+                    initDataBox();
+                    twaver.Styles.setStyle('link.type','extend.bottom');
+                }else if(evt.target.value === "leftright"){
+                    box.clear();
+                    M  = 1;
+                    N  = 6;
+                    initDataBox();
+                    twaver.Styles.setStyle('link.type','orthogonal.vertical');
+                }else if(evt.target.value === "rightleft"){
+                    box.clear();
+                    M  = 2;
+                    N  = 2;
+                    initDataBox();
+                    twaver.Styles.setStyle('link.type','flexional.horizontal');
+                }else if(evt.target.value === "symmetry"){
+                    box.clear();
+                    M  = 10;
+                    N  = 1;
+                    initDataBox();
+                    twaver.Styles.setStyle('link.type','orthogonal.V.H');
+                }else if(evt.target.value === "hierarchic"){
+                    box.clear();
+                    M  = 4;
+                    N  = 1;
+                    initDataBox();
+                    twaver.Styles.setStyle('link.type','orthogonal.V.H');
+                }else if(evt.target.value === "spring"){
+                    if(!toolbox2IsShow){
+                        toolbox2.style.opacity = 0.8;
+                        toolbox2IsShow = true;
+                    }else{
+                        toolbox2.style.opacity = 0;
+                        toolbox2IsShow = false;
+                    }
+                }else if(evt.target.value === "windSouth"){
+                    twaver.Styles.setStyle('link.type','extend.bottom');
+                }else if(evt.target.value === "windNorth"){
+                    twaver.Styles.setStyle('link.type','extend.top');
+                }else if(evt.target.value === "windEast"){
+                    twaver.Styles.setStyle('link.type','extend.right');
+                }else if(evt.target.value === "windWest"){
+                    twaver.Styles.setStyle('link.type','extend.left');
+                }
+
+                network.invalidateElementUIs();
+                autoLayouter.doLayout(evt.target.value,function(){
+                   network.zoomOverview(true);
+               });
+            }
+        }
+
+        network.getView().parentNode.appendChild(toolbox);
+        var toolbox2 = document.createElement('div');
+        toolbox2.style.width = "200px";
+        toolbox2.style.height = "160px";
+        toolbox2.style.position= "absolute";
+        toolbox2.style.top= "200px";
+        toolbox2.style.opacity = 0;
+        toolbox2.style.right= "0px";
+        toolbox2.style.background = '#CFCFCF';
+        network.getView().parentNode.appendChild(toolbox2);
+
+        initStyle();
+        var run_button = createButton(toolbox2, "Run", function(evt) {
+            if(springLayouter.isRunning()){
+                run_button.textContent = "Run";
+                springLayouter.stop();
+            }else{
+                run_button.textContent = "||";
+                springLayouter.start();
+            }
+        });
+
+        createButton(toolbox2, 'Add Node', function(){
+            var node = new twaver.Node({
+                image:'circle',
+                location:{x:winWidth/2/network.getZoom(),y:winHeight/2/network.getZoom()}
+            });
+            box.add(node);
+            var center = box.getRandomData(twaver.Node);
+            var link = new twaver.Link(node,center);
+            box.add(link);
+        });
+
+        createButton(toolbox2, 'Add Link', function(){
+            var node1 = box.getRandomData(twaver.Node);
+            var node2 = box.getRandomData(twaver.Node);
+            var link = new twaver.Link(node1,node2);
+            link.s('link.color',twaver.Colors.orange_dark);
+            box.add(link);
+        });
+        createSlider(toolbox2, "NodeRepulsion", 0, 1, 0.85, function(v){
+            springLayouter.setNodeRepulsionFactor(v);
+        });
+        createSlider(toolbox2, "LinkRepulsion",0,1,0.45,function(v){
+            springLayouter.setLinkRepulsionFactor(v);
+        });
+        createSlider(toolbox2, "StepCount",0,100,10,function(v){
+            springLayouter.setStepCount(v);
+        });
+    }
+
+    function createButton(parent, name, onClick){
+        var button = document.createElement('button');
+        button.className = 'btn btn-default btn-sm';
+        button.style.height = '28px';
+        button.style.marginLeft =  '5px';
+        button.style.marginRight =  '5px';
+        button.innerHTML = name;
+        button.onclick = onClick;
+        parent.appendChild(button);
+        return button;
+    }
+
+    function createSlider(parent, label, min, max, value, onchange){
+        var div = document.createElement("div");
+        var step = (max - min) / 100;
+        div.innerHTML = label + ": " + min + "<input type='range' value='" + value + "' step='" + step + "' min='" + min + "' max='" + max + "'>" + max;
+        div.firstElementChild.onchange = function(evt){
+            onchange(evt.target.value);
+        }
+        parent.appendChild(div);
+    }
+
+    function initStyle(){
+        twaver.Styles.setStyle('link.color','#000000');
+        twaver.Styles.setStyle('link.width',1);
+        twaver.Styles.setStyle('label.position','center');
+        twaver.Styles.setStyle('label.color','white');
+        twaver.Styles.setStyle('label.shadowable',false);
+    }
+
+    function initDataBox() {
+        for (var i = 0, n = N; i < n; i++) {
+            var center = new twaver.Node({name: '' + box.size(),id:'center' + i});
+            center.setImage("glowCircle");
+            box.add(center);
+            for (var j = 0, c = M; j < c; j++) {
+                var node = new twaver.Node({name: '' + box.size()});
+                node.setImage('circle2');
+                node.setClient('edge',true);
+                box.add(node);
+                var link = new twaver.Link({name: '' + box.size()}, center, node);
+                box.add(link);
+                for(var k=0;k<3;k++){
+                    var node2 = new twaver.Node({name: '' + box.size()});
+                    node2.setImage('circle3');
+                    box.add(node2);
+                    var link = new twaver.Link(node,node2);
+                    box.add(link);
+                    var node3 = new twaver.Node({name:''+box.size(),image:'circle3'});
+                    box.add(node3);
+                    var link = new twaver.Link(node2,node3);
+                    box.add(link);
+                    for(var s =0;s<4;s++){
+                        var node4 = new twaver.Node({
+                            name:''+box.size(),
+                            image:'circle3'
+                        });
+                        box.add(node4);
+                        var link = new twaver.Link(node3,node4);
+                        box.add(link);
+                    }
+
+                }
+            }
+        }
+        autoLayouter.doLayout('round',function(){
+            network.zoomOverview(true);
+        });
+    }
+
+    function registerImage() {
+        twaver.Util.registerImage('circle', {
+            w: 22,
+            h: 22,
+            line: {
+                width: 1,
+                color: '#FFFFFF'
+            },
+            fill:twaver.Colors.orange_dark,
+            v: [
+            {
+                shape: 'circle',
+                cx: 0,
+                cy: 0,
+                r: 10
+            }
+            ]
+        });
+
+        twaver.Util.registerImage('circle2', {
+            w: 52,
+            h: 52,
+            line: {
+                width: 1,
+            },
+            fill:'#666666',
+            v: [
+            {
+                shape: 'circle',
+                cx: 0,
+                cy: 0,
+                r: 25
+            }
+            ]
+        });
+        twaver.Util.registerImage('circle3', {
+            w: 22,
+            h: 22,
+            line: {
+                width: 1,
+            },
+            fill:'#636363',
+            v: [
+            {
+             shape: 'circle',
+             cx: 0,
+             cy: 0,
+             r: 10
+         }
+         ]
+     });
+
+        twaver.Util.registerImage('glowCircle', {
+            w: 40,
+            h: 40,
+            v: [
+            {
+                shape: 'circle',
+                cx: 0,
+                cy: 0,
+                r: 20,
+                lineWidth: 2,
+                lineColor:twaver.Colors.blue_light,
+                alpha:1,
+                fill:twaver.Colors.blue_light,
+                gradient: 'radial.center',
+                // animate: [
+                // {
+                //     attr: 'alpha',
+                //     to:1,
+                //     dur:1500,
+                //     reverse:false,
+                //     repeat:Number.POSITIVE_INFINITY
+                // }
+                // ]
+            },
+            {
+                shape: 'circle',
+                cx:0,
+                cy:0,
+                r:0,
+                lineColor:twaver.Colors.blue_light,
+                fill:twaver.Colors.blue_light,
+                gradient: 'radial.center',
+                // animate: [
+                // {
+                //     attr: 'r',
+                //     to: 20,
+                //     dur: 1500,
+                //     reverse: false,
+                //     repeat: Number.POSITIVE_INFINITY
+             // }
+                // ]
+            }
+            ]
+        });
+}
+</script>
+</head>
+<body onload="init()">
+
+</body>
+</html>

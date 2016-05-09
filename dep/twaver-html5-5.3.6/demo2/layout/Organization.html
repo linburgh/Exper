@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>TWaver HTML5</title>
+  <script src="../../lib/twaver.js"></script>
+  <script>	
+
+	function registerNormalImage(name, url) {
+		var image = new Image();
+		image.src = url;
+		image.onload = function() {
+			twaver.Util.registerImage(name, image, image.width, image.height);
+			image.onload = null;			
+		};
+	}
+
+	var picCount=5;
+	for(var i=0;i<picCount;i++){
+		registerNormalImage('pic'+(i+1), '../images/pic'+(i+1)+'.jpg');	
+	}	
+
+	twaver.Util.registerImage('clip_pic', {		
+		w: 128,
+		h: 128,
+		cache: false,
+		clip: {
+			shape: 'path',
+			data: 'M-45,-25Q-45,-64,0,-64Q45,-64,45,-25L45,25Q45,64,0,64Q-45,64,-45,25z',
+		},
+		v: [{
+			shape: 'image',
+			x:-64,
+			y:-64,
+			name: '<%=getClient("pic")%>',	
+		}],
+	});
+
+	twaver.Util.registerImage('employee', {		
+		w: 200,
+		h: 135,
+		cache: false,	
+		origin: {x:0, y:0},
+		v: [{
+			shape: 'rect',
+			w: '100%',
+			h: '100%',	
+			r: 8,
+			lineColor:'black',
+			lineWidth:2.5,		
+			fill: '#F5ECCE',
+		},{
+			shape: 'image',
+			name: 'clip_pic',		
+			x: 60,
+			y: '50%',
+		},{
+			shape: 'path',
+			data: 'M-45,-25Q-45,-64,0,-64Q45,-64,45,-25L45,25Q45,64,0,64Q-45,64,-45,25z',
+			lineColor:'#BBBBBB',
+			lineWidth:1,
+			translate: {x: 60, y:135/2}
+		},{
+			shape: 'text',
+			text: '<%=getClient("text")%>',
+			font: '12px "Microsoft Yahei"',
+			translate: {x:150,y:135/2},
+		}],
+	});
+	
+    function init() {
+		var box = new twaver.ElementBox();
+		var network = new twaver.vector.Network(box);
+		var layout = new twaver.layout.AutoLayouter(box);
+		network.layoutType='topbottom';
+
+		document.body.appendChild(network.getView());
+		network.adjustBounds({x:0,y:0,width:document.documentElement.clientWidth,height:document.documentElement.clientHeight});		
+		//network.setToolTipEnabled(false);		
+		
+		network.addInteractionListener(function (e) {
+            if (e.kind == 'doubleClickBackground') {
+				var linkType=null;
+				if(network.layoutType=='topbottom'){
+					network.layoutType='round';					
+				}else{
+					network.layoutType='topbottom';
+					linkType='orthogonal.vertical';
+				}
+				box.forEach(function(element){
+					if(element instanceof twaver.Link){
+						element.setStyle('link.type', linkType);
+					}
+				});
+				network.zoomOverview();
+				layout.doLayout(network.layoutType,function(){
+					network.zoomOverview();
+				});
+			}
+		});
+
+		var count=40;
+		for(var i=0;i<count;i++){
+			var node=new twaver.Node('n'+i);
+			node.setImage('employee');
+			var pic=getRandomImage();
+			var info=getEmployeeInfo(pic);
+			node.setClient('pic', pic);
+			node.setClient('text', info[0]+'\n'+info[1]+'\n\n'+info[2]);
+			node.setToolTip(info[0]+'有这么养眼的'+info[1]+'？');
+			node.setLocation(getRandomInt(1000),getRandomInt(800));
+			box.add(node);
+			
+			if(i>0){
+				var node2=box.getDataById('n'+getRandomInt(i));
+				var link=new twaver.Link(node, node2);
+				link.setStyle('link.type', 'orthogonal.vertical');
+				link.setStyle('link.color', '#555555');
+				link.setStyle('link.xradius', 0);
+				link.setStyle('link.yradius', 0);
+				link.setStyle('link.width', 1.5);
+				box.add(link);
+			}
+		}
+		
+		network.zoomOverview();
+		layout.doLayout(network.layoutType,function(){
+			network.zoomOverview();
+		});
+	}
+
+	function getRandomImage(){
+		var number=1+getRandomInt(picCount);
+		return 'pic'+number;
+	}
+
+	function getRandomInt(number){
+		return parseInt(Math.random()*number);
+	}
+
+	function getEmployeeInfo(pic){
+		if(pic=='pic1') return ['Sales', 'Manager', 'BRAD PIT'];
+		if(pic=='pic2') return ['HR', 'Supervisor', 'Ma Yili'];
+		if(pic=='pic3') return ['Finance', 'Cashier', 'Fan Bingbing'];
+		if(pic=='pic4') return ['R&D', 'Programmer', 'KEITH URBAN'];
+		if(pic=='pic5') return ['R&D', 'Programmer', 'Gu Tianle'];
+	}
+
+  </script>
+</head>
+<body onload="init()">
+</body>
+</html>

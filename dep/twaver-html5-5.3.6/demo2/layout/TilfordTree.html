@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='UTF-8'>
+<title>TilfordTree Demo</title>
+<script src="../../lib/twaver.js"></script>
+<script>
+//define topo
+var box = new twaver.ElementBox();
+var network = new twaver.vector.Network(box);
+var autoLayouter = new twaver.layout.AutoLayouter(box);
+// var names = ['analytics','animate','data','display','flex','physics','query','scale','utils','vis'];
+var names = ['Wuhan University of Technology','Shandong University of Technology','Qinghua University','Wuhan University of Science and Technology','Kangning Co.,Ltd.','Chinese Flight Test Establishment','The Boeing Company','General Electric Company','Airbus Company'];
+var easings = ['linear','swing','jswing','easeInQuad','easeOutQuad','easeInSine','easeOutSine', 'easeInOutSine', 'easeInExpo'];
+function init(){
+	registerImage();
+	initNetwork();
+	initDataBox();
+}
+
+function registerImage(){
+	twaver.Util.registerImage('ring', {
+		w: 12,
+		h: 12,
+		origin: { x: 0.5, y: 0.5 },
+		line: {
+			width: 2,
+			color: '#0185f1'
+		},
+		v: [
+		{
+			shape: 'circle',
+			cx: 0,
+			cy: 0,
+			r: 4,
+		},
+		]
+	});
+}
+function initNetwork(){
+	document.body.appendChild(network.getView());
+	function findDimensions() {
+		if (window.innerWidth)
+			winWidth = window.innerWidth;
+		else if ((document.body) && (document.body.clientWidth))
+			winWidth = document.body.clientWidth;
+		if (window.innerHeight)
+			winHeight = window.innerHeight;
+		else if ((document.body) && (document.body.clientHeight))
+			winHeight = document.body.clientHeight;
+		if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth) {
+			winHeight = document.documentElement.clientHeight;
+			winWidth = document.documentElement.clientWidth;
+		}
+	}
+	findDimensions();
+	network.adjustBounds({x: 0, y: 0, width: winWidth, height: winHeight});
+	window.onresize = function (e) {
+		findDimensions();
+		network.adjustBounds({x: 0, y: 0, width: winWidth, height: winHeight});
+	};
+	network.setZoom(0.8);
+	// network.setEdgeDetect(true);
+	twaver.Styles.setStyle('label.position','right.right');
+	twaver.Styles.setStyle('label.font','10px arial');
+	twaver.Styles.setStyle('link.from.xoffset',4);
+	twaver.Styles.setStyle('link.to.xoffset',-4);
+	twaver.Styles.setStyle('link.width',2);
+	twaver.Styles.setStyle('link.color','#CCCCCC');
+	twaver.Styles.setStyle('select.style','none');
+	network.setLinkPathFunction(function (linkUI, defaultPoints) {
+		var f = linkUI.getFromPoint();
+		var t = linkUI.getToPoint();
+		var points = new twaver.List();
+		points.add(f);
+		points.add(t);
+		var dx = Math.abs(f.x - t.x);
+		var dy = Math.abs(f.y - t.y);
+		if(linkUI.getElement().getClient('link.point.style') === 'CurlyBraces'){
+			if(t.y < f.y){
+				var cps = new twaver.List();
+				cps.add({x: f.x + 3*dx/5, y: f.y - dy/21});
+				cps.add({x: f.x + 4*dx/5, y: f.y - 22*dy/21});
+				cps.add(t);
+			}else{
+				var cps = new twaver.List();
+				cps.add({x: f.x + 3*dx/5, y: f.y + dy/21});
+				cps.add({x: f.x + 4*dx/5, y: f.y + 22*dy/21});
+				cps.add(t);
+			}
+
+			points.removeAt(1);
+			points.add(cps);
+
+			return points;
+		}else if(linkUI.getElement().getClient('link.point.style') === 'FarBraces'){
+			if(t.y < f.y){
+				var cps = new twaver.List();
+				cps.add({x: f.x + 3*dx/5, y: f.y - dy/21});
+				cps.add({x: f.x + 2*dx/5, y: f.y - 19*dy/21});
+				cps.add(t);
+			}else{
+				var cps = new twaver.List();
+				cps.add({x: f.x + 3*dx/5, y: f.y + dy/21});
+				cps.add({x: f.x + 2*dx/5, y: f.y + 19*dy/21});
+				cps.add(t);
+			}
+			points.removeAt(1);
+			points.add(cps);
+
+			return points;
+		}else{
+			return defaultPoints;
+		}
+	});
+}
+
+function initDataBox(){
+	var root = new twaver.Node({
+		id:'root',
+		name:'InteCovery',
+		location:{x:100,y:winHeight/2},
+		image:'ring',
+	});
+	root.setClient('level',1);
+	root.setClient('fillColor','red');
+	box.add(root);
+	var ns = ['Topic Overview','Statistical Analysis','Correlation Analysis','Topic Selection'];
+	for(var i = 4; i > 0; i -= 1){
+		var node = new twaver.Node({
+			name:ns[i-1],
+			location:{x: 300,y: 100},
+			image:'ring',
+		});
+		node.setParent(root);
+		node.setClient('level',2);
+		node.setClient('fillColor','#EC6C00');
+		box.add(node);
+		var link = new twaver.Link(root,node);
+		link.setClient('link.point.style','CurlyBraces');
+		box.add(link);
+
+		var random = parseInt(Math.random()*30);
+		for(var j = random; j > 0; j -=1){
+			var n = new twaver.Node({
+				name:'Node Proposer:'+j,
+				image:'ring',
+			});
+			n.setClient('level',3);
+			n.setParent(node);
+			box.add(n);
+			var l = new twaver.Link(node,n);
+			l.setClient('link.point.style','FarBraces');
+			box.add(l);
+
+			var t = parseInt(Math.random()*20);
+			if(t / 3 === 2){
+				for(var m = 8; m > 0; m -=1){
+					var b = new twaver.Node({
+						name:'Edge Proposer:'+m,
+						image:'ring',
+					});
+					b.setClient('level',4);
+					b.setParent(n);
+					b.setClient('fillColor','#309FC9');
+					box.add(b);
+					var bl = new twaver.Link(n,b);
+					bl.setClient('link.point.style','FarBraces');
+					box.add(bl);
+				}
+			}
+		}
+	}
+	for(var m = 0;m<30;m++){
+		var randomNode = box.getRandomData(twaver.Node);
+		if(randomNode.getClient('level') <= 3) continue;
+		var length = parseInt(Math.random()*10);
+		for(var k = 0; k<8; k++){
+			var n = new twaver.Node({
+				image:'ring',
+				name:names[parseInt(Math.random()*10)],
+			});
+			n.setClient('level',randomNode.getClient('level')+ 4);
+			n.setParent(randomNode);
+			box.add(n);
+			var l = new twaver.Link(randomNode,n);
+			l.setClient('link.point.style','FarBraces');
+			box.add(l);
+		}
+	}
+	doLayout();
+}
+
+function doLayout(){
+	autoLayouter.setRepulsion(-0.8);
+	autoLayouter.setExplicitXOffset(10);
+	autoLayouter.setExplicitYOffset(-100);
+	var result = autoLayouter.getLayoutResult('leftright');
+	box.forEach(function(e){
+		e.s('whole.alpha',0);
+	});
+	for(var s in result){
+		var ol = result[s];
+		var n = box.getDataById(s);
+		var level = n.getClient('level');
+		if(level > 1){
+			var parent = n.getParent();
+			var nl = {x: ol.x + 50 * level, y:ol.y};
+		}else{
+			var nl = {x: ol.x, y: ol.y};
+		}
+		n.setLocation(nl.x , nl.y);
+		move(n, nl.x, nl.y,level);
+	}
+}
+
+function move(node, x, y, level){
+	var tolinks = node.getToLinks();
+	var p = node.getParent();
+	var pl = p? p.getLocation():{x:0,y:winHeight/2};
+	new twaver.Animate({
+		from: {x:pl.x, y:pl.y},
+		to: {x: x, y: y},
+		type: 'point',
+		delay: 1000 * level,
+		dur: 3000,
+		easing: easings[level%8],
+		onUpdate: function (value) {
+			node.setLocation(value.x, value.y);
+		}
+	}).play(); 
+
+	new twaver.Animate({
+		from: 0,
+		to: 1,
+		type: 'number',
+		delay: 1000 * level,
+		dur: 1500,
+		easing: 'easeNone',
+		onUpdate: function (value) {
+			node.s('whole.alpha',value);
+			if(tolinks){
+				tolinks.forEach(function(l){
+					l.s('whole.alpha',value);
+				});
+			}
+		}
+	}).play();          
+}	
+</script>
+</head>
+<body onload='init()'>
+</body>
+</html>

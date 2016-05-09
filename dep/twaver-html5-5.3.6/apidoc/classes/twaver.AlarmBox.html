@@ -1,0 +1,6043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>twaver.AlarmBox - TWave HTML5 API Doc</title>
+    <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
+    <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
+    <link rel="icon" href="../assets/favicon.ico">
+    <script src="http://yui.yahooapis.com/combo?3.9.1/build/yui/yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+                <h1><img src="../../demo/images/logo.png" title="TWave HTML5 API Doc"></h1>
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: TWaver HTML5 5.3.6</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+                    <h2 class="off-left">APIs</h2>
+                    <div id="api-tabview" class="tabview">
+                        <ul class="tabs">
+                            <li><a href="#api-classes">Classes</a></li>
+                            <li><a href="#api-modules">Modules</a></li>
+                        </ul>
+                
+                        <div id="api-tabview-filter">
+                            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+                        </div>
+                
+                        <div id="api-tabview-panel">
+                            <ul id="api-classes" class="apis classes">
+                                <li><a href="../classes/twaver.Alarm.html">twaver.Alarm</a></li>
+                                <li><a href="../classes/twaver.AlarmBox.html">twaver.AlarmBox</a></li>
+                                <li><a href="../classes/twaver.AlarmElementMapping.html">twaver.AlarmElementMapping</a></li>
+                                <li><a href="../classes/twaver.AlarmSeverity.html">twaver.AlarmSeverity</a></li>
+                                <li><a href="../classes/twaver.AlarmState.html">twaver.AlarmState</a></li>
+                                <li><a href="../classes/twaver.AlarmStatePropagator.html">twaver.AlarmStatePropagator</a></li>
+                                <li><a href="../classes/twaver.AlarmStateStatistics.html">twaver.AlarmStateStatistics</a></li>
+                                <li><a href="../classes/twaver.animate.Animate.html">twaver.animate.Animate</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateBounds.html">twaver.animate.AnimateBounds</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateCenterLocation.html">twaver.animate.AnimateCenterLocation</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateLocation.html">twaver.animate.AnimateLocation</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateProperty.html">twaver.animate.AnimateProperty</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateScrollPosition.html">twaver.animate.AnimateScrollPosition</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateSubNetwork.html">twaver.animate.AnimateSubNetwork</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateXYZoom.html">twaver.animate.AnimateXYZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateXZoom.html">twaver.animate.AnimateXZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateYZoom.html">twaver.animate.AnimateYZoom</a></li>
+                                <li><a href="../classes/twaver.animate.AnimateZoom.html">twaver.animate.AnimateZoom</a></li>
+                                <li><a href="../classes/twaver.BundleLinks.html">twaver.BundleLinks</a></li>
+                                <li><a href="../classes/twaver.Bus.html">twaver.Bus</a></li>
+                                <li><a href="../classes/twaver.canvas.AlarmAttachment.html">twaver.canvas.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.Attachment.html">twaver.canvas.Attachment</a></li>
+                                <li><a href="../classes/twaver.canvas.BasicAttachment.html">twaver.canvas.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.EditAttachment.html">twaver.canvas.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.ElementUI.html">twaver.canvas.ElementUI</a></li>
+                                <li><a href="../classes/twaver.canvas.GridUI.html">twaver.canvas.GridUI</a></li>
+                                <li><a href="../classes/twaver.canvas.GroupUI.html">twaver.canvas.GroupUI</a></li>
+                                <li><a href="../classes/twaver.canvas.IconsAttachment.html">twaver.canvas.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.BaseInteraction.html">twaver.canvas.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateElementInteraction.html">twaver.canvas.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateLinkInteraction.html">twaver.canvas.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateShapeLinkInteraction.html">twaver.canvas.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.CreateShapeNodeInteraction.html">twaver.canvas.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.DefaultInteraction.html">twaver.canvas.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.EditInteraction.html">twaver.canvas.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MagnifyInteraction.html">twaver.canvas.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MoveInteraction.html">twaver.canvas.interaction.MoveInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.MSTouchInteraction.html">twaver.canvas.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.PanInteraction.html">twaver.canvas.interaction.PanInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.ScrollInteraction.html">twaver.canvas.interaction.ScrollInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.SelectInteraction.html">twaver.canvas.interaction.SelectInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.interaction.TouchInteraction.html">twaver.canvas.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.LabelAttachment.html">twaver.canvas.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.LinkHandlerAttachment.html">twaver.canvas.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.canvas.LinkUI.html">twaver.canvas.LinkUI</a></li>
+                                <li><a href="../classes/twaver.canvas.Network.html">twaver.canvas.Network</a></li>
+                                <li><a href="../classes/twaver.canvas.NodeUI.html">twaver.canvas.NodeUI</a></li>
+                                <li><a href="../classes/twaver.canvas.Overview.html">twaver.canvas.Overview</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewInteraction.html">twaver.canvas.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewMSTouchInteraction.html">twaver.canvas.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.OverviewTouchInteraction.html">twaver.canvas.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.canvas.RotatableNodeUI.html">twaver.canvas.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.canvas.ShapeLinkUI.html">twaver.canvas.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.canvas.ShapeNodeUI.html">twaver.canvas.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.charts.BarChart.html">twaver.charts.BarChart</a></li>
+                                <li><a href="../classes/twaver.charts.BubbleChart.html">twaver.charts.BubbleChart</a></li>
+                                <li><a href="../classes/twaver.charts.ChartBase.html">twaver.charts.ChartBase</a></li>
+                                <li><a href="../classes/twaver.charts.ChartInteraction.html">twaver.charts.ChartInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.ChartMSTouchInteraction.html">twaver.charts.ChartMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.ChartPane.html">twaver.charts.ChartPane</a></li>
+                                <li><a href="../classes/twaver.charts.ChartTouchInteraction.html">twaver.charts.ChartTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.DialChart.html">twaver.charts.DialChart</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPane.html">twaver.charts.LegendPane</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPaneInteraction.html">twaver.charts.LegendPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.LegendPaneTouchInteraction.html">twaver.charts.LegendPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.charts.LineChart.html">twaver.charts.LineChart</a></li>
+                                <li><a href="../classes/twaver.charts.PieChart.html">twaver.charts.PieChart</a></li>
+                                <li><a href="../classes/twaver.charts.RadarChart.html">twaver.charts.RadarChart</a></li>
+                                <li><a href="../classes/twaver.charts.ScaleChart.html">twaver.charts.ScaleChart</a></li>
+                                <li><a href="../classes/twaver.Column.html">twaver.Column</a></li>
+                                <li><a href="../classes/twaver.ColumnBox.html">twaver.ColumnBox</a></li>
+                                <li><a href="../classes/twaver.controls.Accordion.html">twaver.controls.Accordion</a></li>
+                                <li><a href="../classes/twaver.controls.BorderPane.html">twaver.controls.BorderPane</a></li>
+                                <li><a href="../classes/twaver.controls.ControlBase.html">twaver.controls.ControlBase</a></li>
+                                <li><a href="../classes/twaver.controls.List.html">twaver.controls.List</a></li>
+                                <li><a href="../classes/twaver.controls.ListBase.html">twaver.controls.ListBase</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseInteraction.html">twaver.controls.ListBaseInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseMSTouchInteraction.html">twaver.controls.ListBaseMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.ListBaseTouchInteraction.html">twaver.controls.ListBaseTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PopupMenu.html">twaver.controls.PopupMenu</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheet.html">twaver.controls.PropertySheet</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetInteraction.html">twaver.controls.PropertySheetInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetMSTouchInteraction.html">twaver.controls.PropertySheetMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.PropertySheetTouchInteraction.html">twaver.controls.PropertySheetTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPane.html">twaver.controls.SplitPane</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPaneInteraction.html">twaver.controls.SplitPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.SplitPaneTouchInteraction.html">twaver.controls.SplitPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.Table.html">twaver.controls.Table</a></li>
+                                <li><a href="../classes/twaver.controls.TableBase.html">twaver.controls.TableBase</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeader.html">twaver.controls.TableHeader</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeaderInteraction.html">twaver.controls.TableHeaderInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TableHeaderTouchInteraction.html">twaver.controls.TableHeaderTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TablePane.html">twaver.controls.TablePane</a></li>
+                                <li><a href="../classes/twaver.controls.TabPane.html">twaver.controls.TabPane</a></li>
+                                <li><a href="../classes/twaver.controls.TabPaneInteraction.html">twaver.controls.TabPaneInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TabPaneTouchInteraction.html">twaver.controls.TabPaneTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.controls.TitlePane.html">twaver.controls.TitlePane</a></li>
+                                <li><a href="../classes/twaver.controls.Tree.html">twaver.controls.Tree</a></li>
+                                <li><a href="../classes/twaver.controls.TreeTable.html">twaver.controls.TreeTable</a></li>
+                                <li><a href="../classes/twaver.controls.View.html">twaver.controls.View</a></li>
+                                <li><a href="../classes/twaver.controls.ViewBase.html">twaver.controls.ViewBase</a></li>
+                                <li><a href="../classes/twaver.Data.html">twaver.Data</a></li>
+                                <li><a href="../classes/twaver.DataBox.html">twaver.DataBox</a></li>
+                                <li><a href="../classes/twaver.Dummy.html">twaver.Dummy</a></li>
+                                <li><a href="../classes/twaver.Element.html">twaver.Element</a></li>
+                                <li><a href="../classes/twaver.ElementBox.html">twaver.ElementBox</a></li>
+                                <li><a href="../classes/twaver.Follower.html">twaver.Follower</a></li>
+                                <li><a href="../classes/twaver.Grid.html">twaver.Grid</a></li>
+                                <li><a href="../classes/twaver.Group.html">twaver.Group</a></li>
+                                <li><a href="../classes/twaver.ImageAsset.html">twaver.ImageAsset</a></li>
+                                <li><a href="../classes/twaver.JsonSerializer.html">twaver.JsonSerializer</a></li>
+                                <li><a href="../classes/twaver.Layer.html">twaver.Layer</a></li>
+                                <li><a href="../classes/twaver.LayerBox.html">twaver.LayerBox</a></li>
+                                <li><a href="../classes/twaver.layout.AutoLayouter.html">twaver.layout.AutoLayouter</a></li>
+                                <li><a href="../classes/twaver.layout.CloudLayouter.html">twaver.layout.CloudLayouter</a></li>
+                                <li><a href="../classes/twaver.layout.SpringLayouter.html">twaver.layout.SpringLayouter</a></li>
+                                <li><a href="../classes/twaver.Link.html">twaver.Link</a></li>
+                                <li><a href="../classes/twaver.LinkSubNetwork.html">twaver.LinkSubNetwork</a></li>
+                                <li><a href="../classes/twaver.List.html">twaver.List</a></li>
+                                <li><a href="../classes/twaver.network.AlarmAttachment.html">twaver.network.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.network.Attachment.html">twaver.network.Attachment</a></li>
+                                <li><a href="../classes/twaver.network.BasicAttachment.html">twaver.network.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.network.EditAttachment.html">twaver.network.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.network.ElementUI.html">twaver.network.ElementUI</a></li>
+                                <li><a href="../classes/twaver.network.GridUI.html">twaver.network.GridUI</a></li>
+                                <li><a href="../classes/twaver.network.GroupUI.html">twaver.network.GroupUI</a></li>
+                                <li><a href="../classes/twaver.network.IconsAttachment.html">twaver.network.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.network.interaction.BaseInteraction.html">twaver.network.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateElementInteraction.html">twaver.network.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateLinkInteraction.html">twaver.network.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateOrthogonalLinkInteraction.html">twaver.network.interaction.CreateOrthogonalLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateShapeLinkInteraction.html">twaver.network.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.CreateShapeNodeInteraction.html">twaver.network.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.DefaultInteraction.html">twaver.network.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.EditInteraction.html">twaver.network.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MagnifyInteraction.html">twaver.network.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MoveInteraction.html">twaver.network.interaction.MoveInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.MSTouchInteraction.html">twaver.network.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.PanInteraction.html">twaver.network.interaction.PanInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.SelectInteraction.html">twaver.network.interaction.SelectInteraction</a></li>
+                                <li><a href="../classes/twaver.network.interaction.TouchInteraction.html">twaver.network.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.LabelAttachment.html">twaver.network.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.network.LinkHandlerAttachment.html">twaver.network.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.network.LinkUI.html">twaver.network.LinkUI</a></li>
+                                <li><a href="../classes/twaver.network.Network.html">twaver.network.Network</a></li>
+                                <li><a href="../classes/twaver.network.NodeUI.html">twaver.network.NodeUI</a></li>
+                                <li><a href="../classes/twaver.network.Overview.html">twaver.network.Overview</a></li>
+                                <li><a href="../classes/twaver.network.OverviewInteraction.html">twaver.network.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.network.OverviewMSTouchInteraction.html">twaver.network.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.OverviewTouchInteraction.html">twaver.network.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.network.RotatableNodeUI.html">twaver.network.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.network.ShapeLinkUI.html">twaver.network.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.network.ShapeNodeUI.html">twaver.network.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.Node.html">twaver.Node</a></li>
+                                <li><a href="../classes/twaver.Pool.html">twaver.Pool</a></li>
+                                <li><a href="../classes/twaver.Property.html">twaver.Property</a></li>
+                                <li><a href="../classes/twaver.PropertyBox.html">twaver.PropertyBox</a></li>
+                                <li><a href="../classes/twaver.PropertyChangeDispatcher.html">twaver.PropertyChangeDispatcher</a></li>
+                                <li><a href="../classes/twaver.PropertyPropagator.html">twaver.PropertyPropagator</a></li>
+                                <li><a href="../classes/twaver.QuickFinder.html">twaver.QuickFinder</a></li>
+                                <li><a href="../classes/twaver.RotatableNode.html">twaver.RotatableNode</a></li>
+                                <li><a href="../classes/twaver.SelectionModel.html">twaver.SelectionModel</a></li>
+                                <li><a href="../classes/twaver.SerializationSettings.html">twaver.SerializationSettings</a></li>
+                                <li><a href="../classes/twaver.ShapeLink.html">twaver.ShapeLink</a></li>
+                                <li><a href="../classes/twaver.ShapeNode.html">twaver.ShapeNode</a></li>
+                                <li><a href="../classes/twaver.ShapeSubNetwork.html">twaver.ShapeSubNetwork</a></li>
+                                <li><a href="../classes/twaver.SubNetwork.html">twaver.SubNetwork</a></li>
+                                <li><a href="../classes/twaver.Tab.html">twaver.Tab</a></li>
+                                <li><a href="../classes/twaver.TabBox.html">twaver.TabBox</a></li>
+                                <li><a href="../classes/twaver.vector.AlarmAttachment.html">twaver.vector.AlarmAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.Attachment.html">twaver.vector.Attachment</a></li>
+                                <li><a href="../classes/twaver.vector.BaseZoomManager.html">twaver.vector.BaseZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.BasicAttachment.html">twaver.vector.BasicAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.EditAttachment.html">twaver.vector.EditAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.ElementUI.html">twaver.vector.ElementUI</a></li>
+                                <li><a href="../classes/twaver.vector.GridUI.html">twaver.vector.GridUI</a></li>
+                                <li><a href="../classes/twaver.vector.GroupUI.html">twaver.vector.GroupUI</a></li>
+                                <li><a href="../classes/twaver.vector.IconsAttachment.html">twaver.vector.IconsAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.BaseInteraction.html">twaver.vector.interaction.BaseInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateElementInteraction.html">twaver.vector.interaction.CreateElementInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateLinkInteraction.html">twaver.vector.interaction.CreateLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateShapeLinkInteraction.html">twaver.vector.interaction.CreateShapeLinkInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.CreateShapeNodeInteraction.html">twaver.vector.interaction.CreateShapeNodeInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.DefaultInteraction.html">twaver.vector.interaction.DefaultInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.EditInteraction.html">twaver.vector.interaction.EditInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.MagnifyInteraction.html">twaver.vector.interaction.MagnifyInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.MSTouchInteraction.html">twaver.vector.interaction.MSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.interaction.TouchInteraction.html">twaver.vector.interaction.TouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.Label2Attachment.html">twaver.vector.Label2Attachment</a></li>
+                                <li><a href="../classes/twaver.vector.LabelAttachment.html">twaver.vector.LabelAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.LinkHandlerAttachment.html">twaver.vector.LinkHandlerAttachment</a></li>
+                                <li><a href="../classes/twaver.vector.LinkUI.html">twaver.vector.LinkUI</a></li>
+                                <li><a href="../classes/twaver.vector.LogicalZoomManager.html">twaver.vector.LogicalZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.MixedZoomManager.html">twaver.vector.MixedZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.Network.html">twaver.vector.Network</a></li>
+                                <li><a href="../classes/twaver.vector.NodeUI.html">twaver.vector.NodeUI</a></li>
+                                <li><a href="../classes/twaver.vector.Overview.html">twaver.vector.Overview</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewInteraction.html">twaver.vector.OverviewInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewMSTouchInteraction.html">twaver.vector.OverviewMSTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.OverviewTouchInteraction.html">twaver.vector.OverviewTouchInteraction</a></li>
+                                <li><a href="../classes/twaver.vector.PhysicalZoomManager.html">twaver.vector.PhysicalZoomManager</a></li>
+                                <li><a href="../classes/twaver.vector.RotatableNodeUI.html">twaver.vector.RotatableNodeUI</a></li>
+                                <li><a href="../classes/twaver.vector.ShapeLinkUI.html">twaver.vector.ShapeLinkUI</a></li>
+                                <li><a href="../classes/twaver.vector.ShapeNodeUI.html">twaver.vector.ShapeNodeUI</a></li>
+                                <li><a href="../classes/twaver.XmlSerializer.html">twaver.XmlSerializer</a></li>
+                            </ul>
+                
+                            <ul id="api-modules" class="apis modules">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+                    Show:
+                    <label for="api-show-inherited">
+                        <input type="checkbox" id="api-show-inherited" checked>
+                        Inherited
+                    </label>
+            
+                    <label for="api-show-protected">
+                        <input type="checkbox" id="api-show-protected">
+                        Protected
+                    </label>
+            
+                    <label for="api-show-private">
+                        <input type="checkbox" id="api-show-private">
+                        Private
+                    </label>
+                    <label for="api-show-deprecated">
+                        <input type="checkbox" id="api-show-deprecated">
+                        Deprecated
+                    </label>
+            
+                </div>
+            
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+<h1>twaver.AlarmBox Class</h1>
+<div class="box meta">
+
+        <div class="extends">
+            Extends <a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a>
+        </div>
+
+
+
+</div>
+
+
+<div class="box intro">
+    <p>告警容器存在于网元容器中，它作为网元容器的一部分，管理着网元容器中所有网元上的告警对象。当创建一个网元容器时，告警容器就会随之生成</p>
+
+</div>
+
+    <div class="constructor">
+        <h2>Constructor</h2>
+<div id="method_twaver.AlarmBox" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>elementBox</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.AlarmBox.html" class="crosslink">twaver.AlarmBox</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">elementBox</code>
+                        <span class="type"><a href="../classes/twaver.ElementBox.html" class="crosslink">twaver.ElementBox</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元容器对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.AlarmBox.html" class="crosslink">twaver.AlarmBox</a></span>:
+                    <p>告警容器本身</p>
+
+            </div>
+        </div>
+
+
+</div>
+    </div>
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+
+                    <ul class="index-list methods extends">
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.getAlarmElementMapping">twaver.AlarmBox.getAlarmElementMapping</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.getCorrespondingAlarms">twaver.AlarmBox.getCorrespondingAlarms</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.getCorrespondingElements">twaver.AlarmBox.getCorrespondingElements</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.getElementBox">twaver.AlarmBox.getElementBox</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.handleAckedChange">twaver.AlarmBox.handleAckedChange</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.handleAlarmBoxChange">twaver.AlarmBox.handleAlarmBoxChange</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.handleAlarmPropertyChange">twaver.AlarmBox.handleAlarmPropertyChange</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.handleAlarmSeverityChange">twaver.AlarmBox.handleAlarmSeverityChange</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.handleElementAdded">twaver.AlarmBox.handleElementAdded</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.handleElementBoxChange">twaver.AlarmBox.handleElementBoxChange</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.handleElementRemoved">twaver.AlarmBox.handleElementRemoved</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.isRemoveAlarmWhenAlarmIsCleared">twaver.AlarmBox.isRemoveAlarmWhenAlarmIsCleared</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.isRemoveAlarmWhenElementIsRemoved">twaver.AlarmBox.isRemoveAlarmWhenElementIsRemoved</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.removeAlarmsByElement">twaver.AlarmBox.removeAlarmsByElement</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.setAlarmElementMapping">twaver.AlarmBox.setAlarmElementMapping</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.setRemoveAlarmWhenAlarmIsCleared">twaver.AlarmBox.setRemoveAlarmWhenAlarmIsCleared</a>
+
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_twaver.AlarmBox.setRemoveAlarmWhenElementIsRemoved">twaver.AlarmBox.setRemoveAlarmWhenElementIsRemoved</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.add">twaver.DataBox.add</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.addDataBoxChangeListener">twaver.DataBox.addDataBoxChangeListener</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.addDataPropertyChangeListener">twaver.DataBox.addDataPropertyChangeListener</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.addHierarchyChangeListener">twaver.DataBox.addHierarchyChangeListener</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.clear">twaver.DataBox.clear</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.contains">twaver.DataBox.contains</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.containsById">twaver.DataBox.containsById</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.deserializeClientJson">twaver.DataBox.deserializeClientJson</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.deserializeClientXml">twaver.DataBox.deserializeClientXml</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.deserializeJson">twaver.DataBox.deserializeJson</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.deserializePropertyJson">twaver.DataBox.deserializePropertyJson</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.deserializePropertyXml">twaver.DataBox.deserializePropertyXml</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.deserializeXml">twaver.DataBox.deserializeXml</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.forEach">twaver.DataBox.forEach</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.forEachByBreadthFirst">twaver.DataBox.forEachByBreadthFirst</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.forEachByDepthFirst">twaver.DataBox.forEachByDepthFirst</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.forEachReverse">twaver.DataBox.forEachReverse</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getClient">twaver.DataBox.getClient</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getClientProperties">twaver.DataBox.getClientProperties</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getDataAt">twaver.DataBox.getDataAt</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getDataById">twaver.DataBox.getDataById</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getDatas">twaver.DataBox.getDatas</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getIcon">twaver.DataBox.getIcon</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getLimit">twaver.DataBox.getLimit</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getName">twaver.DataBox.getName</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getRoots">twaver.DataBox.getRoots</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getSelectionModel">twaver.DataBox.getSelectionModel</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getSiblingIndex">twaver.DataBox.getSiblingIndex</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getSiblings">twaver.DataBox.getSiblings</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.getToolTip">twaver.DataBox.getToolTip</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.handleDataPropertyChange">twaver.DataBox.handleDataPropertyChange</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.isEmpty">twaver.DataBox.isEmpty</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveDown">twaver.DataBox.moveDown</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveSelectionDown">twaver.DataBox.moveSelectionDown</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveSelectionToBottom">twaver.DataBox.moveSelectionToBottom</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveSelectionToTop">twaver.DataBox.moveSelectionToTop</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveSelectionUp">twaver.DataBox.moveSelectionUp</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveTo">twaver.DataBox.moveTo</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveToBottom">twaver.DataBox.moveToBottom</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveToTop">twaver.DataBox.moveToTop</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.moveUp">twaver.DataBox.moveUp</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.newInstance">twaver.DataBox.newInstance</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.onClientChanged">twaver.DataBox.onClientChanged</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.onDataPropertyChanged">twaver.DataBox.onDataPropertyChanged</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.remove">twaver.DataBox.remove</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.removeById">twaver.DataBox.removeById</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.removeDataBoxChangeListener">twaver.DataBox.removeDataBoxChangeListener</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.removeDataPropertyChangeListener">twaver.DataBox.removeDataPropertyChangeListener</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.removeFirst">twaver.DataBox.removeFirst</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.removeHierarchyChangeListener">twaver.DataBox.removeHierarchyChangeListener</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.removeSelection">twaver.DataBox.removeSelection</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.serializeClientJson">twaver.DataBox.serializeClientJson</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.serializeClientXml">twaver.DataBox.serializeClientXml</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.serializeJson">twaver.DataBox.serializeJson</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.serializePropertyJson">twaver.DataBox.serializePropertyJson</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.serializePropertyXml">twaver.DataBox.serializePropertyXml</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.serializeXml">twaver.DataBox.serializeXml</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.setClient">twaver.DataBox.setClient</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.setIcon">twaver.DataBox.setIcon</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.setLimit">twaver.DataBox.setLimit</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.setName">twaver.DataBox.setName</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.setToolTip">twaver.DataBox.setToolTip</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.size">twaver.DataBox.size</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.DataBox.toDatas">twaver.DataBox.toDatas</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.addPropertyChangeListener">twaver.PropertyChangeDispatcher.addPropertyChangeListener</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.firePropertyChange">twaver.PropertyChangeDispatcher.firePropertyChange</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.getClassName">twaver.PropertyChangeDispatcher.getClassName</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.onPropertyChanged">twaver.PropertyChangeDispatcher.onPropertyChanged</a>
+
+                            </li>
+                            <li class="index-item method inherited">
+                                <a href="#method_twaver.PropertyChangeDispatcher.removePropertyChangeListener">twaver.PropertyChangeDispatcher.removePropertyChangeListener</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+
+                    <ul class="index-list properties extends">
+                            <li class="index-item property inherited">
+                                <a href="#property_IClient">IClient</a>
+
+                            </li>
+                    </ul>
+                </div>
+
+
+        </div>
+
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+
+<div id="method_twaver.AlarmBox.getAlarmElementMapping" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.getAlarmElementMapping</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.AlarmElementMapping.html" class="crosslink">twaver.AlarmElementMapping</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取告警-网元映射的对象，这个对象用于管理所有的网元和告警的对应关系，它决定了告警显示在哪些网元上</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.AlarmElementMapping.html" class="crosslink">twaver.AlarmElementMapping</a></span>:
+                    <p>告警-网元映射的对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmBox.getCorrespondingAlarms" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.getCorrespondingAlarms</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取某个网元上所有的告警集合</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>网元上所有的告警集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmBox.getCorrespondingElements" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.getCorrespondingElements</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>alarm</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取和某个告警相关联的网元对象的集合。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">alarm</code>
+                        <span class="type"><a href="../classes/twaver.Alarm.html" class="crosslink">twaver.Alarm</a></span>
+
+
+                    <div class="param-description">
+                        <p>告警对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>和告警相关联的网元对象的集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmBox.getElementBox" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.getElementBox</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.ElementBox.html" class="crosslink">twaver.ElementBox</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取和这个告警容器绑定的网元容器</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.ElementBox.html" class="crosslink">twaver.ElementBox</a></span>:
+                    <p>包含这个告警容器的网元容器对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmBox.handleAckedChange" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.handleAckedChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>alarm</code>
+                </li>
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当告警的确认状态变化时，TWaver内部会调用此方法。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">alarm</code>
+                        <span class="type"><a href="../classes/twaver.Alarm.html" class="crosslink">twaver.Alarm</a></span>
+
+
+                    <div class="param-description">
+                        <p>告警对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>告警状态的变化事件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.handleAlarmBoxChange" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.handleAlarmBoxChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当告警容器发生变化时，TWaver内部会调用此方法。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>告警对象事件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.handleAlarmPropertyChange" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.handleAlarmPropertyChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当告警属性发生变化时，TWaver内部会调用此方法。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>告警对象事件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.handleAlarmSeverityChange" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.handleAlarmSeverityChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>alarm</code>
+                </li>
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当告警级别的对象发生变化时，TWaver内部会调用此方法。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">alarm</code>
+                        <span class="type"><a href="../classes/twaver.Alarm.html" class="crosslink">twaver.Alarm</a></span>
+
+
+                    <div class="param-description">
+                        <p>告警对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>告警对象事件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.handleElementAdded" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.handleElementAdded</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当网元添加时，TWaver内部会调用此方法。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>
+
+
+                    <div class="param-description">
+                        <p>添加的网元对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.handleElementBoxChange" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.handleElementBoxChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当网元容器发生变化时，TWaver内部会调用此方法</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>网元容器发生更改的事件</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.handleElementRemoved" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.handleElementRemoved</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当网元删除时，调用此方法。TWaver内部使用</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>
+
+
+                    <div class="param-description">
+                        <p>删除了的网元对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.isRemoveAlarmWhenAlarmIsCleared" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.isRemoveAlarmWhenAlarmIsCleared</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当告警的状态为cleared时是否需要删除告警</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true为删除告警，false不删除告警</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmBox.isRemoveAlarmWhenElementIsRemoved" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.isRemoveAlarmWhenElementIsRemoved</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当删除网元时，是否删除所有发生在这个网元上的告警对象</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>true为删除所有的告警，false为不删除</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmBox.removeAlarmsByElement" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.removeAlarmsByElement</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>element</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>删除所有和指定网元相关的告警对象</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">element</code>
+                        <span class="type"><a href="../classes/twaver.Element.html" class="crosslink">twaver.Element</a></span>
+
+
+                    <div class="param-description">
+                        <p>网元对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.setAlarmElementMapping" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.setAlarmElementMapping</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>alarmElementMapping</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置告警-网元映射的对象，这个对象用于管理所有的网元和告警的对应关系，它决定了告警显示在哪些网元上</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">alarmElementMapping</code>
+                        <span class="type"><a href="../classes/twaver.AlarmElementMapping.html" class="crosslink">twaver.AlarmElementMapping</a></span>
+
+
+                    <div class="param-description">
+                        <p>告警-网元映射的对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.AlarmBox.setRemoveAlarmWhenAlarmIsCleared" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.setRemoveAlarmWhenAlarmIsCleared</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>removeAlarmWhenAlarmIsCleared</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置当告警的状态为cleared时是否需要删除告警</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">removeAlarmWhenAlarmIsCleared</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>true为删除告警，false不删除告警</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.AlarmBox.setRemoveAlarmWhenElementIsRemoved" class="method item">
+    <h3 class="name"><code>twaver.AlarmBox.setRemoveAlarmWhenElementIsRemoved</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>v</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置当删除网元时，是否删除所有发生在这个网元上的告警对象</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">v</code>
+                        <span class="type">Boolean</span>
+
+
+                    <div class="param-description">
+                        <p>true为删除所有的告警，false为不删除</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.add" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.add</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[index]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.add">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>往数据容器中添加一个数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[index]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>添加的数据次序。为空时，就将这个数据添加在最后的位置</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.addDataBoxChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.addDataBoxChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[ahead]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.addDataBoxChangeListener">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>添加数据容器的数据增减变化的监听器。当数据容器中的数据发生改变时（增加，删除，清空），就可以通过此方法监听</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>网元更改事件的监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>监听器的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[ahead]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>是否添加在最前方，如果为空，则添加在最后一个位置</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.addDataPropertyChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.addDataPropertyChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[ahead]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.addDataPropertyChangeListener">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>添加数据容器中数据的属性更改事件的监听器。当数据容器中的数据属性发生变化时，比如网元位置，网元名称等，都可以通过此方法来监听</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>网元属性更改事件的监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>监听器的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[ahead]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>是否添加在最前方，如果为空，则添加在最后一个位置</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.addHierarchyChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.addHierarchyChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[ahead]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.addHierarchyChangeListener">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>添加数据的层次变化的监听器，当数据层次发生时，比如上移，下移，移至顶部，底部，会派发出层次变化的事件，就可以通过这个方法来监听到</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>数据的层次变化的监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>监听器的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[ahead]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>是否添加在最前方，如果为空，则添加在最后一个位置</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.clear" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.clear</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.clear">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>清空数据容器中所有的数据</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.DataBox.contains" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.contains</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.contains">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>判断是否包含某个数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true为包含，false不包含</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.containsById" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.containsById</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>id</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.containsById">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>通过数据ID判断是否包含某个数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">id</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>数据的ID编号</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>true为包含，false不包含</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.deserializeClientJson" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.deserializeClientJson</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>json</code>
+                </li>
+                <li class="arg">
+                        <code>clientProp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.deserializeClientJson">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>反序列化JSON数据到数据容器的Client属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.JsonSerializer.html" class="crosslink">twaver.JsonSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>JSON序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">json</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>JSON数据片段</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">clientProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.deserializeClientXml" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.deserializeClientXml</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>clientXML</code>
+                </li>
+                <li class="arg">
+                        <code>clientProp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.deserializeClientXml">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>反序列化XML数据到数据容器的Client属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.XmlSerializer.html" class="crosslink">twaver.XmlSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>XML序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">clientXML</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>XML数据片段</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">clientProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.deserializeJson" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.deserializeJson</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>json</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.deserializeJson">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>反序列化JSON数据到数据容器，包含数据容器的Client属性，Property属性。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.JsonSerializer.html" class="crosslink">twaver.JsonSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>JSON序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">json</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>JSON数据</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.deserializePropertyJson" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.deserializePropertyJson</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>json</code>
+                </li>
+                <li class="arg">
+                        <code>property</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.deserializePropertyJson">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>反序列化JSON数据到数据容器的自身（property）属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.JsonSerializer.html" class="crosslink">twaver.JsonSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>JSON序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">json</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>JSON数据</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.deserializePropertyXml" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.deserializePropertyXml</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>propertyXML</code>
+                </li>
+                <li class="arg">
+                        <code>property</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.deserializePropertyXml">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>反序列化XML数据到数据容器的自身（property）属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.XmlSerializer.html" class="crosslink">twaver.XmlSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>XML序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">propertyXML</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>XML数据</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.deserializeXml" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.deserializeXml</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>xml</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.deserializeXml">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>反序列化XML数据到数据容器，包含数据容器的Client数据，Property属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.XmlSerializer.html" class="crosslink">twaver.XmlSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>XML序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">xml</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>XML数据</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.forEach" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.forEach</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>f</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.forEach">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>遍历数据容器中的所有数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">f</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.forEachByBreadthFirst" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.forEachByBreadthFirst</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>callbackFunction</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[data]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.forEachByBreadthFirst">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>广度优先遍历数据容器中指定数据的所有子孙数据。如果指定数据为空时，就会遍历数据容器中的所有数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">callbackFunction</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[data]</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>遍历的数据对象，为空时会遍历数据容器中的所有数据</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.forEachByDepthFirst" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.forEachByDepthFirst</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>callbackFunction</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[data]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.forEachByDepthFirst">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>深度优先遍历数据容器中指定数据的所有子孙数据。如果指定数据为空时，就会遍历数据容器中的所有数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">callbackFunction</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[data]</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>遍历的数据对象，为空时会遍历数据容器中的所有数据</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.forEachReverse" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.forEachReverse</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>f</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.forEachReverse">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>反序遍历数据容器中所有数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">f</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.getClient" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getClient</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>clientProp</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getClient">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>根据Client属性名，获取对应的属性值。
+Client属性是用于存放用户自定义的属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">clientProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Object</span>:
+                    <p>Client属性值</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getClientProperties" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getClientProperties</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getClientProperties">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器中所有的Client属性名。
+Client属性是用于存放用户自定义的属性</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>所有的Client属性名的集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getDataAt" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getDataAt</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>index</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getDataAt">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器中某个序号上的数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">index</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>数据的序号</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>:
+                    <p>数据对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getDataById" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getDataById</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>id</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getDataById">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>根据数据的ID编号获取对应的数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">id</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>数据的ID编号</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>:
+                    <p>数据对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getDatas" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getDatas</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getDatas">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器中的所有数据</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>所有数据的集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getIcon" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getIcon</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getIcon">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器的图标，图标一般是用于在树上显示的</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>图标名称</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getLimit" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getLimit</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getLimit">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器的上限数。默认为-1，是没有上限的，一旦设置了上限数，当添加的数据数量大于这个上限数时，TWaver就会删除最旧的数据</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>数据容器的上限数</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getName" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getName</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getName">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器的名称</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>数据容器的名称</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getRoots" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getRoots</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getRoots">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器中所有根下的数据。根下的数据指的是没有父亲的数据</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>所有根下数据的集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getSelectionModel" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getSelectionModel</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.SelectionModel.html" class="crosslink">twaver.SelectionModel</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getSelectionModel">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器中的选择容器。选择容器用于存放所有选中的数据对象，更详细的解释请参看SelectionModel类</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.SelectionModel.html" class="crosslink">twaver.SelectionModel</a></span>:
+                    <p>选中数据的容器</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getSiblingIndex" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getSiblingIndex</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getSiblingIndex">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定数据在兄弟数据中的序号</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>数据对象的序号</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getSiblings" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getSiblings</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getSiblings">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取指定数据的所有兄弟数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>指定的数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>所有兄弟数据的集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.getToolTip" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.getToolTip</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.getToolTip">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取数据容器提示信息的内容，提示信息是在视图上显示的，当鼠标停留在数据容器上一段时间后，提示信息就消失</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>提示信息中显示的内容</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.handleDataPropertyChange" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.handleDataPropertyChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.handleDataPropertyChange">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>处理数据容器中数据的属性更改的函数。TWaver内部使用</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>属性更改的事件对象，包含所有更改的信息</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.isEmpty" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.isEmpty</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.isEmpty">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>判断数据容器是否为空。当数据容器中没有数据时返回true，否则返回false</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>当数据容器中没有数据时返回true，否则返回false</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.moveDown" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveDown</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveDown">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将某个数据下移一个序号。一般数据容器和树或表格绑定时使用。
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.moveSelectionDown" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveSelectionDown</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code class="optional">[sm]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveSelectionDown">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将选中的网元下移一个位置。一般在树和表格中使用
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序会改变。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name optional">[sm]</code>
+                        <span class="type"><a href="../classes/twaver.SelectionModel.html" class="crosslink">twaver.SelectionModel</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>选择容器。如果为空，则使用的是DataBox中的SelectionModel</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.moveSelectionToBottom" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveSelectionToBottom</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code class="optional">[sm]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveSelectionToBottom">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将选中的网元下移至最底部。一般在树和表格中使用。
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序会改变。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name optional">[sm]</code>
+                        <span class="type"><a href="../classes/twaver.SelectionModel.html" class="crosslink">twaver.SelectionModel</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>选择容器。如果为空，则使用的是DataBox中的SelectionModel</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.moveSelectionToTop" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveSelectionToTop</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code class="optional">[sm]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveSelectionToTop">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将选中的网元上移至最顶部。一般在树和表格中使用。
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序会改变</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name optional">[sm]</code>
+                        <span class="type"><a href="../classes/twaver.SelectionModel.html" class="crosslink">twaver.SelectionModel</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>选择容器。如果为空，则使用的是DataBox中的SelectionModel</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.moveSelectionUp" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveSelectionUp</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code class="optional">[sm]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveSelectionUp">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将选中的网元上移一个位置。一般在树和表格中使用。
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序会改变</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name optional">[sm]</code>
+                        <span class="type"><a href="../classes/twaver.SelectionModel.html" class="crosslink">twaver.SelectionModel</a></span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>选中网元的容器。如果为空，则使用的是DataBox中的SelectionModel</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.moveTo" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveTo</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+                <li class="arg">
+                        <code>newIndex</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveTo">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将指定数据移到指定的序号上。一般在绑定的数据容器的树或表格中使用。
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序会改变</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newIndex</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>数据的序号</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.moveToBottom" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveToBottom</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveToBottom">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将某个数据移至最下方。一般数据容器和树或表格绑定时使用。
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序会改变</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.moveToTop" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveToTop</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveToTop">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将某个数据移至最上方。一般数据容器和树或表格绑定时使用。
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序会改变。</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.moveUp" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.moveUp</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.moveUp">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将某个数据上移一个序号。一般数据容器和树或表格绑定时使用。
+注意：数据是在同层次上移动，也就是在兄弟姐妹中的顺序会改变</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.newInstance" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.newInstance</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.newInstance">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>通过类名来实例化数据容器的对象。传入的参数是不固定的，可以是1-7个参数</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>:
+                    <p>数据容器对象</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.onClientChanged" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.onClientChanged</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>clientProp</code>
+                </li>
+                <li class="arg">
+                        <code>oldValue</code>
+                </li>
+                <li class="arg">
+                        <code>newValue</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.onClientChanged">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当数据容器的Client属性发生变化时，回调此方法。默认的方法没有任何实现体，子类可以重写这个方法去处理自己的业务</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">clientProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>更改的Client属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">oldValue</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性的原值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newValue</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性的新值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.onDataPropertyChanged" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.onDataPropertyChanged</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.onDataPropertyChanged">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>当数据容器中数据的属性发生变化时，回调此方法。默认的方法没有任何实现体，子类可以重写这个方法去处理自己的业务</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>更改属性的数据对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>属性更改的事件对象，包含所有更改的信息</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.remove" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.remove</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>data</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.remove">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>从数据容器中删除某个数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">data</code>
+                        <span class="type"><a href="../classes/twaver.Data.html" class="crosslink">twaver.Data</a></span>
+
+
+                    <div class="param-description">
+                        <p>删除的数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.removeById" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.removeById</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>id</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.removeById">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>通过数据的ID编号从数据容器中删除该数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">id</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>数据对象的编号</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.removeDataBoxChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.removeDataBoxChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.removeDataBoxChangeListener">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>移除数据容器的数据增减变化的监听器</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>网元更改事件监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>监听器的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.removeDataPropertyChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.removeDataPropertyChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.removeDataPropertyChangeListener">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>移除数据容器中数据的属性更改事件的监听器</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>网元属性更改事件的监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>监听器的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.removeFirst" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.removeFirst</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>count</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.removeFirst">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>从数据容器中删除第一个数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">count</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的大小</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.removeHierarchyChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.removeHierarchyChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.removeHierarchyChangeListener">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>移除数据的层次变化的监听器</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>数据的层次变化的监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>监听器的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.removeSelection" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.removeSelection</code></h3>
+
+        <span class="paren">()</span>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.removeSelection">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>删除所有选中的数据</p>
+
+    </div>
+
+
+
+
+</div>
+<div id="method_twaver.DataBox.serializeClientJson" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.serializeClientJson</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>clientPrope</code>
+                </li>
+                <li class="arg">
+                        <code>newInstance</code>
+                </li>
+                <li class="arg">
+                        <code>dataObject</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.serializeClientJson">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>序列化数据容器的Client属性到JSON数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.JsonSerializer.html" class="crosslink">twaver.JsonSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>JSON序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">clientPrope</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newInstance</code>
+                        <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>
+
+
+                    <div class="param-description">
+                        <p>序列化的实例对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">dataObject</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>JSON数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.serializeClientXml" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.serializeClientXml</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>clientPrope</code>
+                </li>
+                <li class="arg">
+                        <code>newInstance</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.serializeClientXml">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>序列化数据容器的Client属性到XML数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.XmlSerializer.html" class="crosslink">twaver.XmlSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>XML序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">clientPrope</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newInstance</code>
+                        <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>
+
+
+                    <div class="param-description">
+                        <p>序列化的实例对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.serializeJson" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.serializeJson</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>newInstance</code>
+                </li>
+                <li class="arg">
+                        <code>dataObject</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.serializeJson">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>序列化数据容器到JSON数据，包含数据容器的Client数据，Property属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.JsonSerializer.html" class="crosslink">twaver.JsonSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>JSON序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newInstance</code>
+                        <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>
+
+
+                    <div class="param-description">
+                        <p>序列化的实例对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">dataObject</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>JSON数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.serializePropertyJson" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.serializePropertyJson</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>property</code>
+                </li>
+                <li class="arg">
+                        <code>newInstance</code>
+                </li>
+                <li class="arg">
+                        <code>dataObject</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.serializePropertyJson">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>序列化数据容器的自身（property）属性到JSON数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.JsonSerializer.html" class="crosslink">twaver.JsonSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>JSON序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newInstance</code>
+                        <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据容器实例对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">dataObject</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>JSON数据对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.serializePropertyXml" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.serializePropertyXml</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>property</code>
+                </li>
+                <li class="arg">
+                        <code>newInstance</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.serializePropertyXml">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>序列化数据容器的自身（property）属性到XML数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.XmlSerializer.html" class="crosslink">twaver.XmlSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>XML序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newInstance</code>
+                        <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的实例对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.serializeXml" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.serializeXml</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>serializer</code>
+                </li>
+                <li class="arg">
+                        <code>newInstance</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.serializeXml">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>序列化数据容器到XML数据，包含数据容器的Client数据，Property属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">serializer</code>
+                        <span class="type"><a href="../classes/twaver.XmlSerializer.html" class="crosslink">twaver.XmlSerializer</a></span>
+
+
+                    <div class="param-description">
+                        <p>XML序列化对象</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newInstance</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的实例对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.setClient" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.setClient</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>clientProp</code>
+                </li>
+                <li class="arg">
+                        <code>newValue</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.setClient">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置指定的client属性对应的属性值。
+client属性是用于存放用户自定义的属性</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">clientProp</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性名称</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newValue</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>Client属性的值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.DataBox.html" class="crosslink">twaver.DataBox</a></span>:
+                    <p>数据容器对象本身</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.setIcon" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.setIcon</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>v</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.setIcon">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置数据容器的图标，图标一般是用在树上显示的</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">v</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>图标名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.setLimit" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.setLimit</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>limit</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.setLimit">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置数据容器的上限数。默认为-1，是没有显示的，一旦设置了上限数，当添加的数据数量大于这个上限数时，TWaver就会删除最旧的数据</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">limit</code>
+                        <span class="type">Number</span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的上限数</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.setName" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.setName</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>v</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.setName">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置数据容器的名称</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">v</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>数据容器的名称</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.setToolTip" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.setToolTip</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>v</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.setToolTip">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>设置数据容器的提示信息的内容，提示信息是在视图上显示的，当鼠标停留在数据容器上一段时间后，提示信息就消失</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">v</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>提示信息中显示的内容</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.DataBox.size" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.size</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">Number</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.size">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>数据容器的大小，也就是容器中数据的数量</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Number</span>:
+                    <p>数据容器的大小</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.DataBox.toDatas" class="method item inherited">
+    <h3 class="name"><code>twaver.DataBox.toDatas</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>matchFunction</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#method_twaver.DataBox.toDatas">twaver.DataBox</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>将数据容器中的数据转成集合</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">matchFunction</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>转换成List集合时回调函数</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">String</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>回调函数的作用域，为空时指的是window</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type"><a href="../classes/twaver.List.html" class="crosslink">twaver.List</a></span>:
+                    <p>数据集合</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.addPropertyChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.addPropertyChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[ahead]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.addPropertyChangeListener">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>添加属性变化监听器，用于监听属性变化</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>可选，属性变化监听器的作用域，默认为null，即全局</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[ahead]</code>
+                        <span class="type">Boolean</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>可选，是否将此监听放在最前面，默认为false</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <p>var dispatcher = new twaver.PropertyChangeDispatcher();
+dispatcher.addPropertyChangeListener(function (e) {
+console.log(e.property, e.newValue, e.oldValue);
+});</p>
+
+            </div>
+        </div>
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.firePropertyChange" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.firePropertyChange</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>property</code>
+                </li>
+                <li class="arg">
+                        <code>oldValue</code>
+                </li>
+                <li class="arg">
+                        <code>newValue</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+        <span class="returns-inline">
+            <span class="type">Boolean</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.firePropertyChange">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>派发属性变化事件，属性变化时调用此方法</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">property</code>
+                        <span class="type">String</span>
+
+
+                    <div class="param-description">
+                        <p>发生变化的属性</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">oldValue</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>和此属性相关的旧值</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name">newValue</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>和此属性相关的新值</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">Boolean</span>:
+                    <p>如果新值和旧值相等则返回false，否则返回true</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.getClassName" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.getClassName</code></h3>
+
+        <span class="paren">()</span>
+
+        <span class="returns-inline">
+            <span class="type">String</span>
+        </span>
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.getClassName">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>获取此类的字符串类名</p>
+
+    </div>
+
+
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                        <span class="type">String</span>:
+                    <p>返回此类的字符串类名</p>
+
+            </div>
+        </div>
+
+
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.onPropertyChanged" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.onPropertyChanged</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>e</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.onPropertyChanged">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>属性变化时（firePropertyChange）触发的动作，不需要调用此方法，但可以重载此方法执行自定义逻辑</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">e</code>
+                        <span class="type">Object</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化事件，包含property、oldValue和newValue的Object对象</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+<div id="method_twaver.PropertyChangeDispatcher.removePropertyChangeListener" class="method item inherited">
+    <h3 class="name"><code>twaver.PropertyChangeDispatcher.removePropertyChangeListener</code></h3>
+
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>listener</code>
+                </li>
+                <li class="arg">
+                        <code class="optional">[scope]</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+
+
+
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.PropertyChangeDispatcher.html#method_twaver.PropertyChangeDispatcher.removePropertyChangeListener">twaver.PropertyChangeDispatcher</a>:
+        </p>
+
+
+
+    </div>
+
+    <div class="description">
+        <p>删除指定作用域的属性变化监听器，作用域必须和添加监听器时的作用域一致，相同的作用域的相同监听器只能成功添加一次</p>
+
+    </div>
+
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">listener</code>
+                        <span class="type">Function</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化监听器</p>
+
+                    </div>
+
+                </li>
+                <li class="param">
+                        <code class="param-name optional">[scope]</code>
+                        <span class="type">Object</span>
+                        <span class="flag optional" title="This parameter is optional.">optional</span>
+
+
+                    <div class="param-description">
+                        <p>属性变化监听器的作用域，可选，默认为null，代表全局</p>
+
+                    </div>
+
+                </li>
+            </ul>
+        </div>
+
+
+
+</div>
+            </div>
+
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+
+<div id="property_IClient" class="property item inherited">
+    <h3 class="name"><code>IClient</code></h3>
+    <span class="type">Boolean</span>
+
+
+
+
+
+    <div class="meta">
+                <p>Inherited from
+                <a href="../classes/twaver.DataBox.html#property_IClient">twaver.DataBox</a>:
+        </p>
+
+
+    </div>
+
+    <div class="description">
+        <p>是否是IClient的标识</p>
+
+    </div>
+
+
+
+</div>
+            </div>
+
+
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="../assets/js/yui-prettify.js"></script>
+<script src="../assets/../api.js"></script>
+<script src="../assets/js/api-filter.js"></script>
+<script src="../assets/js/api-list.js"></script>
+<script src="../assets/js/api-search.js"></script>
+<script src="../assets/js/apidocs.js"></script>
+</body>
+</html>
