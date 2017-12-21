@@ -99,13 +99,13 @@ ass.protoUI({
 		var collect = {};
 		var gIndexs = [];
 		
-		$.each(items,(function(_this,gIndexs,_collect){
+		$.each(items,(function(_this,_gIndexs,_collect){
 			return function(index,item){
 				var grouplabel = item.grouplabel;
 				var label = item.label;
 				if(grouplabel){
 					(!_collect[index])?(_collect[index]={grouplabel:label,items:[]}):false;
-					gIndexs.push(index);
+					_gIndexs.push(index);
 				}
 			}
 		})(this,gIndexs,collect));
@@ -122,25 +122,35 @@ ass.protoUI({
 		}
 		
 		return collect;
-	},		
-	appendItems:function(targetItems,sourceItems,isAppend){
-		var _targetItems = null;
-		if(isAppend && targetItems.length>0)
-		{
-			var items = [];
-			var targetCollect = this.getGroupCollect(targetItems);
-			var sourceCollect = this.getGroupCollect(sourceItems);
-		
-			for(var tKey in targetCollect){
-				var _items = [];
-				var item = {};
-				var tCollect = targetCollect[tKey];
-				var tGrouplabel = tCollect.grouplabel;
-				item.label = tGrouplabel;
-				item.grouplabel = true;
-				_items.push(item);
+	},
+	isExitInCollect:function(targetGrouplabel,sourceCollect){
+		var result = false;
+		for(var sourceKey in sourceCollect){
+			var sourceGrouplabel = sourceCollect[sourceKey]['grouplabel'];
+			result = (targetGrouplabel === sourceGrouplabel);
+			if(result)
+			{
+				break;
+			}
+		}
+
+		return result;
+	},
+	appendOldlabelItems:function(targetCollect,sourceCollect){
+		var items = [];
+		for(var tKey in targetCollect){
+			var _items = [];
+			var item = {};
+			var tCollect = targetCollect[tKey];
+			var tGrouplabel = tCollect.grouplabel;
+			var isExitInCollect = this.isExitInCollect(tGrouplabel,sourceCollect);
+			item.label = tGrouplabel;
+			item.grouplabel = true;
+			_items.push(item);
+			if(isExitInCollect)
+			{
 				for(var sKey in sourceCollect){
-					var sCollect =sourceCollect[sKey]; 
+					var sCollect = sourceCollect[sKey]; 
 					var sGrouplabel = sCollect.grouplabel;
 					if(tGrouplabel == sGrouplabel)
 					{
@@ -148,16 +158,61 @@ ass.protoUI({
 						_items = _items.concat(tCollect.items);
 					}
 				}
-				items = items.concat(_items);
 			}
+			else
+			{
+				_items = _items.concat(tCollect.items);
+			}
+			
+
+			items = items.concat(_items);
+		}
+
+		return items;
+	},
+	appendNewlabelItems:function(targetCollect,sourceCollect){
+		var items = [];
+
+		for(var sKey in sourceCollect){
+			var _items = [];
+			var item = {};
+			var sCollect = sourceCollect[sKey];
+			var sGrouplabel = sCollect.grouplabel;
+			var isExitInCollect = this.isExitInCollect(sGrouplabel,targetCollect);
+			
+			if(!isExitInCollect)
+			{
+				item.label = sGrouplabel;
+				item.grouplabel = true;
+				_items.push(item);
+				_items = _items.concat(sCollect.items);
+			}
+			
+			items = items.concat(_items);
+		}
+
+		return items;
+	},
+	appendItems:function(targetItems,sourceItems,isAppend){
+		var _targetItems = null;
+		if(isAppend && targetItems.length>0)
+		{
+			var items = [];
+			var targetCollect = this.getGroupCollect(targetItems);
+			var sourceCollect = this.getGroupCollect(sourceItems);
+
+			items = items.concat(this.appendOldlabelItems(targetCollect,sourceCollect));
+			items = items.concat(this.appendNewlabelItems(targetCollect,sourceCollect));
+
 			_targetItems=  items;
 		}
 		else
 		{
 			_targetItems = sourceItems;
 		}
-		return _targetItems;
+		return ass.unique(_targetItems);
 	},
+
 	setItems:function(p){
 		var items = p.items;
 		var isAppend = (p.isAppend)?p.isAppend:false;

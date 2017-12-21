@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ROOT>
+	<MODEL id='00001' layout='round'>
+
+		<!-- <DEFS>
+			<IMAGES>
+				<IMAGE 
+					id='IMG_1' 
+					url='G:/image.png'
+					base64Info='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAAbwAAAG8B8aLcQwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAFBSURBVFiF7Ze7SgNBFIa/M7uLgqLEwk4QEZsUgmxhmyopJQ8gbGFlY6edRRrtfIOAvdrGKpYWIWAvIggRLIQEBUXcY5H1UkzcNSxs4RwY5nJm/vMxN2ZEVSnSTKHRHYADAHxb42p1cz7A7IjIUh5BVPXmjfjo6vz4IRNAgLeP6Jaij3kAINQD9WaB7UwACmVBup1Wcz2P+GEtulQo23yF7wEH4AAcgAOw3oRD01JYjTZyiSJaArn/IwAriJ6lSF8n+XIGDCuAdQkMepdBEJCTYUq3UZrWGTC+NuJ3EygsjpbUBdDdpNIDGQktcGv8uGH1jfsqDmvRwTeAHHZazb1xdAo/BZlmoFKJJgcTeiqw9qN5GphKys/A06dDoTvzKvV2u/mSpv3bKfiyfmDmPOIBcJGlvyRjgF5qX/czcgD/HuADcshVP/OKxXAAAAAASUVORK5CYII=' />
+			</IMAGES>
+			<STYLES>
+				<STYLE id='style1' className='LINK' script="[
+					{'key':'link.from.position' ,'value': 'right'},
+					{'key':'link.to.position', 'value': 'left'},
+					{'key':'arrow.to.shape',value:'arrow.standard'}]" />
+				
+			</STYLES>
+		</DEFS> -->
+
+		<ELEMENT id='0002'   className='NODE'  name='node1'   icon='IMG_1' />
+		<ELEMENT id='0003'   className='NODE'  name='node2'   icon='IMG_1' />
+		<ELEMENT id='0005'   className='NODE'  name='node5'   icon='IMG_1' />
+		<ELEMENT id='0006'   className='NODE'  name='node6'   icon='IMG_1' />
+		<ELEMENT id='0007'   className='NODE'  name='node7'   icon='IMG_1' />
+		<ELEMENT id='0008'   className='NODE'  name='node8'   icon='IMG_1' />
+		<ELEMENT id='0009'   className='NODE'  name='node9'   icon='IMG_1' />
+		<ELEMENT id='00010'  className='NODE'  name='node10'  icon='IMG_1' />
+
+		<ELEMENT id='0004'    className='LINK'  fromToId='0002#0003' />
+		<ELEMENT id='00011'   className='LINK'  fromToId='0005#0003' />
+		<ELEMENT id='00012'   className='LINK'  fromToId='0006#0003' />
+ 		<ELEMENT id='00013'   className='LINK'  fromToId='0007#0003' />
+		<ELEMENT id='00014'   className='LINK'  fromToId='0008#0003' />
+		 <ELEMENT id='00015'  className='LINK'  fromToId='0009#0003' />
+		<ELEMENT id='00016'   className='LINK'  fromToId='00010#0003' />  
+	</MODEL>
+</ROOT>

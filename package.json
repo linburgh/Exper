@@ -8,8 +8,13 @@
   	"dev-compile-js":"webpack",
   	"dev-js-concat":"gulp js-concat",
   	"dev-js-concat-itsm":"gulp js-concat-itsm",
+  	"dev-js-concat-itsm-simple":"gulp js-concat-itsm-simple",
+  	"dev-js-concat-futureITSM-simple":"gulp  js-concat-futureITSM-simple",
   	"dev":"npm run dev-compile-less && npm run dev-compile-js && npm run dev-js-concat",
-  	"dev-itsm":"npm run dev-compile-less-itsm && npm run dev-compile-js && npm run dev-js-concat-itsm"
+  	"dev-novender":"npm run dev-compile-less && npm run dev-compile-js",
+  	"dev-itsm":"npm run dev-compile-less-itsm && npm run dev-compile-js && npm run dev-js-concat-itsm",
+  	"dev-itsm-simple":"npm run dev-compile-less-itsm && npm run dev-compile-js && npm run dev-js-concat-itsm-simple" ,
+  	"dev-futureITSM-simple":" npm run dev-compile-js && npm run dev-js-concat-futureITSM-simple" 
   },
   "devDependencies": {
     "gulp": "^3.9.1",

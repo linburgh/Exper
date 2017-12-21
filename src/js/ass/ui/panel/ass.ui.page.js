@@ -132,12 +132,24 @@ ass.protoUI({
 		var data = this.getData();
 		var currPageIndex = this.getCurrPageIndex();
 		var pageSize = this.getPageSize();
-		var dataStartIndex = (currPageIndex-1)*pageSize;
-		var dataEndIndex = currPageIndex*pageSize;
+		var dataStartIndex = this.getDataStartIndex();
+		var dataEndIndex = this.getDataEndIndex();
 		for(var i=dataStartIndex; i<dataEndIndex; i++){
 			pageData.push(data[i]);
 		}
 		return pageData;
+	},
+	getDataStartIndex:function(){
+		var currPageIndex = this.getCurrPageIndex();
+		var pageSize = this.getPageSize();
+		var dataStartIndex = (currPageIndex-1)*pageSize;
+		return dataStartIndex;
+	},
+	getDataEndIndex:function(){
+		var currPageIndex = this.getCurrPageIndex();
+		var pageSize = this.getPageSize();
+		var dataEndIndex = currPageIndex*pageSize;
+		return dataEndIndex;
 	},
 	doCallBack:function(){
 		var callBack = this.getCallBack();
@@ -150,11 +162,11 @@ ass.protoUI({
 		this.doCallBack();
 	},
 	goNextPage:function(){
-		var currPageIndex = this.getCurrPageIndex();
-		var pageCount = this.getPageCount();
-		currPageIndex = (currPageIndex<pageCount)?currPageIndex+1:currPageIndex;
-		this.setCurrPageIndex(currPageIndex);
 		if(!this.isEnd()){
+			var currPageIndex = this.getCurrPageIndex();
+			var pageCount = this.getPageCount();
+			currPageIndex = (currPageIndex<pageCount)?currPageIndex+1:currPageIndex;
+			this.setCurrPageIndex(currPageIndex);
 			this.doCallBack();
 		}	
 	},

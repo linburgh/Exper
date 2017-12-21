@@ -77,6 +77,16 @@ ass.protoUI({
 		this.setting.headObj = $("#"+this.getHeadId()); 
 		return this.setting.headObj;
 	},
+	getFooterId:function(){
+		if(!this.setting.footerId){
+			this.setting.footerId =  ass.uid()+"_panel_footer";
+		}
+		return this.setting.footerId;
+	},
+	getFooterObj:function(){
+		this.setting.footerObj = $("#"+this.getFooterId()); 
+		return this.setting.footerObj;
+	},
 	createHeadTpl:function(){
 		return "<div class='panel-heading'  id='"+this.getHeadId()+"'>"+this.setting.headTpl+"</div>";
 	},
@@ -105,7 +115,8 @@ ass.protoUI({
 		var _p = (p)?p:{};
 		var cls = (_p.cls)?_p.cls:"";
 		var isPage = this.isPage();
-		var tpl = "<div class='panel-footer "+cls+"'>";
+		var id = this.getFooterId();
+		var tpl = "<div class='panel-footer "+cls+"' id='"+id+"'>";
 		tpl += this.setting.footerTpl;
 		tpl += "</div>";
 		return tpl;

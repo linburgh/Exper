@@ -269,15 +269,21 @@ ass.protoUI({
 						var dropDownMenuType = _this.getDropDownMenuType();
 						var dropDownMenu = _this.getDropdownMenu();
 						var tpl = "";
-						if(opts.length>0){
-							switch(dropDownMenuType){
-								case 'ListPanel':
+						switch(dropDownMenuType){
+							case 'ListPanel':
+								var footerObj = dropDownMenu.getFooterObj();
+								if(opts.length>0){
 									var pageConfig = {dataCount:opts.length,pageSize:5};
 									dropDownMenu.setItems(opts);
 									dropDownMenu.getPage().reset(pageConfig);
-									dropDownMenu.refresh();
-								break;
-							}
+									footerObj.show();
+								}else{
+									var emptyOption = _this.getEmptyOption('当前暂无匹配结果'); 
+									dropDownMenu.setItems([emptyOption]);
+									footerObj.hide();
+								}
+								dropDownMenu.refresh();
+							break;
 						}
 						dropDownMenu.show();
 					}
@@ -337,10 +343,6 @@ ass.protoUI({
 					}
 				break;
 			}
-		}
-		if(opts.length == 0){
-			var emptyOption = this.getEmptyOption('当前暂无匹配结果');
-			opts.push(emptyOption);
 		}
 		return opts;
 	},

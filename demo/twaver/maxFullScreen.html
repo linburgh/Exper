@@ -1,0 +1,65 @@
+<!DOCTYPE html >
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="style.css" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>江苏ITSM基础设施监控中心</title>
+<script type="text/javascript" src="../../dep/twaver-html5-5.3.6/lib/twaver.js" ></script>
+<script>
+    twaver.gis = {};
+    var box = new twaver.ElementBox();
+    var network = new twaver.vector.Network(box);
+    function init() {
+      registerNormalImage("testimage");
+      initNetwork();
+      initDataBox();
+    }
+
+    function registerImage() {
+
+    }
+
+    function initNetwork() {
+      document.body.appendChild(network.getView());
+      network.adjustBounds({x:0,y:0,width:1200,height:500});
+    }
+
+    function registerNormalImage(name, imageName) {
+      var image = new Image();
+      image.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAC0AAAAtCAYAAAA6GuKaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3FpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDE0IDc5LjE1MTQ4MSwgMjAxMy8wMy8xMy0xMjowOToxNSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDpiNjgwZTRiZi0xZDllLWMxNGUtYjIxMy03ZjlmMTdhMjg2ZWQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTQ4MDA5NjZCNkEwMTFFNkExNTQ5NTIxMUM4MzU5RkUiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTQ4MDA5NjVCNkEwMTFFNkExNTQ5NTIxMUM4MzU5RkUiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChXaW5kb3dzKSI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjYwZDA3M2RjLWIyYzgtNWU0YS05NDQxLTFkZGUyYjIxNDkzYiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpiNjgwZTRiZi0xZDllLWMxNGUtYjIxMy03ZjlmMTdhMjg2ZWQiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6oTKBmAAAEpElEQVR42txZy28TZxAfr9cP8iBRRAQEhRAI4XUoKLQqN+BCb62QIpQWiYeAAwcEh0KLRA8gOFCpf0AroVaFpiVS1HJpT3CkUnkEqSUNkEDCIwgSII3t2Guvl9+sP4Pt7Ho/r5ck7kg/fdFmd+bn2fnmm5n1PR/aT2XKWmAr0AGsBpqBGqAOmAAiwEPgX+A6cBm4nX14Qeu3JRtUXRJdBuwFPgOWF7mvTmAJ8CGwW1wfAi4A54AHpRr3lejpNuAroKuMH5wrKaAbOAmP3/OadBj4EjgGhMh7SQBngTMgH3e6WZFQuBK4Kjz8LgiT0HuC7YzdP7CyXNLbgGvAepoZYTvXQPwjt6Q7gUvAfJpZYXu/gXhnqaQ5hZ0HgjQ7wnbPg/hWWdIcU72zSDiXeC+ItzuR5izxi8itc0GYx88gHi5GmtPaBi+s1Td94RVx5nPcjnSbyMMuxEc+pYoUtYHU0HIKzFuDvxvNVQ21kuKvw//nlUP8KLzdZnWMn3TKw0yguqETBIImCZ8vjDWE1Tr86xYdmXbNSMfJMDQgQYYeM/+OjP9EuvbYKY8zv09zT8QVwADgd/JoTeMuijz/gc1ba69+n0I1H1Ag3E7aVD8lIn+SFuuz1VfbuIcmx77nX+Pkbb6hHSfmYDY89jkTZk+3UGLyKqnBZvvzOPoXyP5tvgktdqMIYegLLsH9N7C2yIQIc92fG9NdUpHrU83XyeHhhfAPM9IRU6+kdGVJrwNanAkHQTiJ1Y81VYohG4WqqScT5wnokyprlmJDrmPSm6UK71AzpRIjmXoSqz+4tCzOKp5PaUKf9tDULylbmPRGuXuVnM2XhmeU8hyNN4b0kc0p5qaUlA62vMqRrr+W0vpk/lZOx8zc7C6WwwiJqXx9+gTsSNVmqxSZePYHFpKefJp3Tdee4BU3uQwNhJr2SMSzltGXfGbakYlrRTShjieet5Kb4/VSH65VZerl+QsP4pVWT8/2+it6MXK0ZMq1jfvMI9/qtBwfPuRIhz39n2MDF71peV2L3nLXENocOFrspszjk4qYSxSV6IseSsYH864l4/co+rLXFenYy1/x/EB+W54YQg1yUYo0h8cwUHRH8U6fGD2Lqm01+VG96alnlJwasK0/HCMaYTAx+o1Zn5ibPDUGff2y+oZVUShtktk8rDhJ/Z5tRvZ2occlZEARo6pKkutM+kqFkb7CpP8BRiqEMPO8nS0guiuEdDeaACNbX34HfC45JrPoVjrMnjArgXBmkBqseg/1RENBLr6FI3vUjZm04PmmRxwUo4MuL9yRjA+Z8FgucqtV2NjygHE7SQwZ/YHFVN/krnGvqn87pouM/YjTVip5JQS/ad04z4d53HrCSQO/3vHhwzMZy1/Dy3fthjVngL45tvmYz+liEyYeaO+gzLeSuSDMY0fhoN0qW9wRsa3NMmG2vx2E71g1flbCX6B2ziJxtrsThC/bdat20gN8LFNveyzcjH4Cwj3FWuxi8ofo1vtmcNN1gPDvTnMBJ7krStdTIl++q3Bg/ZtyU5ttx/p//o5YKMso88WWN2uri+fvU+abzjmQfVDy3MQwDKo0eS3AAKXBfILQK418AAAAAElFTkSuQmCC";
+      twaver.Util.registerImage(name, image, 32, 32);
+//    network.invalidateElementUIs();
+    }
+
+    function initDataBox() {
+      var node = new twaver.HTMLNode({
+        name:'testimage',
+        image:'testimage',
+        location:{x:400,y:200},
+      });
+      box.add(node);
+    }
+  </script>
+</head>
+<!--<body onload='init()'>
+-->		
+
+<body>
+<div style='width:100px;height:100px;border-bottom:1px solid red;border-right:1px solid gray;'></div>
+
+	<!--<div id='topo-container' class='topo-container'>
+		<div class='topo-container-corner topo-container-corner-topright'></div>
+		<div class='topo-container-corner topo-container-corner-topleft'></div>
+		<div class='topo-container-corner topo-container-corner-bottomleft'></div>
+		<div class='topo-container-corner topo-container-corner-bottomright'></div>
+	</div>
+	
+	<div id='topo-container1' class='topo-container'>
+		<div class='topo-container-corner topo-container-corner-topright'></div>
+		<div class='topo-container-corner topo-container-corner-topleft'></div>
+		<div class='topo-container-corner topo-container-corner-bottomleft'></div>
+		<div class='topo-container-corner topo-container-corner-bottomright'></div>
+	</div>-->
+</body>
+</html>

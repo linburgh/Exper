@@ -24,8 +24,13 @@ function loadSrcFiles(){
 			'ui/panel/ass.ui.tabPanel.js',
 			'ui/panel/ass.ui.timeline.js',
 			/***Panel End***/
-			'twaver.network_core.js',
-			'twaver.network.js',
+			'twaver/twaver.network.databox.js',
+			'twaver/twaver.network.simpleDatabox.js',
+			'twaver/twaver.network.eventHandler.js',
+			'twaver/twaver.network.js',
+			'twaver/twaver.network_core.js',
+			'twaver/twaver.network.dataCollection.js',
+			 'twaver/twaver.network.simpleDataCollection.js',
 			'ui/ass.ui.view.js',
 			'ui/ass.ui.text.js',
 			'ui/ass.ui.combo.js',
@@ -52,7 +57,30 @@ function loadSrcFiles(){
 
 	return files;
 }
-var files = loadSrcFiles();
+
+function loadTwaverSrcFile(){
+	var basePath = './src/js/ass/';
+	var files = [
+			// 'ass_core.js',
+			'twaver/twaver.network_core.js',
+			'twaver/twaver.network.databox.js',
+			'twaver/twaver.network.dataCollection.js',
+			'twaver/twaver.network.simpleDataCollection.js',
+			'twaver/twaver.network.simpleDatabox.js',
+			'twaver/twaver.network.eventHandler.js',
+			'twaver/twaver.network.js'
+			
+	  ];
+
+	for(var i=0; i<files.length; i++){
+		files[i] = basePath + files[i];
+	}
+
+	return files;
+}
+
+// var files = loadSrcFiles();
+var files = loadTwaverSrcFile();
 
 module.exports = {
 	entry: files,

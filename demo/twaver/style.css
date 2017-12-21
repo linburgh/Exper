@@ -1,0 +1,44 @@
+.topo-container{
+	margin: 10px;
+	background-color:#080a31;
+	position:relative;
+	width: 980;
+	height:700px;
+	border:1px dashed #183c6a;
+}
+
+.topo-container-corner {
+	position:absolute;
+	height:5px;
+	width: 5px;
+	
+}
+
+.topo-container-corner-topright{
+	top:0;
+	left:0;
+	border-top:1px solid #30b1da;
+	border-left:1px solid #30b1da;
+	
+}
+
+.topo-container-corner-topleft{
+	top:0;
+	right:0;
+	border-top:1px solid #30b1da;
+	border-right:1px solid #30b1da;
+}
+
+.topo-container-corner-bottomleft{
+	top:694px;
+	left:0;
+	border-bottom:1px solid #30b1da;
+	border-left:1px solid #30b1da;
+}
+
+.topo-container-corner-bottomright{
+	top:694px;
+	right:0;
+	border-bottom:1px solid #30b1da;
+	border-right:1px solid #30b1da;
+}

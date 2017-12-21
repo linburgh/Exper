@@ -131,6 +131,17 @@ ass.protoUI({
        
         return result;
 	},
+	isScrollToStart:function(scrollBodyObj,interval){
+		var result = false;
+		if(scrollBodyObj){
+			 var viewH =scrollBodyObj.height();
+	        var contentH =scrollBodyObj.get(0).scrollHeight;
+	        var scrollTop =scrollBodyObj.scrollTop();
+	        interval = (interval)?interval:0.1;
+	        result = scrollTop/(contentH -viewH)<=interval
+		}
+        return result;
+	},
 	setScrollBodyObjs:function(){
 		if(this.setting.scrollBodyObjs){
 			var scrollBodyObjs = this.setting.scrollBodyObjs;

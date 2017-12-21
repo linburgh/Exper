@@ -28,6 +28,7 @@ ass.copy = function(oSource,oTarget){
 
 ass.$ajax = function(p){
 	var result = null;
+	var contentType = p.contentType;
 	var url = (p.url)?p.url:"";
 	var type = (p.type)?p.type:"post";
 	var param = (p.param)?p.param:[];
@@ -36,9 +37,11 @@ ass.$ajax = function(p){
 	var callBack = (p.callBack)?p.callBack:{};
 	var success =(callBack.success)?callBack.success:function(data, textStatus){};
 	var error = (callBack.error)?callBack.error:function(XMLHttpRequest, textStatus, errorThrown){
-		alert(XMLHttpRequest.statusText);
+		ass.$log("request error url:"+url);
 	}
-	var _param ={type:type,url:url,data:param,async:async,dataType:dataType,success:success,error:error}
+	var _param ={type:type,url:url,data:param,async:async,dataType:dataType,success:success,error:error};
+	(contentType)?(_param.contentType = contentType):false;
+	
 	if(!async){
 		var result = $.ajax(_param);
 		switch(dataType){
@@ -55,6 +58,62 @@ ass.$ajax = function(p){
 		return result;
 	}
 	$.ajax(_param);
+}
+
+ass.ajax = function(p){
+	var result = null;
+	var sendXml = p.sendXml;
+	var url = (p.url)?p.url:'';
+	var async = (p.async)?p.async:false;
+	var dataType = (p.dataType)?p.dataType:"json";
+	var oSend = new ActiveXObject("Microsoft.XMLHTTP");
+	var oXmlDoc = null;
+	oSend.open('post',url,async);
+	
+	if(sendXml){
+		var oXmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+		oXmlDoc.loadXML(sendXml);
+	}
+	
+	oSend.send(oXmlDoc);	
+	
+	if(!async)
+	{
+		switch(dataType){
+			case "json":
+				result = eval('('+oSend.responseText+')');
+			break;
+			case "xml":
+				result =oSend.responseXML;
+			break;
+			default:
+				result =oSend.responseText;
+			break;
+		}
+	}
+	else
+	{
+		oSend.onreadystatechange=(function(callBack,_dataType,_oSend){
+			return function(){
+				if(oSend.readyState==4 && oSend.status==200){
+					switch(dataType){
+						case "json":
+							result = eval('('+oSend.responseText+')');
+						break;
+						case "xml":
+							result =_oSend.responseXML;
+						break;
+						default:
+							result =_oSend.responseText;
+						break;
+					}
+					callBack(result);
+				}
+			}
+		})(p.callBack,dataType,oSend);
+	}
+	
+	return result;
 }
 
 ass.$log = function(type,message,details){
@@ -91,14 +150,18 @@ ass.bind=function(functor, object){
 
 ass.utils = {
 	getImageName: function (url) {
-		var index = url.lastIndexOf('/');
-		var name = url;
-		if (index >= 0) {
-			name = url.substring(index + 1);
-		}
-		index = name.lastIndexOf('.');
-		if (index >= 0) {
-			name = name.substring(0, index);
+		var name = null;
+		if(url){
+			var index = url.lastIndexOf('/');
+			var name = url;
+			
+			if (index >= 0) {
+				name = url.substring(index + 1);
+			}
+			index = name.lastIndexOf('.');
+			if (index >= 0) {
+				name = name.substring(0, index);
+			}
 		}
 		return name;
 	},
@@ -129,6 +192,26 @@ ass.event = function(node,event,handler,master){
 		node.attachEvent("on"+event, handler);
 }
 
+ass.unique = function(array,key){
+	var r = [];
+	for(var i = 0, l = array.length; i < l; i++) {
+		for(var j = i + 1; j < l; j++){
+			if(key){
+				if (array[i][key] === array[j][key]){
+					j = ++i;	
+				} 
+			}else{
+				if (array[i] === array[j]){
+					j = ++i;	
+				}
+			}
+			
+		}
+	    r.push(array[i]);
+	  }
+	  return r;
+}
+
 ass.$event = function($node,event,fn){
 	if($node){
 		$node.on(event,fn);
@@ -141,15 +224,21 @@ ass.getEventObj = function(e){
 
 ass.toArray = function(d){	
 	var arr = [];
-	if(!d.length)
-	{
-		arr.push(d);
-	}
-	else
-	{
-		arr = arr.concat(d)
+	if(d){
+		if(!d.length  && d.length > 0)
+		{
+			arr.push(d);
+		}
+		else
+		{
+			arr=arr.concat(d);
+		}
 	}
 	return arr;
+}
+
+ass.parseJSON = function(str){
+	return $.parseJSON(str);
 }
 
 ass.isArray = function(d){
@@ -301,4 +390,3 @@ ass.UICompoent.getView = function(id){
 	return ass.UICompoent.Instances[id];
 }
 
-module.exports = ass;
